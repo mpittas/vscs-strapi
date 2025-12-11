@@ -1,56 +1,66 @@
 import path from 'path';
 
 export default ({ env }) => {
-  const client = env('DATABASE_CLIENT', 'postgres');
+  // Strapi Cloud provides DATABASE_URL automatically
+  // If it exists, use PostgreSQL; otherwise use SQLite for local development
+  const isProduction = env('DATABASE_URL', null) !== null;
 
-  const connections = {
-    mysql: {
+  if (isProduction) {
+    // Strapi Cloud / Production: Use PostgreSQL with DATABASE_URL
+    return {
       connection: {
-        host: env('DATABASE_HOST', 'localhost'),
-        port: env.int('DATABASE_PORT', 3306),
-        database: env('DATABASE_NAME', 'strapi'),
-        user: env('DATABASE_USERNAME', 'strapi'),
-        password: env('DATABASE_PASSWORD', 'strapi'),
-        ssl: env.bool('DATABASE_SSL', false) && {
-          key: env('DATABASE_SSL_KEY', undefined),
-          cert: env('DATABASE_SSL_CERT', undefined),
-          ca: env('DATABASE_SSL_CA', undefined),
-          capath: env('DATABASE_SSL_CAPATH', undefined),
-          cipher: env('DATABASE_SSL_CIPHER', undefined),
-          rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', true),
+        client: 'postgres',
+        connection: {
+          connectionString: env('DATABASE_URL'),
+          ssl: {
+            rejectUnauthorized: false,
+          },
         },
-      },
-      pool: { min: env.int('DATABASE_POOL_MIN', 2), max: env.int('DATABASE_POOL_MAX', 10) },
-    },
-    postgres: {
-      connection: {
-        connectionString: env('DATABASE_URL'),
-        host: env('DATABASE_HOST', 'localhost'),
-        port: env.int('DATABASE_PORT', 5432),
-        database: env('DATABASE_NAME', 'strapi'),
-        user: env('DATABASE_USERNAME', 'strapi'),
-        password: env('DATABASE_PASSWORD', 'strapi'),
-        ssl: env.bool('DATABASE_SSL', true) && {
-          rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', false),
+        pool: {
+          min: 2,
+          max: 10,
         },
-        schema: env('DATABASE_SCHEMA', 'public'),
+        acquireConnectionTimeout: 60000,
       },
-      pool: { min: env.int('DATABASE_POOL_MIN', 2), max: env.int('DATABASE_POOL_MAX', 10) },
-    },
-    sqlite: {
-      connection: {
-        filename: path.join(__dirname, '..', '..', env('DATABASE_FILENAME', '.tmp/data.db')),
-      },
-      useNullAsDefault: true,
-    },
-  };
+    };
+  }
 
+  // Local development: Use SQLite (simplest, no setup required)
+  // Or use PostgreSQL locally by setting DATABASE_CLIENT=postgres in .env
+  const client = env('DATABASE_CLIENT', 'sqlite');
+
+  if (client === 'postgres') {
+    return {
+      connection: {
+        client: 'postgres',
+        connection: {
+          host: env('DATABASE_HOST', 'localhost'),
+          port: env.int('DATABASE_PORT', 5432),
+          database: env('DATABASE_NAME', 'strapi'),
+          user: env('DATABASE_USERNAME', 'postgres'),
+          password: env('DATABASE_PASSWORD', ''),
+          ssl: false,
+        },
+        pool: {
+          min: 2,
+          max: 10,
+        },
+        acquireConnectionTimeout: 60000,
+      },
+    };
+  }
+
+  // Default: SQLite for local development
   return {
     connection: {
-      client,
-      ...connections[client],
-      acquireConnectionTimeout: env.int('DATABASE_CONNECTION_TIMEOUT', 60000),
+      client: 'sqlite',
+      connection: {
+        filename: path.join(__dirname, '..', '..', '.tmp', 'data.db'),
+      },
+      useNullAsDefault: true,
+      acquireConnectionTimeout: 60000,
     },
   };
 };
+
 
