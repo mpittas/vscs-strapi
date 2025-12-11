@@ -30,9 +30,6 @@
     "@types/react-dom": "^18",
     "typescript": "^5"
   },
-  "optionalDependencies": {
-    "better-sqlite3": "^11.0.0"
-  },
   "engines": {
     "node": ">=20.0.0 <=24.x.x",
     "npm": ">=6.0.0"
