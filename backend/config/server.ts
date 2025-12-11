@@ -4,5 +4,11 @@ export default ({ env }) => ({
   app: {
     keys: env.array('APP_KEYS', ['temporary-key-1', 'temporary-key-2']),
   },
+  // Webhook configuration for on-demand revalidation
+  webhooks: {
+    // Default headers sent with every webhook request
+    defaultHeaders: {
+      Authorization: `Bearer ${env('WEBHOOK_TOKEN', 'your-webhook-secret')}`,
+    },
+  },
 });
-
