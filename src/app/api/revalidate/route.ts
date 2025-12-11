@@ -9,7 +9,8 @@ import { NextRequest, NextResponse } from 'next/server';
  */
 
 // Secret token for webhook security (set in Strapi webhook config)
-const REVALIDATE_SECRET = 'my-super-secret-webhook-2025';
+// Secret token for webhook security (set in Strapi webhook config)
+const REVALIDATE_SECRET = process.env.REVALIDATE_SECRET || 'your-secret-token';
 
 interface StrapiWebhookPayload {
   event: string;
@@ -30,10 +31,6 @@ export async function POST(request: NextRequest) {
     // Verify the secret token
     const authHeader = request.headers.get('authorization');
     const token = authHeader?.replace('Bearer ', '');
-    
-    // Debug logging (remove in production)
-    console.log('Received token:', token ? `${token.substring(0, 10)}...` : 'none');
-    console.log('Expected token:', REVALIDATE_SECRET ? `${REVALIDATE_SECRET.substring(0, 10)}...` : 'not set');
     
     if (token !== REVALIDATE_SECRET) {
       console.warn('Revalidation webhook: Invalid or missing secret token');
