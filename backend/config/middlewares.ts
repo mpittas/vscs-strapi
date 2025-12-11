@@ -11,7 +11,7 @@ export default [
         'http://localhost:3000',
         'http://127.0.0.1:3000',
         // Add your Vercel domain(s) here
-        process.env.FRONTEND_URL || 'https://typical-basket-fa0eaf0a45.strapiapp.com',
+        process.env.FRONTEND_URL || 'https://your-vercel-app.vercel.app',
         // Allow all Vercel preview deployments
         /\.vercel\.app$/,
       ],
