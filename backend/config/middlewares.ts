@@ -2,7 +2,21 @@ export default [
   'strapi::logger',
   'strapi::errors',
   'strapi::security',
-  'strapi::cors',
+  {
+    name: 'strapi::cors',
+    config: {
+      enabled: true,
+      headers: '*',
+      origin: [
+        'http://localhost:3000',
+        'http://127.0.0.1:3000',
+        // Add your Vercel domain(s) here
+        process.env.FRONTEND_URL || 'https://your-app.vercel.app',
+        // Allow all Vercel preview deployments
+        /\.vercel\.app$/,
+      ],
+    },
+  },
   'strapi::poweredBy',
   'strapi::query',
   'strapi::body',
@@ -10,3 +24,4 @@ export default [
   'strapi::favicon',
   'strapi::public',
 ];
+
