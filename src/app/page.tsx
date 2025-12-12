@@ -1,25 +1,18 @@
 import {
-  Hero,
-  FeatureCards,
-  About,
-  WhyChooseUs,
-  Stats,
-  Projects,
   CTA,
   Contact,
+  GreenPowerServices,
+  Hero,
 } from "@/components/sections";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <FeatureCards />
-      <About />
-      <WhyChooseUs />
-      <Stats />
-      <Projects />
+      <GreenPowerServices />
       <CTA />
       <Contact />
     </>
   );
 }
+

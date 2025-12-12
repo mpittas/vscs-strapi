@@ -52,8 +52,7 @@
   --color-slate-100: var(--slate-100);
   --color-slate-50: var(--slate-50);
   --color-muted: var(--muted);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-raleway);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -162,7 +161,7 @@ body {
   padding: 0.875rem 2rem;
   font-weight: 600;
   font-size: 1rem;
-  border-radius: 0.75rem;
+  border-radius: 9999px;
   transition: all 0.3s ease;
   cursor: pointer;
   border: none;
