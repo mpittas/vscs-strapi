@@ -1,9 +1,10 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { useState, useEffect } from 'react';
-import Button from './ui/Button';
+import Link from "next/link";
+import Image from "next/image";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import Button from "./ui/Button";
 
 const navLinks = [
   { name: "Начало", href: "/" },
@@ -16,6 +17,8 @@ const navLinks = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,14 +28,31 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const navClasses = isHomePage
+    ? `fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent ${
+        isScrolled ? "bg-white py-3" : "bg-transparent py-4"
+      }`
+    : `sticky top-0 left-0 right-0 z-50 transition-all duration-300 bg-white py-3 border-b border-slate-200 shadow-xl/3`;
+
+  // Determine text color based on page and scroll state
+  const getTextColor = (baseColor: string, hoverColor: string) => {
+    if (!isHomePage || isScrolled)
+      return "text-slate-600 hover:text-solar-orange";
+    return "text-white/90 hover:text-white";
+  };
+
+  // Determine logo to show
+  const getLogoSrc = () => {
+    if (!isHomePage || isScrolled)
+      return "/logo/vscs-logo-full-hor-dark-green.svg";
+    return "/logo/vscs-logo-full-hor.svg";
+  };
+
+  const menuButtonColor =
+    !isHomePage || isScrolled ? "text-slate-600" : "text-white";
+
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white shadow-lg py-3"
-          : "bg-transparent py-4"
-      }`}
-    >
+    <nav className={navClasses}>
       <div className="container flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center">
@@ -49,7 +69,7 @@ const Navbar = () => {
           {/* Desktop Logo - Full horizontal */}
           <div className="hidden sm:block">
             <Image
-              src={isScrolled ? "/logo/vscs-logo-full-hor-dark-green.svg" : "/logo/vscs-logo-full-hor.svg"}
+              src={getLogoSrc()}
               alt="VSCS Logo"
               width={180}
               height={48}
@@ -65,11 +85,10 @@ const Navbar = () => {
             <Link
               key={link.name}
               href={link.href}
-              className={`text-sm font-medium transition-colors relative group ${
-                isScrolled 
-                  ? 'text-slate-600 hover:text-solar-orange' 
-                  : 'text-white/90 hover:text-white'
-              }`}
+              className={`text-sm font-normal transition-colors relative group ${getTextColor(
+                "text-slate-600",
+                "text-solar-orange"
+              )}`}
             >
               {link.name}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-solar-orange transition-all group-hover:w-full" />
@@ -82,7 +101,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className={`md:hidden p-2 ${isScrolled ? 'text-slate-600' : 'text-white'}`}
+          className={`md:hidden p-2 ${menuButtonColor}`}
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
@@ -108,7 +127,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden absolute top-full left-0 right-0 bg-white shadow-xl transition-all duration-300 origin-top ${
+        className={`md:hidden absolute top-full left-0 right-0 bg-white transition-all duration-300 origin-top ${
           isOpen
             ? "opacity-100 scale-y-100 visible"
             : "opacity-0 scale-y-0 invisible"
@@ -125,7 +144,7 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
-          <Button href="/contact" className="w-full justify-center">
+          <Button href="/contact" fullWidth>
             Свържете се
           </Button>
         </div>

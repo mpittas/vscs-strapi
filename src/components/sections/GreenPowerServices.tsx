@@ -1,12 +1,17 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { Heading, Text } from '@/components/ui/Typography';
+import Link from "next/link";
+import { Heading, Text } from "@/components/ui/Typography";
 
 const services = [
   {
     icon: (
-      <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        className="w-16 h-16"
+        viewBox="0 0 64 64"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
           d="M32 8C18.745 8 8 18.745 8 32C8 45.255 18.745 56 32 56"
           stroke="#B8D935"
@@ -42,12 +47,17 @@ const services = [
         />
       </svg>
     ),
-    title: 'Renewable Energy Source',
-    href: '#',
+    title: "Renewable Energy Source",
+    href: "#",
   },
   {
     icon: (
-      <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        className="w-16 h-16"
+        viewBox="0 0 64 64"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
           d="M20 44C20 44 16 44 16 40C16 36 20 32 20 32"
           stroke="#B8D935"
@@ -92,19 +102,18 @@ const services = [
         />
       </svg>
     ),
-    title: 'Environment Protection Plan',
-    href: '#',
+    title: "Environment Protection Plan",
+    href: "#",
   },
   {
     icon: (
-      <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle
-          cx="32"
-          cy="32"
-          r="20"
-          stroke="#B8D935"
-          strokeWidth="2"
-        />
+      <svg
+        className="w-16 h-16"
+        viewBox="0 0 64 64"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="32" cy="32" r="20" stroke="#B8D935" strokeWidth="2" />
         <path
           d="M32 16V20"
           stroke="#B8D935"
@@ -132,12 +141,17 @@ const services = [
         />
       </svg>
     ),
-    title: 'Parts and Maintenance',
-    href: '#',
+    title: "Parts and Maintenance",
+    href: "#",
   },
   {
     icon: (
-      <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        className="w-16 h-16"
+        viewBox="0 0 64 64"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
           d="M28 48H24C24 48 20 48 20 44C20 40 24 36 24 36"
           stroke="#B8D935"
@@ -187,42 +201,44 @@ const services = [
         />
       </svg>
     ),
-    title: 'Innovative Green Solutions',
-    href: '#',
+    title: "Innovative Green Solutions",
+    href: "#",
   },
 ];
 
 export default function GreenPowerServices() {
   return (
-    <section className="py-20 lg:py-28" style={{ backgroundColor: '#0a1628' }}>
+    <section className="py-20 lg:py-28" style={{ backgroundColor: "#0a1628" }}>
       <div className="container">
         {/* Header Section */}
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 mb-16 lg:mb-20">
           <div>
-            <Text 
-              variant="small"
+            <Text
+              variant="body-14"
               className="font-semibold tracking-[0.25em] uppercase mb-4 block"
-              style={{ color: '#94a3b8' }}
+              style={{ color: "#94a3b8" }}
             >
               WHAT WE OFFER
             </Text>
-            <Heading 
+            <Heading
               as="h2"
               className="text-4xl lg:text-5xl font-bold leading-tight"
-              style={{ color: '#ffffff' }}
+              style={{ color: "#ffffff" }}
             >
-              Our Green Power<br />Services
+              Our Green Power
+              <br />
+              Services
             </Heading>
           </div>
           <div className="lg:pt-8">
-            <Text style={{ color: '#94a3b8' }} className="mb-4 leading-relaxed">
-              Adipiscing elit, sed do euismod tempor incidunt ut labore et dolore 
-              magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-              ullamco.
+            <Text style={{ color: "#94a3b8" }} className="mb-4 leading-relaxed">
+              Adipiscing elit, sed do euismod tempor incidunt ut labore et
+              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco.
             </Text>
-            <Text style={{ color: '#94a3b8' }} className="leading-relaxed">
-              Adipiscing elit, sed do euismod tempor incidunt ut labore et dolore 
-              magna aliqua. Ut enim ad minim veniam.
+            <Text style={{ color: "#94a3b8" }} className="leading-relaxed">
+              Adipiscing elit, sed do euismod tempor incidunt ut labore et
+              dolore magna aliqua. Ut enim ad minim veniam.
             </Text>
           </div>
         </div>
@@ -232,36 +248,34 @@ export default function GreenPowerServices() {
           {services.map((service, index) => (
             <div key={index} className="group">
               {/* Icon */}
-              <div className="mb-6">
-                {service.icon}
-              </div>
-              
+              <div className="mb-6">{service.icon}</div>
+
               {/* Title */}
-              <Heading 
+              <Heading
                 as="h3"
                 className="text-lg font-semibold mb-6 leading-snug"
-                style={{ color: '#ffffff' }}
+                style={{ color: "#ffffff" }}
               >
                 {service.title}
               </Heading>
-              
+
               {/* Arrow Link */}
-              <Link 
+              <Link
                 href={service.href}
                 className="inline-flex items-center transition-transform group-hover:translate-x-1"
-                style={{ color: '#B8D935' }}
+                style={{ color: "#B8D935" }}
               >
-                <svg 
-                  className="w-5 h-5" 
-                  fill="none" 
-                  stroke="currentColor" 
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M17 8l4 4m0 0l-4 4m4-4H3" 
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
                   />
                 </svg>
               </Link>

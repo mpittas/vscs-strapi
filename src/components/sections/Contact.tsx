@@ -7,7 +7,12 @@ export default function Contact() {
     <section className="py-20 lg:py-28 bg-white">
       <div className="container">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <Text variant="small" className="text-solar-orange font-semibold uppercase tracking-wider">Контакти</Text>
+          <Text
+            variant="body-14-sb"
+            className="text-solar-orange font-semibold uppercase tracking-wider"
+          >
+            Контакти
+          </Text>
           <Heading as="h2" className="text-slate-900 mt-2">
             Свържете се с нас
           </Heading>
@@ -21,7 +26,9 @@ export default function Contact() {
                 <LocationIcon />
               </div>
               <div>
-                <Heading as="h3" className="font-bold text-slate-900 text-lg">Адрес</Heading>
+                <Heading as="h3" className="font-bold text-slate-900 text-lg">
+                  Адрес
+                </Heading>
                 <Text className="text-slate-600">{contactInfo.address}</Text>
               </div>
             </div>
@@ -31,7 +38,9 @@ export default function Contact() {
                 <PhoneIcon />
               </div>
               <div>
-                <Heading as="h3" className="font-bold text-slate-900 text-lg">Телефон</Heading>
+                <Heading as="h3" className="font-bold text-slate-900 text-lg">
+                  Телефон
+                </Heading>
                 <Text className="text-slate-600">{contactInfo.phone}</Text>
               </div>
             </div>
@@ -41,7 +50,9 @@ export default function Contact() {
                 <EmailIcon />
               </div>
               <div>
-                <Heading as="h3" className="font-bold text-slate-900 text-lg">Имейл</Heading>
+                <Heading as="h3" className="font-bold text-slate-900 text-lg">
+                  Имейл
+                </Heading>
                 <Text className="text-slate-600">{contactInfo.email}</Text>
               </div>
             </div>
@@ -53,7 +64,7 @@ export default function Contact() {
               src={contactInfo.mapUrl}
               width="100%"
               height="100%"
-              style={{ border: 0, minHeight: '300px' }}
+              style={{ border: 0, minHeight: "300px" }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

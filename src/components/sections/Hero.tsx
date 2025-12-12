@@ -25,7 +25,10 @@ export default function Hero() {
           VS Construction Services
         </Text>
 
-        <Heading as="h1" className="mb-2 max-w-3xl leading-tight text-white">
+        <Heading
+          as="h1"
+          className="text-[72px] mb-2 max-w-4xl leading-[1.15] text-white font-normal"
+        >
           Вашият партньор в{" "}
           <span className="text-[#4ade80]">соларния бизнес</span>
         </Heading>
@@ -39,17 +42,10 @@ export default function Hero() {
         </Text>
 
         <div className="flex w-full flex-col justify-center gap-4 sm:w-auto sm:flex-row">
-          <Button
-            href="/contact"
-            className="rounded-full border-none bg-[#10b981] px-10 py-4 text-base font-bold text-white shadow-lg shadow-green-900/20 hover:bg-[#059669]"
-          >
+          <Button href="/contact" size="md">
             Свържете се с нас
           </Button>
-          <Button
-            href="/about"
-            variant="secondary"
-            className="rounded-full border-white/20 bg-white/10 px-10 py-4 text-base font-bold text-white backdrop-blur-sm hover:bg-white/20"
-          >
+          <Button href="/about" variant="secondary" size="md">
             Научете повече
           </Button>
         </div>
