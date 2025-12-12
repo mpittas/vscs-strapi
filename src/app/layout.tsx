@@ -17,6 +17,11 @@ const stolzl = localFont({
       style: "normal",
     },
     {
+      path: "../../public/fonts/Stolzl-Book.woff2",
+      weight: "350",
+      style: "normal",
+    },
+    {
       path: "../../public/fonts/Stolzl-Regular.woff2",
       weight: "400",
       style: "normal",

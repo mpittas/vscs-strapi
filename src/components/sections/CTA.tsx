@@ -1,6 +1,7 @@
 'use client';
 
 import Button from "@/components/ui/Button";
+import { Heading, Text } from "@/components/ui/Typography";
 
 export default function CTA() {
   return (
@@ -28,16 +29,16 @@ export default function CTA() {
             </svg>
           </div>
 
-          <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 leading-tight">
+          <Heading as="h2" className="text-white mb-6 leading-tight text-4xl lg:text-5xl xl:text-6xl">
             Готови ли сте да преминете{" "}
             <br className="hidden lg:block" />
             към соларна енергия?
-          </h2>
+          </Heading>
           
-          <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
+          <Text variant="lead" className="text-white/80 mb-10 max-w-2xl mx-auto">
             Свържете се с нас днес за безплатна консултация и персонализирана оферта. 
             Нашият екип от експерти ще ви помогне да изберете най-доброто решение.
-          </p>
+          </Text>
           
           <div className="flex flex-wrap gap-4 justify-center">
             <Button 

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { Heading, Text } from '@/components/ui/Typography';
 
 const services = [
   {
@@ -198,29 +199,31 @@ export default function GreenPowerServices() {
         {/* Header Section */}
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 mb-16 lg:mb-20">
           <div>
-            <span 
-              className="text-xs font-semibold tracking-[0.25em] uppercase mb-4 block"
+            <Text 
+              variant="small"
+              className="font-semibold tracking-[0.25em] uppercase mb-4 block"
               style={{ color: '#94a3b8' }}
             >
               WHAT WE OFFER
-            </span>
-            <h2 
+            </Text>
+            <Heading 
+              as="h2"
               className="text-4xl lg:text-5xl font-bold leading-tight"
               style={{ color: '#ffffff' }}
             >
               Our Green Power<br />Services
-            </h2>
+            </Heading>
           </div>
           <div className="lg:pt-8">
-            <p style={{ color: '#94a3b8' }} className="mb-4 leading-relaxed">
+            <Text style={{ color: '#94a3b8' }} className="mb-4 leading-relaxed">
               Adipiscing elit, sed do euismod tempor incidunt ut labore et dolore 
               magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
               ullamco.
-            </p>
-            <p style={{ color: '#94a3b8' }} className="leading-relaxed">
+            </Text>
+            <Text style={{ color: '#94a3b8' }} className="leading-relaxed">
               Adipiscing elit, sed do euismod tempor incidunt ut labore et dolore 
               magna aliqua. Ut enim ad minim veniam.
-            </p>
+            </Text>
           </div>
         </div>
 
@@ -234,12 +237,13 @@ export default function GreenPowerServices() {
               </div>
               
               {/* Title */}
-              <h3 
+              <Heading 
+                as="h3"
                 className="text-lg font-semibold mb-6 leading-snug"
                 style={{ color: '#ffffff' }}
               >
                 {service.title}
-              </h3>
+              </Heading>
               
               {/* Arrow Link */}
               <Link 

@@ -1,15 +1,16 @@
 import { contactInfo } from "@/data/homepage";
 import { LocationIcon, PhoneIcon, EmailIcon } from "@/components/ui/Icons";
+import { Heading, Text } from "@/components/ui/Typography";
 
 export default function Contact() {
   return (
     <section className="py-20 lg:py-28 bg-white">
       <div className="container">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-solar-orange font-semibold text-sm uppercase tracking-wider">Контакти</span>
-          <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mt-2">
+          <Text variant="small" className="text-solar-orange font-semibold uppercase tracking-wider">Контакти</Text>
+          <Heading as="h2" className="text-slate-900 mt-2">
             Свържете се с нас
-          </h2>
+          </Heading>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
@@ -20,8 +21,8 @@ export default function Contact() {
                 <LocationIcon />
               </div>
               <div>
-                <h3 className="font-bold text-slate-900">Адрес</h3>
-                <p className="text-slate-600">{contactInfo.address}</p>
+                <Heading as="h3" className="font-bold text-slate-900 text-lg">Адрес</Heading>
+                <Text className="text-slate-600">{contactInfo.address}</Text>
               </div>
             </div>
 
@@ -30,8 +31,8 @@ export default function Contact() {
                 <PhoneIcon />
               </div>
               <div>
-                <h3 className="font-bold text-slate-900">Телефон</h3>
-                <p className="text-slate-600">{contactInfo.phone}</p>
+                <Heading as="h3" className="font-bold text-slate-900 text-lg">Телефон</Heading>
+                <Text className="text-slate-600">{contactInfo.phone}</Text>
               </div>
             </div>
 
@@ -40,8 +41,8 @@ export default function Contact() {
                 <EmailIcon />
               </div>
               <div>
-                <h3 className="font-bold text-slate-900">Имейл</h3>
-                <p className="text-slate-600">{contactInfo.email}</p>
+                <Heading as="h3" className="font-bold text-slate-900 text-lg">Имейл</Heading>
+                <Text className="text-slate-600">{contactInfo.email}</Text>
               </div>
             </div>
           </div>
