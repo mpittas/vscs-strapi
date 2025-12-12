@@ -1,14 +1,39 @@
 import type { Metadata } from "next";
-import { Raleway } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const raleway = Raleway({
-  variable: "--font-raleway",
-  subsets: ["latin", "latin-ext"],
+const stolzl = localFont({
+  src: [
+    {
+      path: "../../public/fonts/Stolzl-Thin.woff2",
+      weight: "100",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Stolzl-Light.woff2",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Stolzl-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Stolzl-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Stolzl-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-stolzl",
   display: "swap",
-  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -56,7 +81,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${raleway.variable} font-sans antialiased min-h-screen flex flex-col`}
+        className={`${stolzl.variable} font-sans antialiased min-h-screen flex flex-col`}
       >
         <Navbar />
         <main className="flex-1">{children}</main>

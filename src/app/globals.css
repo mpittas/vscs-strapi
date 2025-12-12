@@ -52,7 +52,7 @@
   --color-slate-100: var(--slate-100);
   --color-slate-50: var(--slate-50);
   --color-muted: var(--muted);
-  --font-sans: var(--font-raleway);
+  --font-sans: var(--font-stolzl);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -76,7 +76,7 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-stolzl), system-ui, sans-serif;
   line-height: 1.6;
 }
 
