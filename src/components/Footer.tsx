@@ -1,29 +1,29 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 const footerLinks = {
   company: [
-    { label: 'About Us', href: '/about' },
-    { label: 'Our Team', href: '/about#team' },
-    { label: 'Careers', href: '/careers' },
-    { label: 'Contact', href: '/contact' },
+    { label: 'За Нас', href: '/about' },
+    { label: 'Нашият Екип', href: '/about#team' },
+    { label: 'Кариери', href: '/careers' },
+    { label: 'Контакти', href: '/contact' },
   ],
   services: [
-    { label: 'Residential Solar', href: '/services/residential' },
-    { label: 'Commercial Solar', href: '/services/commercial' },
-    { label: 'Maintenance', href: '/services/maintenance' },
-    { label: 'Consultation', href: '/services/consultation' },
+    { label: 'Фотоволтаични Системи', href: '/services/photovoltaic' },
+    { label: 'Соларни Паркове', href: '/services/solar-parks' },
+    { label: 'Поддръжка', href: '/services/maintenance' },
+    { label: 'Консултации', href: '/services/consultation' },
   ],
   resources: [
-    { label: 'Blog', href: '/blog' },
-    { label: 'FAQs', href: '/faq' },
-    { label: 'Solar Calculator', href: '/calculator' },
-    { label: 'Testimonials', href: '/testimonials' },
+    { label: 'Блог', href: '/blog' },
+    { label: 'Въпроси', href: '/faq' },
+    { label: 'Калкулатор', href: '/calculator' },
+    { label: 'Референции', href: '/testimonials' },
   ],
 };
 
 const socialLinks = [
   { label: 'Facebook', href: 'https://facebook.com', icon: 'M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z' },
-  { label: 'Twitter', href: 'https://twitter.com', icon: 'M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z' },
   { label: 'LinkedIn', href: 'https://linkedin.com', icon: 'M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z M2 4a2 2 0 114 0 2 2 0 01-4 0z' },
   { label: 'Instagram', href: 'https://instagram.com', icon: 'M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01M6.5 2h11A4.5 4.5 0 0122 6.5v11a4.5 4.5 0 01-4.5 4.5h-11A4.5 4.5 0 012 17.5v-11A4.5 4.5 0 016.5 2z' },
 ];
@@ -36,30 +36,18 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
           {/* Brand Column */}
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl gradient-solar flex items-center justify-center">
-                <svg
-                  className="w-6 h-6 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                  />
-                </svg>
-              </div>
-              <span className="text-xl font-bold text-white">
-                Solar<span className="text-solar-orange">Tech</span>
-              </span>
-            </Link>
+          <Link href="/" className="inline-block mb-6">
+            <Image
+              src="/logo/vscs-logo-full-hor.svg"
+              alt="VSCS Logo"
+              width={180}
+              height={48}
+              className="h-12 w-auto"
+            />
+          </Link>
             <p className="text-slate-400 mb-6 max-w-sm">
-              Powering a sustainable future with cutting-edge solar solutions. 
-              Join thousands of homeowners and businesses saving money while 
-              protecting the planet.
+              Вашият надежден партньор в соларната енергия. Изграждаме бъдеще 
+              с чиста и устойчива енергия.
             </p>
             {/* Social Links */}
             <div className="flex gap-4">
@@ -92,7 +80,7 @@ export default function Footer() {
 
           {/* Company Links */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Company</h4>
+            <h4 className="text-white font-semibold mb-4">Компания</h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.href}>
@@ -109,7 +97,7 @@ export default function Footer() {
 
           {/* Services Links */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Services</h4>
+            <h4 className="text-white font-semibold mb-4">Услуги</h4>
             <ul className="space-y-3">
               {footerLinks.services.map((link) => (
                 <li key={link.href}>
@@ -126,7 +114,7 @@ export default function Footer() {
 
           {/* Resources Links */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Resources</h4>
+            <h4 className="text-white font-semibold mb-4">Ресурси</h4>
             <ul className="space-y-3">
               {footerLinks.resources.map((link) => (
                 <li key={link.href}>
@@ -152,8 +140,8 @@ export default function Footer() {
                 </svg>
               </div>
               <div>
-                <p className="text-sm text-slate-400">Call Us</p>
-                <p className="text-white font-medium">1-800-SOLAR-TECH</p>
+                <p className="text-sm text-slate-400">Телефон</p>
+                <p className="text-white font-medium">+359 888 123 456</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -163,8 +151,8 @@ export default function Footer() {
                 </svg>
               </div>
               <div>
-                <p className="text-sm text-slate-400">Email Us</p>
-                <p className="text-white font-medium">info@solartech.com</p>
+                <p className="text-sm text-slate-400">Имейл</p>
+                <p className="text-white font-medium">info@bikocontrol.bg</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -175,8 +163,8 @@ export default function Footer() {
                 </svg>
               </div>
               <div>
-                <p className="text-sm text-slate-400">Visit Us</p>
-                <p className="text-white font-medium">123 Solar Ave, Sun City, CA</p>
+                <p className="text-sm text-slate-400">Адрес</p>
+                <p className="text-white font-medium">София, България</p>
               </div>
             </div>
           </div>
@@ -185,14 +173,14 @@ export default function Footer() {
         {/* Copyright */}
         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-slate-500">
-            © {new Date().getFullYear()} SolarTech Solutions. All rights reserved.
+            © {new Date().getFullYear()} БиКо Контрол Строително. Всички права запазени.
           </p>
           <div className="flex gap-6 text-sm">
             <Link href="/privacy" className="text-slate-500 hover:text-slate-300 transition-colors">
-              Privacy Policy
+              Поверителност
             </Link>
             <Link href="/terms" className="text-slate-500 hover:text-slate-300 transition-colors">
-              Terms of Service
+              Условия за ползване
             </Link>
           </div>
         </div>
