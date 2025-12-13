@@ -1,10 +1,10 @@
-import { CTA, Contact, GreenPowerServices, Hero } from "@/components/sections";
+import { CTA, Contact, Hero, WhatWeOffer } from "@/components/sections";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <GreenPowerServices />
+      <WhatWeOffer />
       <CTA />
       <Contact />
     </>
