@@ -4,15 +4,15 @@
 /* ===== Solar Panel Business Theme ===== */
 
 :root {
-  /* Primary Colors - Green/Teal theme */
-  --primary: #10b981;
-  --primary-dark: #059669;
-  --primary-light: #34d399;
+  /* Primary Brand Color */
+  --brand-green: #8bc53f;
+  --brand-green-dark: #7ab235;
+  --brand-green-light: #a3d465;
 
-  /* Legacy names for compatibility */
-  --solar-orange: #10b981;
-  --solar-amber: #34d399;
-  --solar-yellow: #6ee7b7;
+  /* Legacy names - now mapped to brand-green for compatibility */
+  --solar-orange: var(--brand-green);
+  --solar-amber: var(--brand-green-light);
+  --solar-yellow: #c4e59e;
 
   /* Secondary Colors */
   --sky-blue: #0ea5e9;
@@ -33,9 +33,6 @@
   --background: #ffffff;
   --foreground: #0f172a;
   --muted: #64748b;
-
-  /* Brand Colors */
-  --brand-green: #8bc53f;
 }
 
 @theme inline {

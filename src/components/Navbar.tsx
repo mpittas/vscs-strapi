@@ -104,7 +104,7 @@ const Navbar = () => {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-solar-orange transition-all group-hover:w-full" />
             </Link>
           ))}
-          <Button href="/contact" variant="secondary">
+          <Button href="/contact" variant={!isHomePage || isScrolled ? "black" : "secondary"}>
             Свържете се
           </Button>
         </div>
