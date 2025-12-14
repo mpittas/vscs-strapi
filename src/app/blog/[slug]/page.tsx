@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getBlogPost, getBlogPosts } from "@/lib/strapi";
@@ -11,7 +12,8 @@ const fallbackPosts = [
     id: 1,
     slug: "10-reasons-go-solar-2025",
     title: "10 Reasons Why 2025 Is the Best Year to Go Solar",
-    excerpt: "With new tax incentives, improved technology, and rising electricity costs, there's never been a better time to switch to solar energy.",
+    excerpt:
+      "With new tax incentives, improved technology, and rising electricity costs, there's never been a better time to switch to solar energy.",
     content: `
 The solar industry has never been more accessible or affordable than it is right now. If you've been on the fence about making the switch to solar energy, here are 10 compelling reasons why 2025 is the year to take the plunge.
 
@@ -67,7 +69,8 @@ Contact SolarTech Solutions today for a free consultation and discover how much 
     id: 2,
     slug: "understanding-solar-panel-efficiency",
     title: "Understanding Solar Panel Efficiency: What You Need to Know",
-    excerpt: "Not all solar panels are created equal. Learn how to evaluate panel efficiency ratings.",
+    excerpt:
+      "Not all solar panels are created equal. Learn how to evaluate panel efficiency ratings.",
     content: `
 When shopping for solar panels, you'll encounter a lot of numbers and specifications. One of the most important metrics to understand is panel efficiency. Here's your complete guide.
 
@@ -113,16 +116,18 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  
+
   let post;
   try {
     post = await getBlogPost(slug);
   } catch {
     post = fallbackPosts.find((p) => p.slug === slug);
   }
-  
+
   if (!post) {
     return { title: "Post Not Found" };
   }
@@ -149,13 +154,13 @@ export async function generateStaticParams() {
   } catch {
     // Fall through to fallback
   }
-  
+
   return fallbackPosts.map((post) => ({ slug: post.slug }));
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
-  
+
   let post;
   try {
     post = await getBlogPost(slug);
@@ -179,23 +184,33 @@ export default async function BlogPostPage({ params }: PageProps) {
         <div className="absolute inset-0">
           <div className="absolute top-1/4 right-0 w-96 h-96 bg-solar-orange/10 rounded-full blur-3xl" />
         </div>
-        
+
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <Link 
+            <Link
               href="/blog"
               className="inline-flex items-center gap-2 text-solar-orange hover:text-solar-amber transition-colors mb-6"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
               </svg>
               Back to Blog
             </Link>
-            
+
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
               {post.title}
             </h1>
-            
+
             <div className="flex items-center justify-center gap-6 text-slate-300">
               <div className="flex items-center gap-2">
                 <div className="w-10 h-10 rounded-full gradient-solar flex items-center justify-center text-white font-bold">
@@ -215,11 +230,14 @@ export default async function BlogPostPage({ params }: PageProps) {
       {/* Featured Image */}
       {post.featuredImage && (
         <section className="container -mt-10 relative z-20">
-          <div className="aspect-video rounded-2xl overflow-hidden">
-            <img
+          <div className="aspect-video rounded-2xl overflow-hidden relative">
+            <Image
               src={post.featuredImage}
               alt={post.title}
-              className="w-full h-full object-cover"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 896px"
+              className="object-cover"
             />
           </div>
         </section>
@@ -231,34 +249,34 @@ export default async function BlogPostPage({ params }: PageProps) {
           <div className="max-w-3xl mx-auto">
             {/* Prose content */}
             <div className="prose prose-lg dark:prose-invert prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-p:text-muted prose-p:leading-relaxed prose-strong:text-foreground prose-ul:text-muted prose-li:text-muted max-w-none">
-              {post.content.split('\n').map((paragraph, index) => {
+              {post.content.split("\n").map((paragraph, index) => {
                 if (!paragraph.trim()) return null;
-                
-                if (paragraph.startsWith('## ')) {
+
+                if (paragraph.startsWith("## ")) {
                   return (
                     <h2 key={index} className="text-2xl font-bold mt-12 mb-4">
-                      {paragraph.replace('## ', '')}
+                      {paragraph.replace("## ", "")}
                     </h2>
                   );
                 }
-                
-                if (paragraph.startsWith('- ')) {
+
+                if (paragraph.startsWith("- ")) {
                   return (
                     <li key={index} className="text-muted">
-                      {paragraph.replace('- ', '')}
+                      {paragraph.replace("- ", "")}
                     </li>
                   );
                 }
-                
+
                 if (paragraph.match(/^\d+\.\s/)) {
                   return (
                     <p key={index} className="text-muted leading-relaxed">
-                      <strong>{paragraph.split(':')[0]}:</strong>
-                      {paragraph.split(':').slice(1).join(':')}
+                      <strong>{paragraph.split(":")[0]}:</strong>
+                      {paragraph.split(":").slice(1).join(":")}
                     </p>
                   );
                 }
-                
+
                 return (
                   <p key={index} className="text-muted leading-relaxed mb-4">
                     {paragraph}
@@ -277,8 +295,9 @@ export default async function BlogPostPage({ params }: PageProps) {
                   <p className="text-sm text-muted mb-1">Written by</p>
                   <p className="text-xl font-bold mb-2">{post.author}</p>
                   <p className="text-muted">
-                    Solar energy expert at SolarTech Solutions with years of experience 
-                    helping homeowners and businesses transition to clean energy.
+                    Solar energy expert at SolarTech Solutions with years of
+                    experience helping homeowners and businesses transition to
+                    clean energy.
                   </p>
                 </div>
               </div>
@@ -294,7 +313,9 @@ export default async function BlogPostPage({ params }: PageProps) {
               </p>
               <div className="flex justify-center gap-4">
                 <Button href="/contact">Get Free Quote</Button>
-                <Button href="/blog" variant="outline">Read More Articles</Button>
+                <Button href="/blog" variant="outline">
+                  Read More Articles
+                </Button>
               </div>
             </div>
           </div>

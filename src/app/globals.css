@@ -33,6 +33,9 @@
   --background: #ffffff;
   --foreground: #0f172a;
   --muted: #64748b;
+
+  /* Brand Colors */
+  --brand-green: #8bc53f;
 }
 
 @theme inline {
@@ -54,6 +57,7 @@
   --color-slate-50: var(--slate-50);
   --color-muted: var(--muted);
   --color-green: var(--primary);
+  --color-brand-green: var(--brand-green);
   --font-sans: var(--font-stolzl);
 
   /* Type Scale */

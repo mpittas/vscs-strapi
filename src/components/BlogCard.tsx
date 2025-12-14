@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { formatDate } from "@/lib/utils";
 
@@ -22,15 +23,27 @@ export default function BlogCard({ post }: BlogCardProps) {
         {/* Image */}
         <div className="aspect-video rounded-lg bg-slate-100 dark:bg-slate-800 mb-6 overflow-hidden relative">
           {post.featuredImage ? (
-            <img
+            <Image
               src={post.featuredImage}
               alt={post.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover group-hover:scale-105 transition-transform duration-300"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center gradient-solar">
-              <svg className="w-16 h-16 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              <svg
+                className="w-16 h-16 text-white/50"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                />
               </svg>
             </div>
           )}
@@ -47,10 +60,8 @@ export default function BlogCard({ post }: BlogCardProps) {
           <h2 className="text-xl font-bold mb-3 group-hover:text-solar-orange transition-colors line-clamp-2">
             {post.title}
           </h2>
-          
-          <p className="text-muted mb-4 line-clamp-3 flex-1">
-            {post.excerpt}
-          </p>
+
+          <p className="text-muted mb-4 line-clamp-3 flex-1">{post.excerpt}</p>
 
           {/* Meta */}
           <div className="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-700">

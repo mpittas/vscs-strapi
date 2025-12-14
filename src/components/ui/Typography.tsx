@@ -48,6 +48,7 @@ export function Heading({
 type TextProps = {
   as?: "p" | "span" | "div" | "blockquote" | "figcaption";
   variant?:
+    | "small-title"
     | "subtitle"
     | "page-title"
     | "body-12"
@@ -70,6 +71,7 @@ type TextProps = {
 // Export styles for design system usage
 export const textStyles: Record<string, string> = {
   // Semantic variants
+  "small-title": "text-sm font-normal uppercase text-brand-green",
   subtitle: "text-lg text-slate-600 font-book",
   "page-title":
     "text-5xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-slate-900 leading-[1.15]",
