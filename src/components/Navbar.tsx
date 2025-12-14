@@ -85,7 +85,7 @@ const Navbar = () => {
             <Link
               key={link.name}
               href={link.href}
-              className={`text-sm font-normal transition-colors relative group ${getTextColor(
+              className={`font-normal transition-colors relative group ${getTextColor(
                 "text-slate-600",
                 "text-solar-orange"
               )}`}
@@ -94,7 +94,7 @@ const Navbar = () => {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-solar-orange transition-all group-hover:w-full" />
             </Link>
           ))}
-          <Button href="/contact" size="sm">
+          <Button href="/contact">
             Свържете се
           </Button>
         </div>

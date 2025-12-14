@@ -171,7 +171,7 @@ export default function DesignSystemPage() {
                 example={
                   <div
                     className={
-                      variant === "secondary" || variant === "white"
+                      variant === "secondary" || variant === "white" || variant === "white-solid"
                         ? "bg-slate-800 p-4 rounded-lg inline-block"
                         : ""
                     }
@@ -195,6 +195,80 @@ export default function DesignSystemPage() {
                   </Button>
                 }
                 specs={classes}
+              />
+            ))}
+          </SpecTable>
+
+          <SpecTable
+            title="Button with Icon (Right)"
+            columns={["Size", "Example", "Props"]}
+          >
+            {(["sm", "md", "lg"] as const).map((size) => (
+              <SpecRow
+                key={size}
+                name={`Size: ${size.toUpperCase()}`}
+                example={
+                  <Button size={size} variant="primary" showIcon>
+                    Contact Us
+                  </Button>
+                }
+                specs={`size="${size}" showIcon`}
+              />
+            ))}
+          </SpecTable>
+
+          <SpecTable
+            title="Button with Icon (Left)"
+            columns={["Size", "Example", "Props"]}
+          >
+            {(["sm", "md", "lg"] as const).map((size) => (
+              <SpecRow
+                key={size}
+                name={`Size: ${size.toUpperCase()}`}
+                example={
+                  <Button size={size} variant="primary" showIcon iconPosition="left">
+                    Contact Us
+                  </Button>
+                }
+                specs={`size="${size}" showIcon iconPosition="left"`}
+              />
+            ))}
+          </SpecTable>
+
+          <SpecTable
+            title="Black Button with Icon"
+            columns={["Size", "Example", "Props"]}
+          >
+            {(["sm", "md", "lg"] as const).map((size) => (
+              <SpecRow
+                key={size}
+                name={`Size: ${size.toUpperCase()}`}
+                example={
+                  <Button size={size} variant="black" showIcon>
+                    Contact Us
+                  </Button>
+                }
+                specs={`variant="black" size="${size}" showIcon`}
+              />
+            ))}
+          </SpecTable>
+
+          <SpecTable
+            title="White-Solid Button with Icon"
+            columns={["Size", "Example", "Props"]}
+          >
+            {(["sm", "md", "lg"] as const).map((size) => (
+              <SpecRow
+                key={size}
+                name={`Size: ${size.toUpperCase()}`}
+                example={
+                  <div className="bg-slate-800 p-4 rounded-lg inline-block">
+                    <Button size={size} variant="white-solid" showIcon>
+                      Contact Us
+                    </Button>
+                  </div>
+                }
+                specs={`variant="white-solid" size="${size}" showIcon`}
               />
             ))}
           </SpecTable>

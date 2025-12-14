@@ -49,21 +49,21 @@ export default function Hero() {
               alt=""
               width={400}
               height={20}
-              className="absolute -bottom-2 left-0 w-full h-auto"
+              className="absolute -bottom-4 left-0 w-full h-auto z-[-1]"
             />
           </span>
         </Heading>
 
         <Text
-          variant="body-16"
-          className="max-w-sm leading-relaxed text-slate-200"
+          variant="body-18"
+          className="max-w-md leading-relaxed text-slate-200 pt-4"
         >
           Строителни услуги до ключ и иновативни решения за възобновяема
           енергия.
         </Text>
 
         <div className="flex w-full flex-col justify-center gap-4 sm:w-auto sm:flex-row">
-          <Button href="/contact" size="md">
+          <Button href="/contact" size="md" showIcon>
             Свържете се с нас
           </Button>
           <Button href="/about" variant="secondary" size="md">
