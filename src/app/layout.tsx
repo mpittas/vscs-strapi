@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import ConditionalNavbar from "@/components/ConditionalNavbar";
 import Footer from "@/components/Footer";
 
 const stolzl = localFont({
@@ -88,7 +88,7 @@ export default function RootLayout({
       <body
         className={`${stolzl.variable} font-sans antialiased min-h-screen flex flex-col`}
       >
-        <Navbar />
+        <ConditionalNavbar />
         <main className="flex-1">{children}</main>
         <Footer />
       </body>

@@ -29,7 +29,7 @@ const Navbar = () => {
   }, []);
 
   const navClasses = isHomePage
-    ? `fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent ${
+    ? `${isScrolled ? "fixed" : "relative"} top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent ${
         isScrolled ? "bg-white py-3" : "bg-transparent py-4"
       }`
     : `sticky top-0 left-0 right-0 z-50 transition-all duration-300 bg-white py-3 border-b border-slate-200 shadow-xl/3`;
@@ -44,8 +44,8 @@ const Navbar = () => {
   // Determine logo to show
   const getLogoSrc = () => {
     if (!isHomePage || isScrolled)
-      return "/logo/vscs-logo-full-hor-dark-green.svg";
-    return "/logo/vscs-logo-full-hor.svg";
+      return "/logo/vscs-bg-logo-dark.svg";
+    return "/logo/vscs-bg-logo-light.svg";
   };
 
   const menuButtonColor =
@@ -71,9 +71,9 @@ const Navbar = () => {
             <Image
               src={getLogoSrc()}
               alt="VSCS Logo"
-              width={180}
-              height={48}
-              className="h-12 w-auto"
+              width={220}
+              height={60}
+              className="h-16 w-auto"
               priority
             />
           </div>
@@ -94,7 +94,7 @@ const Navbar = () => {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-solar-orange transition-all group-hover:w-full" />
             </Link>
           ))}
-          <Button href="/contact">
+          <Button href="/contact" variant="secondary">
             Свържете се
           </Button>
         </div>

@@ -1,9 +1,9 @@
-import { CTA, Contact, Hero, WhatWeOffer } from "@/components/sections";
+import { CTA, Contact, HeroHeader, WhatWeOffer } from "@/components/sections";
 
 export default function HomePage() {
   return (
     <>
-      <Hero />
+      <HeroHeader />
       <WhatWeOffer />
       <CTA />
       <Contact />

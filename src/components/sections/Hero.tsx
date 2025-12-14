@@ -7,22 +7,9 @@ import { Heading, Text } from "@/components/ui/Typography";
 export default function Hero() {
   return (
     <section
-      className="relative flex items-center justify-center overflow-hidden"
-      style={{ height: "700px" }}
+      className="relative flex items-center justify-center"
+      style={{ height: "800px" }}
     >
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/solar-hero.jpg"
-          alt="Solar panels background"
-          fill
-          priority
-          quality={85}
-          className="object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-[#0f172a]/80" />{" "}
-        {/* Dark overlay matches other sections */}
-      </div>
 
       <div className="relative z-10 container flex gap-y-6 flex-col items-start px-4">
         <div className="flex items-center gap-2">

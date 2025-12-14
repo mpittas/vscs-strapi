@@ -38,11 +38,11 @@ export default function Footer() {
           <div className="lg:col-span-2">
           <Link href="/" className="inline-block mb-6">
             <Image
-              src="/logo/vscs-logo-full-hor.svg"
+              src="/logo/vscs-bg-logo-light.svg"
               alt="VSCS Logo"
-              width={180}
-              height={48}
-              className="h-12 w-auto"
+              width={220}
+              height={60}
+              className="h-16 w-auto"
             />
           </Link>
             <p className="text-slate-400 mb-6 max-w-sm">
