@@ -29,7 +29,7 @@ export default function Hero() {
           className="relative z-10 flex items-center justify-center pt-28"
           style={{ height: "880px" }}
         >
-          <div className="container flex gap-y-6 flex-col items-start px-4">
+          <div className="container flex gap-y-6 flex-col items-start px-40">
             <div className="flex items-center gap-2">
               <Image
                 src="/icons/electricity-bolt-icon-green.svg"
@@ -41,7 +41,6 @@ export default function Hero() {
                 VS Construction Services
               </Text>
             </div>
-
             <Heading
               as="h1"
               className="text-[72px] max-w-4xl leading-[1.15] text-white font-normal"
@@ -58,7 +57,6 @@ export default function Hero() {
                 />
               </span>
             </Heading>
-
             <Text
               variant="body-18"
               className="max-w-md leading-relaxed text-slate-200 pt-4"
@@ -66,7 +64,6 @@ export default function Hero() {
               Строителни услуги до ключ и иновативни решения за възобновяема
               енергия.
             </Text>
-
             <div className="flex w-full flex-col justify-center gap-4 sm:w-auto sm:flex-row">
               <Button href="/contact" size="md" showIcon>
                 Свържете се с нас
@@ -75,6 +72,7 @@ export default function Hero() {
                 Научете повече
               </Button>
             </div>
+            w
           </div>
         </section>
       </div>

@@ -15,12 +15,12 @@ type HeadingProps = {
 
 // Export styles for design system usage
 export const headingStyles = {
-  h1: "font-medium tracking-tight text-slate-900",
-  h2: "font-medium tracking-tight text-slate-900",
-  h3: "font-medium tracking-tight text-slate-900",
-  h4: "font-medium tracking-tight text-slate-900",
-  h5: "font-medium tracking-tight text-slate-900",
-  h6: "font-medium tracking-tight text-slate-900",
+  h1: "font-normal tracking-tight text-slate-900",
+  h2: "text-[44px] leading-[1.15] font-normal tracking-tight text-slate-900",
+  h3: "font-normal tracking-tight text-slate-900",
+  h4: "font-normal tracking-tight text-slate-900",
+  h5: "font-normal tracking-tight text-slate-900",
+  h6: "font-normal tracking-tight text-slate-900",
 };
 
 export function Heading({
@@ -97,7 +97,7 @@ export const textStyles: Record<string, string> = {
 };
 
 export function Text({
-  as: Component = "p",
+  as: Component = "div",
   variant = "body-16",
   children,
   className,
