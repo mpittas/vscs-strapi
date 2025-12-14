@@ -53,17 +53,17 @@ export const variantClasses = {
   outline:
     "bg-transparent text-green border-green hover:bg-green hover:text-white",
   white:
-    "bg-white text-slate-900 border-white hover:bg-slate-100 hover:border-slate-100",
+    "bg-white text-dark-green border-white hover:bg-slate-100 hover:border-slate-100",
   black:
-    "bg-black border-black text-white hover:bg-black/90 hover:border-black/90",
+    "bg-dark-green border-dark-green text-white hover:bg-dark-green/90 hover:border-dark-green/90",
   "white-solid":
-    "bg-white border-white text-black hover:bg-white/90 hover:border-white/90",
+    "bg-white border-white text-dark-green hover:bg-white/90 hover:border-white/90",
 };
 
 // Icon circle style variants
 export const iconCircleStyles = {
-  default: "bg-black text-white",
-  inverted: "bg-white text-black",
+  default: "bg-dark-green text-white",
+  inverted: "bg-white text-dark-green",
 };
 
 // Icon circle component

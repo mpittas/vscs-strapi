@@ -9,6 +9,9 @@
   --brand-green-dark: #7ab235;
   --brand-green-light: #a3d465;
 
+  /* Dark Green - Primary text color */
+  --dark-green: #0A1C07;
+
   /* Legacy names - now mapped to brand-green for compatibility */
   --solar-orange: var(--brand-green);
   --solar-amber: var(--brand-green-light);
@@ -19,10 +22,10 @@
   --sky-light: #38bdf8;
   --eco-green: #22c55e;
 
-  /* Neutrals */
-  --slate-900: #0f172a;
-  --slate-800: #1e293b;
-  --slate-700: #334155;
+  /* Neutrals - remapped to dark-green tones */
+  --slate-900: var(--dark-green);
+  --slate-800: #1a2c17;
+  --slate-700: #2a3c27;
   --slate-600: #475569;
   --slate-400: #94a3b8;
   --slate-200: #e2e8f0;
@@ -31,13 +34,14 @@
 
   /* Semantic */
   --background: #ffffff;
-  --foreground: #0f172a;
+  --foreground: var(--dark-green);
   --muted: #64748b;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-dark-green: var(--dark-green);
   --color-solar-orange: var(--solar-orange);
   --color-solar-amber: var(--solar-amber);
   --color-solar-yellow: var(--solar-yellow);
