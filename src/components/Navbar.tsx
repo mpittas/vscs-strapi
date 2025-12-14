@@ -28,16 +28,26 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  /* 
+     Use consistent positioning to prevent layout shifts (jumping).
+     Homepage: fixed (overlay for transparent effect, stays for sticky)
+     Other pages: sticky (standard behavior)
+     All use py-4 for consistent height across pages/states.
+  */
   const navClasses = isHomePage
-    ? `${isScrolled ? "fixed" : "relative"} top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent ${
-        isScrolled ? "bg-white py-3" : "bg-transparent py-4"
+    // HOMEPAGE: Fixed overlay header
+    ? `fixed top-0 left-0 right-0 z-50 py-4 transition-all duration-300 border-b ${
+        isScrolled 
+          ? "bg-white border-slate-200" // HOMEPAGE SCROLLED: White bg with border
+          : "bg-transparent border-transparent border-b border-white/5"   // HOMEPAGE DEFAULT: Transparent overlay
       }`
-    : `sticky top-0 left-0 right-0 z-50 transition-all duration-300 bg-white py-3 border-b border-slate-200 shadow-xl/3`;
+    // OTHER PAGES: Sticky white header (always scrolled style)
+    : `sticky top-0 left-0 right-0 z-50 py-4 transition-all duration-300 bg-white border-b border-slate-200`;
 
   // Determine text color based on page and scroll state
   const getTextColor = (baseColor: string, hoverColor: string) => {
     if (!isHomePage || isScrolled)
-      return "text-slate-600 hover:text-solar-orange";
+      return "text-slate-900 hover:text-solar-orange";
     return "text-white/90 hover:text-white";
   };
 

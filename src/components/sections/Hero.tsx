@@ -7,7 +7,7 @@ import { Heading, Text } from "@/components/ui/Typography";
 export default function Hero() {
   return (
     <section
-      className="relative flex items-center justify-center"
+      className="relative flex items-center justify-center pt-28"
       style={{ height: "800px" }}
     >
 
