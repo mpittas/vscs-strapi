@@ -1,5 +1,4 @@
 import {
-  CTA,
   Contact,
   Hero,
   ClientLogos,
@@ -9,6 +8,7 @@ import {
   ProjectsOverview,
   BlogOverview,
   Marquee,
+  CTABanner,
 } from "@/components/sections";
 
 export default function HomePage() {
@@ -20,10 +20,9 @@ export default function HomePage() {
       <OurServices />
       <ProjectsOverview />
       <WhyUs />
-      
       <BlogOverview />
       <Marquee />
-      <CTA />
+      <CTABanner />
       <Contact />
     </>
   );

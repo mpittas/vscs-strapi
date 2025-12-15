@@ -1,5 +1,4 @@
 // Section component barrel export
-export { default as CTA } from "./CTA";
 export { default as Contact } from "./Contact";
 export { default as WhyUs } from "./WhyUs";
 export { default as Hero } from "./Hero";
@@ -10,3 +9,4 @@ export { default as OurServices } from "./OurServices";
 export { default as ProjectsOverview } from "./ProjectsOverview";
 export { default as BlogOverview } from "./BlogOverview";
 export { default as Marquee } from "./Marquee";
+export { default as CTABanner } from "./CTABanner";
