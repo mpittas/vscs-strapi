@@ -89,8 +89,8 @@ export default function RootLayout({
       <body
         className={`${stolzl.variable} font-sans antialiased min-h-screen flex flex-col`}
       >
+        <ConditionalNavbar />
         <SmoothScrollProvider>
-          <ConditionalNavbar />
           <main className="flex-1">{children}</main>
           <Footer />
         </SmoothScrollProvider>
