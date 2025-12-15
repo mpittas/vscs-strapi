@@ -1,5 +1,4 @@
 import {
-  Contact,
   Hero,
   ClientLogos,
   WhyUs,
@@ -23,8 +22,6 @@ export default function HomePage() {
       <BlogOverview />
       <Marquee />
       <CTABanner />
-      <Contact />
     </>
   );
 }
-

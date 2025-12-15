@@ -1,5 +1,4 @@
 // Section component barrel export
-export { default as Contact } from "./Contact";
 export { default as WhyUs } from "./WhyUs";
 export { default as Hero } from "./Hero";
 export { default as ClientLogos } from "./ClientLogos";

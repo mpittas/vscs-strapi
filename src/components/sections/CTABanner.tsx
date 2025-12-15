@@ -25,7 +25,7 @@ export default function CTABanner() {
       </div>
 
       {/* Woman Image - Absolute positioned */}
-      <div className="absolute right-0 lg:right-[15%] bottom-0 w-[320px] lg:w-[360px] h-full z-10 hidden lg:block">
+      <div className="absolute right-0 lg:right-[15%] bottom-0 w-[350px] h-full z-10 hidden lg:block">
         <Image
           src="/images/woman-reading-papers-min.png"
           alt="Консултант преглежда документи"
@@ -66,12 +66,12 @@ export default function CTABanner() {
                   <Phone className="w-6 h-6 text-white/80" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-white">
+                  <span className="text-white text-sm text-white/80">
                     Запазете консултация
                   </span>
                   <a
                     href="tel:+1235485256"
-                    className="text-white font-medium text-[24px]"
+                    className="text-white font-normal text-[24px]"
                   >
                     +123 (548) 5256
                   </a>

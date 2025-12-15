@@ -1,187 +1,210 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import Link from "next/link";
+import Image from "next/image";
+import { MapPin, Phone, Mail } from "lucide-react";
 
-const footerLinks = {
-  company: [
-    { label: 'За Нас', href: '/about' },
-    { label: 'Нашият Екип', href: '/about#team' },
-    { label: 'Кариери', href: '/careers' },
-    { label: 'Контакти', href: '/contact' },
-  ],
-  services: [
-    { label: 'Фотоволтаични Системи', href: '/services/photovoltaic' },
-    { label: 'Соларни Паркове', href: '/services/solar-parks' },
-    { label: 'Поддръжка', href: '/services/maintenance' },
-    { label: 'Консултации', href: '/services/consultation' },
-  ],
-  resources: [
-    { label: 'Блог', href: '/blog' },
-    { label: 'Въпроси', href: '/faq' },
-    { label: 'Калкулатор', href: '/calculator' },
-    { label: 'Референции', href: '/testimonials' },
-  ],
+// Footer link data
+const quickLinks = [
+  { label: "За Нас", href: "/about" },
+  { label: "Услуги", href: "/services" },
+  { label: "Проекти", href: "/projects" },
+  { label: "Кариери", href: "/careers" },
+  { label: "Връзка с Нас", href: "/contact" },
+];
+
+const servicesLinks = [
+  { label: "Проектиране", href: "/services/design" },
+  { label: "Монтаж на конструкции", href: "/services/installation" },
+  { label: "Електроизграждане", href: "/services/electrical" },
+  { label: "Поддръжка и мониторинг", href: "/services/maintenance" },
+  { label: "Консултантски услуги", href: "/services/consulting" },
+];
+
+const contactInfo = {
+  address: "Враца, България",
+  phone: "+359 877 15 98 58",
+  email: "office@vscs-bg.com",
 };
 
-const socialLinks = [
-  { label: 'Facebook', href: 'https://facebook.com', icon: 'M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z' },
-  { label: 'LinkedIn', href: 'https://linkedin.com', icon: 'M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z M2 4a2 2 0 114 0 2 2 0 01-4 0z' },
-  { label: 'Instagram', href: 'https://instagram.com', icon: 'M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01M6.5 2h11A4.5 4.5 0 0122 6.5v11a4.5 4.5 0 01-4.5 4.5h-11A4.5 4.5 0 012 17.5v-11A4.5 4.5 0 016.5 2z' },
+const legalLinks = [
+  { label: "Политика за поверителност", href: "/privacy" },
+  { label: "Общи условия", href: "/terms" },
+  { label: "Бисквитки", href: "/cookies" },
 ];
+
+// Social icon components
+const FacebookIcon = () => (
+  <svg
+    className="w-6 h-6"
+    fill="currentColor"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <path
+      fillRule="evenodd"
+      d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+      clipRule="evenodd"
+    />
+  </svg>
+);
+
+const LinkedInIcon = () => (
+  <svg
+    className="w-6 h-6"
+    fill="currentColor"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+  </svg>
+);
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-900 text-slate-300 pt-16 pb-8">
-      <div className="container">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
-          {/* Brand Column */}
-          <div className="lg:col-span-2">
-          <Link href="/" className="inline-block mb-6">
+    <footer className="bg-[#040A03] text-white">
+      {/* Logo Section - Top */}
+      <div className="py-12">
+        <div className="container">
+          <Link href="/" className="inline-block">
             <Image
               src="/logo/vscs-bg-logo-light.svg"
-              alt="VSCS Logo"
-              width={220}
-              height={60}
-              className="h-16 w-auto"
+              alt="VSCS BG Logo"
+              width={180}
+              height={50}
+              className="h-12 w-auto"
             />
           </Link>
-            <p className="text-slate-400 mb-6 max-w-sm">
-              Вашият надежден партньор в соларната енергия. Изграждаме бъдеще 
-              с чиста и устойчива енергия.
-            </p>
-            {/* Social Links */}
-            <div className="flex gap-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center hover:bg-solar-orange transition-colors group"
-                  aria-label={social.label}
+        </div>
+      </div>
+
+      {/* Main Footer Content */}
+      <div>
+        <div className="container">
+          <div className="py-12 border-y border-white/5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
+              {/* Brand Column - Tagline & Social */}
+              <div className="lg:col-span-4">
+                <p className="text-white/70 mb-6 max-w-xs leading-relaxed">
+                  Строителни услуги до ключ и иновативни решения за възобновяема
+                  енергия.
+                </p>
+                {/* Social Links */}
+                <div className="flex gap-3">
+                  <a
+                    href="https://facebook.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-11 h-11 rounded-xl flex items-center justify-center text-dark-green bg-brand-green hover:bg-brand-green/80 transition-all"
+                    aria-label="Facebook"
+                  >
+                    <FacebookIcon />
+                  </a>
+                  <a
+                    href="https://linkedin.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-11 h-11 rounded-xl flex items-center justify-center text-dark-green bg-brand-green hover:bg-brand-green/80 transition-all"
+                    aria-label="LinkedIn"
+                  >
+                    <LinkedInIcon />
+                  </a>
+                </div>
+              </div>
+
+              {/* Quick Links */}
+              <div className="lg:col-span-2">
+                <div className="text-brand-green font-normal mb-3">
+                  Бързи Линкове
+                </div>
+                <ul className="space-y-2">
+                  {quickLinks.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="text-white/70 hover:text-brand-green transition-colors text-sm"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Services Links */}
+              <div className="lg:col-span-3">
+                <div className="text-brand-green font-normal mb-3">
+                  Проектиране
+                </div>
+                <ul className="space-y-2">
+                  {servicesLinks.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="text-white/70 hover:text-brand-green transition-colors text-sm"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Contact Info */}
+              <div className="lg:col-span-3">
+                <div className="text-brand-green font-normal mb-3">
+                  Контактна Информация
+                </div>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-start gap-3">
+                    <MapPin className="w-4 h-4 text-brand-green flex-shrink-0 mt-0.5" />
+                    <span className="text-white/90 font-medium">
+                      {contactInfo.address}
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Phone className="w-4 h-4 text-brand-green flex-shrink-0 mt-0.5" />
+                    <a
+                      href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
+                      className="text-white/90 font-medium hover:text-brand-green transition-colors"
+                    >
+                      {contactInfo.phone}
+                    </a>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Mail className="w-4 h-4 text-brand-green flex-shrink-0 mt-0.5" />
+                    <a
+                      href={`mailto:${contactInfo.email}`}
+                      className="text-white/90 font-medium hover:text-brand-green transition-colors"
+                    >
+                      {contactInfo.email}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="py-6">
+        <div className="container py-5 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="text-xs text-white/50">
+            VSCS BG, {new Date().getFullYear()} © Всички права са запазени
+          </div>
+          <div className="flex items-center gap-3 text-xs">
+            {legalLinks.map((link, index) => (
+              <span key={link.href} className="flex items-center gap-2">
+                <Link
+                  href={link.href}
+                  className="text-white/50 hover:text-white/80 transition-colors"
                 >
-                  <svg
-                    className="w-5 h-5 text-slate-400 group-hover:text-white transition-colors"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d={social.icon}
-                    />
-                  </svg>
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Company Links */}
-          <div>
-            <h4 className="text-white font-semibold mb-4">Компания</h4>
-            <ul className="space-y-3">
-              {footerLinks.company.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="hover:text-solar-orange transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Services Links */}
-          <div>
-            <h4 className="text-white font-semibold mb-4">Услуги</h4>
-            <ul className="space-y-3">
-              {footerLinks.services.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="hover:text-solar-orange transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Resources Links */}
-          <div>
-            <h4 className="text-white font-semibold mb-4">Ресурси</h4>
-            <ul className="space-y-3">
-              {footerLinks.resources.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="hover:text-solar-orange transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Contact Info Bar */}
-        <div className="border-t border-slate-800 pt-8 mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center">
-                <svg className="w-5 h-5 text-solar-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-              </div>
-              <div>
-                <p className="text-sm text-slate-400">Телефон</p>
-                <p className="text-white font-medium">+359 888 123 456</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center">
-                <svg className="w-5 h-5 text-solar-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <div>
-                <p className="text-sm text-slate-400">Имейл</p>
-                <p className="text-white font-medium">info@bikocontrol.bg</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center">
-                <svg className="w-5 h-5 text-solar-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              </div>
-              <div>
-                <p className="text-sm text-slate-400">Адрес</p>
-                <p className="text-white font-medium">София, България</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Copyright */}
-        <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-slate-500">
-            © {new Date().getFullYear()} БиКо Контрол Строително. Всички права запазени.
-          </p>
-          <div className="flex gap-6 text-sm">
-            <Link href="/privacy" className="text-slate-500 hover:text-slate-300 transition-colors">
-              Поверителност
-            </Link>
-            <Link href="/terms" className="text-slate-500 hover:text-slate-300 transition-colors">
-              Условия за ползване
-            </Link>
+                  {link.label}
+                </Link>
+                {index < legalLinks.length - 1 && (
+                  <span className="text-brand-green">|</span>
+                )}
+              </span>
+            ))}
           </div>
         </div>
       </div>
