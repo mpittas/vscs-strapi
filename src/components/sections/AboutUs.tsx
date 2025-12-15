@@ -39,7 +39,7 @@ export default function AboutUs() {
                   height={600}
                   quality={100}
                   unoptimized
-                  className="w-full h-[460px] object-cover rounded-[50px] blur-[10px]"
+                  className="w-full h-[460px] object-cover rounded-[50px] blur-[15px]"
                 />
               </div>
             </div>

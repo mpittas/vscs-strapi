@@ -5,6 +5,7 @@ import {
   ClientLogos,
   WhatWeOffer,
   AboutUs,
+  OurServices,
 } from "@/components/sections";
 
 export default function HomePage() {
@@ -13,6 +14,7 @@ export default function HomePage() {
       <Hero />
       <ClientLogos />
       <AboutUs />
+      <OurServices />
       <WhatWeOffer />
       <CTA />
       <Contact />

@@ -24,7 +24,7 @@ export default function ClientLogos() {
           <div className="flex-1 h-px bg-slate-400/30" />
 
           {/* Right side - Client logos */}
-          <div className="flex items-center gap-8 shrink-0">
+          <div className="flex items-center gap-10 shrink-0">
             {clientLogos.map((logo, index) => (
               <Image
                 key={index}
