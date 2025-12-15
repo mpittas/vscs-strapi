@@ -86,7 +86,7 @@ const Navbar = () => {
               alt="VSCS Logo"
               width={220}
               height={60}
-              className="h-16 w-auto"
+              className="h-14 w-auto"
               priority
             />
           </div>
@@ -98,7 +98,7 @@ const Navbar = () => {
             <Link
               key={link.name}
               href={link.href}
-              className={`font-normal transition-colors relative group ${getTextColor(
+              className={`font-book transition-colors text-sm relative group ${getTextColor(
                 "text-slate-600",
                 "text-solar-orange"
               )}`}
@@ -109,6 +109,7 @@ const Navbar = () => {
           ))}
           <Button
             href="/contact"
+            size="sm"
             variant={!isHomePage || isScrolled ? "black" : "secondary"}
           >
             Свържете се
