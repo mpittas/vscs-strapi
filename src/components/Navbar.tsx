@@ -24,6 +24,10 @@ const Navbar = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
+
+    // Check initial scroll position on mount (for page refresh while scrolled)
+    handleScroll();
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -35,14 +39,14 @@ const Navbar = () => {
      All use py-4 for consistent height across pages/states.
   */
   const navClasses = isHomePage
-    // HOMEPAGE: Fixed overlay header
-    ? `fixed top-0 left-0 right-0 z-50 py-4 transition-all duration-300 border-b ${
-        isScrolled 
+    ? // HOMEPAGE: Fixed overlay header
+      `fixed top-0 left-0 right-0 z-50 py-4 transition-all duration-300 border-b ${
+        isScrolled
           ? "bg-white border-slate-200" // HOMEPAGE SCROLLED: White bg with border
-          : "bg-transparent border-transparent border-b border-white/5"   // HOMEPAGE DEFAULT: Transparent overlay
+          : "bg-transparent border-transparent border-b border-white/5" // HOMEPAGE DEFAULT: Transparent overlay
       }`
-    // OTHER PAGES: Sticky white header (always scrolled style)
-    : `sticky top-0 left-0 right-0 z-50 py-4 transition-all duration-300 bg-white border-b border-slate-200`;
+    : // OTHER PAGES: Sticky white header (always scrolled style)
+      `sticky top-0 left-0 right-0 z-50 py-4 transition-all duration-300 bg-white border-b border-slate-200`;
 
   // Determine text color based on page and scroll state
   const getTextColor = (baseColor: string, hoverColor: string) => {
@@ -53,8 +57,7 @@ const Navbar = () => {
 
   // Determine logo to show
   const getLogoSrc = () => {
-    if (!isHomePage || isScrolled)
-      return "/logo/vscs-bg-logo-dark.svg";
+    if (!isHomePage || isScrolled) return "/logo/vscs-bg-logo-dark.svg";
     return "/logo/vscs-bg-logo-light.svg";
   };
 
@@ -104,7 +107,10 @@ const Navbar = () => {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-solar-orange transition-all group-hover:w-full" />
             </Link>
           ))}
-          <Button href="/contact" variant={!isHomePage || isScrolled ? "black" : "secondary"}>
+          <Button
+            href="/contact"
+            variant={!isHomePage || isScrolled ? "black" : "secondary"}
+          >
             Свържете се
           </Button>
         </div>

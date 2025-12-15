@@ -7,3 +7,4 @@ export { default as ClientLogos } from "./ClientLogos";
 export { default as ButtonShowcase } from "./ButtonShowcase";
 export { default as AboutUs } from "./AboutUs";
 export { default as OurServices } from "./OurServices";
+export { default as ProjectsOverview } from "./ProjectsOverview";

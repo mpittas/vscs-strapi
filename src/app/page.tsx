@@ -6,6 +6,7 @@ import {
   WhatWeOffer,
   AboutUs,
   OurServices,
+  ProjectsOverview,
 } from "@/components/sections";
 
 export default function HomePage() {
@@ -15,6 +16,7 @@ export default function HomePage() {
       <ClientLogos />
       <AboutUs />
       <OurServices />
+      <ProjectsOverview />
       <WhatWeOffer />
       <CTA />
       <Contact />
