@@ -8,6 +8,7 @@ import {
   OurServices,
   ProjectsOverview,
   BlogOverview,
+  Marquee,
 } from "@/components/sections";
 
 export default function HomePage() {
@@ -19,9 +20,12 @@ export default function HomePage() {
       <OurServices />
       <ProjectsOverview />
       <WhyUs />
+      
       <BlogOverview />
+      <Marquee />
       <CTA />
       <Contact />
     </>
   );
 }
+

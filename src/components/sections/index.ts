@@ -9,3 +9,4 @@ export { default as AboutUs } from "./AboutUs";
 export { default as OurServices } from "./OurServices";
 export { default as ProjectsOverview } from "./ProjectsOverview";
 export { default as BlogOverview } from "./BlogOverview";
+export { default as Marquee } from "./Marquee";
