@@ -2,10 +2,11 @@
 
 import Button from "@/components/ui/Button";
 import { Heading, Text } from "@/components/ui/Typography";
+import Section from "@/components/ui/Section";
 
 export default function CTA() {
   return (
-    <section className="py-24 lg:py-32 bg-gradient-to-br from-solar-orange via-solar-orange to-eco-green relative overflow-hidden">
+    <Section paddingY="xl" className="bg-gradient-to-br from-solar-orange via-solar-orange to-eco-green relative overflow-hidden">
       {/* Background Decorations */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
@@ -140,6 +141,6 @@ export default function CTA() {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

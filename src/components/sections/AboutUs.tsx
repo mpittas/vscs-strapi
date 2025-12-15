@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Heading, Text } from "@/components/ui/Typography";
 import Button from "@/components/ui/Button";
+import Section from "@/components/ui/Section";
 import { Check } from "lucide-react";
 
 const features = [
@@ -12,7 +13,7 @@ const features = [
 
 export default function AboutUs() {
   return (
-    <section className="py-20 lg:py-28 bg-white">
+    <Section paddingY="xl" bgColor="white">
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left Column - Images */}
@@ -102,6 +103,6 @@ export default function AboutUs() {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

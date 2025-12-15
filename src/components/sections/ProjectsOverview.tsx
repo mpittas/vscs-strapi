@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import { Heading, Text } from "@/components/ui/Typography";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import ProjectPostCard from "@/components/ui/ProjectPostCard";
+import Section from "@/components/ui/Section";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // Import slick carousel CSS
@@ -99,7 +100,7 @@ export default function ProjectsOverview() {
   };
 
   return (
-    <section className="py-16 lg:py-24 bg-white overflow-hidden">
+    <Section paddingY="xl" bgColor="white" className="overflow-hidden">
       <div className="container">
         {/* Title + Stats + Map Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-16">
@@ -219,6 +220,6 @@ export default function ProjectsOverview() {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

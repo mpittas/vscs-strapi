@@ -3,7 +3,7 @@ import {
   Contact,
   Hero,
   ClientLogos,
-  WhatWeOffer,
+  WhyUs,
   AboutUs,
   OurServices,
   ProjectsOverview,
@@ -17,7 +17,7 @@ export default function HomePage() {
       <AboutUs />
       <OurServices />
       <ProjectsOverview />
-      <WhatWeOffer />
+      <WhyUs />
       <CTA />
       <Contact />
     </>

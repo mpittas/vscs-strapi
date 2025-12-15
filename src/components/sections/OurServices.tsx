@@ -1,6 +1,7 @@
 import { Heading, Text } from "@/components/ui/Typography";
 import Button from "@/components/ui/Button";
 import ServiceIconBox from "@/components/ui/ServiceIconBox";
+import Section from "@/components/ui/Section";
 
 const services = [
   {
@@ -31,11 +32,9 @@ const services = [
 
 export default function OurServices() {
   return (
-    <section
-      className="py-20 lg:py-28"
-      style={{
-        background: "linear-gradient(180deg, #001D13 0%, #022D1E 100%)",
-      }}
+    <Section
+      paddingY="xl"
+      className="bg-gradient-to-b from-[#001D13] to-[#022D1E]"
     >
       <div className="container">
         {/* Header Section */}
@@ -71,6 +70,6 @@ export default function OurServices() {
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

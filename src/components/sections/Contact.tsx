@@ -1,10 +1,11 @@
 import { contactInfo } from "@/data/homepage";
 import { LocationIcon, PhoneIcon, EmailIcon } from "@/components/ui/Icons";
 import { Heading, Text } from "@/components/ui/Typography";
+import Section from "@/components/ui/Section";
 
 export default function Contact() {
   return (
-    <section className="py-20 lg:py-28 bg-white">
+    <Section paddingY="xl" bgColor="white">
       <div className="container">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <Text
@@ -72,6 +73,6 @@ export default function Contact() {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
