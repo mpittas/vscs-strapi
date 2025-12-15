@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import ConditionalNavbar from "@/components/ConditionalNavbar";
 import Footer from "@/components/Footer";
+import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 
 const stolzl = localFont({
   src: [
@@ -84,13 +85,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en">
       <body
         className={`${stolzl.variable} font-sans antialiased min-h-screen flex flex-col`}
       >
-        <ConditionalNavbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <SmoothScrollProvider>
+          <ConditionalNavbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </SmoothScrollProvider>
       </body>
     </html>
   );
