@@ -19,7 +19,7 @@ interface BlogCardProps {
 export default function BlogCard({ post }: BlogCardProps) {
   return (
     <Link href={`/blog/${post.slug}`} className="group">
-      <article className="card h-full flex flex-col">
+      <article className="card h-full flex flex-col bg-white hover:bg-slate-50 transition-colors duration-300">
         {/* Image */}
         <div className="aspect-video rounded-lg bg-slate-100 dark:bg-slate-800 mb-6 overflow-hidden relative">
           {post.featuredImage ? (

@@ -5,7 +5,7 @@ import Image from "next/image";
 import Slider from "react-slick";
 import { Heading, Text } from "@/components/ui/Typography";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
-import BlogPostCard from "@/components/ui/BlogPostCard";
+import ProjectPostCard from "@/components/ui/ProjectPostCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // Import slick carousel CSS
@@ -191,8 +191,8 @@ export default function ProjectsOverview() {
           <div className="slick-carousel-container">
             <Slider ref={sliderRef} {...sliderSettings}>
               {blogPosts.map((post, index) => (
-                <div key={index} className="px-4">
-                  <BlogPostCard
+                <div key={index} className="px-3  ">
+                  <ProjectPostCard
                     image={post.image}
                     location={post.location}
                     title={post.title}
