@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Button from "./ui/Button";
+import { useLenis } from "./SmoothScrollProvider";
 
 const navLinks = [
   { name: "Начало", href: "/" },
@@ -19,18 +20,41 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const isHomePage = pathname === "/";
+  const lenis = useLenis();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+    // Handler for scroll events
+    const handleScroll = (scrollY: number) => {
+      setIsScrolled(scrollY > 50);
     };
 
-    // Check initial scroll position on mount (for page refresh while scrolled)
-    handleScroll();
+    // If Lenis is available, use its scroll events
+    if (lenis) {
+      const onLenisScroll = ({ scroll }: { scroll: number }) => {
+        handleScroll(scroll);
+      };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+      lenis.on("scroll", onLenisScroll);
+
+      // Check initial scroll position
+      handleScroll(lenis.scroll);
+
+      return () => {
+        lenis.off("scroll", onLenisScroll);
+      };
+    } else {
+      // Fallback to native scroll for pages without Lenis
+      const onNativeScroll = () => {
+        handleScroll(window.scrollY);
+      };
+
+      // Check initial scroll position
+      onNativeScroll();
+
+      window.addEventListener("scroll", onNativeScroll);
+      return () => window.removeEventListener("scroll", onNativeScroll);
+    }
+  }, [lenis]);
 
   /* 
      Use consistent positioning to prevent layout shifts (jumping).

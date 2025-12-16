@@ -1,7 +1,24 @@
 "use client";
 
-import { useEffect, useRef, ReactNode } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  ReactNode,
+  createContext,
+  useContext,
+} from "react";
 import Lenis from "lenis";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger);
+
+// Create Lenis context to share instance across components
+const LenisContext = createContext<Lenis | null>(null);
+
+export const useLenis = () => useContext(LenisContext);
 
 interface SmoothScrollProviderProps {
   children: ReactNode;
@@ -10,7 +27,7 @@ interface SmoothScrollProviderProps {
 export default function SmoothScrollProvider({
   children,
 }: SmoothScrollProviderProps) {
-  const lenisRef = useRef<Lenis | null>(null);
+  const [lenis, setLenis] = useState<Lenis | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const blurOverlayRef = useRef<HTMLDivElement | null>(null);
   const currentSkew = useRef(0);
@@ -18,7 +35,7 @@ export default function SmoothScrollProvider({
 
   useEffect(() => {
     // Initialize Lenis with smooth scrolling settings
-    lenisRef.current = new Lenis({
+    const lenisInstance = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
@@ -26,6 +43,17 @@ export default function SmoothScrollProvider({
       smoothWheel: true,
       touchMultiplier: 2,
     });
+
+    setLenis(lenisInstance);
+
+    // Coordinate Lenis with GSAP ScrollTrigger
+    lenisInstance.on("scroll", ScrollTrigger.update);
+
+    // Use GSAP ticker to drive Lenis
+    gsap.ticker.add((time) => {
+      lenisInstance.raf(time * 1000);
+    });
+    gsap.ticker.lagSmoothing(0);
 
     // Skew settings
     const maxSkew = 7; // Maximum skew in degrees
@@ -35,13 +63,11 @@ export default function SmoothScrollProvider({
     const maxBlur = 20; // Maximum blur in pixels
     const blurSmoothness = 0.5; // How smoothly the blur interpolates
 
-    // Animation frame loop with skew effect
-    function raf(time: number) {
-      lenisRef.current?.raf(time);
-
-      if (lenisRef.current && wrapperRef.current) {
+    // Animation frame loop with skew and blur effects (driven by GSAP ticker)
+    const skewTicker = () => {
+      if (lenisInstance && wrapperRef.current) {
         // Get scroll velocity from Lenis
-        const velocity = lenisRef.current.velocity;
+        const velocity = lenisInstance.velocity;
 
         // Calculate target skew based on velocity
         // Clamp velocity to prevent extreme skewing
@@ -71,50 +97,52 @@ export default function SmoothScrollProvider({
           blurOverlayRef.current.style.opacity = `${Math.min(1, currentBlur.current / 8)}`;
         }
       }
+    };
 
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
+    gsap.ticker.add(skewTicker);
 
     // Cleanup on unmount
     return () => {
-      lenisRef.current?.destroy();
-      lenisRef.current = null;
+      gsap.ticker.remove(skewTicker);
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      lenisInstance.destroy();
+      setLenis(null);
     };
   }, []);
 
   return (
-    <div className="relative">
-      <div
-        ref={wrapperRef}
-        style={{
-          willChange: "transform",
-          transformOrigin: "center center",
-        }}
-      >
-        {children}
+    <LenisContext.Provider value={lenis}>
+      <div className="relative">
+        <div
+          ref={wrapperRef}
+          style={{
+            willChange: "transform",
+            transformOrigin: "center center",
+          }}
+        >
+          {children}
+        </div>
+        {/* Blur overlay at bottom */}
+        <div
+          ref={blurOverlayRef}
+          style={{
+            position: "fixed",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: "50vh",
+            background: "transparent",
+            pointerEvents: "none",
+            zIndex: 40,
+            opacity: 0,
+            willChange: "backdrop-filter, opacity",
+            // Mask creates gradient blur: transparent at top, full effect at bottom
+            maskImage: "linear-gradient(to bottom, transparent 0%, black 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, transparent 0%, black 100%)",
+          }}
+        />
       </div>
-      {/* Blur overlay at bottom */}
-      <div
-        ref={blurOverlayRef}
-        style={{
-          position: "fixed",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: "50vh",
-          background: "transparent",
-          pointerEvents: "none",
-          zIndex: 40,
-          opacity: 0,
-          willChange: "backdrop-filter, opacity",
-          // Mask creates gradient blur: transparent at top, full effect at bottom
-          maskImage: "linear-gradient(to bottom, transparent 0%, black 100%)",
-          WebkitMaskImage:
-            "linear-gradient(to bottom, transparent 0%, black 100%)",
-        }}
-      />
-    </div>
+    </LenisContext.Provider>
   );
 }
