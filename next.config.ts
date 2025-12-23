@@ -18,12 +18,17 @@ const nextConfig: NextConfig = {
         hostname: "*.strapi.io",
         pathname: "/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
     ],
   },
 
   // Environment variables available on the client
   env: {
-    NEXT_PUBLIC_STRAPI_URL: process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337",
+    NEXT_PUBLIC_STRAPI_URL:
+      process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337",
   },
 };
 

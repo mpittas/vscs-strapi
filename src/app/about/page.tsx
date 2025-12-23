@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageTitle from "@/components/ui/PageTitle";
+import AboutIntro from "@/components/sections/AboutIntro";
 
 export const metadata: Metadata = {
   title: "За нас",
@@ -15,6 +16,9 @@ export default function AboutPage() {
         title="За нас"
         breadcrumbs={[{ label: "НАЧАЛО", href: "/" }, { label: "ЗА НАС" }]}
       />
+
+      {/* About Intro Section */}
+      <AboutIntro />
     </>
   );
 }
