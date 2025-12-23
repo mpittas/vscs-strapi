@@ -44,7 +44,7 @@ const stolzl = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: "SolarTech Solutions | Premium Solar Panel Installation",
+    default: "VSCS - Соларни панели",
     template: "%s | SolarTech Solutions",
   },
   description:
@@ -63,13 +63,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://solartech.com",
     siteName: "SolarTech Solutions",
-    title: "SolarTech Solutions | Premium Solar Panel Installation",
+    title: "VSCS - Соларни панели",
     description:
       "Transform your home with clean, renewable solar energy. Save up to 70% on energy bills.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SolarTech Solutions | Premium Solar Panel Installation",
+    title: "VSCS - Соларни панели",
     description:
       "Transform your home with clean, renewable solar energy. Save up to 70% on energy bills.",
   },
