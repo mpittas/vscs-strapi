@@ -5,6 +5,7 @@ import Image from "next/image";
 import Slider from "react-slick";
 import { Heading, Text } from "@/components/ui/Typography";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
+import Container from "@/components/ui/Container";
 import ProjectPostCard from "@/components/ui/ProjectPostCard";
 import Section from "@/components/ui/Section";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -101,7 +102,7 @@ export default function ProjectsOverview() {
 
   return (
     <Section paddingY="xl" bgColor="white" className="overflow-hidden">
-      <div className="container">
+      <Container>
         {/* Title + Stats + Map Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-16">
           {/* Left Side - Title + Stats */}
@@ -219,7 +220,7 @@ export default function ProjectsOverview() {
             </button>
           </div>
         </div>
-      </div>
+      </Container>
     </Section>
   );
 }

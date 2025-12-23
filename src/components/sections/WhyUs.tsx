@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Heading, Text } from "@/components/ui/Typography";
+import Container from "@/components/ui/Container";
 import InfoItem from "@/components/ui/InfoItem";
 import Section from "@/components/ui/Section";
 
@@ -33,7 +34,7 @@ const infoItems = [
 export default function WhyUs() {
   return (
     <Section paddingY="xl" bgColor="dark">
-      <div className="container">
+      <Container>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left Column - Images */}
           <div className="relative pr-12 pb-12">
@@ -98,7 +99,7 @@ export default function WhyUs() {
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </Section>
   );
 }

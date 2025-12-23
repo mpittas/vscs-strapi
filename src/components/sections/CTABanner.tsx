@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Button from "@/components/ui/Button";
+import Container from "@/components/ui/Container";
 import { Heading } from "@/components/ui/Typography";
 import Section from "@/components/ui/Section";
 import { Phone } from "lucide-react";
@@ -35,7 +36,7 @@ export default function CTABanner() {
         />
       </div>
 
-      <div className="container relative z-20">
+      <Container className="relative z-20">
         <div>
           {/* Left Content */}
           <div className="text-left max-w-[700px]">
@@ -80,7 +81,7 @@ export default function CTABanner() {
             </div>
           </div>
         </div>
-      </div>
+      </Container>
 
       {/* Mobile Image - shows only on mobile */}
       <div className="relative w-full h-[250px] lg:hidden">

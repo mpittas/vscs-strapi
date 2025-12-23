@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Heading, Text } from "@/components/ui/Typography";
+import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import { Calendar, Clock, ArrowUpRight, ArrowRight } from "lucide-react";
 
@@ -41,13 +42,12 @@ const blogPosts = [
 export default function BlogOverview() {
   return (
     <Section paddingY="xl" bgColor="light">
-      <div className="container">
+      <Container>
         {/* Header */}
         <div className="flex items-start justify-between mb-24">
           {/* Title */}
           <Heading as="h2" className="max-w-xl">
-            Бъдете в{" "}
-            <span className="text-brand-green">час с новините</span>
+            Бъдете в <span className="text-brand-green">час с новините</span>
             <br />
             свързани със соларните
             <br />
@@ -95,7 +95,10 @@ export default function BlogOverview() {
                   >
                     {post.title}
                   </Heading>
-                  <Text variant="body-14" className="text-slate-500 leading-relaxed">
+                  <Text
+                    variant="body-14"
+                    className="text-slate-500 leading-relaxed"
+                  >
                     {post.excerpt}
                   </Text>
                 </div>
@@ -119,7 +122,7 @@ export default function BlogOverview() {
             </Link>
           ))}
         </div>
-      </div>
+      </Container>
     </Section>
   );
 }

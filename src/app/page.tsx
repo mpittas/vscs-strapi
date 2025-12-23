@@ -16,12 +16,12 @@ export default function HomePage() {
       <Hero />
       <ClientLogos />
       <AboutUs />
-      <OurServices />
+      {/* <OurServices />
       <ProjectsOverview />
       <WhyUs />
       <BlogOverview />
       <Marquee />
-      <CTABanner />
+      <CTABanner /> */}
     </>
   );
 }

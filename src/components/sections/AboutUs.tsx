@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Heading, Text } from "@/components/ui/Typography";
 import Button from "@/components/ui/Button";
+import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import { Check } from "lucide-react";
 
@@ -14,12 +15,12 @@ const features = [
 export default function AboutUs() {
   return (
     <Section paddingY="xl" bgColor="white">
-      <div className="container">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <Container>
+        <div className="grid lg:grid-cols-2 gap-0 lg:gap-20 items-center">
           {/* Left Column - Images */}
           <div className="relative">
             {/* Main images container */}
-            <div className="flex gap-4 pb-20 pr-24">
+            <div className="flex gap-4 pb-10 lg:pb-20 pr-12 lg:pr-24">
               {/* First image */}
               <div className="flex-1 rounded-[50px] overflow-hidden z-1">
                 <Image
@@ -28,7 +29,7 @@ export default function AboutUs() {
                   width={600}
                   height={800}
                   unoptimized
-                  className="w-full h-[560px] object-cover rounded-4xl"
+                  className="w-full h-[400] lg:h-[560px] object-cover rounded-4xl"
                 />
               </div>
 
@@ -45,7 +46,7 @@ export default function AboutUs() {
               </div>
             </div>
 
-            <div className="absolute top-5 -left-[25px] w-[90px] h-[90px] z-2">
+            <div className="absolute top-5 left-autp rotate-180 right-0 lg:right-auto lg:-left-[25px] w-[90px] h-[90px] z-2">
               <Image
                 src="/icons/globe-yellow-circle.svg"
                 alt="Blurred solar background"
@@ -59,7 +60,7 @@ export default function AboutUs() {
           </div>
 
           {/* Right Column - Content */}
-          <div className="pt-8 lg:pt-0">
+          <div className="pt-2 lg:pt-0">
             {/* Title */}
             <div className="mb-6">
               <Heading as="h2">
@@ -102,7 +103,7 @@ export default function AboutUs() {
             </Button>
           </div>
         </div>
-      </div>
+      </Container>
     </Section>
   );
 }

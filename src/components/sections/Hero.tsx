@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Button from "@/components/ui/Button";
+import Container from "@/components/ui/Container";
 import { Heading, Text } from "@/components/ui/Typography";
 import gsap from "gsap";
 
@@ -33,53 +34,144 @@ function AnimatedText({
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
 
+  // ============================================
+  // ANIMATION CONFIG - Easy timeline control
+  // ============================================
+  const animConfig = {
+    // Global
+    defaultEase: "power3.out",
+    initialDelay: 0.1,
+
+    // Badge animation
+    badge: {
+      duration: 0.5,
+      y: 20,
+    },
+
+    // Title characters animation
+    title: {
+      duration: 0.6,
+      stagger: 0.015,
+      y: 40,
+      delayAfterBadge: 0.15,
+    },
+
+    // Underline animation
+    underline: {
+      duration: 0.8,
+      y: 10,
+      ease: "power2.out",
+      overlapWithTitle: 0.3,
+    },
+
+    // Description animation
+    description: {
+      duration: 0.6,
+      y: 20,
+      delayAfterTitle: 0.15,
+    },
+
+    // Buttons animation
+    buttons: {
+      duration: 0.6,
+      y: 20,
+      delayAfterDescription: 0.1,
+    },
+  };
+
   useEffect(() => {
+    if (!heroRef.current) return;
+
     const ctx = gsap.context(() => {
-      // Get all reveal content elements (excluding heading)
-      const revealElements = gsap.utils.toArray<HTMLElement>(".reveal-content");
-
-      // Get all hero characters
+      // Get specific elements
+      const badge = document.querySelector(".hero-badge");
       const heroChars = gsap.utils.toArray<HTMLElement>(".hero-char");
+      const underline = document.querySelector(".hero-underline");
+      const description = document.querySelector(".hero-description");
+      const buttons = document.querySelector(".hero-buttons");
 
-      // Initial states - set elements below their clip mask
-      gsap.set(revealElements, {
-        yPercent: 100,
-        opacity: 0,
-      });
-
-      // Initial state for characters
-      gsap.set(heroChars, {
-        y: 40,
-        opacity: 0,
-      });
+      // Initial states
+      if (badge) gsap.set(badge, { y: animConfig.badge.y, opacity: 0 });
+      gsap.set(heroChars, { y: animConfig.title.y, opacity: 0 });
+      if (underline)
+        gsap.set(underline, {
+          scaleX: 0,
+          y: animConfig.underline.y,
+          opacity: 0,
+          transformOrigin: "left center",
+        });
+      if (description)
+        gsap.set(description, { y: animConfig.description.y, opacity: 0 });
+      if (buttons) gsap.set(buttons, { y: animConfig.buttons.y, opacity: 0 });
 
       // Create timeline for smooth staggered reveal
       const tl = gsap.timeline({
         defaults: {
-          ease: "expo.out",
+          ease: animConfig.defaultEase,
         },
       });
 
-      // Animate characters with stagger
-      tl.to(heroChars, {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        stagger: 0.03,
-        delay: 0.3,
-      });
-
-      // Animate other elements after characters
-      tl.to(
-        revealElements,
-        {
-          yPercent: 0,
+      // 1. Animate badge first
+      if (badge) {
+        tl.to(badge, {
+          y: 0,
           opacity: 1,
-          duration: 1.2,
-          stagger: 0.15,
+          duration: animConfig.badge.duration,
+          delay: animConfig.initialDelay,
+        });
+      }
+
+      // 2. Animate title characters + underline together
+      tl.to(
+        heroChars,
+        {
+          y: 0,
+          opacity: 1,
+          duration: animConfig.title.duration,
+          stagger: animConfig.title.stagger,
         },
-        "-=0.4"
+        `+=${animConfig.title.delayAfterBadge}`
       );
+
+      if (underline) {
+        tl.to(
+          underline,
+          {
+            scaleX: 1,
+            y: 0,
+            opacity: 1,
+            duration: animConfig.underline.duration,
+            ease: animConfig.underline.ease,
+          },
+          `-=${animConfig.underline.overlapWithTitle}`
+        );
+      }
+
+      // 3. Animate description
+      if (description) {
+        tl.to(
+          description,
+          {
+            y: 0,
+            opacity: 1,
+            duration: animConfig.description.duration,
+          },
+          `+=${animConfig.description.delayAfterTitle}`
+        );
+      }
+
+      // 4. Animate buttons
+      if (buttons) {
+        tl.to(
+          buttons,
+          {
+            y: 0,
+            opacity: 1,
+            duration: animConfig.buttons.duration,
+          },
+          `+=${animConfig.buttons.delayAfterDescription}`
+        );
+      }
     }, heroRef);
 
     return () => ctx.revert();
@@ -104,37 +196,37 @@ export default function Hero() {
           <div className="absolute inset-0 bg-gradient-to-b from-[rgba(5,21,17,0.85)] to-[rgba(4,9,15,1)]" />
         </div>
 
-        <section
-          className="relative z-10 flex items-center justify-center pt-28"
-          style={{ height: "880px" }}
-        >
-          <div className="container flex gap-y-6 flex-col items-start px-40">
+        <section className="relative z-10 flex items-center justify-center pt-20 sm:pt-24 lg:pt-28 min-h-[100dvh] sm:min-h-0 sm:h-[600px] md:h-[700px] lg:h-[800px] xl:h-[880px]">
+          <Container className="flex gap-y-5 lg:gap-y-6 flex-col items-start">
             {/* Badge with reveal animation */}
-            <div className="overflow-hidden">
-              <div className="reveal-content flex items-center gap-2">
-                <Image
-                  src="/icons/electricity-bolt-icon-green.svg"
-                  alt=""
-                  width={14}
-                  height={14}
-                />
-                <Text as="span" variant="small-title">
-                  VS Construction Services
-                </Text>
-              </div>
+            <div className="hero-badge flex items-center gap-2">
+              <Image
+                src="/icons/electricity-bolt-icon-green.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="w-3 h-3 sm:w-3.5 sm:h-3.5"
+              />
+              <Text
+                as="span"
+                variant="small-title"
+                className="text-xs sm:text-sm"
+              >
+                VS Construction Services
+              </Text>
             </div>
 
             {/* Title with character-by-character animation */}
             <Heading
               as="h1"
-              className="text-[72px] max-w-4xl leading-[1.15] text-white font-normal"
+              className="text-[38px] sm:text-[40px] md:text-[52px] lg:text-[62px] xl:text-[72px] sm:max-w-md md:max-w-xl lg:max-w-3xl xl:max-w-4xl leading-[1.15] text-white font-normal"
             >
               <span className="block overflow-hidden">
                 <AnimatedText text="Вашият партньор" className="block" />
               </span>
               <span className="block">
                 <span className="relative inline-block overflow-visible">
-                  <span className="overflow-hidden block">
+                  <span className="overflow-hidden block relative block z-1">
                     <AnimatedText
                       text="в соларния бизнес"
                       className="inline-block"
@@ -145,37 +237,43 @@ export default function Hero() {
                     alt=""
                     width={400}
                     height={20}
-                    className="absolute -bottom-2 left-0 w-full h-auto"
+                    className="hero-underline absolute -bottom-1 sm:-bottom-4 left-0 w-full h-auto opacity-20"
                   />
                 </span>
               </span>
             </Heading>
 
             {/* Description with reveal animation */}
-            <div className="overflow-hidden">
-              <div className="reveal-content">
-                <Text
-                  variant="body-18"
-                  className="max-w-md leading-relaxed text-slate-200 pt-4"
-                >
-                  Строителни услуги до ключ и иновативни решения за възобновяема
-                  енергия.
-                </Text>
-              </div>
+
+            <div className="hero-description">
+              <Text
+                variant="body-18"
+                className="max-w-[380px] text-neutral-300 sm:pt-3 lg:pt-4 text-base lg:text-lg"
+              >
+                Строителни услуги до ключ и иновативни решения за възобновяема
+                енергия.
+              </Text>
             </div>
 
-            {/* Buttons with reveal animation */}
-            <div className="overflow-hidden">
-              <div className="reveal-content flex w-full flex-col justify-center gap-4 sm:w-auto sm:flex-row">
-                <Button href="/contact" size="md" showIcon>
-                  Свържете се с нас
-                </Button>
-                <Button href="/about" variant="secondary" size="md">
-                  Научете повече
-                </Button>
-              </div>
+            <div className="hero-buttons flex w-full flex-col justify-center gap-3 sm:gap-4 sm:w-auto sm:flex-row">
+              <Button
+                href="/contact"
+                size="md"
+                showIcon
+                className="w-full sm:w-auto"
+              >
+                Свържете се с нас
+              </Button>
+              <Button
+                href="/about"
+                variant="secondary"
+                size="md"
+                className="w-full sm:w-auto"
+              >
+                Научете повече
+              </Button>
             </div>
-          </div>
+          </Container>
         </section>
       </div>
     </>

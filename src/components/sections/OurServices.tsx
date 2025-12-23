@@ -1,5 +1,6 @@
 import { Heading, Text } from "@/components/ui/Typography";
 import Button from "@/components/ui/Button";
+import Container from "@/components/ui/Container";
 import ServiceIconBox from "@/components/ui/ServiceIconBox";
 import Section from "@/components/ui/Section";
 
@@ -36,7 +37,7 @@ export default function OurServices() {
       paddingY="xl"
       className="bg-gradient-to-b from-[#001D13] to-[#022D1E]"
     >
-      <div className="container">
+      <Container>
         {/* Header Section */}
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 lg:gap-16 mb-16 lg:mb-20">
           {/* Left - Title */}
@@ -69,7 +70,7 @@ export default function OurServices() {
             />
           ))}
         </div>
-      </div>
+      </Container>
     </Section>
   );
 }
