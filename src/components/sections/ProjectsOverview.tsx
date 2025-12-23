@@ -66,6 +66,7 @@ export default function ProjectsOverview() {
   const sliderRef = useRef<Slider>(null);
 
   // Slick carousel settings
+  // Desktop: 3 items, Tablet: 2 items, Mobile: 1 item
   const sliderSettings = {
     dots: false,
     infinite: true,
@@ -82,11 +83,10 @@ export default function ProjectsOverview() {
         },
       },
       {
-        breakpoint: 640,
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerMode: true,
         },
       },
     ],
@@ -104,7 +104,7 @@ export default function ProjectsOverview() {
     <Section paddingY="xl" bgColor="white" className="overflow-hidden">
       <Container>
         {/* Title + Stats + Map Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-0 lg:mb-16">
           {/* Left Side - Title + Stats */}
           <div>
             {/* Title */}
@@ -193,7 +193,7 @@ export default function ProjectsOverview() {
           <div className="slick-carousel-container">
             <Slider ref={sliderRef} {...sliderSettings}>
               {blogPosts.map((post, index) => (
-                <div key={index} className="px-3  ">
+                <div key={index} className="px-0 lg:px-3">
                   <ProjectPostCard
                     image={post.image}
                     location={post.location}
@@ -205,7 +205,7 @@ export default function ProjectsOverview() {
           </div>
 
           {/* Carousel Navigation */}
-          <div className="flex mt-8 gap-2">
+          <div className="flex mt-2 lg:mt-8 gap-2">
             <button
               onClick={handlePrev}
               className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:border-brand-green hover:bg-brand-green transition-all group cursor-pointer"

@@ -168,7 +168,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden absolute top-full left-0 right-0 bg-white transition-all duration-300 origin-top ${
+        className={`md:hidden absolute top-full left-0 right-0 bg-white transition-all duration-300 origin-top py-4 ${
           isOpen
             ? "opacity-100 scale-y-100 visible"
             : "opacity-0 scale-y-0 invisible"
@@ -179,7 +179,7 @@ const Navbar = () => {
             <Link
               key={link.name}
               href={link.href}
-              className="text-lg font-medium text-slate-600 hover:text-solar-orange transition-colors"
+              className="text-md font-normal text-slate-600 hover:text-solar-orange transition-colors"
               onClick={() => setIsOpen(false)}
             >
               {link.name}

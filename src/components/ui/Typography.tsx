@@ -16,7 +16,7 @@ type HeadingProps = {
 // Export styles for design system usage
 export const headingStyles = {
   h1: "font-normal tracking-tight text-slate-900",
-  h2: "text-[44px] leading-[1.15] font-normal tracking-tight text-slate-900",
+  h2: "text-[34px] lg:text-[44px] leading-[1.15] font-normal tracking-tight text-slate-900",
   h3: "font-normal tracking-tight text-slate-900",
   h4: "font-normal tracking-tight text-slate-900",
   h5: "font-normal tracking-tight text-slate-900",

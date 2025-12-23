@@ -84,7 +84,7 @@ export default function CTABanner() {
       </Container>
 
       {/* Mobile Image - shows only on mobile */}
-      <div className="relative w-full h-[250px] lg:hidden">
+      <div className="hidden lg:block relative w-full h-[250px] lg:hidden">
         <Image
           src="/images/woman-reading-papers-min.png"
           alt="Консултант преглежда документи"
