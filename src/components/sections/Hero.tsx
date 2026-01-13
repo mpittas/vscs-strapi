@@ -56,19 +56,18 @@ export default function Hero() {
       delayAfterBadge: 0.15,
     },
 
-    // Underline animation
+    // Underline animation (fades in with title)
     underline: {
-      duration: 0.8,
-      y: 10,
+      duration: 1,
+      delay: 0.5,
       ease: "power2.out",
-      overlapWithTitle: 0.3,
     },
 
     // Description animation
     description: {
       duration: 0.6,
+      delayAfterTitle: 0.1,
       y: 20,
-      delayAfterTitle: 0.15,
     },
 
     // Buttons animation
@@ -95,10 +94,7 @@ export default function Hero() {
       gsap.set(heroChars, { y: animConfig.title.y, opacity: 0 });
       if (underline)
         gsap.set(underline, {
-          scaleX: 0,
-          y: animConfig.underline.y,
           opacity: 0,
-          transformOrigin: "left center",
         });
       if (description)
         gsap.set(description, { y: animConfig.description.y, opacity: 0 });
@@ -121,7 +117,10 @@ export default function Hero() {
         });
       }
 
-      // 2. Animate title characters + underline together
+      // 2. Animate title characters + underline together (fades in at the same time)
+      const titleLabel = "titleStart";
+      tl.addLabel(titleLabel, `+=${animConfig.title.delayAfterBadge}`);
+
       tl.to(
         heroChars,
         {
@@ -130,24 +129,29 @@ export default function Hero() {
           duration: animConfig.title.duration,
           stagger: animConfig.title.stagger,
         },
-        `+=${animConfig.title.delayAfterBadge}`
+        titleLabel
       );
 
       if (underline) {
         tl.to(
           underline,
           {
-            scaleX: 1,
-            y: 0,
             opacity: 1,
             duration: animConfig.underline.duration,
+            delay: animConfig.underline.delay,
             ease: animConfig.underline.ease,
           },
-          `-=${animConfig.underline.overlapWithTitle}`
+          titleLabel
         );
       }
+      // Calculate when title animation ends (duration + all stagger delays)
+      const titleEndTime =
+        animConfig.title.duration +
+        (heroChars.length - 1) * animConfig.title.stagger;
+      const titleEndLabel = "titleEnd";
+      tl.addLabel(titleEndLabel, `${titleLabel}+=${titleEndTime}`);
 
-      // 3. Animate description
+      // 3. Animate description (right after title finishes)
       if (description) {
         tl.to(
           description,
@@ -156,7 +160,7 @@ export default function Hero() {
             opacity: 1,
             duration: animConfig.description.duration,
           },
-          `+=${animConfig.description.delayAfterTitle}`
+          `${titleEndLabel}+=${animConfig.description.delayAfterTitle}`
         );
       }
 

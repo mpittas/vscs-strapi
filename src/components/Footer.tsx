@@ -62,7 +62,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#040A03] text-white">
       {/* Logo Section - Top */}
-      <div className="py-12">
+      <div className="pt-8 pb-4 lg:pt-12 lg:pb-12">
         <div className="container">
           <Link href="/" className="inline-block">
             <Image
@@ -79,8 +79,8 @@ export default function Footer() {
       {/* Main Footer Content */}
       <div>
         <div className="container">
-          <div className="py-12 border-y border-white/5">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
+          <div className="py-6 lg:py-12 border-y border-white/5">
+            <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
               {/* Brand Column - Tagline & Social */}
               <div className="lg:col-span-4">
                 <p className="text-white/70 mb-6 max-w-xs leading-relaxed">
@@ -187,7 +187,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="py-6">
-        <div className="container py-5 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="container py-5 flex flex-col lg:flex-row justify-between items-center gap-4">
           <div className="text-xs text-white/50">
             VSCS BG, {new Date().getFullYear()} © Всички права са запазени
           </div>

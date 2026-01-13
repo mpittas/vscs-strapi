@@ -1,4 +1,5 @@
 import Image from "next/image";
+import BadgeDefault from "@/components/ui/BadgeDefault";
 
 export default function AboutIntro() {
   return (
@@ -6,9 +7,7 @@ export default function AboutIntro() {
       <div className="container">
         <div className="flex flex-col lg:flex-row gap-8 items-start">
           {/* Badge */}
-          <div className="inline-flex items-center px-4 py-2 rounded-full border border-slate-300 text-sm text-slate-700">
-            КОИ СМЕ НИЕ
-          </div>
+          <BadgeDefault>КОИ СМЕ НИЕ</BadgeDefault>
 
           <div>
             {/* Title */}

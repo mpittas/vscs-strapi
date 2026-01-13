@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import PageTitle from "@/components/ui/PageTitle";
 import AboutIntro from "@/components/sections/AboutIntro";
+import { NumbersCounter } from "@/components/sections";
+import Marquee from "@/components/sections/Marquee";
 
 export const metadata: Metadata = {
   title: "За нас",
@@ -19,6 +21,11 @@ export default function AboutPage() {
 
       {/* About Intro Section */}
       <AboutIntro />
+
+      {/* Numbers Counter Section */}
+      <NumbersCounter />
+
+      <Marquee />
     </>
   );
 }
