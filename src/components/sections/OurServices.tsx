@@ -1,7 +1,7 @@
 import { Heading, Text } from "@/components/ui/Typography";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
-import ServiceIconBox from "@/components/ui/ServiceIconBox";
+import IconTextBox from "@/components/ui/IconTextBox";
 import Section from "@/components/ui/Section";
 
 const services = [
@@ -61,12 +61,13 @@ export default function OurServices() {
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
-            <ServiceIconBox
+            <IconTextBox
               key={index}
               icon={service.icon}
               title={service.title}
               description={service.description}
               iconAlt={service.title}
+              variant="dark"
             />
           ))}
         </div>

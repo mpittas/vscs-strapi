@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import PageTitle from "@/components/ui/PageTitle";
 import AboutIntro from "@/components/sections/AboutIntro";
+import OurValues from "@/components/sections/OurValues";
+import OurTeam from "@/components/sections/OurTeam";
 import { NumbersCounter } from "@/components/sections";
 import Marquee from "@/components/sections/Marquee";
+import ConsultationForm from "@/components/sections/ConsultationForm";
+import CTABanner from "@/components/sections/CTABanner";
 
 export const metadata: Metadata = {
   title: "За нас",
@@ -26,6 +30,16 @@ export default function AboutPage() {
       <NumbersCounter />
 
       <Marquee />
+
+      {/* Our Values Section */}
+      <OurValues />
+
+      {/* Our Team Section */}
+      <OurTeam />
+
+      <ConsultationForm />
+
+      <CTABanner />
     </>
   );
 }

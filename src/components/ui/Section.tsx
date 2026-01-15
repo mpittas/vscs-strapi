@@ -33,12 +33,15 @@ export default function Section({
   // Check if bgColor is a preset or custom color
   const bgClass = bgColorClasses[bgColor] || bgColor;
 
+  // Check if className contains a bg- class to allow overriding
+  const hasBgInClassName = className?.includes("bg-");
+
   return (
     <section
       id={id}
       className={cn(
         paddingClasses[paddingY],
-        bgClass,
+        !hasBgInClassName && bgClass,
         className
       )}
     >

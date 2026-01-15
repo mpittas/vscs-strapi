@@ -10,7 +10,7 @@ import { useLenis } from "./SmoothScrollProvider";
 const navLinks = [
   { name: "Начало", href: "/" },
   { name: "За Нас", href: "/about" },
-  { name: "Услуги", href: "/services" },
+  { name: "Услуги", href: "/uslugi" },
   { name: "Проекти", href: "/projects" },
   { name: "Контакти", href: "/contact" },
 ];
