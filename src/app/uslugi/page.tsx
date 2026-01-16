@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PageTitle from "@/components/ui/PageTitle";
 import WorkProcess from "@/components/sections/WorkProcess";
+import KeyServices from "@/components/sections/KeyServices";
 
 export const metadata: Metadata = {
   title: "Услуги",
@@ -18,6 +19,8 @@ export default function ServicesPage() {
       />
 
       <WorkProcess />
+
+      <KeyServices />
     </>
   );
 }
