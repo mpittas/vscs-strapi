@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageTitle from "@/components/ui/PageTitle";
+import WorkProcess from "@/components/sections/WorkProcess";
 
 export const metadata: Metadata = {
   title: "Услуги",
@@ -15,6 +16,8 @@ export default function ServicesPage() {
         title="Услуги"
         breadcrumbs={[{ label: "НАЧАЛО", href: "/" }, { label: "УСЛУГИ" }]}
       />
+
+      <WorkProcess />
     </>
   );
 }

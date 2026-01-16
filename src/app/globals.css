@@ -5,9 +5,10 @@
 
 :root {
   /* Primary Brand Color */
-  --brand-green: #8bc53f;
+  --brand-green: #9de044;
   --brand-green-dark: #7ab235;
   --brand-green-light: #a3d465;
+  --brand-green-darker: #2d450e;
 
   /* Dark Green - Primary text color */
   --dark-green: #0a1c07;
