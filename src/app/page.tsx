@@ -10,6 +10,7 @@ import {
   CTABanner,
 } from "@/components/sections";
 import { getPaginatedData } from "@/lib/strapi";
+import { getStrapiMedia } from "@/lib/media";
 import { formatDate } from "@/lib/utils";
 
 interface BlogPost {
@@ -43,9 +44,8 @@ export default async function HomePage() {
         id: post.id,
         title: post.title,
         excerpt: post.excerpt,
-        image: post.featuredImage?.url
-          ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337"}${post.featuredImage.url}`
-          : "/images/blog-img-1.jpg",
+        image:
+          getStrapiMedia(post.featuredImage?.url) || "/images/blog-img-1.jpg",
         date: formatDate(post.publishedAt),
         readTime: "5 минути", // Placeholder
         slug: post.slug,

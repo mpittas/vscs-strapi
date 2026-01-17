@@ -29,6 +29,8 @@ const nextConfig: NextConfig = {
         hostname: "images.unsplash.com",
       },
     ],
+    // Allow local/private IPs for development with Strapi
+    dangerouslyAllowLocalIP: true,
   },
 
   // Environment variables available on the client

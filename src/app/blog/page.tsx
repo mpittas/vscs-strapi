@@ -5,6 +5,7 @@ import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
 import Pagination from "@/components/ui/Pagination";
 import { getPaginatedData } from "@/lib/strapi";
+import { getStrapiMedia } from "@/lib/media";
 import { formatDate } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -55,9 +56,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     posts =
       data.map((post) => ({
         ...post,
-        featuredImage: post.featuredImage?.url
-          ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337"}${post.featuredImage.url}`
-          : null,
+        featuredImage: getStrapiMedia(post.featuredImage?.url),
       })) || [];
 
     totalPages = meta?.pagination?.pageCount || 1;

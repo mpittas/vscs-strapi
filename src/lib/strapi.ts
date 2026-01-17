@@ -1,4 +1,5 @@
 // Strapi 5 API client configuration
+import { getStrapiMedia } from "./media";
 
 const STRAPI_URL =
   process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337";
@@ -67,9 +68,7 @@ export async function getBlogPosts() {
       content: post.content,
       author: post.author,
       publishedAt: post.publishedAt,
-      featuredImage: post.featuredImage?.url
-        ? `${STRAPI_URL}${post.featuredImage.url}`
-        : null,
+      featuredImage: getStrapiMedia(post.featuredImage?.url),
     }));
   } catch (error) {
     console.error("Error fetching blog posts:", error);
@@ -163,9 +162,7 @@ export async function getBlogPost(slug: string) {
       content: post.content,
       author: post.author,
       publishedAt: post.publishedAt,
-      featuredImage: post.featuredImage?.url
-        ? `${STRAPI_URL}${post.featuredImage.url}`
-        : null,
+      featuredImage: getStrapiMedia(post.featuredImage?.url),
     };
   } catch (error) {
     console.error("Error fetching blog post:", error);
