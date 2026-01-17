@@ -19,9 +19,7 @@ export default function Pagination({
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
-    <div
-      className={`flex justify-center items-center gap-2 mt-12 ${className}`}
-    >
+    <div className={`flex justify-center items-center gap-2 ${className}`}>
       {/* Previous Button */}
       {currentPage > 1 && (
         <Link
@@ -42,7 +40,7 @@ export default function Pagination({
             href={`${baseUrl}?page=${page}`}
             className={`w-10 h-10 flex items-center justify-center rounded-lg border transition-colors ${
               isCurrent
-                ? "bg-brand-green text-white border-brand-green"
+                ? "bg-dark-green text-white border-dark-green"
                 : "border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-primary"
             }`}
           >

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import BlogItem from "@/components/BlogItem";
 import PageTitle from "@/components/ui/PageTitle";
 import Section from "@/components/ui/Section";
-import Container from "@/components/ui/Container";
 import Pagination from "@/components/ui/Pagination";
 import { getPaginatedData } from "@/lib/strapi";
 import { getStrapiMedia } from "@/lib/media";
@@ -72,42 +71,40 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
         breadcrumbs={[{ label: "НАЧАЛО", href: "/" }, { label: "БЛОГ" }]}
       />
 
-      <Section paddingY="xl" bgColor="white">
-        <Container>
-          {posts.length > 0 ? (
-            <>
-              <div className="flex flex-col divide-y divide-slate-200">
-                {posts.map((post) => (
-                  <BlogItem
-                    key={post.id}
-                    post={{
-                      id: post.id,
-                      title: post.title,
-                      excerpt: post.excerpt,
-                      image: post.featuredImage || "/images/blog-img-1.jpg",
-                      date: formatDate(post.publishedAt),
-                      readTime: "5 минути", // Placeholder as it's not in the source data
-                      slug: post.slug,
-                    }}
-                  />
-                ))}
-              </div>
-
-              <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                baseUrl="/blog"
-                className="pt-12"
-              />
-            </>
-          ) : (
-            <div className="text-center py-12">
-              <p className="text-slate-500 text-lg">
-                Все още няма публикувани статии.
-              </p>
+      <Section paddingY="sm" bgColor="white">
+        {posts.length > 0 ? (
+          <>
+            <div className="flex flex-col divide-y divide-slate-200">
+              {posts.map((post) => (
+                <BlogItem
+                  key={post.id}
+                  post={{
+                    id: post.id,
+                    title: post.title,
+                    excerpt: post.excerpt,
+                    image: post.featuredImage || "/images/blog-img-1.jpg",
+                    date: formatDate(post.publishedAt),
+                    readTime: "5 минути", // Placeholder as it's not in the source data
+                    slug: post.slug,
+                  }}
+                />
+              ))}
             </div>
-          )}
-        </Container>
+
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              baseUrl="/blog"
+              className="pt-8"
+            />
+          </>
+        ) : (
+          <div className="text-center py-12">
+            <p className="text-slate-500 text-lg">
+              Все още няма публикувани статии.
+            </p>
+          </div>
+        )}
       </Section>
     </>
   );
