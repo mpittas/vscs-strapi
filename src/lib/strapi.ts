@@ -1,6 +1,7 @@
 // Strapi 5 API client configuration
 
-const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
+const STRAPI_URL =
+  process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337";
 
 /**
  * Generic fetch function for Strapi API
@@ -9,13 +10,13 @@ const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1
 export async function fetchAPI<T>(
   endpoint: string,
   options: RequestInit = {},
-  tags: string[] = ['strapi']
+  tags: string[] = ["strapi"]
 ): Promise<T> {
   const url = `${STRAPI_URL}/api${endpoint}`;
-  
+
   const defaultOptions: RequestInit = {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     next: {
       tags, // Enable tag-based revalidation
@@ -52,7 +53,10 @@ export async function getBlogPosts() {
           alternativeText?: string;
         };
       }>;
-    }>('/blog-posts?populate=featuredImage&sort=publishedAt:desc', {}, ['strapi', 'blog-posts']);
+    }>("/blog-posts?populate=featuredImage&sort=publishedAt:desc", {}, [
+      "strapi",
+      "blog-posts",
+    ]);
 
     return response.data.map((post) => ({
       id: post.id,
@@ -68,8 +72,54 @@ export async function getBlogPosts() {
         : null,
     }));
   } catch (error) {
-    console.error('Error fetching blog posts:', error);
+    console.error("Error fetching blog posts:", error);
     return [];
+  }
+}
+
+/**
+ * Generic function to fetch paginated data from Strapi
+ */
+export async function getPaginatedData<T>(
+  endpoint: string,
+  page = 1,
+  pageSize = 6,
+  tags: string[] = []
+) {
+  try {
+    const response = await fetchAPI<{
+      data: T[];
+      meta: {
+        pagination: {
+          page: number;
+          pageSize: number;
+          pageCount: number;
+          total: number;
+        };
+      };
+    }>(
+      `/${endpoint}?populate=featuredImage&sort=publishedAt:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}`,
+      {},
+      tags
+    );
+
+    return {
+      data: response.data,
+      meta: response.meta,
+    };
+  } catch (error) {
+    console.error(`Error fetching paginated data for ${endpoint}:`, error);
+    return {
+      data: [],
+      meta: {
+        pagination: {
+          page: 1,
+          pageSize,
+          pageCount: 0,
+          total: 0,
+        },
+      },
+    };
   }
 }
 
@@ -93,7 +143,11 @@ export async function getBlogPost(slug: string) {
           alternativeText?: string;
         };
       }>;
-    }>(`/blog-posts?filters[slug][$eq]=${slug}&populate=featuredImage`, {}, ['strapi', 'blog-posts', `blog-post-${slug}`]);
+    }>(`/blog-posts?filters[slug][$eq]=${slug}&populate=featuredImage`, {}, [
+      "strapi",
+      "blog-posts",
+      `blog-post-${slug}`,
+    ]);
 
     if (!response.data || response.data.length === 0) {
       return null;
@@ -114,7 +168,7 @@ export async function getBlogPost(slug: string) {
         : null,
     };
   } catch (error) {
-    console.error('Error fetching blog post:', error);
+    console.error("Error fetching blog post:", error);
     return null;
   }
 }
@@ -125,8 +179,8 @@ export async function getBlogPost(slug: string) {
 export async function checkStrapiHealth(): Promise<boolean> {
   try {
     const res = await fetch(`${STRAPI_URL}/_health`, {
-      method: 'HEAD',
-      cache: 'no-store',
+      method: "HEAD",
+      cache: "no-store",
     });
     return res.ok;
   } catch {

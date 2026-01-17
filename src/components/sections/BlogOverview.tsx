@@ -5,41 +5,13 @@ import Section from "@/components/ui/Section";
 import { ArrowRight } from "lucide-react";
 import BlogItem from "@/components/BlogItem";
 
-// Static blog posts data
-const blogPosts = [
-  {
-    id: 1,
-    title: "Защо да инвестирате в инсталацията на соларни панели",
-    excerpt:
-      "Лорем ипсум долор сит амет, малорум суавитате вим те, мел дицо еррор мандамус те, саперет веритус абхорреант еу яуо.",
-    image: "/images/blog-img-1.jpg",
-    date: "30 Юли, 2025",
-    readTime: "5 минути",
-    slug: "why-invest-in-solar-panels",
-  },
-  {
-    id: 2,
-    title: "Ръководство за зареждане на коли със слънчева енергия",
-    excerpt:
-      "Лорем ипсум долор сит амет, малорум суавитате вим те, мел дицо еррор мандамус те, саперет веритус абхорреант еу яуо.",
-    image: "/images/blog-img-2.jpg",
-    date: "30 Юли, 2025",
-    readTime: "5 минути",
-    slug: "solar-car-charging-guide",
-  },
-  {
-    id: 3,
-    title: "Защо да инвестирате в инсталацията на соларни панели",
-    excerpt:
-      "Лорем ипсум долор сит амет, малорум суавитате вим те, мел дицо еррор мандамус те, саперет веритус абхорреант еу яуо.",
-    image: "/images/blog-img-3.jpg",
-    date: "30 Юли, 2025",
-    readTime: "5 минути",
-    slug: "solar-panel-investment",
-  },
-];
+// Static blog posts data removed
 
-export default function BlogOverview() {
+interface BlogOverviewProps {
+  posts: any[];
+}
+
+export default function BlogOverview({ posts = [] }: BlogOverviewProps) {
   return (
     <Section paddingY="xl" bgColor="light">
       <Container>
@@ -66,9 +38,15 @@ export default function BlogOverview() {
 
         {/* Blog Posts List */}
         <div className="flex flex-col divide-y divide-slate-200">
-          {blogPosts.map((post) => (
-            <BlogItem key={post.id} post={post} />
-          ))}
+          {posts.length > 0 ? (
+            posts.map((post) => <BlogItem key={post.id} post={post} />)
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-slate-500 text-lg">
+                Все още няма публикувани статии.
+              </p>
+            </div>
+          )}
         </div>
       </Container>
     </Section>

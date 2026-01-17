@@ -5,7 +5,11 @@ export default {
     const { data } = event.params;
 
     if (data.title) {
-      data.slug = slugify(data.title, { lower: true, locale: "bg" });
+      data.slug = slugify(data.title, {
+        lower: true,
+        locale: "bg",
+        strict: true,
+      });
     }
   },
 
@@ -13,7 +17,11 @@ export default {
     const { data } = event.params;
 
     if (data.title) {
-      data.slug = slugify(data.title, { lower: true, locale: "bg" });
+      data.slug = slugify(data.title, {
+        lower: true,
+        locale: "bg",
+        strict: true,
+      });
     }
   },
 };

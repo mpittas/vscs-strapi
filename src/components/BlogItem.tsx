@@ -19,7 +19,7 @@ export default function BlogItem({ post }: BlogItemProps) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group py-8 first:pt-0 last:pb-0 block"
+      className="group py-10 first:pt-0 last:pb-0 block"
     >
       <div className="flex flex-col lg:grid lg:grid-cols-12 gap-4 lg:gap-12">
         {/* Left Column - Meta */}
@@ -51,7 +51,7 @@ export default function BlogItem({ post }: BlogItemProps) {
 
         {/* Image Column - First on mobile, last on desktop */}
         <div className="order-1 lg:order-3 flex lg:col-span-4 justify-start lg:justify-end">
-          <div className="relative h-[120px] w-full lg:h-[140px]">
+          <div className="relative h-[140px] w-full lg:h-[150px]">
             <Image
               src={post.image}
               alt={post.title}
