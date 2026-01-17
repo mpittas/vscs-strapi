@@ -4,113 +4,31 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getBlogPost, getBlogPosts } from "@/lib/strapi";
 import { formatDate, calculateReadingTime } from "@/lib/utils";
-import Button from "@/components/ui/Button";
+import { Heading } from "@/components/ui/Typography";
+import Container from "@/components/ui/Container";
 
-// Fallback blog posts for static generation
-const fallbackPosts = [
-  {
-    id: 1,
-    slug: "10-reasons-go-solar-2025",
-    title: "10 Reasons Why 2025 Is the Best Year to Go Solar",
-    excerpt:
-      "With new tax incentives, improved technology, and rising electricity costs, there's never been a better time to switch to solar energy.",
-    content: `
-The solar industry has never been more accessible or affordable than it is right now. If you've been on the fence about making the switch to solar energy, here are 10 compelling reasons why 2025 is the year to take the plunge.
+import { ArrowLeft, Calendar } from "lucide-react";
+import { FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa";
+import BadgeDefault from "@/components/ui/BadgeDefault";
+import type { IconType } from "react-icons";
 
-## 1. Federal Tax Credits at Their Peak
+interface ShareButtonProps {
+  icon: IconType;
+  label: string;
+  onClick?: () => void;
+}
 
-The federal Investment Tax Credit (ITC) offers homeowners a 30% tax credit on their solar installation costs. This is one of the most generous incentives in solar history, but it won't last forever.
-
-## 2. Dramatically Improved Panel Efficiency
-
-Modern solar panels are achieving efficiency rates of 22-23%, compared to just 15% a decade ago. This means you need fewer panels to generate the same amount of power.
-
-## 3. Record-Low Installation Costs
-
-The cost of solar installations has dropped by over 70% since 2010. What once cost $50,000 can now be achieved for under $15,000 after incentives.
-
-## 4. Rising Electricity Rates
-
-Utility rates continue to climb at an average of 3-5% annually. By going solar, you lock in your energy costs for 25+ years.
-
-## 5. Battery Storage Revolution
-
-Home battery systems like the Tesla Powerwall have made it possible to store solar energy for use at night or during outages.
-
-## 6. Increased Home Value
-
-Studies show that solar panels can increase your home's value by 4-6%. That's a significant return on investment if you decide to sell.
-
-## 7. Energy Independence
-
-With solar and battery storage, you're no longer at the mercy of utility companies or the grid. Generate and use your own clean power.
-
-## 8. Environmental Impact
-
-The average residential solar system offsets about 100,000 pounds of carbon dioxide over its lifetime—equivalent to planting 2,500 trees.
-
-## 9. Smart Home Integration
-
-Modern solar systems integrate seamlessly with smart home technology, allowing you to monitor and optimize your energy usage from your phone.
-
-## 10. Financing Options
-
-With $0-down financing, power purchase agreements (PPAs), and solar leases, there's an option for every budget.
-
-## Ready to Get Started?
-
-Contact SolarTech Solutions today for a free consultation and discover how much you could save by going solar in 2025.
-    `,
-    author: "Sarah Martinez",
-    publishedAt: "2025-12-10T10:00:00.000Z",
-    featuredImage: null,
-  },
-  {
-    id: 2,
-    slug: "understanding-solar-panel-efficiency",
-    title: "Understanding Solar Panel Efficiency: What You Need to Know",
-    excerpt:
-      "Not all solar panels are created equal. Learn how to evaluate panel efficiency ratings.",
-    content: `
-When shopping for solar panels, you'll encounter a lot of numbers and specifications. One of the most important metrics to understand is panel efficiency. Here's your complete guide.
-
-## What Is Solar Panel Efficiency?
-
-Solar panel efficiency refers to how much of the sunlight hitting a panel is converted into usable electricity. A panel with 20% efficiency converts 20% of the solar energy it receives into electrical power.
-
-## Why Efficiency Matters
-
-Higher efficiency panels produce more power in the same amount of space. This is particularly important if you have limited roof space or want to maximize your energy production.
-
-## Current Efficiency Standards
-
-- **Standard Panels**: 17-19% efficiency
-- **Premium Panels**: 20-22% efficiency
-- **High-End Panels**: 22-23% efficiency (like SunPower and Maxeon)
-
-## Factors Affecting Real-World Efficiency
-
-1. **Temperature**: Panels lose efficiency in extreme heat
-2. **Shading**: Even partial shade significantly reduces output
-3. **Orientation**: South-facing panels in the Northern Hemisphere perform best
-4. **Tilt Angle**: Optimal angles vary by latitude
-
-## Cost vs. Efficiency Trade-off
-
-Higher efficiency panels cost more upfront but may be worth it if:
-- You have limited roof space
-- You want maximum energy production
-- You're planning to add an EV or heat pump
-
-## Our Recommendation
-
-For most homeowners, mid-range efficiency panels (19-21%) offer the best balance of performance and value. Our experts can help you determine the right choice for your specific situation.
-    `,
-    author: "David Chen",
-    publishedAt: "2025-12-08T10:00:00.000Z",
-    featuredImage: null,
-  },
-];
+function ShareButton({ icon: Icon, label, onClick }: ShareButtonProps) {
+  return (
+    <button
+      onClick={onClick}
+      aria-label={label}
+      className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-[#b4d429] hover:text-[#0a0f0a] transition-all duration-300"
+    >
+      <Icon className="w-5 h-5" />
+    </button>
+  );
+}
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -121,12 +39,7 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
 
-  let post;
-  try {
-    post = await getBlogPost(slug);
-  } catch {
-    post = fallbackPosts.find((p) => p.slug === slug);
-  }
+  const post = await getBlogPost(slug);
 
   if (!post) {
     return { title: "Post Not Found" };
@@ -146,30 +59,14 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  try {
-    const posts = await getBlogPosts();
-    if (posts.length > 0) {
-      return posts.map((post) => ({ slug: post.slug }));
-    }
-  } catch {
-    // Fall through to fallback
-  }
-
-  return fallbackPosts.map((post) => ({ slug: post.slug }));
+  const posts = await getBlogPosts();
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
 
-  let post;
-  try {
-    post = await getBlogPost(slug);
-    if (!post) {
-      post = fallbackPosts.find((p) => p.slug === slug);
-    }
-  } catch {
-    post = fallbackPosts.find((p) => p.slug === slug);
-  }
+  const post = await getBlogPost(slug);
 
   if (!post) {
     notFound();
@@ -180,147 +77,141 @@ export default async function BlogPostPage({ params }: PageProps) {
   return (
     <>
       {/* Hero Section */}
-      <section className="gradient-hero pt-32 pb-20 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 right-0 w-96 h-96 bg-solar-orange/10 rounded-full blur-3xl" />
-        </div>
-
-        <div className="container relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 text-solar-orange hover:text-solar-amber transition-colors mb-6"
-            >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-              Back to Blog
-            </Link>
-
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
-              {post.title}
-            </h1>
-
-            <div className="flex items-center justify-center gap-6 text-slate-300">
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-full gradient-solar flex items-center justify-center text-white font-bold">
-                  {post.author.charAt(0)}
-                </div>
-                <span>{post.author}</span>
-              </div>
-              <span>•</span>
-              <time>{formatDate(post.publishedAt)}</time>
-              <span>•</span>
-              <span>{readingTime} min read</span>
+      <section className="bg-[#0a0f0a] relative pt-24 pb-32">
+        <Container size="sm">
+          <div className="max-w-4xl">
+            {/* Back Button */}
+            <div className="mb-8">
+              <Link href="/blog" className="inline-block">
+                <BadgeDefault className="!bg-transparent !border-white !text-white hover:!bg-white/10 transition-colors uppercase tracking-wider text-xs gap-2 !px-5 !py-2.5">
+                  <ArrowLeft className="w-4 h-4" />
+                  Назад към блога
+                </BadgeDefault>
+              </Link>
             </div>
+
+            {/* Meta Info */}
+            <div className="flex flex-wrap items-center gap-4 mb-6">
+              <BadgeDefault className="!bg-[#009944] !text-white !border-none font-bold tracking-wider text-xs uppercase !px-3 !py-1">
+                {post.category || "Uncategorized"}
+              </BadgeDefault>
+
+              <div className="flex items-center gap-2 text-white/60 text-sm">
+                <Calendar className="w-4 h-4" />
+                <time>{formatDate(post.publishedAt)}</time>
+              </div>
+            </div>
+
+            {/* Title */}
+            <Heading as="h2" className="text-white">
+              {post.title}
+            </Heading>
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* Featured Image */}
-      {post.featuredImage && (
-        <section className="container -mt-10 relative z-20">
-          <div className="aspect-video rounded-2xl overflow-hidden relative">
-            <Image
-              src={post.featuredImage}
-              alt={post.title}
-              fill
-              priority
-              sizes="(max-width: 768px) 100vw, 896px"
-              className="object-cover"
-            />
-          </div>
-        </section>
-      )}
+      {/* Content Section with Image overlapping */}
+      <section className="bg-[#f0f2f0] bg-neutral-100 pb-18">
+        <Container size="sm">
+          {/* Featured Image - Negative margin to overlap hero */}
+          <div className="-mt-18 bg-white relative z-20 p-4 rounded-3xl">
+            <div className="aspect-[21/9] relative rounded-2xl overflow-hidden mb-8">
+              {post.featuredImage ? (
+                <Image
+                  src={post.featuredImage}
+                  alt={post.title}
+                  fill
+                  priority
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 1200px"
+                />
+              ) : (
+                <div className="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">
+                  <span className="text-lg">No Feature Image</span>
+                </div>
+              )}
+            </div>
 
-      {/* Article Content */}
-      <article className="section bg-white dark:bg-slate-900">
-        <div className="container">
-          <div className="max-w-3xl mx-auto">
-            {/* Prose content */}
-            <div className="prose prose-lg dark:prose-invert prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-p:text-muted prose-p:leading-relaxed prose-strong:text-foreground prose-ul:text-muted prose-li:text-muted max-w-none">
-              {post.content.split("\n").map((paragraph, index) => {
-                if (!paragraph.trim()) return null;
+            <div className="px-6">
+              {/* Excerpt / Intro */}
+              <div className="mb-12 border-l-4 border-[#b4d429] pl-6 py-2">
+                <p className="text-xl md:text-xl font-serif italic text-slate-800">
+                  {post.excerpt}
+                </p>
+              </div>
 
-                if (paragraph.startsWith("## ")) {
+              {/* Prose content */}
+              <div>
+                {post.content.split("\n").map((paragraph, index) => {
+                  if (!paragraph.trim()) return null;
+
+                  if (paragraph.startsWith("## ")) {
+                    return (
+                      <h2
+                        key={index}
+                        className="text-2xl md:text-3xl mt-12 mb-6"
+                      >
+                        {paragraph.replace("## ", "")}
+                      </h2>
+                    );
+                  }
+
+                  if (paragraph.startsWith("- ")) {
+                    return (
+                      <ul key={index} className="list-disc pl-5 mb-4">
+                        <li className="text-slate-600">
+                          {paragraph.replace("- ", "")}
+                        </li>
+                      </ul>
+                    );
+                  }
+
+                  if (paragraph.match(/^\d+\.\s/)) {
+                    // Handle numbered lists or just bold prefix
+                    const parts = paragraph.split(":");
+                    if (parts.length > 1) {
+                      return (
+                        <p key={index} className="mb-4">
+                          <strong className="text-slate-800">
+                            {parts[0]}:
+                          </strong>
+                          {parts.slice(1).join(":")}
+                        </p>
+                      );
+                    }
+                  }
+
                   return (
-                    <h2 key={index} className="text-2xl font-bold mt-12 mb-4">
-                      {paragraph.replace("## ", "")}
-                    </h2>
-                  );
-                }
-
-                if (paragraph.startsWith("- ")) {
-                  return (
-                    <li key={index} className="text-muted">
-                      {paragraph.replace("- ", "")}
-                    </li>
-                  );
-                }
-
-                if (paragraph.match(/^\d+\.\s/)) {
-                  return (
-                    <p key={index} className="text-muted leading-relaxed">
-                      <strong>{paragraph.split(":")[0]}:</strong>
-                      {paragraph.split(":").slice(1).join(":")}
+                    <p
+                      key={index}
+                      className="mb-6 text-slate-600 leading-relaxed"
+                    >
+                      {paragraph}
                     </p>
                   );
-                }
-
-                return (
-                  <p key={index} className="text-muted leading-relaxed mb-4">
-                    {paragraph}
-                  </p>
-                );
-              })}
-            </div>
-
-            {/* Author Bio */}
-            <div className="mt-16 pt-8 border-t border-slate-200 dark:border-slate-700">
-              <div className="flex items-start gap-4">
-                <div className="w-16 h-16 rounded-full gradient-solar flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
-                  {post.author.charAt(0)}
-                </div>
-                <div>
-                  <p className="text-sm text-muted mb-1">Written by</p>
-                  <p className="text-xl font-bold mb-2">{post.author}</p>
-                  <p className="text-muted">
-                    Solar energy expert at SolarTech Solutions with years of
-                    experience helping homeowners and businesses transition to
-                    clean energy.
-                  </p>
-                </div>
+                })}
               </div>
-            </div>
 
-            {/* Share & CTA */}
-            <div className="mt-12 p-8 rounded-2xl bg-slate-50 dark:bg-slate-800">
-              <h3 className="text-xl font-bold mb-4 text-center">
-                Ready to Start Your Solar Journey?
-              </h3>
-              <p className="text-muted text-center mb-6">
-                Get a free quote and see how much you could save with solar.
-              </p>
-              <div className="flex justify-center gap-4">
-                <Button href="/contact">Get Free Quote</Button>
-                <Button href="/blog" variant="outline">
-                  Read More Articles
-                </Button>
+              {/* Share & Footer */}
+              <div className="mt-16 pt-8 border-t border-slate-200">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                  <span className="text-slate-900 font-normal">
+                    Сподели статията:
+                  </span>
+                  <div className="flex gap-2">
+                    <ShareButton icon={FaFacebook} label="Share on Facebook" />
+                    <ShareButton icon={FaLinkedin} label="Share on LinkedIn" />
+                    <ShareButton
+                      icon={FaInstagram}
+                      label="Share on Instagram"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </article>
+        </Container>
+      </section>
     </>
   );
 }

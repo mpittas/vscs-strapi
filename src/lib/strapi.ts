@@ -136,6 +136,7 @@ export async function getBlogPost(slug: string) {
         excerpt: string;
         content: string;
         author: string;
+        category?: string;
         publishedAt: string;
         featuredImage?: {
           url: string;
@@ -161,6 +162,7 @@ export async function getBlogPost(slug: string) {
       excerpt: post.excerpt,
       content: post.content,
       author: post.author,
+      category: post.category,
       publishedAt: post.publishedAt,
       featuredImage: getStrapiMedia(post.featuredImage?.url),
     };
