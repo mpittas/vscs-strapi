@@ -11,7 +11,7 @@ const STRAPI_URL =
 export async function fetchAPI<T>(
   endpoint: string,
   options: RequestInit = {},
-  tags: string[] = ["strapi"]
+  tags: string[] = ["strapi"],
 ): Promise<T> {
   const url = `${STRAPI_URL}/api${endpoint}`;
 
@@ -83,7 +83,7 @@ export async function getPaginatedData<T>(
   endpoint: string,
   page = 1,
   pageSize = 6,
-  tags: string[] = []
+  tags: string[] = [],
 ) {
   try {
     const response = await fetchAPI<{
@@ -99,7 +99,7 @@ export async function getPaginatedData<T>(
     }>(
       `/${endpoint}?populate=featuredImage&sort=publishedAt:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}`,
       {},
-      tags
+      tags,
     );
 
     return {
@@ -184,5 +184,127 @@ export async function checkStrapiHealth(): Promise<boolean> {
     return res.ok;
   } catch {
     return false;
+  }
+}
+
+/**
+ * Fetches all projects from Strapi
+ */
+export async function getProjects() {
+  try {
+    const response = await fetchAPI<{
+      data: Array<{
+        id: number;
+        documentId: string;
+        title: string;
+        slug: string;
+        excerpt: string;
+        content: string;
+        location: string;
+        category: string;
+        projectStatus: string;
+        year: string;
+        country: string;
+        energy: string;
+        services: string;
+        publishedAt: string;
+        featuredImage?: {
+          url: string;
+          alternativeText?: string;
+        };
+      }>;
+    }>("/projects?populate=featuredImage&sort=publishedAt:desc", {}, [
+      "strapi",
+      "projects",
+    ]);
+
+    return response.data.map((project) => ({
+      id: project.id,
+      documentId: project.documentId,
+      title: project.title,
+      slug: project.slug,
+      excerpt: project.excerpt,
+      content: project.content,
+      location: project.location,
+      category: project.category,
+      projectStatus: project.projectStatus,
+      year: project.year,
+      country: project.country,
+      energy: project.energy,
+      services: project.services,
+      publishedAt: project.publishedAt,
+      featuredImage: getStrapiMedia(project.featuredImage?.url),
+    }));
+  } catch (error) {
+    console.error("Error fetching projects:", error);
+    return [];
+  }
+}
+
+/**
+ * Fetches a single project by slug from Strapi
+ */
+export async function getProject(slug: string) {
+  try {
+    const response = await fetchAPI<{
+      data: Array<{
+        id: number;
+        documentId: string;
+        title: string;
+        slug: string;
+        excerpt: string;
+        content: string;
+        location: string;
+        category: string;
+        projectStatus: string;
+        year: string;
+        country: string;
+        energy: string;
+        services: string;
+        publishedAt: string;
+        featuredImage?: {
+          url: string;
+          alternativeText?: string;
+        };
+        gallery?: Array<{
+          url: string;
+          alternativeText?: string;
+        }>;
+      }>;
+    }>(
+      `/projects?filters[slug][$eq]=${slug}&populate[0]=featuredImage&populate[1]=gallery`,
+      {},
+      ["strapi", "projects", `project-${slug}`],
+    );
+
+    if (!response.data || response.data.length === 0) {
+      return null;
+    }
+
+    const project = response.data[0];
+    return {
+      id: project.id,
+      documentId: project.documentId,
+      title: project.title,
+      slug: project.slug,
+      excerpt: project.excerpt,
+      content: project.content,
+      location: project.location,
+      category: project.category,
+      projectStatus: project.projectStatus,
+      year: project.year,
+      country: project.country,
+      energy: project.energy,
+      services: project.services,
+      publishedAt: project.publishedAt,
+      featuredImage: getStrapiMedia(project.featuredImage?.url),
+      gallery: project.gallery?.map((img) => ({
+        url: getStrapiMedia(img.url),
+        alt: img.alternativeText || project.title,
+      })),
+    };
+  } catch (error) {
+    console.error("Error fetching project:", error);
+    return null;
   }
 }
