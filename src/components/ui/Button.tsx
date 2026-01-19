@@ -3,7 +3,13 @@ import { cn } from "@/lib/utils";
 import { ArrowUpRight, type LucideIcon } from "lucide-react";
 
 interface ButtonProps {
-  variant?: "primary" | "secondary" | "outline" | "white" | "black" | "white-solid";
+  variant?:
+    | "primary"
+    | "secondary"
+    | "outline"
+    | "white"
+    | "black"
+    | "white-solid";
   size?: "sm" | "md" | "lg";
   children: React.ReactNode;
   href?: string;
@@ -14,6 +20,7 @@ interface ButtonProps {
   showIcon?: boolean;
   icon?: LucideIcon;
   iconPosition?: "left" | "right";
+  disabled?: boolean;
 }
 
 export const baseClasses =
@@ -81,7 +88,7 @@ function IconCircle({
       className={cn(
         "flex items-center justify-center w-[38px] h-[38px] rounded-full",
         inverted ? iconCircleStyles.inverted : iconCircleStyles.default,
-        marginClass
+        marginClass,
       )}
     >
       <Icon className="w-5 h-5" strokeWidth={2} />
@@ -101,6 +108,7 @@ export default function Button({
   showIcon = false,
   icon,
   iconPosition = "right",
+  disabled = false,
 }: ButtonProps) {
   const getSizeClasses = () => {
     if (!showIcon) return sizeClasses[size];
@@ -114,20 +122,31 @@ export default function Button({
     variantClasses[variant],
     getSizeClasses(),
     fullWidth && "w-full",
-    className
+    disabled && "opacity-50 cursor-not-allowed",
+    className,
   );
 
-  const iconMargin = showIcon ? iconMarginClasses[iconPosition][size] : undefined;
+  const iconMargin = showIcon
+    ? iconMarginClasses[iconPosition][size]
+    : undefined;
   const isInvertedIcon = variant === "black";
 
   const content = (
     <>
       {showIcon && iconPosition === "left" && (
-        <IconCircle icon={icon} marginClass={iconMargin} inverted={isInvertedIcon} />
+        <IconCircle
+          icon={icon}
+          marginClass={iconMargin}
+          inverted={isInvertedIcon}
+        />
       )}
       {children}
       {showIcon && iconPosition === "right" && (
-        <IconCircle icon={icon} marginClass={iconMargin} inverted={isInvertedIcon} />
+        <IconCircle
+          icon={icon}
+          marginClass={iconMargin}
+          inverted={isInvertedIcon}
+        />
       )}
     </>
   );
@@ -141,9 +160,13 @@ export default function Button({
   }
 
   return (
-    <button type={type} onClick={onClick} className={classes}>
+    <button
+      type={type}
+      onClick={onClick}
+      className={classes}
+      disabled={disabled}
+    >
       {content}
     </button>
   );
 }
-

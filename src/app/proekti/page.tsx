@@ -3,7 +3,7 @@ import PageTitle from "@/components/ui/PageTitle";
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
 import ProjectsFilter from "@/components/ProjectsFilter";
-import { getProjects } from "@/lib/strapi";
+import { getPaginatedProjects } from "@/lib/strapi";
 
 export const metadata: Metadata = {
   title: "Проекти",
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ProjectsPage() {
-  const projects = await getProjects();
+  const { data: projects, meta } = await getPaginatedProjects(1, 6);
 
   return (
     <>
@@ -23,7 +23,7 @@ export default async function ProjectsPage() {
 
       <Section paddingY="sm" bgColor="white">
         <Container>
-          <ProjectsFilter projects={projects} />
+          <ProjectsFilter initialProjects={projects} initialMeta={meta} />
         </Container>
       </Section>
     </>

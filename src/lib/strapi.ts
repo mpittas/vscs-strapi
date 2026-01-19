@@ -242,6 +242,89 @@ export async function getProjects() {
 }
 
 /**
+ * Fetches paginated projects from Strapi with optional country filter
+ */
+export async function getPaginatedProjects(
+  page = 1,
+  pageSize = 6,
+  country?: string,
+) {
+  try {
+    let endpoint = `/projects?populate=featuredImage&sort=publishedAt:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}`;
+
+    // Add country filter if specified and not "all"
+    if (country && country !== "all") {
+      endpoint += `&filters[country][$eq]=${encodeURIComponent(country)}`;
+    }
+
+    const response = await fetchAPI<{
+      data: Array<{
+        id: number;
+        documentId: string;
+        title: string;
+        slug: string;
+        excerpt: string;
+        content: string;
+        location: string;
+        category: string;
+        projectStatus: string;
+        year: string;
+        country: string;
+        energy: string;
+        services: string;
+        publishedAt: string;
+        featuredImage?: {
+          url: string;
+          alternativeText?: string;
+        };
+      }>;
+      meta: {
+        pagination: {
+          page: number;
+          pageSize: number;
+          pageCount: number;
+          total: number;
+        };
+      };
+    }>(endpoint, {}, ["strapi", "projects"]);
+
+    return {
+      data: response.data.map((project) => ({
+        id: project.id,
+        documentId: project.documentId,
+        title: project.title,
+        slug: project.slug,
+        excerpt: project.excerpt,
+        content: project.content,
+        location: project.location,
+        category: project.category,
+        projectStatus: project.projectStatus,
+        year: project.year,
+        country: project.country,
+        energy: project.energy,
+        services: project.services,
+        publishedAt: project.publishedAt,
+        featuredImage: getStrapiMedia(project.featuredImage?.url),
+      })),
+      meta: response.meta,
+    };
+  } catch (error) {
+    console.error("Error fetching paginated projects:", error);
+    return {
+      data: [],
+      meta: {
+        pagination: {
+          page: 1,
+          pageSize,
+          pageCount: 0,
+          total: 0,
+        },
+      },
+    };
+  }
+}
+
+/**
  * Fetches a single project by slug from Strapi
  */
 export async function getProject(slug: string) {
