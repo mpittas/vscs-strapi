@@ -3,20 +3,19 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getProject, getProjects } from "@/lib/strapi";
-import { formatDate } from "@/lib/utils";
 import { Heading } from "@/components/ui/Typography";
 import Container from "@/components/ui/Container";
-
+import Section from "@/components/ui/Section";
+import Button from "@/components/ui/Button";
+import BadgeDefault from "@/components/ui/BadgeDefault";
 import {
   ArrowLeft,
   MapPin,
   Calendar,
-  Building2,
   CheckCircle2,
   Clock,
+  Zap,
 } from "lucide-react";
-import { FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa";
-import BadgeDefault from "@/components/ui/BadgeDefault";
 import type { IconType } from "react-icons";
 
 interface ShareButtonProps {
@@ -45,7 +44,6 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-
   const project = await getProject(slug);
 
   if (!project) {
@@ -71,7 +69,6 @@ export async function generateStaticParams() {
 
 export default async function ProjectPage({ params }: PageProps) {
   const { slug } = await params;
-
   const project = await getProject(slug);
 
   if (!project) {
@@ -87,227 +84,241 @@ export default async function ProjectPage({ params }: PageProps) {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="bg-[#0a0f0a] relative pt-24 pb-32">
-        <Container size="sm">
+      {/* Dark Hero Section */}
+      <section className="bg-[#0a0f0a] relative pt-32 pb-24 border-b border-white/10">
+        <Container>
           <div className="max-w-4xl">
             {/* Back Button */}
-            <div className="mb-8">
+            <div className="mb-10">
               <Link href="/proekti" className="inline-block">
-                <BadgeDefault className="!bg-transparent !border-white !text-white hover:!bg-white/10 transition-colors uppercase tracking-wider text-xs gap-2 !px-5 !py-2.5">
+                <BadgeDefault
+                  variant="outline-white"
+                  uppercase
+                  className="gap-2"
+                >
                   <ArrowLeft className="w-4 h-4" />
-                  Назад към проекти
+                  Всички проекти
                 </BadgeDefault>
               </Link>
             </div>
 
-            {/* Meta Info */}
-            <div className="flex flex-wrap items-center gap-4 mb-6">
-              <BadgeDefault className="!bg-[#009944] !text-white !border-none font-bold tracking-wider text-xs uppercase !px-3 !py-1">
-                {project.category || "Проект"}
-              </BadgeDefault>
-
-              {project.location && (
-                <div className="flex items-center gap-2 text-white/60 text-sm">
-                  <MapPin className="w-4 h-4" />
-                  <span>{project.location}</span>
-                </div>
-              )}
-
-              {project.year && (
-                <div className="flex items-center gap-2 text-white/60 text-sm">
-                  <Calendar className="w-4 h-4" />
-                  <span>{project.year}</span>
-                </div>
-              )}
-            </div>
-
             {/* Title */}
-            <Heading as="h2" className="text-white">
+            <Heading
+              as="h1"
+              className="text-white mb-6 text-4xl md:text-5xl lg:text-6xl font-medium leading-tight"
+            >
               {project.title}
             </Heading>
-          </div>
-        </Container>
-      </section>
 
-      {/* Content Section with Image overlapping */}
-      <section className="bg-[#f0f2f0] bg-neutral-100 pb-18">
-        <Container size="sm">
-          {/* Featured Image - Negative margin to overlap hero */}
-          <div className="-mt-18 bg-white relative z-20 p-4 rounded-3xl">
-            <div className="aspect-[21/9] relative rounded-2xl overflow-hidden mb-8">
-              {project.featuredImage ? (
-                <Image
-                  src={project.featuredImage}
-                  alt={project.title}
-                  fill
-                  priority
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 1200px"
-                />
-              ) : (
-                <div className="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">
-                  <span className="text-lg">Няма изображение</span>
+            {/* Subtitle/Excerpt */}
+            <div className="text-white/70 text-lg md:text-xl font-light mb-8 max-w-2xl leading-relaxed">
+              {project.excerpt}
+            </div>
+
+            {/* Badges/Meta */}
+            <div className="flex flex-wrap items-center gap-4">
+              {project.energy && (
+                <BadgeDefault variant="white" size="md" className="gap-2">
+                  <Zap className="w-4 h-4 fill-current" />
+                  {project.energy}
+                </BadgeDefault>
+              )}
+
+              {project.location && (
+                <div className="inline-flex items-center gap-2 text-white/80 px-2 py-1.5 text-sm">
+                  <MapPin className="w-4 h-4 text-[#b4d429]" />
+                  {project.location}
                 </div>
               )}
             </div>
+          </div>
+        </Container>
 
-            <div className="px-6">
-              {/* Project Details */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 p-6 bg-slate-50 rounded-2xl">
-                {project.energy && (
-                  <div className="flex items-start gap-3">
-                    <Building2 className="w-5 h-5 text-[#009944] mt-0.5" />
-                    <div>
-                      <span className="text-xs uppercase tracking-wider text-slate-500 block mb-1">
-                        Мощност
-                      </span>
-                      <span className="text-slate-800 font-medium">
-                        {project.energy}
-                      </span>
-                    </div>
-                  </div>
-                )}
+        {/* Background Pattern/Overlay opacity */}
+        <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] opacity-5 pointer-events-none" />
+      </section>
 
-                {project.year && (
-                  <div className="flex items-start gap-3">
-                    <Calendar className="w-5 h-5 text-[#009944] mt-0.5" />
-                    <div>
-                      <span className="text-xs uppercase tracking-wider text-slate-500 block mb-1">
-                        Година
-                      </span>
-                      <span className="text-slate-800 font-medium">
-                        {project.year}
-                      </span>
-                    </div>
-                  </div>
-                )}
+      {/* Main Content Section */}
+      <Section className="pb-24 pt-16 bg-[#FAFAFA]" paddingY="none">
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
+            {/* Left Content Column (2/3 width) */}
+            <div className="lg:col-span-8">
+              <Heading as="h2" className="text-3xl mb-8">
+                За Проекта
+              </Heading>
 
-                <div className="flex items-start gap-3">
-                  {(() => {
-                    const StatusIcon = statusIcon;
-                    return (
-                      <StatusIcon className={`w-5 h-5 ${statusColor} mt-0.5`} />
-                    );
-                  })()}
-                  <div>
-                    <span className="text-xs uppercase tracking-wider text-slate-500 block mb-1">
-                      Статус
-                    </span>
-                    <span className={`font-medium ${statusColor}`}>
-                      {statusText}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Excerpt / Intro */}
-              {project.excerpt && (
-                <div className="mb-12 border-l-4 border-[#b4d429] pl-6 py-2">
-                  <p className="text-xl md:text-xl font-serif italic text-slate-800">
-                    {project.excerpt}
-                  </p>
-                </div>
-              )}
-
-              {/* Prose content */}
+              {/* Project Content */}
               {project.content && (
-                <div>
+                <div className="prose prose-lg max-w-none text-slate-600 space-y-6">
                   {project.content.split("\n").map((paragraph, index) => {
-                    if (!paragraph.trim()) return null;
+                    const trimmed = paragraph.trim();
+                    if (!trimmed) return null;
 
-                    if (paragraph.startsWith("## ")) {
+                    // Headers
+                    if (trimmed.startsWith("## ")) {
                       return (
-                        <h2
+                        <h3
                           key={index}
-                          className="text-2xl md:text-3xl mt-12 mb-6"
+                          className="text-2xl font-medium text-slate-900 mt-10 mb-4"
                         >
-                          {paragraph.replace("## ", "")}
-                        </h2>
+                          {trimmed.replace(/^##\s+/, "")}
+                        </h3>
+                      );
+                    }
+                    if (
+                      trimmed.startsWith("# ") ||
+                      trimmed.startsWith("### ")
+                    ) {
+                      return (
+                        <h4
+                          key={index}
+                          className="text-xl font-medium text-slate-900 mt-8 mb-3"
+                        >
+                          {trimmed.replace(/^[#]+\s+/, "")}
+                        </h4>
                       );
                     }
 
-                    if (paragraph.startsWith("- ")) {
+                    // Bullet lists
+                    if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
                       return (
-                        <ul key={index} className="list-disc pl-5 mb-4">
-                          <li className="text-slate-600">
-                            {paragraph.replace("- ", "")}
-                          </li>
+                        <ul
+                          key={index}
+                          className="list-disc pl-5 mb-4 space-y-1"
+                        >
+                          <li>{trimmed.replace(/^[-*]\s+/, "")}</li>
                         </ul>
                       );
                     }
 
-                    if (paragraph.match(/^\d+\.\s/)) {
-                      const parts = paragraph.split(":");
-                      if (parts.length > 1) {
-                        return (
-                          <p key={index} className="mb-4">
-                            <strong className="text-slate-800">
-                              {parts[0]}:
-                            </strong>
-                            {parts.slice(1).join(":")}
-                          </p>
-                        );
-                      }
+                    // Key-value pairs (bolding the key)
+                    // Matches "Key: Value" or "1. Key: Value"
+                    const keyValMatch = trimmed.match(
+                      /^(\d+\.\s)?([^:]+):(.+)$/,
+                    );
+                    if (keyValMatch && trimmed.length < 150) {
+                      const prefix = keyValMatch[1] || "";
+                      const key = keyValMatch[2];
+                      const val = keyValMatch[3];
+                      return (
+                        <p key={index} className="mb-4">
+                          {prefix}
+                          <strong className="text-slate-900">{key}:</strong>
+                          {val}
+                        </p>
+                      );
                     }
 
                     return (
-                      <p
-                        key={index}
-                        className="mb-6 text-slate-600 leading-relaxed"
-                      >
-                        {paragraph}
+                      <p key={index} className="leading-relaxed">
+                        {trimmed}
                       </p>
                     );
                   })}
                 </div>
               )}
 
-              {/* Gallery */}
+              {/* Gallery Section */}
               {project.gallery && project.gallery.length > 0 && (
-                <div className="mt-12">
-                  <h3 className="text-xl font-medium mb-6">Галерия</h3>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div className="mt-16 pt-10 border-t border-slate-200">
+                  <Heading as="h3" className="text-2xl mb-8">
+                    Галерия
+                  </Heading>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* Featured Image First in Grid if needed, but usually strictly gallery */}
+                    {project.featuredImage && (
+                      <div className="aspect-[4/3] relative rounded-xl overflow-hidden group">
+                        <Image
+                          src={project.featuredImage}
+                          alt={project.title}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                    )}
                     {project.gallery.map((image, index) => (
                       <div
                         key={index}
-                        className="aspect-square relative rounded-xl overflow-hidden"
+                        className="aspect-[4/3] relative rounded-xl overflow-hidden group"
                       >
                         <Image
                           src={image.url || ""}
-                          alt={
-                            image.alt ||
-                            `${project.title} - изображение ${index + 1}`
-                          }
+                          alt={image.alt || `Gallery image ${index + 1}`}
                           fill
-                          className="object-cover hover:scale-105 transition-transform duration-300"
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                       </div>
                     ))}
                   </div>
                 </div>
               )}
+            </div>
 
-              {/* Share & Footer */}
-              <div className="mt-16 pt-8 border-t border-slate-200">
-                <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                  <span className="text-slate-900 font-normal">
-                    Сподели проекта:
-                  </span>
-                  <div className="flex gap-2">
-                    <ShareButton icon={FaFacebook} label="Share on Facebook" />
-                    <ShareButton icon={FaLinkedin} label="Share on LinkedIn" />
-                    <ShareButton
-                      icon={FaInstagram}
-                      label="Share on Instagram"
-                    />
-                  </div>
+            {/* Right Sidebar Column (1/3 width) - Sticky */}
+            <div className="lg:col-span-4 space-y-8">
+              <div className="bg-green-800/10 rounded-2xl p-6 sticky top-24">
+                <h3 className="text-xl font-normal text-slate-900 mb-6 pb-6 border-b border-black/8">
+                  Детайли
+                </h3>
+
+                <div className="space-y-6">
+                  {(
+                    [
+                      {
+                        label: "ГОДИНА",
+                        value: project.year,
+                        icon: Calendar,
+                        show: !!project.year,
+                      },
+                      {
+                        label: "ТИП",
+                        value: project.services,
+                        icon: Zap,
+                        show: !!project.services,
+                      },
+                      {
+                        label: "СТАТУС",
+                        value: statusText,
+                        icon: statusIcon,
+                        show: true,
+                      },
+                    ] as const
+                  ).map(
+                    (item) =>
+                      item.show && (
+                        <div key={item.label} className="flex gap-4">
+                          <div className="w-10 h-10 rounded-full bg-white/60 flex items-center justify-center shrink-0 text-green-700">
+                            <item.icon className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <div className="font-normal uppercase tracking-wider text-green-950/60 mb-0.5">
+                              {item.label}
+                            </div>
+                            <div className="text-slate-900 font-medium">
+                              {item.value}
+                            </div>
+                          </div>
+                        </div>
+                      ),
+                  )}
+                </div>
+
+                <div className="mt-6 pt-6 border-t border-black/8">
+                  <Button
+                    href="/contacts"
+                    variant="black"
+                    fullWidth
+                    className="!py-3"
+                  >
+                    Поискай оферта
+                  </Button>
                 </div>
               </div>
             </div>
           </div>
         </Container>
-      </section>
+      </Section>
     </>
   );
 }

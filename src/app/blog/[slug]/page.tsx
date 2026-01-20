@@ -81,24 +81,28 @@ export default async function BlogPostPage({ params }: PageProps) {
         <Container size="sm">
           <div className="max-w-4xl">
             {/* Back Button */}
-            <div className="mb-8">
+            <div className="mb-12 flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-6">
               <Link href="/blog" className="inline-block">
-                <BadgeDefault className="!bg-transparent !border-white !text-white hover:!bg-white/10 transition-colors uppercase tracking-wider text-xs gap-2 !px-5 !py-2.5">
+                <BadgeDefault
+                  variant="outline-white"
+                  uppercase
+                  className="gap-2"
+                >
                   <ArrowLeft className="w-4 h-4" />
-                  Назад към блога
+                  Всички статии
                 </BadgeDefault>
               </Link>
-            </div>
 
-            {/* Meta Info */}
-            <div className="flex flex-wrap items-center gap-4 mb-6">
-              <BadgeDefault className="!bg-[#009944] !text-white !border-none font-bold tracking-wider text-xs uppercase !px-3 !py-1">
-                {post.category || "Uncategorized"}
-              </BadgeDefault>
+              {/* Meta Info */}
+              <div className="flex flex-wrap items-center gap-4">
+                <BadgeDefault variant="primary" size="sm" uppercase>
+                  {post.category || "Uncategorized"}
+                </BadgeDefault>
 
-              <div className="flex items-center gap-2 text-white/60 text-sm">
-                <Calendar className="w-4 h-4" />
-                <time>{formatDate(post.publishedAt)}</time>
+                <div className="flex items-center gap-2 text-white/60 text-sm">
+                  <Calendar className="w-4 h-4" />
+                  <time>{formatDate(post.publishedAt)}</time>
+                </div>
               </div>
             </div>
 
@@ -135,7 +139,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             <div className="px-6">
               {/* Excerpt / Intro */}
               <div className="mb-12 border-l-4 border-[#b4d429] pl-6 py-2">
-                <p className="text-xl md:text-xl font-serif italic text-slate-800">
+                <p className="text-xl md:text-xl font-serif italic text-slate-800 mb-0">
                   {post.excerpt}
                 </p>
               </div>
