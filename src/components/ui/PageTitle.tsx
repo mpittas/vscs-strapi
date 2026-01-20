@@ -8,9 +8,14 @@ interface BreadcrumbItem {
 interface PageTitleProps {
   title: string;
   breadcrumbs: BreadcrumbItem[];
+  subtitle?: string;
 }
 
-export default function PageTitle({ title, breadcrumbs }: PageTitleProps) {
+export default function PageTitle({
+  title,
+  breadcrumbs,
+  subtitle,
+}: PageTitleProps) {
   return (
     <section className="bg-[#0a0f0a] py-16 md:py-24 relative overflow-hidden">
       {/* Subtle background overlay for depth */}
@@ -45,6 +50,12 @@ export default function PageTitle({ title, breadcrumbs }: PageTitleProps) {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal text-white">
             {title}
           </h1>
+
+          {subtitle && (
+            <p className="mt-6 text-lg text-white/70 max-w-2xl font-light leading-relaxed">
+              {subtitle}
+            </p>
+          )}
         </div>
       </div>
     </section>

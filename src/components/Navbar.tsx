@@ -13,7 +13,7 @@ const navLinks = [
   { name: "Услуги", href: "/uslugi" },
   { name: "Проекти", href: "/proekti" },
   { name: "Блог", href: "/blog" },
-  { name: "Контакти", href: "/contact" },
+  { name: "Контакти", href: "/kontakti" },
 ];
 
 const Navbar = () => {
@@ -125,7 +125,7 @@ const Navbar = () => {
               href={link.href}
               className={`font-book transition-colors text-sm relative group ${getTextColor(
                 "text-slate-600",
-                "text-solar-orange"
+                "text-solar-orange",
               )}`}
             >
               {link.name}
