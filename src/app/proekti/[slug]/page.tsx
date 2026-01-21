@@ -111,9 +111,9 @@ export default async function ProjectPage({ params }: PageProps) {
             </Heading>
 
             {/* Subtitle/Excerpt */}
-            <div className="text-white/70 text-lg md:text-xl font-light mb-8 max-w-2xl leading-relaxed">
+            {/* <div className="text-white/70 text-lg md:text-xl font-light mb-8 max-w-2xl leading-relaxed">
               {project.excerpt}
-            </div>
+            </div> */}
 
             {/* Badges/Meta */}
             <div className="flex flex-wrap items-center gap-4">
