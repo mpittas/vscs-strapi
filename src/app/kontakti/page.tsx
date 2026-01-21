@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import PageTitle from "@/components/ui/PageTitle";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
-import Button from "@/components/ui/Button";
 import { Heading } from "@/components/ui/Typography";
 import { MapPin, Clock, Phone, Mail, Facebook, Linkedin } from "lucide-react";
+import ContactForm from "@/components/forms/ContactForm";
 
 export const metadata: Metadata = {
   title: "Контакти | VSCS",
@@ -28,103 +28,7 @@ export default function ContactsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
             {/* Left Column - Contact Form */}
             <div className="lg:col-span-8">
-              <div className="bg-[#F4F4F4] rounded-3xl p-8 md:p-12">
-                <Heading
-                  as="h2"
-                  className="text-2xl md:text-3xl font-normal mb-2"
-                >
-                  Изпратете запитване
-                </Heading>
-                <p className="text-slate-500 mb-8">
-                  Попълнете формата и ние ще се свържем с вас в рамките на 24
-                  часа.
-                </p>
-
-                <form className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label
-                        htmlFor="name"
-                        className="text-sm font-medium text-slate-900"
-                      >
-                        Име
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        placeholder="Вашето име"
-                        className="w-full px-4 py-3 rounded-lg border border-transparent bg-white focus:ring-2 focus:ring-[#b4d429] focus:outline-none transition-all"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label
-                        htmlFor="company"
-                        className="text-sm font-medium text-slate-900"
-                      >
-                        Фирма / Компания
-                      </label>
-                      <input
-                        type="text"
-                        id="company"
-                        placeholder="Име на фирма"
-                        className="w-full px-4 py-3 rounded-lg border border-transparent bg-white focus:ring-2 focus:ring-[#b4d429] focus:outline-none transition-all"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label
-                        htmlFor="email"
-                        className="text-sm font-medium text-slate-900"
-                      >
-                        Имейл
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        placeholder="example@email.com"
-                        className="w-full px-4 py-3 rounded-lg border border-transparent bg-white focus:ring-2 focus:ring-[#b4d429] focus:outline-none transition-all"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label
-                        htmlFor="phone"
-                        className="text-sm font-medium text-slate-900"
-                      >
-                        Телефон
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        placeholder="+359..."
-                        className="w-full px-4 py-3 rounded-lg border border-transparent bg-white focus:ring-2 focus:ring-[#b4d429] focus:outline-none transition-all"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="message"
-                      className="text-sm font-medium text-slate-900"
-                    >
-                      Съобщение
-                    </label>
-                    <textarea
-                      id="message"
-                      rows={6}
-                      placeholder="example@email.com" // Placeholder in image matches email placeholder? Or maybe its just "Вашето съобщение"? Image says "example@email.com" inside the textarea too... I'll stick to image but maybe it's a mistake in design. I'll use it for now.
-                      className="w-full px-4 py-3 rounded-lg border border-transparent bg-white focus:ring-2 focus:ring-[#b4d429] focus:outline-none transition-all resize-none"
-                    />
-                  </div>
-
-                  <div className="pt-2">
-                    <Button variant="black" className="px-8 py-3 rounded-full">
-                      Изпрати съобщение
-                    </Button>
-                  </div>
-                </form>
-              </div>
+              <ContactForm />
             </div>
 
             {/* Right Column - Contact Info */}
