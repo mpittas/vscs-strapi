@@ -391,3 +391,39 @@ export async function getProject(slug: string) {
     return null;
   }
 }
+
+/**
+ * Fetches all careers from Strapi
+ */
+export async function getCareers() {
+  try {
+    const response = await fetchAPI<{
+      data: Array<{
+        id: number;
+        documentId: string;
+        title: string;
+        slug: string;
+        location: string;
+        short_description: string;
+        sidebar_info: string;
+        main_content: string;
+        publishedAt: string;
+      }>;
+    }>("/careers?sort=publishedAt:desc", {}, ["strapi", "careers"]);
+
+    return response.data.map((career) => ({
+      id: career.id,
+      documentId: career.documentId,
+      title: career.title,
+      slug: career.slug,
+      location: career.location,
+      shortDescription: career.short_description,
+      sidebarInfo: career.sidebar_info,
+      mainContent: career.main_content,
+      publishedAt: career.publishedAt,
+    }));
+  } catch (error) {
+    console.error("Error fetching careers:", error);
+    return [];
+  }
+}
