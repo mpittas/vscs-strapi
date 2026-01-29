@@ -7,6 +7,7 @@ import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
 import BadgeDefault from "@/components/ui/BadgeDefault";
+import Sidebar from "@/components/ui/Sidebar";
 import { ArrowLeft, MapPin, Briefcase, CheckCircle2 } from "lucide-react";
 
 interface PageProps {
@@ -169,7 +170,7 @@ export default async function CareerPage({ params }: PageProps) {
 
             {/* Right Sidebar Column (1/3 width) - Sticky */}
             <div className="lg:col-span-4 space-y-8">
-              <div className="bg-lime-600/10 rounded-2xl p-8 sticky top-24">
+              <Sidebar className="bg-lime-600/10 p-8">
                 <h3 className="text-xl font-bold text-slate-900 mb-6">
                   Какво предлагаме
                 </h3>
@@ -216,7 +217,7 @@ export default async function CareerPage({ params }: PageProps) {
                     Кандидатствай сега
                   </Button>
                 </div>
-              </div>
+              </Sidebar>
             </div>
           </div>
         </Container>

@@ -8,6 +8,7 @@ import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
 import BadgeDefault from "@/components/ui/BadgeDefault";
+import Sidebar from "@/components/ui/Sidebar";
 import {
   ArrowLeft,
   MapPin,
@@ -257,7 +258,7 @@ export default async function ProjectPage({ params }: PageProps) {
 
             {/* Right Sidebar Column (1/3 width) - Sticky */}
             <div className="lg:col-span-4 space-y-8">
-              <div className="bg-green-800/10 rounded-2xl p-6 sticky top-24">
+              <Sidebar className="bg-green-800/10 p-6">
                 <h3 className="text-xl font-normal text-slate-900 mb-6 pb-6 border-b border-black/8">
                   Детайли
                 </h3>
@@ -314,7 +315,7 @@ export default async function ProjectPage({ params }: PageProps) {
                     Поискай оферта
                   </Button>
                 </div>
-              </div>
+              </Sidebar>
             </div>
           </div>
         </Container>
