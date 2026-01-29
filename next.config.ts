@@ -26,6 +26,16 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "*.strapiapp.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "*.media.strapiapp.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "images.unsplash.com",
       },
     ],
