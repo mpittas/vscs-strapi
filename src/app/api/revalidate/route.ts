@@ -42,56 +42,45 @@ export async function POST(request: NextRequest) {
 
     // Parse the webhook payload
     const payload: StrapiWebhookPayload = await request.json();
-    console.log("Strapi webhook received:", payload.event, payload.model);
+    console.log("Strapi webhook received:", JSON.stringify(payload, null, 2));
+
+    // Extract model name - Strapi might send it as "project", "api::project.project", etc.
+    let modelName = payload.model?.toLowerCase() || "";
+
+    // If uid is provided, try to extract model name from it (format: "api::project.project")
+    if (payload.uid) {
+      const uidMatch = payload.uid.match(/api::([^.]+)\./);
+      if (uidMatch) {
+        modelName = uidMatch[1].toLowerCase();
+      }
+    }
+
+    console.log("Resolved model name:", modelName);
 
     // Determine which paths to revalidate based on the content type
     const pathsToRevalidate: string[] = [];
 
-    switch (payload.model) {
-      case "blog-post":
-        // Always revalidate the blog listing page
-        pathsToRevalidate.push("/blog");
+    // Always revalidate all main pages to ensure content is fresh
+    // This is simpler and more reliable than trying to match specific models
+    pathsToRevalidate.push("/");
+    pathsToRevalidate.push("/proekti");
+    pathsToRevalidate.push("/karieri");
+    pathsToRevalidate.push("/blog");
+    pathsToRevalidate.push("/kontakti");
 
-        // If we have a slug, revalidate the specific post page
-        if (payload.entry?.slug) {
+    // If we have a slug, also revalidate the specific page
+    if (payload.entry?.slug) {
+      switch (modelName) {
+        case "blog-post":
           pathsToRevalidate.push(`/blog/${payload.entry.slug}`);
-        }
-
-        // Also revalidate homepage (if it shows recent posts)
-        pathsToRevalidate.push("/");
-        break;
-
-      case "project":
-        // Revalidate projects listing page
-        pathsToRevalidate.push("/proekti");
-
-        // If we have a slug, revalidate the specific project page
-        if (payload.entry?.slug) {
+          break;
+        case "project":
           pathsToRevalidate.push(`/proekti/${payload.entry.slug}`);
-        }
-
-        // Also revalidate homepage
-        pathsToRevalidate.push("/");
-        break;
-
-      case "career":
-        // Revalidate careers listing page
-        pathsToRevalidate.push("/karieri");
-
-        // If we have a slug, revalidate the specific career page
-        if (payload.entry?.slug) {
+          break;
+        case "career":
           pathsToRevalidate.push(`/karieri/${payload.entry.slug}`);
-        }
-        break;
-
-      default:
-        // For unknown content types, revalidate all main pages
-        pathsToRevalidate.push("/");
-        pathsToRevalidate.push("/proekti");
-        pathsToRevalidate.push("/karieri");
-        pathsToRevalidate.push("/blog");
-        pathsToRevalidate.push("/kontakti");
-        break;
+          break;
+      }
     }
 
     // Revalidate all affected paths
