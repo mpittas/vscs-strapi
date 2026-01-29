@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Container from "@/components/ui/Container";
 
 interface CounterItem {
   icon: string;
@@ -40,7 +41,7 @@ const counterData: CounterItem[] = [
 function useCountUp(
   target: number,
   isVisible: boolean,
-  duration: number = 2000
+  duration: number = 2000,
 ) {
   const [count, setCount] = useState(0);
 
@@ -120,7 +121,7 @@ export default function NumbersCounter() {
       {
         threshold: 0.3,
         rootMargin: "0px",
-      }
+      },
     );
 
     if (sectionRef.current) {
@@ -132,7 +133,7 @@ export default function NumbersCounter() {
 
   return (
     <section ref={sectionRef} style={{ backgroundColor: "#EBF8DA" }}>
-      <div className="container">
+      <Container>
         <div className="rounded-2xl grid grid-cols-2 md:grid-cols-4 bg-[#EBF8DA] py-6 md:py-0">
           {counterData.map((item, index) => (
             <CounterCard
@@ -143,7 +144,7 @@ export default function NumbersCounter() {
             />
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

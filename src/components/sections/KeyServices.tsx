@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Heading, Text } from "@/components/ui/Typography";
 import Button from "@/components/ui/Button";
+import Container from "@/components/ui/Container";
 
 const services = [
   {
@@ -46,7 +47,7 @@ const services = [
 export default function KeyServices() {
   return (
     <section className="bg-[#EDEDED] py-20 lg:py-28">
-      <div className="container mx-auto px-4">
+      <Container>
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-16 gap-8">
           <div className="max-w-2xl">
@@ -118,7 +119,7 @@ export default function KeyServices() {
             </div>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

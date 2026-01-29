@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Heading, Text } from "@/components/ui/Typography";
+import Container from "@/components/ui/Container";
 
 const installationTypes = [
   {
@@ -24,7 +25,7 @@ const installationTypes = [
 export default function InstallationTypes() {
   return (
     <section className="bg-white py-20 lg:py-28">
-      <div className="container mx-auto px-4">
+      <Container>
         {/* Header */}
         <div className="max-w-3xl mb-16">
           <Heading as="h2" className="mb-6 text-slate-900">
@@ -65,7 +66,7 @@ export default function InstallationTypes() {
             </div>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

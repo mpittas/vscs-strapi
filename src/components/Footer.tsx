@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { MapPin, Phone, Mail } from "lucide-react";
+import Container from "@/components/ui/Container";
 
 // Footer link data
 const quickLinks = [
@@ -63,7 +64,7 @@ export default function Footer() {
     <footer className="bg-[#040A03] text-white">
       {/* Logo Section - Top */}
       <div className="pt-8 pb-4 lg:pt-12 lg:pb-12">
-        <div className="container">
+        <Container>
           <Link href="/" className="inline-block">
             <Image
               src="/logo/vscs-bg-logo-light.svg"
@@ -73,12 +74,12 @@ export default function Footer() {
               className="h-12 w-auto"
             />
           </Link>
-        </div>
+        </Container>
       </div>
 
       {/* Main Footer Content */}
       <div>
-        <div className="container">
+        <Container>
           <div className="py-6 lg:py-12 border-y border-white/5">
             <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
               {/* Brand Column - Tagline & Social */}
@@ -182,12 +183,12 @@ export default function Footer() {
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       </div>
 
       {/* Bottom Bar */}
       <div className="py-6">
-        <div className="container py-5 flex flex-col lg:flex-row justify-between items-center gap-4">
+        <Container className="py-5 flex flex-col lg:flex-row justify-between items-center gap-4">
           <div className="text-xs text-white/50">
             VSCS BG, {new Date().getFullYear()} © Всички права са запазени
           </div>
@@ -206,7 +207,7 @@ export default function Footer() {
               </span>
             ))}
           </div>
-        </div>
+        </Container>
       </div>
     </footer>
   );

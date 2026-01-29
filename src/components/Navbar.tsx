@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Button from "./ui/Button";
+import Container from "./ui/Container";
 import { useLenis } from "./SmoothScrollProvider";
 
 const navLinks = [
@@ -92,7 +93,7 @@ const Navbar = () => {
 
   return (
     <nav className={navClasses}>
-      <div className="container flex items-center justify-between">
+      <Container className="flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center">
           {/* Mobile Logo - Symbol only */}
@@ -166,7 +167,7 @@ const Navbar = () => {
             />
           </div>
         </button>
-      </div>
+      </Container>
 
       {/* Mobile Menu */}
       <div
@@ -176,7 +177,7 @@ const Navbar = () => {
             : "opacity-0 scale-y-0 invisible"
         }`}
       >
-        <div className="container py-6 flex flex-col gap-4">
+        <Container className="py-6 flex flex-col gap-4">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -190,7 +191,7 @@ const Navbar = () => {
           <Button href="/contact" fullWidth>
             Свържете се
           </Button>
-        </div>
+        </Container>
       </div>
     </nav>
   );
