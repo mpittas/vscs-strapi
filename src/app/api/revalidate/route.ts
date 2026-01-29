@@ -1,16 +1,16 @@
-import { revalidatePath } from 'next/cache';
-import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from "next/cache";
+import { NextRequest, NextResponse } from "next/server";
 
 /**
  * Strapi Webhook Handler for On-Demand Revalidation
- * 
+ *
  * This endpoint receives webhooks from Strapi when content is created,
  * updated, or deleted, and triggers Next.js to regenerate affected pages.
  */
 
 // Secret token for webhook security (set in Strapi webhook config)
 // Secret token for webhook security (set in Strapi webhook config)
-const REVALIDATE_SECRET = process.env.REVALIDATE_SECRET || 'your-secret-token';
+const REVALIDATE_SECRET = process.env.REVALIDATE_SECRET || "your-secret-token";
 
 interface StrapiWebhookPayload {
   event: string;
@@ -28,56 +28,84 @@ interface StrapiWebhookPayload {
 
 export async function POST(request: NextRequest) {
   try {
-    // Verify the secret token
-    const authHeader = request.headers.get('authorization');
-    const token = authHeader?.replace('Bearer ', '');
-    
+    // Verify the secret token (supports both header and query param)
+    const authHeader = request.headers.get("authorization");
+    const headerToken = authHeader?.replace("Bearer ", "");
+    const queryToken = request.nextUrl.searchParams.get("secret");
+
+    const token = headerToken || queryToken;
+
     if (token !== REVALIDATE_SECRET) {
-      console.warn('Revalidation webhook: Invalid or missing secret token');
-      return NextResponse.json(
-        { error: 'Invalid token' },
-        { status: 401 }
-      );
+      console.warn("Revalidation webhook: Invalid or missing secret token");
+      return NextResponse.json({ error: "Invalid token" }, { status: 401 });
     }
 
     // Parse the webhook payload
     const payload: StrapiWebhookPayload = await request.json();
-    console.log('Strapi webhook received:', payload.event, payload.model);
+    console.log("Strapi webhook received:", payload.event, payload.model);
 
     // Determine which paths to revalidate based on the content type
     const pathsToRevalidate: string[] = [];
 
     switch (payload.model) {
-      case 'blog-post':
+      case "blog-post":
         // Always revalidate the blog listing page
-        pathsToRevalidate.push('/blog');
-        
+        pathsToRevalidate.push("/blog");
+
         // If we have a slug, revalidate the specific post page
         if (payload.entry?.slug) {
           pathsToRevalidate.push(`/blog/${payload.entry.slug}`);
         }
-        
+
         // Also revalidate homepage (if it shows recent posts)
-        pathsToRevalidate.push('/');
+        pathsToRevalidate.push("/");
         break;
 
-      // Add more content types as needed
+      case "project":
+        // Revalidate projects listing page
+        pathsToRevalidate.push("/proekti");
+
+        // If we have a slug, revalidate the specific project page
+        if (payload.entry?.slug) {
+          pathsToRevalidate.push(`/proekti/${payload.entry.slug}`);
+        }
+
+        // Also revalidate homepage
+        pathsToRevalidate.push("/");
+        break;
+
+      case "career":
+        // Revalidate careers listing page
+        pathsToRevalidate.push("/karieri");
+
+        // If we have a slug, revalidate the specific career page
+        if (payload.entry?.slug) {
+          pathsToRevalidate.push(`/karieri/${payload.entry.slug}`);
+        }
+        break;
+
       default:
-        // For unknown content types, revalidate common pages
-        pathsToRevalidate.push('/');
+        // For unknown content types, revalidate all main pages
+        pathsToRevalidate.push("/");
+        pathsToRevalidate.push("/proekti");
+        pathsToRevalidate.push("/karieri");
+        pathsToRevalidate.push("/blog");
+        pathsToRevalidate.push("/kontakti");
         break;
     }
 
     // Revalidate all affected paths
-    const results: { path: string; revalidated: boolean; error?: string }[] = [];
-    
+    const results: { path: string; revalidated: boolean; error?: string }[] =
+      [];
+
     for (const path of pathsToRevalidate) {
       try {
         revalidatePath(path);
         results.push({ path, revalidated: true });
         console.log(`Revalidated: ${path}`);
       } catch (error) {
-        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        const errorMessage =
+          error instanceof Error ? error.message : "Unknown error";
         results.push({ path, revalidated: false, error: errorMessage });
         console.error(`Failed to revalidate ${path}:`, errorMessage);
       }
@@ -85,17 +113,16 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: 'Revalidation triggered',
+      message: "Revalidation triggered",
       event: payload.event,
       model: payload.model,
       results,
     });
-
   } catch (error) {
-    console.error('Revalidation webhook error:', error);
+    console.error("Revalidation webhook error:", error);
     return NextResponse.json(
-      { error: 'Failed to process webhook' },
-      { status: 500 }
+      { error: "Failed to process webhook" },
+      { status: 500 },
     );
   }
 }
@@ -103,8 +130,8 @@ export async function POST(request: NextRequest) {
 // Health check endpoint
 export async function GET() {
   return NextResponse.json({
-    status: 'ok',
-    message: 'Strapi revalidation webhook is ready',
+    status: "ok",
+    message: "Strapi revalidation webhook is ready",
     timestamp: new Date().toISOString(),
   });
 }
