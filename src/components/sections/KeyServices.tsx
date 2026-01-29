@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Heading, Text } from "@/components/ui/Typography";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
+import Section from "@/components/ui/Section";
 
 const services = [
   {
@@ -46,7 +47,7 @@ const services = [
 
 export default function KeyServices() {
   return (
-    <section className="bg-[#EDEDED] py-20 lg:py-28">
+    <Section paddingY="xl" className="bg-[#EDEDED]">
       <Container>
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-16 gap-8">
@@ -120,6 +121,6 @@ export default function KeyServices() {
           ))}
         </div>
       </Container>
-    </section>
+    </Section>
   );
 }

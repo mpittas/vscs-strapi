@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Container from "@/components/ui/Container";
+import Section from "@/components/ui/Section";
 
 const clientLogos = [
   { src: "/clients-logos/client-logo-1.svg", alt: "Client 1" },
@@ -11,7 +12,7 @@ const clientLogos = [
 
 export default function ClientLogos() {
   return (
-    <section className="py-6 sm:py-8 bg-[#e8f0dc]">
+    <Section paddingY="sm" className="bg-[#e8f0dc]">
       <Container>
         {/* Mobile: stacked layout, Desktop: horizontal layout */}
         <div className="flex flex-col lg:flex-row lg:items-center gap-8">
@@ -42,6 +43,6 @@ export default function ClientLogos() {
           </div>
         </div>
       </Container>
-    </section>
+    </Section>
   );
 }

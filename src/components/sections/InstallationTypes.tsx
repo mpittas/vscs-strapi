@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Heading, Text } from "@/components/ui/Typography";
 import Container from "@/components/ui/Container";
+import Section from "@/components/ui/Section";
 
 const installationTypes = [
   {
@@ -24,7 +25,7 @@ const installationTypes = [
 
 export default function InstallationTypes() {
   return (
-    <section className="bg-white py-20 lg:py-28">
+    <Section paddingY="xl" bgColor="white">
       <Container>
         {/* Header */}
         <div className="max-w-3xl mb-16">
@@ -67,6 +68,6 @@ export default function InstallationTypes() {
           ))}
         </div>
       </Container>
-    </section>
+    </Section>
   );
 }

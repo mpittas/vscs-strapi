@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Container from "@/components/ui/Container";
+import Section from "@/components/ui/Section";
 
 interface CounterItem {
   icon: string;
@@ -132,19 +133,21 @@ export default function NumbersCounter() {
   }, []);
 
   return (
-    <section ref={sectionRef} style={{ backgroundColor: "#EBF8DA" }}>
-      <Container>
-        <div className="rounded-2xl grid grid-cols-2 md:grid-cols-4 bg-[#EBF8DA] py-6 md:py-0">
-          {counterData.map((item, index) => (
-            <CounterCard
-              key={index}
-              item={item}
-              isVisible={isVisible}
-              isLast={index === counterData.length - 1}
-            />
-          ))}
-        </div>
-      </Container>
-    </section>
+    <Section paddingY="none" className="bg-[#EBF8DA]">
+      <div ref={sectionRef}>
+        <Container>
+          <div className="rounded-2xl grid grid-cols-2 md:grid-cols-4 bg-[#EBF8DA] py-6 md:py-0">
+            {counterData.map((item, index) => (
+              <CounterCard
+                key={index}
+                item={item}
+                isVisible={isVisible}
+                isLast={index === counterData.length - 1}
+              />
+            ))}
+          </div>
+        </Container>
+      </div>
+    </Section>
   );
 }
