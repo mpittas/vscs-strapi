@@ -11,8 +11,18 @@ export const metadata: Metadata = {
     "Разгледайте нашите завършени и текущи проекти за соларни инсталации.",
 };
 
-export default async function ProjectsPage() {
-  const { data: projects, meta } = await getPaginatedProjects(1, 6);
+export default async function ProjectsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const { data: projects, meta } = await getPaginatedProjects(
+    1,
+    6,
+    undefined,
+    locale,
+  );
 
   return (
     <>
@@ -23,7 +33,11 @@ export default async function ProjectsPage() {
 
       <Section paddingY="sm" bgColor="white">
         <Container>
-          <ProjectsFilter initialProjects={projects} initialMeta={meta} />
+          <ProjectsFilter
+            initialProjects={projects}
+            initialMeta={meta}
+            locale={locale}
+          />
         </Container>
       </Section>
     </>

@@ -6,8 +6,10 @@ import Container from "@/components/ui/Container";
 import { Heading } from "@/components/ui/Typography";
 import Section from "@/components/ui/Section";
 import { Phone } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function CTABanner() {
+  const { t } = useTranslation("home");
   return (
     <Section
       paddingY="xl"
@@ -29,7 +31,7 @@ export default function CTABanner() {
       <div className="absolute right-0 lg:right-[15%] bottom-0 w-[350px] h-full z-10 hidden lg:block">
         <Image
           src="/images/woman-reading-papers-min.png"
-          alt="Консултант преглежда документи"
+          alt={t("cta_banner.phone_label")}
           fill
           className="object-contain object-bottom"
           priority
@@ -44,8 +46,7 @@ export default function CTABanner() {
               as="h2"
               className="text-white mb-12 leading-tight text-3xl lg:text-4xl xl:text-5xl"
             >
-              Свържете се с нас и <br className="hidden sm:block" />
-              запазете консултация!
+              {t("cta_banner.title")}
             </Heading>
 
             {/* Button and Phone Row */}
@@ -58,7 +59,7 @@ export default function CTABanner() {
                 showIcon
                 iconPosition="right"
               >
-                Свържете се с нас
+                {t("cta_banner.btn_text")}
               </Button>
 
               {/* Phone Box */}
@@ -68,7 +69,7 @@ export default function CTABanner() {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-white text-sm text-white/80">
-                    Запазете консултация
+                    {t("cta_banner.phone_label")}
                   </span>
                   <a
                     href="tel:+1235485256"
@@ -87,7 +88,7 @@ export default function CTABanner() {
       <div className="hidden lg:block relative w-full h-[250px] lg:hidden">
         <Image
           src="/images/woman-reading-papers-min.png"
-          alt="Консултант преглежда документи"
+          alt={t("cta_banner.phone_label")}
           fill
           className="object-contain object-bottom"
           priority

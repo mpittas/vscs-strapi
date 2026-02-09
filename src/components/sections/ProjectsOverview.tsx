@@ -10,17 +10,11 @@ import ProjectPostCard from "@/components/ui/ProjectPostCard";
 import Section from "@/components/ui/Section";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+import { useTranslation } from "react-i18next";
+
 // Import slick carousel CSS
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
-// Stats data
-const stats = [
-  { value: 50, suffix: "+", label: "Завършени проекта" },
-  { value: 12, suffix: "+", label: "Държави" },
-  { value: 300, suffix: " MW", label: "Инсталирана мощност" },
-  { value: 100, suffix: "%", label: "Спестени въглеродни емисии" },
-];
 
 // Location dots on the map (positions as percentages)
 const locations = [
@@ -62,6 +56,7 @@ const blogPosts = [
 ];
 
 export default function ProjectsOverview() {
+  const { t } = useTranslation("home");
   const [activeLocation, setActiveLocation] = useState<number | null>(null);
   const sliderRef = useRef<Slider>(null);
 
@@ -110,16 +105,37 @@ export default function ProjectsOverview() {
             {/* Title */}
             <div className="mb-10 lg:mb-12">
               <Heading as="h2" className="text-brand-green font-normal">
-                Професионализъм
+                {t("projects.subheader_highlight")}
               </Heading>
               <Heading as="h2" className="text-slate-900 font-normal">
-                във всеки проект
+                {t("projects.subheader_rest")}
               </Heading>
             </div>
 
             {/* Stats Grid */}
             <div className="grid grid-cols-2 gap-x-8 gap-y-6">
-              {stats.map((stat, index) => (
+              {[
+                {
+                  value: 50,
+                  suffix: "+",
+                  label: t("projects.stats.completed"),
+                },
+                {
+                  value: 12,
+                  suffix: "+",
+                  label: t("projects.stats.countries"),
+                },
+                {
+                  value: 300,
+                  suffix: " MW",
+                  label: t("projects.stats.capacity"),
+                },
+                {
+                  value: 100,
+                  suffix: "%",
+                  label: t("projects.stats.emissions"),
+                },
+              ].map((stat, index) => (
                 <div key={index}>
                   <div className="flex items-baseline">
                     <AnimatedCounter
@@ -163,7 +179,7 @@ export default function ProjectsOverview() {
                 <button
                   onClick={() =>
                     setActiveLocation(
-                      activeLocation === location.id ? null : location.id
+                      activeLocation === location.id ? null : location.id,
                     )
                   }
                   className="relative w-4 h-4 cursor-pointer group"

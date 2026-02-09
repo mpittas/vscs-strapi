@@ -37,7 +37,7 @@ export async function fetchAPI<T>(
 /**
  * Fetches all blog posts from Strapi
  */
-export async function getBlogPosts() {
+export async function getBlogPosts(locale = "bg") {
   try {
     const response = await fetchAPI<{
       data: Array<{
@@ -54,10 +54,11 @@ export async function getBlogPosts() {
           alternativeText?: string;
         };
       }>;
-    }>("/blog-posts?populate=featuredImage&sort=publishedAt:desc", {}, [
-      "strapi",
-      "blog-posts",
-    ]);
+    }>(
+      `/blog-posts?populate=featuredImage&sort=publishedAt:desc&locale=${locale}`,
+      {},
+      ["strapi", "blog-posts"],
+    );
 
     return response.data.map((post) => ({
       id: post.id,
@@ -84,6 +85,7 @@ export async function getPaginatedData<T>(
   page = 1,
   pageSize = 6,
   tags: string[] = [],
+  locale = "bg",
 ) {
   try {
     const response = await fetchAPI<{
@@ -97,7 +99,7 @@ export async function getPaginatedData<T>(
         };
       };
     }>(
-      `/${endpoint}?populate=featuredImage&sort=publishedAt:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}`,
+      `/${endpoint}?populate=featuredImage&sort=publishedAt:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}&locale=${locale}`,
       {},
       tags,
     );
@@ -125,7 +127,7 @@ export async function getPaginatedData<T>(
 /**
  * Fetches a single blog post by slug from Strapi
  */
-export async function getBlogPost(slug: string) {
+export async function getBlogPost(slug: string, locale = "bg") {
   try {
     const response = await fetchAPI<{
       data: Array<{
@@ -143,11 +145,11 @@ export async function getBlogPost(slug: string) {
           alternativeText?: string;
         };
       }>;
-    }>(`/blog-posts?filters[slug][$eq]=${slug}&populate=featuredImage`, {}, [
-      "strapi",
-      "blog-posts",
-      `blog-post-${slug}`,
-    ]);
+    }>(
+      `/blog-posts?filters[slug][$eq]=${slug}&populate=featuredImage&locale=${locale}`,
+      {},
+      ["strapi", "blog-posts", `blog-post-${slug}`],
+    );
 
     if (!response.data || response.data.length === 0) {
       return null;
@@ -190,7 +192,7 @@ export async function checkStrapiHealth(): Promise<boolean> {
 /**
  * Fetches all projects from Strapi
  */
-export async function getProjects() {
+export async function getProjects(locale = "bg") {
   try {
     const response = await fetchAPI<{
       data: Array<{
@@ -213,10 +215,11 @@ export async function getProjects() {
           alternativeText?: string;
         };
       }>;
-    }>("/projects?populate=featuredImage&sort=publishedAt:desc", {}, [
-      "strapi",
-      "projects",
-    ]);
+    }>(
+      `/projects?populate=featuredImage&sort=publishedAt:desc&locale=${locale}`,
+      {},
+      ["strapi", "projects"],
+    );
 
     return response.data.map((project) => ({
       id: project.id,
@@ -248,9 +251,10 @@ export async function getPaginatedProjects(
   page = 1,
   pageSize = 6,
   country?: string,
+  locale = "bg",
 ) {
   try {
-    let endpoint = `/projects?populate=featuredImage&sort=publishedAt:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}`;
+    let endpoint = `/projects?populate=featuredImage&sort=publishedAt:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}&locale=${locale}`;
 
     // Add country filter if specified and not "all"
     if (country && country !== "all") {
@@ -327,7 +331,7 @@ export async function getPaginatedProjects(
 /**
  * Fetches a single project by slug from Strapi
  */
-export async function getProject(slug: string) {
+export async function getProject(slug: string, locale = "bg") {
   try {
     const response = await fetchAPI<{
       data: Array<{
@@ -355,7 +359,7 @@ export async function getProject(slug: string) {
         }>;
       }>;
     }>(
-      `/projects?filters[slug][$eq]=${slug}&populate[0]=featuredImage&populate[1]=gallery`,
+      `/projects?filters[slug][$eq]=${slug}&populate[0]=featuredImage&populate[1]=gallery&locale=${locale}`,
       {},
       ["strapi", "projects", `project-${slug}`],
     );
@@ -395,7 +399,7 @@ export async function getProject(slug: string) {
 /**
  * Fetches all careers from Strapi
  */
-export async function getCareers() {
+export async function getCareers(locale = "bg") {
   try {
     const response = await fetchAPI<{
       data: Array<{
@@ -409,7 +413,10 @@ export async function getCareers() {
         main_content: string;
         publishedAt: string;
       }>;
-    }>("/careers?sort=publishedAt:desc", {}, ["strapi", "careers"]);
+    }>(`/careers?sort=publishedAt:desc&locale=${locale}`, {}, [
+      "strapi",
+      "careers",
+    ]);
 
     return response.data.map((career) => ({
       id: career.id,
@@ -431,7 +438,7 @@ export async function getCareers() {
 /**
  * Fetches a single career by slug from Strapi
  */
-export async function getCareer(slug: string) {
+export async function getCareer(slug: string, locale = "bg") {
   try {
     const response = await fetchAPI<{
       data: Array<{
@@ -445,7 +452,7 @@ export async function getCareer(slug: string) {
         main_content: string;
         publishedAt: string;
       }>;
-    }>(`/careers?filters[slug][$eq]=${slug}`, {}, [
+    }>(`/careers?filters[slug][$eq]=${slug}&locale=${locale}`, {}, [
       "strapi",
       "careers",
       `career-${slug}`,

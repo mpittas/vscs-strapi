@@ -18,7 +18,7 @@ export default function ConditionalNavbar() {
   }
 
   // Don't render Navbar here for homepage - it's handled by Hero component
-  if (pathname === "/") {
+  if (pathname === "/" || pathname === "/en" || pathname === "/bg") {
     return null;
   }
 

@@ -38,14 +38,14 @@ function ShareButton({ icon: Icon, label, onClick }: ShareButtonProps) {
 }
 
 interface PageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const project = await getProject(slug);
+  const { slug, locale } = await params;
+  const project = await getProject(slug, locale);
 
   if (!project) {
     return { title: "Проектът не е намерен" };
@@ -69,8 +69,8 @@ export async function generateStaticParams() {
 }
 
 export default async function ProjectPage({ params }: PageProps) {
-  const { slug } = await params;
-  const project = await getProject(slug);
+  const { slug, locale } = await params;
+  const project = await getProject(slug, locale);
 
   if (!project) {
     notFound();

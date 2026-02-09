@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { Heading, Text } from "@/components/ui/Typography";
 import Button from "@/components/ui/Button";
@@ -5,14 +7,18 @@ import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import { Check } from "lucide-react";
 
-const features = [
-  "Иновативни решения",
-  "Устойчиво развитие",
-  "Експертен екип",
-  "Гарантирано качество",
-];
+import { useTranslation } from "react-i18next";
 
 export default function AboutUs() {
+  const { t } = useTranslation("home");
+
+  const features = [
+    t("about_us.features.innovative"),
+    t("about_us.features.sustainable"),
+    t("about_us.features.expert"),
+    t("about_us.features.quality"),
+  ];
+
   return (
     <Section paddingY="xl" bgColor="white">
       <Container>
@@ -64,8 +70,10 @@ export default function AboutUs() {
             {/* Title */}
             <div className="mb-6">
               <Heading as="h2">
-                <span className="text-brand-green">Чиста и Възобновяема</span>{" "}
-                Енергия Достъпна за Всички Потребители
+                <span className="text-brand-green">
+                  {t("about_us.title_highlight")}
+                </span>{" "}
+                {t("about_us.title_rest")}
               </Heading>
             </div>
 
@@ -74,10 +82,7 @@ export default function AboutUs() {
               variant="body-16"
               className="text-slate-600 mb-8 leading-relaxed"
             >
-              Ние сме повече от просто една компания за монтаж на фотоволтаични
-              централи. Ние сме история за страст и интерес към възобновяемата
-              енергия, вдъхновени от нашия общ стремеж да променим света към
-              по-зелени и устойчиви решения.
+              {t("about_us.description")}
             </Text>
 
             {/* Features list - 2x2 grid */}
@@ -99,7 +104,7 @@ export default function AboutUs() {
 
             {/* CTA Button */}
             <Button variant="black" size="md" href="/za-nas" showIcon>
-              Научи още за нас
+              {t("about_us.cta")}
             </Button>
           </div>
         </div>

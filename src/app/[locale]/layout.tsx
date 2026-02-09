@@ -1,39 +1,41 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
+import "../globals.css";
 import ConditionalNavbar from "@/components/ConditionalNavbar";
 import Footer from "@/components/Footer";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
+import initTranslations from "@/app/i18n";
+import TranslationsProvider from "@/components/TranslationsProvider";
 
 const stolzl = localFont({
   src: [
     {
-      path: "../../public/fonts/Stolzl-Thin.woff2",
+      path: "../../../public/fonts/Stolzl-Thin.woff2",
       weight: "100",
       style: "normal",
     },
     {
-      path: "../../public/fonts/Stolzl-Light.woff2",
+      path: "../../../public/fonts/Stolzl-Light.woff2",
       weight: "300",
       style: "normal",
     },
     {
-      path: "../../public/fonts/Stolzl-Book.woff2",
+      path: "../../../public/fonts/Stolzl-Book.woff2",
       weight: "350",
       style: "normal",
     },
     {
-      path: "../../public/fonts/Stolzl-Regular.woff2",
+      path: "../../../public/fonts/Stolzl-Regular.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../../public/fonts/Stolzl-Medium.woff2",
+      path: "../../../public/fonts/Stolzl-Medium.woff2",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../../public/fonts/Stolzl-Bold.woff2",
+      path: "../../../public/fonts/Stolzl-Bold.woff2",
       weight: "700",
       style: "normal",
     },
@@ -79,21 +81,32 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }>) {
+  const { locale } = await params;
+  const { resources } = await initTranslations(locale, ["common"]);
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body
         className={`${stolzl.variable} font-sans antialiased min-h-screen flex flex-col`}
       >
-        <ConditionalNavbar />
-        <SmoothScrollProvider>
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </SmoothScrollProvider>
+        <TranslationsProvider
+          locale={locale}
+          resources={resources}
+          namespaces={["common"]}
+        >
+          <ConditionalNavbar />
+          <SmoothScrollProvider>
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </SmoothScrollProvider>
+        </TranslationsProvider>
       </body>
     </html>
   );

@@ -1,0 +1,12 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "services": "Services",
+    "projects": "Projects",
+    "blog": "Blog",
+    "careers": "Careers",
+    "contacts": "Contacts",
+    "contact_us": "Contact Us"
+  }
+}

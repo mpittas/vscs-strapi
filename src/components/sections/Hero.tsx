@@ -7,6 +7,7 @@ import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import { Heading, Text } from "@/components/ui/Typography";
 import gsap from "gsap";
+import { useTranslation } from "react-i18next";
 
 // Helper component to split text into animated characters
 function AnimatedText({
@@ -32,6 +33,7 @@ function AnimatedText({
 }
 
 export default function Hero() {
+  const { t } = useTranslation("home");
   const heroRef = useRef<HTMLDivElement>(null);
 
   // ============================================
@@ -129,7 +131,7 @@ export default function Hero() {
           duration: animConfig.title.duration,
           stagger: animConfig.title.stagger,
         },
-        titleLabel
+        titleLabel,
       );
 
       if (underline) {
@@ -141,7 +143,7 @@ export default function Hero() {
             delay: animConfig.underline.delay,
             ease: animConfig.underline.ease,
           },
-          titleLabel
+          titleLabel,
         );
       }
       // Calculate when title animation ends (duration + all stagger delays)
@@ -160,7 +162,7 @@ export default function Hero() {
             opacity: 1,
             duration: animConfig.description.duration,
           },
-          `${titleEndLabel}+=${animConfig.description.delayAfterTitle}`
+          `${titleEndLabel}+=${animConfig.description.delayAfterTitle}`,
         );
       }
 
@@ -173,7 +175,7 @@ export default function Hero() {
             opacity: 1,
             duration: animConfig.buttons.duration,
           },
-          `+=${animConfig.buttons.delayAfterDescription}`
+          `+=${animConfig.buttons.delayAfterDescription}`,
         );
       }
     }, heroRef);
@@ -216,7 +218,7 @@ export default function Hero() {
                 variant="small-title"
                 className="text-xs sm:text-sm"
               >
-                VS Construction Services
+                {t("hero.badge")}
               </Text>
             </div>
 
@@ -226,13 +228,13 @@ export default function Hero() {
               className="text-[38px] sm:text-[40px] md:text-[52px] lg:text-[62px] xl:text-[72px] sm:max-w-md md:max-w-xl lg:max-w-3xl xl:max-w-4xl leading-[1.15] text-white font-normal"
             >
               <span className="block overflow-hidden">
-                <AnimatedText text="Вашият партньор" className="block" />
+                <AnimatedText text={t("hero.title_part1")} className="block" />
               </span>
               <span className="block">
                 <span className="relative inline-block overflow-visible">
                   <span className="overflow-hidden block relative block z-1">
                     <AnimatedText
-                      text="в соларния бизнес"
+                      text={t("hero.title_part2")}
                       className="inline-block"
                     />
                   </span>
@@ -254,8 +256,7 @@ export default function Hero() {
                 variant="body-18"
                 className="max-w-[380px] text-neutral-300 sm:pt-3 lg:pt-4 text-base lg:text-lg"
               >
-                Строителни услуги до ключ и иновативни решения за възобновяема
-                енергия.
+                {t("hero.description")}
               </Text>
             </div>
 
@@ -266,7 +267,7 @@ export default function Hero() {
                 showIcon
                 className="w-full sm:w-auto"
               >
-                Свържете се с нас
+                {t("hero.cta")}
               </Button>
               <Button
                 href="/about"
@@ -274,7 +275,7 @@ export default function Hero() {
                 size="md"
                 className="w-full sm:w-auto"
               >
-                Научете повече
+                {t("hero.learn_more")}
               </Button>
             </div>
           </Container>

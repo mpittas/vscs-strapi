@@ -13,8 +13,13 @@ export const metadata: Metadata = {
     "Разгледайте отворените позиции и кандидатствайте за работа в VSCS.",
 };
 
-export default async function CareersPage() {
-  const careers = await getCareers();
+export default async function CareersPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const careers = await getCareers(locale);
 
   return (
     <>

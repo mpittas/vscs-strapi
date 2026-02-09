@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 };
 
 interface BlogPageProps {
+  params: Promise<{ locale: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
@@ -32,7 +33,11 @@ interface BlogPost {
   };
 }
 
-export default async function BlogPage({ searchParams }: BlogPageProps) {
+export default async function BlogPage({
+  params,
+  searchParams,
+}: BlogPageProps) {
+  const { locale } = await params;
   const resolvedSearchParams = await searchParams;
   const pageParam = resolvedSearchParams?.page;
 
@@ -48,7 +53,8 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
       "blog-posts",
       currentPage,
       pageSize,
-      ["strapi", "blog-posts"]
+      ["strapi", "blog-posts"],
+      locale,
     );
     console.log("Strapi Posts Fetched:", data?.length);
 

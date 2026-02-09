@@ -1,37 +1,43 @@
+"use client";
+
 import Image from "next/image";
 import { Heading, Text } from "@/components/ui/Typography";
 import Container from "@/components/ui/Container";
 import InfoItem from "@/components/ui/InfoItem";
 import Section from "@/components/ui/Section";
 
-const infoItems = [
-  {
-    title: "Професионален Екип",
-    description: "Сертифицирани специалисти с дългогодишен опит",
-  },
-  {
-    title: "Персонализирани Решения",
-    description: "Системи, съобразени с вашите енергийни нужди",
-  },
-  {
-    title: "Достъпни Планове",
-    description: "Гъвкаво финансиране и насоки за максимизиране",
-  },
-  {
-    title: "Текуща Поддръжка",
-    description: "Пълна поддръжка и системен мониторинг след монтажа",
-  },
-  {
-    title: "Качествено Оборудване",
-    description: "Използваме първокласни слънчеви панели и инвертори",
-  },
-  {
-    title: "Бърза Инсталация",
-    description: "Ефективно изпълнение на проекта без компромис с качеството",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 export default function WhyUs() {
+  const { t } = useTranslation("home");
+
+  const infoItems = [
+    {
+      title: t("why_us.items.team.title"),
+      description: t("why_us.items.team.desc"),
+    },
+    {
+      title: t("why_us.items.solutions.title"),
+      description: t("why_us.items.solutions.desc"),
+    },
+    {
+      title: t("why_us.items.plans.title"),
+      description: t("why_us.items.plans.desc"),
+    },
+    {
+      title: t("why_us.items.support.title"),
+      description: t("why_us.items.support.desc"),
+    },
+    {
+      title: t("why_us.items.equipment.title"),
+      description: t("why_us.items.equipment.desc"),
+    },
+    {
+      title: t("why_us.items.installation.title"),
+      description: t("why_us.items.installation.desc"),
+    },
+  ];
+
   return (
     <Section paddingY="xl" bgColor="dark">
       <Container>
@@ -54,9 +60,9 @@ export default function WhyUs() {
                   325%
                 </Text>
                 <Text className="text-white/80 text-xs leading-tight">
-                  Average increase
+                  {t("why_us.stats_badge.text_1")}
                   <br />
-                  in solar panel
+                  {t("why_us.stats_badge.text_2")}
                 </Text>
               </div>
             </div>
@@ -77,14 +83,17 @@ export default function WhyUs() {
           <div>
             {/* Subheading */}
             <Text variant="small-title" className="mb-4 block text-white/70">
-              НАДЕЖДНИ И ДОСТЪПНИ
+              {t("why_us.subheader")}
             </Text>
 
             {/* Title */}
             <Heading as="h2" className="text-white mb-12">
-              Защо да
+              {t("why_us.title_part1")}
               <br />
-              <span className="text-brand-green">изберете нас</span>?
+              <span className="text-brand-green">
+                {t("why_us.title_highlight")}
+              </span>
+              {t("why_us.title_q")}
             </Heading>
 
             {/* Info Items Grid */}

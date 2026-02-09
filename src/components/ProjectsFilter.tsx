@@ -34,6 +34,7 @@ interface PaginationMeta {
 interface ProjectsFilterProps {
   initialProjects: Project[];
   initialMeta: PaginationMeta;
+  locale: string;
 }
 
 type FilterOption = "all" | "България" | "Чужбина";
@@ -47,6 +48,7 @@ const filterOptions: { value: FilterOption; label: string }[] = [
 export default function ProjectsFilter({
   initialProjects,
   initialMeta,
+  locale,
 }: ProjectsFilterProps) {
   const [activeFilter, setActiveFilter] = useState<FilterOption>("all");
   const [projects, setProjects] = useState<Project[]>(initialProjects);
@@ -69,7 +71,7 @@ export default function ProjectsFilter({
         const countryParam =
           country === "all" ? "" : `&country=${encodeURIComponent(country)}`;
         const response = await fetch(
-          `/api/projects?page=${page}&pageSize=6${countryParam}`,
+          `/api/projects?page=${page}&pageSize=6${countryParam}&locale=${locale}`,
         );
         const result = await response.json();
 

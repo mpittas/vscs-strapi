@@ -1,0 +1,120 @@
+{
+  "hero": {
+    "badge": "VS Construction Services",
+    "title_part1": "Your Partner",
+    "title_part2": "in Solar Business",
+    "description": "Turnkey construction services and innovative renewable energy solutions.",
+    "cta": "Contact Us",
+    "learn_more": "Learn More"
+  },
+  "client_logos": {
+    "title": "We always strive for our clients to be satisfied"
+  },
+  "about_us": {
+    "title_highlight": "Clean & Renewable",
+    "title_rest": "Energy Accessible to All Users",
+    "description": "We are more than just a solar power plant installation company. We are a story of passion and interest in renewable energy, inspired by our common desire to change the world towards greener and sustainable solutions.",
+    "features": {
+      "innovative": "Innovative Solutions",
+      "sustainable": "Sustainable Development",
+      "expert": "Expert Team",
+      "quality": "Guaranteed Quality"
+    },
+    "cta": "Learn more about us"
+  },
+  "services": {
+    "subheader": "OUR SERVICES",
+    "title": "Innovations in technology and ecological solutions",
+    "items": {
+      "development": {
+        "title": "Project Development",
+        "description": "We prepare full engineering of the photovoltaic system, tailored to your energy needs and site specifics."
+      },
+      "delivery": {
+        "title": "Material Delivery",
+        "description": "We ensure delivery of high-class solar panels, inverters and mounting structures from leading world manufacturers."
+      },
+      "construction": {
+        "title": "Construction Works",
+        "description": "We perform site preparation and professional installation of supporting structures."
+      },
+      "electrical": {
+        "title": "Electromechanical Works",
+        "description": "We perform complete cabling, installation of inverters, switchboards and protections."
+      }
+    },
+    "cta": "Contact Us"
+  },
+  "projects": {
+    "subheader_highlight": "Professionalism",
+    "subheader_rest": "in every project",
+    "stats": {
+      "completed": "Completed Projects",
+      "countries": "Countries",
+      "capacity": "Installed Capacity",
+      "emissions": "Saved Carbon Emissions"
+    }
+  },
+  "why_us": {
+    "subheader": "RELIABLE AND AFFORDABLE",
+    "title_part1": "Why",
+    "title_highlight": "choose us",
+    "title_q": "?",
+    "stats_badge": {
+      "value": "325%",
+      "text_1": "Average increase",
+      "text_2": "in solar panel"
+    },
+    "items": {
+      "team": {
+        "title": "Professional Team",
+        "desc": "Certified specialists with years of experience"
+      },
+      "solutions": {
+        "title": "Personalized Solutions",
+        "desc": "Systems tailored to your energy needs"
+      },
+      "plans": {
+        "title": "Affordable Plans",
+        "desc": "Flexible financing and maximizing guidelines"
+      },
+      "support": {
+        "title": "Ongoing Support",
+        "desc": "Full support and system monitoring after installation"
+      },
+      "equipment": {
+        "title": "Quality Equipment",
+        "desc": "We use premium solar panels and inverters"
+      },
+      "installation": {
+        "title": "Fast Installation",
+        "desc": "Efficient project execution without compromising quality"
+      }
+    }
+  },
+  "blog": {
+    "title_part1": "Stay up to date with",
+    "title_highlight": "news",
+    "title_part2": "related to solar",
+    "title_part3": "panels on the site",
+    "view_all": "View All",
+    "no_posts": "No articles published yet."
+  },
+  "marquee": {
+    "items": [
+      "Installation",
+      "Renewable Energy",
+      "Solar Installations",
+      "Turnkey Services",
+      "Professional Installation",
+      "Consultations",
+      "Maintenance",
+      "Warranty"
+    ]
+  },
+  "cta_banner": {
+    "title": "Contact us and book a consultation!",
+    "btn_text": "Contact Us",
+    "phone_label": "Book a consultation"
+  }
+}

@@ -31,15 +31,15 @@ function ShareButton({ icon: Icon, label, onClick }: ShareButtonProps) {
 }
 
 interface PageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
 
-  const post = await getBlogPost(slug);
+  const post = await getBlogPost(slug, locale);
 
   if (!post) {
     return { title: "Post Not Found" };
@@ -64,9 +64,9 @@ export async function generateStaticParams() {
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
 
-  const post = await getBlogPost(slug);
+  const post = await getBlogPost(slug, locale);
 
   if (!post) {
     notFound();

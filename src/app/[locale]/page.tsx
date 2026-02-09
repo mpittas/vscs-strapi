@@ -9,7 +9,9 @@ import {
   Marquee,
   CTABanner,
 } from "@/components/sections";
-import { getPaginatedData } from "@/lib/strapi";
+import { getBlogPosts, getPaginatedData } from "@/lib/strapi";
+import initTranslations from "@/app/i18n";
+import TranslationsProvider from "@/components/TranslationsProvider";
 import { getStrapiMedia } from "@/lib/media";
 import { formatDate } from "@/lib/utils";
 
@@ -28,7 +30,13 @@ interface BlogPost {
   };
 }
 
-export default async function HomePage() {
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const { resources } = await initTranslations(locale, ["common", "home"]);
   let posts: any[] = [];
 
   try {
@@ -36,7 +44,8 @@ export default async function HomePage() {
       "blog-posts",
       1,
       3, // Limit to 3 items
-      ["strapi", "blog-posts"]
+      ["strapi", "blog-posts"],
+      locale,
     );
 
     posts =
@@ -56,7 +65,11 @@ export default async function HomePage() {
   }
 
   return (
-    <>
+    <TranslationsProvider
+      locale={locale}
+      resources={resources}
+      namespaces={["common", "home"]}
+    >
       <Hero />
       <ClientLogos />
       <AboutUs />
@@ -66,6 +79,6 @@ export default async function HomePage() {
       <BlogOverview posts={posts} />
       <Marquee />
       <CTABanner />
-    </>
+    </TranslationsProvider>
   );
 }

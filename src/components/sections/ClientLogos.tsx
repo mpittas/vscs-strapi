@@ -1,6 +1,9 @@
-import Image from "next/image";
+"use client";
+
+import { useTranslation } from "react-i18next";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
+import Image from "next/image";
 
 const clientLogos = [
   { src: "/clients-logos/client-logo-1.svg", alt: "Client 1" },
@@ -11,6 +14,8 @@ const clientLogos = [
 ];
 
 export default function ClientLogos() {
+  const { t } = useTranslation("home");
+
   return (
     <Section paddingY="sm" className="bg-[#e8f0dc]">
       <Container>
@@ -18,7 +23,7 @@ export default function ClientLogos() {
         <div className="flex flex-col lg:flex-row lg:items-center gap-8">
           {/* Left side - Title */}
           <div className="text-dark-green max-w-[300px]">
-            Ние винаги се страмим нашите клиенти да бъдат доволни
+            {t("client_logos.title")}
           </div>
 
           {/* Middle - Horizontal line (hidden on mobile) */}

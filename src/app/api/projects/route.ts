@@ -6,9 +6,10 @@ export async function GET(request: NextRequest) {
   const page = parseInt(searchParams.get("page") || "1", 10);
   const pageSize = parseInt(searchParams.get("pageSize") || "6", 10);
   const country = searchParams.get("country") || undefined;
+  const locale = searchParams.get("locale") || "bg";
 
   try {
-    const result = await getPaginatedProjects(page, pageSize, country);
+    const result = await getPaginatedProjects(page, pageSize, country, locale);
     return NextResponse.json(result);
   } catch (error) {
     console.error("Error in projects API:", error);

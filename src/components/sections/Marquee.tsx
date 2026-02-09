@@ -7,17 +7,9 @@ interface MarqueeProps {
   speed?: "slow" | "normal" | "fast";
 }
 
+import { useTranslation } from "react-i18next";
+
 // Marquee items - these are the titles that will scroll
-const marqueeItems = [
-  "Инсталация",
-  "Възобовяема енергия",
-  "Солар ни инсталации",
-  "Услуги до ключ",
-  "Професионален монтаж",
-  "Консултации",
-  "Поддръжка",
-  "Гаранция",
-];
 
 // Asterisk separator component
 const AsteriskSeparator = () => (
@@ -27,6 +19,10 @@ const AsteriskSeparator = () => (
 );
 
 export default function Marquee({ className, speed = "normal" }: MarqueeProps) {
+  const { t } = useTranslation("home");
+  const items = t("marquee.items", { returnObjects: true });
+  const marqueeItems = Array.isArray(items) ? (items as string[]) : [];
+
   // Speed classes for the animation
   const speedClasses = {
     slow: "animate-marquee-slow",
@@ -50,30 +46,17 @@ export default function Marquee({ className, speed = "normal" }: MarqueeProps) {
 
   return (
     <section
-      className={cn(
-        "bg-dark-green py-5 overflow-hidden relative",
-        className
-      )}
+      className={cn("bg-dark-green py-5 overflow-hidden relative", className)}
     >
       {/* Marquee container */}
       <div className="flex">
         {/* First set - animates */}
-        <div
-          className={cn(
-            "flex items-center shrink-0",
-            speedClasses[speed]
-          )}
-        >
+        <div className={cn("flex items-center shrink-0", speedClasses[speed])}>
           {renderMarqueeItems()}
         </div>
-        
+
         {/* Duplicate set for seamless loop */}
-        <div
-          className={cn(
-            "flex items-center shrink-0",
-            speedClasses[speed]
-          )}
-        >
+        <div className={cn("flex items-center shrink-0", speedClasses[speed])}>
           {renderMarqueeItems()}
         </div>
       </div>

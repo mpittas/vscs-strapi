@@ -7,23 +7,27 @@ import { usePathname } from "next/navigation";
 import Button from "./ui/Button";
 import Container from "./ui/Container";
 import { useLenis } from "./SmoothScrollProvider";
-
-const navLinks = [
-  { name: "Начало", href: "/" },
-  { name: "За Нас", href: "/about" },
-  { name: "Услуги", href: "/uslugi" },
-  { name: "Проекти", href: "/proekti" },
-  { name: "Блог", href: "/blog" },
-  { name: "Кариери", href: "/karieri" },
-  { name: "Контакти", href: "/kontakti" },
-];
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const Navbar = () => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
-  const isHomePage = pathname === "/";
+  const isHomePage =
+    pathname === "/" || pathname === "/en" || pathname === "/bg";
   const lenis = useLenis();
+
+  const navLinks = [
+    { name: t("nav.home"), href: "/" },
+    { name: t("nav.about"), href: "/about" },
+    { name: t("nav.services"), href: "/uslugi" },
+    { name: t("nav.projects"), href: "/proekti" },
+    { name: t("nav.blog"), href: "/blog" },
+    { name: t("nav.careers"), href: "/karieri" },
+    { name: t("nav.contacts"), href: "/kontakti" },
+  ];
 
   useEffect(() => {
     // Handler for scroll events
@@ -134,12 +138,13 @@ const Navbar = () => {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-solar-orange transition-all group-hover:w-full" />
             </Link>
           ))}
+          <LanguageSwitcher />
           <Button
             href="/contact"
             size="sm"
             variant={!isHomePage || isScrolled ? "black" : "secondary"}
           >
-            Свържете се
+            {t("nav.contact_us")}
           </Button>
         </div>
 
@@ -188,8 +193,11 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
+          <div className="py-2">
+            <LanguageSwitcher />
+          </div>
           <Button href="/contact" fullWidth>
-            Свържете се
+            {t("nav.contact_us")}
           </Button>
         </Container>
       </div>
