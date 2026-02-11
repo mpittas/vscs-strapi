@@ -20,7 +20,7 @@ export default function AboutUs() {
   ];
 
   return (
-    <Section paddingY="xl" bgColor="white">
+    <Section paddingY="lg" bgColor="white">
       <Container>
         <div className="grid lg:grid-cols-2 gap-0 lg:gap-20 items-center">
           {/* Left Column - Images */}
@@ -86,7 +86,7 @@ export default function AboutUs() {
             </Text>
 
             {/* Features list - 2x2 grid */}
-            <div className="grid grid-cols-2 gap-x-8 gap-y-4 mb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-10">
               {features.map((feature, index) => (
                 <div key={index} className="flex items-center gap-3">
                   <span className="flex items-center justify-center w-5 h-5 rounded-full bg-dark-green text-white shrink-0">

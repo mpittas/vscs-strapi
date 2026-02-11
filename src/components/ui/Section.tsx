@@ -10,8 +10,8 @@ interface SectionProps {
 
 const paddingClasses = {
   none: "",
-  sm: "py-12 lg:py-16",
-  md: "py-12 lg:py-20",
+  sm: "py-8 sm:py-12 lg:py-16",
+  md: "py-10 sm:py-16 lg:py-20",
   lg: "py-20 lg:py-24",
   xl: "py-24 lg:py-32",
 };
@@ -42,7 +42,7 @@ export default function Section({
       className={cn(
         paddingClasses[paddingY],
         !hasBgInClassName && bgClass,
-        className
+        className,
       )}
     >
       {children}

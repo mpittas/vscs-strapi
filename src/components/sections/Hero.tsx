@@ -9,28 +9,7 @@ import { Heading, Text } from "@/components/ui/Typography";
 import gsap from "gsap";
 import { useTranslation } from "react-i18next";
 
-// Helper component to split text into animated characters
-function AnimatedText({
-  text,
-  className,
-}: {
-  text: string;
-  className?: string;
-}) {
-  return (
-    <span className={className}>
-      {text.split("").map((char, index) => (
-        <span
-          key={index}
-          className="hero-char inline-block"
-          style={{ display: char === " " ? "inline" : "inline-block" }}
-        >
-          {char === " " ? "\u00A0" : char}
-        </span>
-      ))}
-    </span>
-  );
-}
+// Helper component removed as we use simple line animation now
 
 export default function Hero() {
   const { t } = useTranslation("home");
@@ -50,25 +29,25 @@ export default function Hero() {
       y: 20,
     },
 
-    // Title characters animation
+    // Title lines animation
     title: {
-      duration: 0.6,
-      stagger: 0.015,
-      y: 40,
-      delayAfterBadge: 0.15,
+      duration: 0.8,
+      stagger: 0.1,
+      y: "100%", // Move from 100% (below) to 0
+      delayAfterBadge: 0.1,
     },
 
     // Underline animation (fades in with title)
     underline: {
       duration: 1,
-      delay: 0.5,
+      delay: 0.2, // relative to title start
       ease: "power2.out",
     },
 
     // Description animation
     description: {
       duration: 0.6,
-      delayAfterTitle: 0.1,
+      delayAfterTitle: 0,
       y: 20,
     },
 
@@ -86,14 +65,16 @@ export default function Hero() {
     const ctx = gsap.context(() => {
       // Get specific elements
       const badge = document.querySelector(".hero-badge");
-      const heroChars = gsap.utils.toArray<HTMLElement>(".hero-char");
+      const heroLines = gsap.utils.toArray<HTMLElement>(".hero-title-line");
       const underline = document.querySelector(".hero-underline");
       const description = document.querySelector(".hero-description");
       const buttons = document.querySelector(".hero-buttons");
 
       // Initial states
       if (badge) gsap.set(badge, { y: animConfig.badge.y, opacity: 0 });
-      gsap.set(heroChars, { y: animConfig.title.y, opacity: 0 });
+      // Set lines to be translated down by 100% initially
+      gsap.set(heroLines, { y: animConfig.title.y });
+
       if (underline)
         gsap.set(underline, {
           opacity: 0,
@@ -119,20 +100,21 @@ export default function Hero() {
         });
       }
 
-      // 2. Animate title characters + underline together (fades in at the same time)
+      // 2. Animate title lines + underline
       const titleLabel = "titleStart";
       tl.addLabel(titleLabel, `+=${animConfig.title.delayAfterBadge}`);
 
-      tl.to(
-        heroChars,
-        {
-          y: 0,
-          opacity: 1,
-          duration: animConfig.title.duration,
-          stagger: animConfig.title.stagger,
-        },
-        titleLabel,
-      );
+      if (heroLines.length > 0) {
+        tl.to(
+          heroLines,
+          {
+            y: 0,
+            duration: animConfig.title.duration,
+            stagger: animConfig.title.stagger,
+          },
+          titleLabel,
+        );
+      }
 
       if (underline) {
         tl.to(
@@ -146,14 +128,16 @@ export default function Hero() {
           titleLabel,
         );
       }
-      // Calculate when title animation ends (duration + all stagger delays)
-      const titleEndTime =
-        animConfig.title.duration +
-        (heroChars.length - 1) * animConfig.title.stagger;
-      const titleEndLabel = "titleEnd";
-      tl.addLabel(titleEndLabel, `${titleLabel}+=${titleEndTime}`);
 
-      // 3. Animate description (right after title finishes)
+      // Calculate when title animation ends
+      // duration + (count-1)*stagger
+      const titleDuration =
+        animConfig.title.duration +
+        Math.max(0, heroLines.length - 1) * animConfig.title.stagger;
+      const titleEndLabel = "titleEnd";
+      tl.addLabel(titleEndLabel, `${titleLabel}+=${titleDuration}`);
+
+      // 3. Animate description
       if (description) {
         tl.to(
           description,
@@ -162,6 +146,8 @@ export default function Hero() {
             opacity: 1,
             duration: animConfig.description.duration,
           },
+          // Start slightly before title ends for better flow, or right after
+          // using straight logic: after title finishes
           `${titleEndLabel}+=${animConfig.description.delayAfterTitle}`,
         );
       }
@@ -202,7 +188,7 @@ export default function Hero() {
           <div className="absolute inset-0 bg-gradient-to-b from-[rgba(5,21,17,0.85)] to-[rgba(4,9,15,1)]" />
         </div>
 
-        <section className="relative z-10 flex items-center justify-center pt-20 sm:pt-24 lg:pt-28 min-h-[100dvh] sm:min-h-0 sm:h-[600px] md:h-[700px] lg:h-[800px] xl:h-[880px]">
+        <section className="relative z-10 flex items-center justify-center pt-20 sm:pt-24 lg:pt-28 min-h-[85dvh] sm:min-h-0 sm:h-[600px] md:h-[700px] lg:h-[800px] xl:h-[880px]">
           <Container className="flex gap-y-5 lg:gap-y-6 flex-col items-start">
             {/* Badge with reveal animation */}
             <div className="hero-badge flex items-center gap-2">
@@ -222,21 +208,22 @@ export default function Hero() {
               </Text>
             </div>
 
-            {/* Title with character-by-character animation */}
+            {/* Title with line-by-line slide up animation */}
             <Heading
               as="h1"
               className="text-[38px] sm:text-[40px] md:text-[52px] lg:text-[62px] xl:text-[72px] sm:max-w-md md:max-w-xl lg:max-w-3xl xl:max-w-4xl leading-[1.15] text-white font-normal"
             >
               <span className="block overflow-hidden">
-                <AnimatedText text={t("hero.title_part1")} className="block" />
+                <span className="hero-title-line block">
+                  {t("hero.title_part1")}
+                </span>
               </span>
               <span className="block">
                 <span className="relative inline-block overflow-visible">
-                  <span className="overflow-hidden block relative block z-1">
-                    <AnimatedText
-                      text={t("hero.title_part2")}
-                      className="inline-block"
-                    />
+                  <span className="overflow-hidden block relative z-1">
+                    <span className="hero-title-line block">
+                      {t("hero.title_part2")}
+                    </span>
                   </span>
                   <Image
                     src="/icons/heading-underline.svg"

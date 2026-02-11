@@ -48,7 +48,7 @@ export default function OurValues() {
     <Section paddingY="xl" className="bg-white">
       <Container>
         {/* Header Section */}
-        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 lg:gap-16 mb-16 lg:mb-20">
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 lg:gap-16 mb-14">
           {/* Left - Badge and Title */}
           <div className="lg:max-w-2xl">
             <BadgeDefault className="mb-4">НАШИТЕ ЦЕННОСТИ</BadgeDefault>

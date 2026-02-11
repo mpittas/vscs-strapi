@@ -12,7 +12,7 @@ export default function CTABanner() {
   const { t } = useTranslation("home");
   return (
     <Section
-      paddingY="xl"
+      paddingY="lg"
       bgColor="bg-[#377B2C]"
       className="relative overflow-hidden"
     >
