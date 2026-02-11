@@ -1,20 +1,16 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
-import Slider from "react-slick";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 import { Heading, Text } from "@/components/ui/Typography";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import Container from "@/components/ui/Container";
 import ProjectPostCard from "@/components/ui/ProjectPostCard";
 import Section from "@/components/ui/Section";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
 import { useTranslation } from "react-i18next";
-
-// Import slick carousel CSS
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 // Location dots on the map (positions as percentages)
 const locations = [
@@ -58,43 +54,41 @@ const blogPosts = [
 export default function ProjectsOverview() {
   const { t } = useTranslation("home");
   const [activeLocation, setActiveLocation] = useState<number | null>(null);
-  const sliderRef = useRef<Slider>(null);
 
-  // Slick carousel settings
-  // React-slick breakpoints apply when screen width is BELOW the breakpoint
-  // Desktop (>1024px): 3 items, Tablet (768-1024px): 2 items, Mobile (<768px): 1 item
-  const sliderSettings: any = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    arrows: false,
-    responsive: [
-      {
-        breakpoint: 1023,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 767,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+  // Embla Carousel Setup
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      align: "start",
+      loop: true,
+      skipSnaps: false,
+      dragFree: false,
+    },
+    [Autoplay({ delay: 4000, stopOnInteraction: false })],
+  );
 
-  const handlePrev = () => {
-    sliderRef.current?.slickPrev();
-  };
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
 
-  const handleNext = () => {
-    sliderRef.current?.slickNext();
-  };
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  // Keep track of canScroll state (optional but good for UX)
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(false);
+
+  const onSelect = useCallback((api: any) => {
+    setCanScrollPrev(api.canScrollPrev());
+    setCanScrollNext(api.canScrollNext());
+  }, []);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect(emblaApi);
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+  }, [emblaApi, onSelect]);
 
   return (
     <Section paddingY="xl" bgColor="white" className="overflow-hidden">
@@ -206,11 +200,14 @@ export default function ProjectsOverview() {
 
         {/* Blog Posts Carousel */}
         <div className="relative">
-          {/* Slick Carousel */}
-          <div className="slick-carousel-container">
-            <Slider ref={sliderRef} {...sliderSettings}>
+          {/* Embla Carousel Viewport */}
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex -ml-4 touch-pan-y">
               {blogPosts.map((post, index) => (
-                <div key={index} className="px-0 md:px-3">
+                <div
+                  key={index}
+                  className="flex-[0_0_85%] md:flex-[0_0_50%] lg:flex-[0_0_33.333333%] min-w-0 pl-4 transition-opacity duration-300"
+                >
                   <ProjectPostCard
                     image={post.image}
                     location={post.location}
@@ -218,20 +215,24 @@ export default function ProjectsOverview() {
                   />
                 </div>
               ))}
-            </Slider>
+            </div>
           </div>
 
           {/* Carousel Navigation */}
-          <div className="flex mt-2 lg:mt-8 gap-2">
+          <div className="flex mt-6 lg:mt-8 gap-2">
             <button
-              onClick={handlePrev}
-              className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:border-brand-green hover:bg-brand-green transition-all group cursor-pointer"
+              onClick={scrollPrev}
+              type="button"
+              className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:border-brand-green hover:bg-brand-green transition-all group cursor-pointer active:scale-95"
+              aria-label="Previous slide"
             >
               <ChevronLeft className="w-5 h-5 text-slate-600 group-hover:text-dark-green" />
             </button>
             <button
-              onClick={handleNext}
-              className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:border-brand-green hover:bg-brand-green transition-all group cursor-pointer"
+              onClick={scrollNext}
+              type="button"
+              className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:border-brand-green hover:bg-brand-green transition-all group cursor-pointer active:scale-95"
+              aria-label="Next slide"
             >
               <ChevronRight className="w-5 h-5 text-slate-600 group-hover:text-dark-green" />
             </button>

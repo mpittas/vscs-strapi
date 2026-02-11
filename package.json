@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@types/react-slick": "^0.23.13",
+    "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
     "gsap": "^3.14.2",
     "i18next": "^25.8.4",
     "i18next-resources-to-backend": "^1.2.1",
