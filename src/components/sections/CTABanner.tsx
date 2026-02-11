@@ -42,10 +42,7 @@ export default function CTABanner() {
         <div>
           {/* Left Content */}
           <div className="text-left max-w-[700px]">
-            <Heading
-              as="h2"
-              className="text-white mb-12 leading-tight text-3xl lg:text-4xl xl:text-5xl"
-            >
+            <Heading as="h2" className="text-white mb-6 md:mb-14 max-w-2xl">
               {t("cta_banner.title")}
             </Heading>
 
@@ -58,6 +55,7 @@ export default function CTABanner() {
                 size="lg"
                 showIcon
                 iconPosition="right"
+                className="w-full md:w-auto"
               >
                 {t("cta_banner.btn_text")}
               </Button>

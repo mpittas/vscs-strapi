@@ -20,9 +20,9 @@ export default function ClientLogos() {
     <Section paddingY="sm" className="bg-[#e8f0dc]">
       <Container>
         {/* Mobile: stacked layout, Desktop: horizontal layout */}
-        <div className="flex flex-col lg:flex-row lg:items-center gap-8">
+        <div className="flex flex-col items-center lg:flex-row gap-8">
           {/* Left side - Title */}
-          <div className="text-dark-green max-w-[300px]">
+          <div className="text-dark-green max-w-[300px] text-center lg:text-left">
             {t("client_logos.title")}
           </div>
 
@@ -30,12 +30,9 @@ export default function ClientLogos() {
           <div className="hidden lg:block flex-1 h-px bg-slate-400/30" />
 
           {/* Right side - Client logos */}
-          <div className="flex flex-wrap lg:flex-nowrap items-center gap-4 sm:gap-6 lg:gap-10 shrink-0">
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-6 sm:gap-x-12 lg:flex-nowrap lg:gap-10 shrink-0 max-w-[400px] lg:max-w-none">
             {clientLogos.map((logo, index) => (
-              <div
-                key={index}
-                className="w-26 lg:w-auto flex items-center justify-center"
-              >
+              <div key={index} className="flex items-center justify-center">
                 <Image
                   src={logo.src}
                   alt={logo.alt}

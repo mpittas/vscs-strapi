@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { MapPin, Phone, Mail } from "lucide-react";
 import Container from "@/components/ui/Container";
+import FooterBottom from "./FooterBottom";
 
 // Footer link data
 const quickLinks = [
@@ -25,12 +26,6 @@ const contactInfo = {
   phone: "+359 877 15 98 58",
   email: "office@vscs-bg.com",
 };
-
-const legalLinks = [
-  { label: "Политика за поверителност", href: "/privacy" },
-  { label: "Общи условия", href: "/terms" },
-  { label: "Бисквитки", href: "/cookies" },
-];
 
 // Social icon components
 const FacebookIcon = () => (
@@ -80,11 +75,11 @@ export default function Footer() {
       {/* Main Footer Content */}
       <div>
         <Container>
-          <div className="py-6 lg:py-12 border-y border-white/5">
-            <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
+          <div className="py-8 lg:py-12 border-y border-white/5">
+            <div className="grid grid-cols-2 lg:grid-cols-12 gap-y-10 gap-x-6 lg:gap-8">
               {/* Brand Column - Tagline & Social */}
-              <div className="lg:col-span-4">
-                <p className="text-white/70 mb-6 max-w-xs leading-relaxed">
+              <div className="col-span-2 lg:col-span-4">
+                <p className="text-white/70 mb-6 lg:max-w-xs leading-relaxed text-left">
                   Строителни услуги до ключ и иновативни решения за възобновяема
                   енергия.
                 </p>
@@ -112,13 +107,13 @@ export default function Footer() {
               </div>
 
               {/* Quick Links */}
-              <div className="lg:col-span-2">
+              <div className="col-span-1 lg:col-span-2">
                 <div className="text-brand-green font-normal mb-3">
                   Бързи Линкове
                 </div>
                 <ul className="space-y-2">
                   {quickLinks.map((link) => (
-                    <li key={link.href}>
+                    <li key={link.href} className="mb-1 md:mb-2">
                       <Link
                         href={link.href}
                         className="text-white/70 hover:text-brand-green transition-colors text-sm"
@@ -131,13 +126,13 @@ export default function Footer() {
               </div>
 
               {/* Services Links */}
-              <div className="lg:col-span-3">
+              <div className="col-span-1 lg:col-span-3">
                 <div className="text-brand-green font-normal mb-3">
                   Проектиране
                 </div>
                 <ul className="space-y-2">
                   {servicesLinks.map((link) => (
-                    <li key={link.href}>
+                    <li key={link.href} className="mb-1 md:mb-2">
                       <Link
                         href={link.href}
                         className="text-white/70 hover:text-brand-green transition-colors text-sm"
@@ -150,7 +145,7 @@ export default function Footer() {
               </div>
 
               {/* Contact Info */}
-              <div className="lg:col-span-3">
+              <div className="col-span-1 lg:col-span-3">
                 <div className="text-brand-green font-normal mb-3">
                   Контактна Информация
                 </div>
@@ -181,32 +176,18 @@ export default function Footer() {
                   </li>
                 </ul>
               </div>
+
+              {/* Legal Info (Mobile only) */}
+              <FooterBottom isMobile className="col-span-1 lg:hidden" />
             </div>
           </div>
         </Container>
       </div>
 
-      {/* Bottom Bar */}
-      <div className="py-6">
-        <Container className="py-5 flex flex-col lg:flex-row justify-between items-center gap-4">
-          <div className="text-xs text-white/50">
-            VSCS BG, {new Date().getFullYear()} © Всички права са запазени
-          </div>
-          <div className="flex items-center gap-3 text-xs">
-            {legalLinks.map((link, index) => (
-              <span key={link.href} className="flex items-center gap-2">
-                <Link
-                  href={link.href}
-                  className="text-white/50 hover:text-white/80 transition-colors"
-                >
-                  {link.label}
-                </Link>
-                {index < legalLinks.length - 1 && (
-                  <span className="text-brand-green">|</span>
-                )}
-              </span>
-            ))}
-          </div>
+      {/* Bottom Bar (Desktop only) */}
+      <div className="hidden lg:block py-6">
+        <Container>
+          <FooterBottom />
         </Container>
       </div>
     </footer>

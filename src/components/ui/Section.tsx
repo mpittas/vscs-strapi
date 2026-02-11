@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 interface SectionProps {
   children: React.ReactNode;
   className?: string;
-  paddingY?: "none" | "sm" | "md" | "lg" | "xl";
+  paddingY?: "none" | "sm" | "md" | "lg" | "xl" | "blog";
   bgColor?: "white" | "light" | "dark" | "dark-green" | string;
   id?: string;
 }
@@ -14,6 +14,7 @@ const paddingClasses = {
   md: "py-10 sm:py-16 lg:py-20",
   lg: "py-20 lg:py-24",
   xl: "py-24 lg:py-32",
+  blog: "py-10 pt-24 lg:py-32",
 };
 
 const bgColorClasses: Record<string, string> = {

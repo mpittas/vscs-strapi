@@ -17,10 +17,10 @@ interface BlogOverviewProps {
 export default function BlogOverview({ posts = [] }: BlogOverviewProps) {
   const { t } = useTranslation("home");
   return (
-    <Section paddingY="xl" bgColor="light">
+    <Section paddingY="blog" bgColor="light">
       <Container>
         {/* Header */}
-        <div className="flex flex-col lg:flex-row items-start justify-between mb-12">
+        <div className="flex flex-col lg:flex-row items-start justify-between mb-2 md:mb-12">
           {/* Title */}
           <Heading as="h2" className="max-w-xl mb-6 lg:mb-0">
             {t("blog.title_part1")}{" "}

@@ -61,8 +61,9 @@ export default function ProjectsOverview() {
   const sliderRef = useRef<Slider>(null);
 
   // Slick carousel settings
-  // Desktop: 3 items, Tablet: 2 items, Mobile: 1 item
-  const sliderSettings = {
+  // React-slick breakpoints apply when screen width is BELOW the breakpoint
+  // Desktop (>1024px): 3 items, Tablet (768-1024px): 2 items, Mobile (<768px): 1 item
+  const sliderSettings: any = {
     dots: false,
     infinite: true,
     speed: 500,
@@ -71,14 +72,14 @@ export default function ProjectsOverview() {
     arrows: false,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1023,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 768,
+        breakpoint: 767,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -209,7 +210,7 @@ export default function ProjectsOverview() {
           <div className="slick-carousel-container">
             <Slider ref={sliderRef} {...sliderSettings}>
               {blogPosts.map((post, index) => (
-                <div key={index} className="px-0 lg:px-3">
+                <div key={index} className="px-0 md:px-3">
                   <ProjectPostCard
                     image={post.image}
                     location={post.location}
