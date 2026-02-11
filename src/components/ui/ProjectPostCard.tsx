@@ -17,7 +17,10 @@ export default function ProjectPostCard({
   href = "#",
 }: ProjectPostCardProps) {
   return (
-    <Link href={href} className="group block w-full p-4 rounded-2xl border border-neutral-200 hover:bg-neutral-100/70 transition-colors duration-300">
+    <Link
+      href={href}
+      className="group flex flex-col h-full w-full p-4 rounded-2xl border border-neutral-200 hover:bg-neutral-100/70 transition-colors duration-300"
+    >
       {/* Image Container */}
       <div className="relative h-[280px] rounded-2xl overflow-hidden mb-4">
         <Image
@@ -29,7 +32,7 @@ export default function ProjectPostCard({
       </div>
 
       {/* Content */}
-      <div className="flex items-start justify-between gap-3">
+      <div className="flex items-start justify-between gap-3 flex-grow">
         <div className="flex-1">
           {/* Location */}
           <div className="flex items-center gap-1.5 text-slate-500 mb-2">
@@ -40,10 +43,7 @@ export default function ProjectPostCard({
           </div>
 
           {/* Title */}
-          <Text
-            variant="body-18"
-            className="font-normal leading-[1.425]"
-          >
+          <Text variant="body-18" className="font-normal leading-[1.425]">
             {title}
           </Text>
         </div>

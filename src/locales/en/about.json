@@ -1,0 +1,83 @@
+{
+  "intro": {
+    "badge": "WHO WE ARE",
+    "title": "Partnership built on trust and innovation",
+    "description_1": "We are more than just a photovoltaic power plant installation company. We are a story of passion and interest in renewable energy, inspired by our common desire to change the world towards greener and sustainable solutions.",
+    "description_2": "For us, it all started with two people who fell in love not only with each other, but also with the idea of change. Through years of experience in the field of photovoltaic systems, we have come to know all possible ways of working and problems that may arise.",
+    "cards": {
+      "trust": {
+        "title": "Trust",
+        "description": "Full transparency with our clients and establishing a trusted and reliable business partnership"
+      },
+      "innovation": {
+        "title": "Innovations in Technology",
+        "description": "We use proprietary software to facilitate processes for both workers and management."
+      }
+    }
+  },
+  "values": {
+    "badge": "OUR VALUES",
+    "title": "Innovations in Technology and Ecological Solutions",
+    "items": {
+      "team_work": {
+        "title": "Teamwork",
+        "description": "High level of dedication and professionalism, experience and diversity at both management and executive levels"
+      },
+      "safety": {
+        "title": "Safety and Reliability",
+        "description": "Work in strict compliance with applicable health, safety and environmental regulations"
+      },
+      "trust": {
+        "title": "Trust",
+        "description": "Building long-term relationships based on fairness and transparency"
+      },
+      "respect": {
+        "title": "Respect",
+        "description": "Respect, experience and professionalism in relations with employees and clients of the company"
+      },
+      "support": {
+        "title": "Support",
+        "description": "Customer support by optimizing work and providing cost-effective solutions for PV installation."
+      },
+      "flexibility": {
+        "title": "Flexibility",
+        "description": "We are here when and where the client needs us"
+      }
+    }
+  },
+  "team": {
+    "badge": "OUR TEAM",
+    "title": "Our Team of Experts",
+    "description": "Our team of certified specialists is dedicated to providing the best solar solutions for your home and business.",
+    "roles": {
+      "ceo": "Chief Executive Officer",
+      "solar_engineer": "Solar Systems Engineer",
+      "tech_specialist": "Technical Specialist",
+      "sales_consultant": "Sales Consultant"
+    }
+  },
+  "stats": {
+    "completed_projects": "Completed Projects",
+    "countries": "Countries",
+    "installed_capacity": "Installed Capacity",
+    "happy_clients": "Happy Clients"
+  },
+  "consultation": {
+    "title_part1": "Start your",
+    "title_part2": "solar project",
+    "title_part3": "today",
+    "description": "Contact us for a free consultation and learn how you can reduce your electricity bills by up to 90%.",
+    "form": {
+      "email_label": "Email",
+      "email_placeholder": "example@email.com",
+      "phone_label": "Phone",
+      "phone_placeholder": "+359...",
+      "message_label": "Message",
+      "submit_btn": "Free Consultation"
+    }
+  },
+  "metadata": {
+    "title": "About Us",
+    "description": "Learn about SolarTech Solutions - our mission to power a sustainable future with premium solar energy solutions. 15+ years of experience, 10,000+ installations."
+  }
+}

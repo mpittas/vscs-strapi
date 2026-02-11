@@ -1,37 +1,17 @@
+"use client";
+
 import Image from "next/image";
 import { Heading, Text } from "@/components/ui/Typography";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import BadgeDefault from "@/components/ui/BadgeDefault";
+import { useTranslation } from "react-i18next";
 
 interface TeamMember {
   name: string;
   role: string;
   image: string;
 }
-
-const teamMembers: TeamMember[] = [
-  {
-    name: "Георги Димитров",
-    role: "Главен изпълнителен директор",
-    image: "/images/team-image-01.jpg",
-  },
-  {
-    name: "Мария Иванова",
-    role: "Инженер соларни системи",
-    image: "/images/team-image-02.jpg",
-  },
-  {
-    name: "Николай Петров",
-    role: "Технически специалист",
-    image: "/images/team-image-03.jpg",
-  },
-  {
-    name: "Елена Тодорова",
-    role: "Консултант продажби",
-    image: "/images/team-image-04.jpg",
-  },
-];
 
 function TeamMemberCard({ member }: { member: TeamMember }) {
   return (
@@ -57,30 +37,46 @@ function TeamMemberCard({ member }: { member: TeamMember }) {
   );
 }
 
-interface OurTeamProps {
-  contentMaxWidth?: string;
-}
+export default function OurTeam() {
+  const { t } = useTranslation("about");
 
-export default function OurTeam({ contentMaxWidth = "400px" }: OurTeamProps) {
+  const teamMembers: TeamMember[] = [
+    {
+      name: "Георги Димитров",
+      role: t("team.roles.ceo"),
+      image: "/images/team-image-01.jpg",
+    },
+    {
+      name: "Мария Иванова",
+      role: t("team.roles.solar_engineer"),
+      image: "/images/team-image-02.jpg",
+    },
+    {
+      name: "Николай Петров",
+      role: t("team.roles.tech_specialist"),
+      image: "/images/team-image-03.jpg",
+    },
+    {
+      name: "Елена Тодорова",
+      role: t("team.roles.sales_consultant"),
+      image: "/images/team-image-04.jpg",
+    },
+  ];
+
   return (
     <Section paddingY="xl" className="bg-[#EDEDED]">
       <Container>
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-22 items-start">
           {/* Left - Text Content */}
-          <div
-            className="w-full lg:w-auto lg:shrink-0"
-            style={{ flexBasis: contentMaxWidth, maxWidth: contentMaxWidth }}
-          >
-            <BadgeDefault className="mb-4">НАШИЯТ ЕКИП</BadgeDefault>
+          <div className="w-full lg:shrink-0 lg:basis-[400px] lg:max-w-[400px] pb-6 md:pb-0">
+            <BadgeDefault className="mb-4">{t("team.badge")}</BadgeDefault>
 
             <Heading as="h2" className="mb-6">
-              Нашият екип от експерти
+              {t("team.title")}
             </Heading>
 
             <Text variant="body-16" className="text-slate-600">
-              Нашият екип от сертифицирани специалисти е посветен на
-              предоставянето на най-добрите соларни решения за вашия дом и
-              бизнес.
+              {t("team.description")}
             </Text>
           </div>
 

@@ -1,49 +1,49 @@
+"use client";
+
 import { Heading } from "@/components/ui/Typography";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import IconTextBox from "@/components/ui/IconTextBox";
 import Section from "@/components/ui/Section";
 import BadgeDefault from "@/components/ui/BadgeDefault";
-
-const values = [
-  {
-    icon: "/icons/plug-solar-icon-green.svg",
-    title: "Екипна работа",
-    description:
-      "високо ниво на отдаденост и професионализъм, опит и разнообразие както на управленски, така и на изпълнителни нива",
-  },
-  {
-    icon: "/icons/plug-solar-icon-green.svg",
-    title: "Безопасност и надеждност",
-    description:
-      "Работа в стриктно съответствие с приложимите регулации за здраве, безопасност и опазване околната среда",
-  },
-  {
-    icon: "/icons/plug-solar-icon-green.svg",
-    title: "Безопасност и надеждност",
-    description:
-      "Работа в стриктно съответствие с приложимите регулации за здраве, безопасност и опазване околната среда",
-  },
-  {
-    icon: "/icons/plug-solar-icon-green.svg",
-    title: "Уважение",
-    description:
-      "Уважение, опит и професионализъм в отношенията със служителите и клиентите на дружеството",
-  },
-  {
-    icon: "/icons/plug-solar-icon-green.svg",
-    title: "Подкрепа",
-    description:
-      "Подкрепа за клиентите чрез оптимизиране на работата и предоставяне на разходно-ефективни решения за инсталиране на ФВЕЦ.",
-  },
-  {
-    icon: "/icons/plug-solar-icon-green.svg",
-    title: "Гъвкавост",
-    description: "Ние сме тук когато и където клиентът има нужда от нас",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 export default function OurValues() {
+  const { t } = useTranslation("about");
+
+  const values = [
+    {
+      icon: "/icons/plug-solar-icon-green.svg",
+      title: t("values.items.team_work.title"),
+      description: t("values.items.team_work.description"),
+    },
+    {
+      icon: "/icons/plug-solar-icon-green.svg",
+      title: t("values.items.safety.title"),
+      description: t("values.items.safety.description"),
+    },
+    {
+      icon: "/icons/plug-solar-icon-green.svg",
+      title: t("values.items.trust.title"),
+      description: t("values.items.trust.description"),
+    },
+    {
+      icon: "/icons/plug-solar-icon-green.svg",
+      title: t("values.items.respect.title"),
+      description: t("values.items.respect.description"),
+    },
+    {
+      icon: "/icons/plug-solar-icon-green.svg",
+      title: t("values.items.support.title"),
+      description: t("values.items.support.description"),
+    },
+    {
+      icon: "/icons/plug-solar-icon-green.svg",
+      title: t("values.items.flexibility.title"),
+      description: t("values.items.flexibility.description"),
+    },
+  ];
+
   return (
     <Section paddingY="xl" className="bg-white">
       <Container>
@@ -51,16 +51,14 @@ export default function OurValues() {
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 lg:gap-16 mb-14">
           {/* Left - Badge and Title */}
           <div className="lg:max-w-2xl">
-            <BadgeDefault className="mb-4">НАШИТЕ ЦЕННОСТИ</BadgeDefault>
-            <Heading as="h2">
-              Иновации в технологиите и екологичните решения
-            </Heading>
+            <BadgeDefault className="mb-4">{t("values.badge")}</BadgeDefault>
+            <Heading as="h2">{t("values.title")}</Heading>
           </div>
 
           {/* Right - CTA Button */}
           <div className="lg:pt-6">
             <Button variant="primary" size="md" href="/kontakt" showIcon>
-              Свържете се с нас
+              {t("intro.cta") || "Свържете се с нас"}
             </Button>
           </div>
         </div>

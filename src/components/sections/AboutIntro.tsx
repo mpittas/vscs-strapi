@@ -1,33 +1,32 @@
+"use client";
+
 import Image from "next/image";
 import BadgeDefault from "@/components/ui/BadgeDefault";
+import { useTranslation } from "react-i18next";
 
 export default function AboutIntro() {
+  const { t } = useTranslation("about");
+
   return (
     <section className="py-16 md:py-24 bg-white">
       <div className="container">
         <div className="flex flex-col lg:flex-row gap-8 items-start">
           {/* Badge */}
-          <BadgeDefault>КОИ СМЕ НИЕ</BadgeDefault>
+          <BadgeDefault>{t("intro.badge")}</BadgeDefault>
 
           <div>
             {/* Title */}
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-normal text-slate-900 mb-8 max-w-3xl">
-              Партньорство, изградено върху доверие и иновации
+              {t("intro.title")}
             </h2>
 
             {/* Description paragraphs */}
             <div className="max-w-4xl mb-12 space-y-6">
               <p className="text-slate-600 text-lg leading-relaxed">
-                Ние сме повече от просто една компания за монтаж на
-                фотоволтаични централи. Ние сме история за страст и интерес към
-                възобновяемата енергия, вдъхновени от нашия общ стремеж да
-                променим света към по-зелени и устойчиви решения.
+                {t("intro.description_1")}
               </p>
               <p className="text-slate-600 text-lg leading-relaxed">
-                За нас всичко започва с двама човека, които се влюбват не само
-                един в друг, но и в идеята за промяна. Чрез дългогодишен опит в
-                сферата на фотоволтаичните системи сме опознали всички възможни
-                начини на работа и проблеми, които е възможно да изникнат.
+                {t("intro.description_2")}
               </p>
             </div>
           </div>
@@ -49,21 +48,21 @@ export default function AboutIntro() {
           <div className="flex flex-col gap-4">
             {/* Trust Card */}
             <div className="bg-[#022519] text-white p-6 rounded-2xl flex-1">
-              <h4 className="text-xl text-white font-normal mb-4">Доверие</h4>
+              <h4 className="text-xl text-white font-normal mb-4">
+                {t("intro.cards.trust.title")}
+              </h4>
               <p className="text-white/90 leading-relaxed">
-                Пълна прозрачност с нашите клиенти и установяване на доверено и
-                надеждно бизнес партньорство
+                {t("intro.cards.trust.description")}
               </p>
             </div>
 
             {/* Innovation Card */}
             <div className="bg-[#9DE044] p-6 rounded-2xl flex-1">
               <h4 className="text-xl text-black font-normal mb-4">
-                Иновации в технологиите
+                {t("intro.cards.innovation.title")}
               </h4>
               <p className="text-black/90 leading-relaxed">
-                Използваме собствени софтуери, които да могат да олеснят
-                процесите както за работниците, така и за управлението.
+                {t("intro.cards.innovation.description")}
               </p>
             </div>
           </div>

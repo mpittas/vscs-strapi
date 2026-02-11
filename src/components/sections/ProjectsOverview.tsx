@@ -92,7 +92,7 @@ export default function ProjectsOverview() {
 
   return (
     <Section paddingY="xl" bgColor="white" className="overflow-hidden">
-      <Container>
+      <Container className="pr-0 sm:pr-8">
         {/* Title + Stats + Map Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-0 lg:mb-16">
           {/* Left Side - Title + Stats */}
@@ -206,7 +206,7 @@ export default function ProjectsOverview() {
               {blogPosts.map((post, index) => (
                 <div
                   key={index}
-                  className="flex-[0_0_85%] md:flex-[0_0_50%] lg:flex-[0_0_33.333333%] min-w-0 pl-4 transition-opacity duration-300"
+                  className="flex-[0_0_85%] md:flex-[0_0_50%] lg:flex-[0_0_33.333333%] min-w-0 pl-4 transition-opacity duration-300 flex"
                 >
                   <ProjectPostCard
                     image={post.image}

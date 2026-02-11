@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
+import { useTranslation } from "react-i18next";
 
 interface CounterItem {
   icon: string;
@@ -12,32 +13,37 @@ interface CounterItem {
   label: string;
 }
 
-const counterData: CounterItem[] = [
-  {
-    icon: "/icons/trophy-icon-green.svg",
-    value: 50,
-    suffix: "+",
-    label: "Завършени проекта",
-  },
-  {
-    icon: "/icons/globe-icon-green.svg",
-    value: 12,
-    suffix: "",
-    label: "Държави",
-  },
-  {
-    icon: "/icons/bolt-icon-green.svg",
-    value: 300,
-    suffix: "MW",
-    label: "Инсталирана мощност",
-  },
-  {
-    icon: "/icons/users-icon-green.svg",
-    value: 100,
-    suffix: "%",
-    label: "Доволни клиенти",
-  },
-];
+// Helper to get counter data with translations
+const useCounterData = () => {
+  const { t } = useTranslation("about");
+
+  return [
+    {
+      icon: "/icons/trophy-icon-green.svg",
+      value: 50,
+      suffix: "+",
+      label: t("stats.completed_projects"),
+    },
+    {
+      icon: "/icons/globe-icon-green.svg",
+      value: 12,
+      suffix: "",
+      label: t("stats.countries"),
+    },
+    {
+      icon: "/icons/bolt-icon-green.svg",
+      value: 300,
+      suffix: "MW",
+      label: t("stats.installed_capacity"),
+    },
+    {
+      icon: "/icons/users-icon-green.svg",
+      value: 100,
+      suffix: "%",
+      label: t("stats.happy_clients"),
+    },
+  ];
+};
 
 function useCountUp(
   target: number,
@@ -110,6 +116,7 @@ function CounterCard({
 export default function NumbersCounter() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const counterData = useCounterData();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
