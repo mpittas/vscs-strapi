@@ -44,6 +44,10 @@ const stolzl = localFont({
   display: "swap",
 });
 
+export function generateStaticParams() {
+  return [{ locale: "bg" }, { locale: "en" }];
+}
+
 export const metadata: Metadata = {
   title: {
     default: "VSCS - Соларни панели",

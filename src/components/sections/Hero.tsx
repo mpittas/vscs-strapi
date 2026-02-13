@@ -182,7 +182,8 @@ export default function Hero() {
             alt="Solar panels background"
             fill
             priority
-            quality={85}
+            quality={80}
+            sizes="100vw"
             className="object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[rgba(5,21,17,0.85)] to-[rgba(4,9,15,1)]" />

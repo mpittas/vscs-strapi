@@ -19,6 +19,7 @@ export async function fetchAPI<T>(
     headers: {
       "Content-Type": "application/json",
     },
+    cache: "force-cache", // Enable aggressive caching
     next: {
       tags, // Enable tag-based revalidation
     },
