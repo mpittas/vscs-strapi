@@ -1,0 +1,14 @@
+{
+  "metadata": {
+    "title": "Блог",
+    "description": "Научете повече за слънчевата енергия, съвети за инвестиции и новини от SolarTech Solutions."
+  },
+  "page_title": "Блог",
+  "breadcrumbs": {
+    "blog": "БЛОГ"
+  },
+  "posts": {
+    "read_time": "{{count}} минути",
+    "no_posts": "Все още няма публикувани статии."
+  }
+}

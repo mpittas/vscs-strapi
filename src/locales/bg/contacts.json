@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "title": "Контакти | VSCS",
+    "description": "Свържете се с нас за консултация или запитване."
+  },
+  "page_title": "Контакти",
+  "breadcrumbs": {
+    "contacts": "Контакти"
+  },
+  "info_labels": {
+    "address": "АДРЕС",
+    "working_hours": "РАБОТНО ВРЕМЕ",
+    "phone": "ТЕЛЕФОН",
+    "email": "ИМЕЙЛ"
+  },
+  "info_values": {
+    "address": "ж.к. Подбалканска, ул. \"Петропавловска\" 6, Враца, България",
+    "working_hours": "Понеделник - Петък: 09:00 - 18:00 часа",
+    "phone": "+359 877 15 98 58",
+    "email": "office@vscs-bg.com"
+  },
+  "sidebar": {
+    "other_info": "Друга информация",
+    "follow_us": "ПОСЛЕДВАЙТЕ НИ:"
+  },
+  "form": {
+    "title": "Изпратете запитване",
+    "description": "Попълнете формата и ние ще се свържем с вас в рамките на 24 часа.",
+    "name": "Име",
+    "name_placeholder": "Вашето име",
+    "company": "Фирма / Компания",
+    "company_placeholder": "Име на фирма",
+    "email": "Имейл",
+    "email_placeholder": "example@email.com",
+    "phone": "Телефон",
+    "phone_placeholder": "+359...",
+    "message": "Съобщение",
+    "message_placeholder": "Вашето съобщение",
+    "submit": "Изпрати съобщение"
+  }
+}

@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { MapPin, Briefcase } from "lucide-react";
 import { Heading, Text } from "@/components/ui/Typography";
 import Button from "@/components/ui/Button";
+import { useTranslation } from "react-i18next";
 
 interface CareerItemProps {
   title: string;
@@ -16,6 +19,8 @@ export default function CareerItem({
   location,
   shortDescription,
 }: CareerItemProps) {
+  const { t } = useTranslation("careers");
+
   return (
     <div className="bg-lime-600/10 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
       {/* Content */}
@@ -31,7 +36,7 @@ export default function CareerItem({
           <div className="flex items-center gap-1.5 text-slate-600">
             <Briefcase className="w-4 h-4" />
             <Text variant="body-14" className="text-slate-600">
-              Пълен работен ден
+              {t("job_type_full")}
             </Text>
           </div>
         </div>
@@ -50,7 +55,7 @@ export default function CareerItem({
       {/* Button */}
       <div className="flex-shrink-0">
         <Button variant="primary" size="md" showIcon href={`/karieri/${slug}`}>
-          Виж детайли
+          {t("view_details")}
         </Button>
       </div>
     </div>

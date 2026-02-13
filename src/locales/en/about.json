@@ -13,7 +13,8 @@
         "title": "Innovations in Technology",
         "description": "We use proprietary software to facilitate processes for both workers and management."
       }
-    }
+    },
+    "cta": "Contact us"
   },
   "values": {
     "badge": "OUR VALUES",
@@ -73,6 +74,7 @@
       "phone_label": "Phone",
       "phone_placeholder": "+359...",
       "message_label": "Message",
+      "message_placeholder": "How can we help you?",
       "submit_btn": "Free Consultation"
     }
   },

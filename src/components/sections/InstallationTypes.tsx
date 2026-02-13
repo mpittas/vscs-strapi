@@ -4,37 +4,43 @@ import Image from "next/image";
 import { Heading, Text } from "@/components/ui/Typography";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
-
-const installationTypes = [
-  {
-    title: "Наземни централи",
-    description: "Фиксиран наклон и едноосни тракери.",
-    image: "/images/type-of-service-1.jpg",
-  },
-  {
-    title: "Индустриални и покривни решения",
-    description: "BIPV (интегрирани фотоволтаици) и покривни конструкции.",
-    image: "/images/type-of-service-2.jpg",
-  },
-  {
-    title: "Хибридни системи",
-    description: "Островни системи и решения за съхранение на енергия.",
-    image: "/images/type-of-service-3.jpg",
-  },
-];
+import { useTranslation } from "react-i18next";
+import { useMemo } from "react";
 
 export default function InstallationTypes() {
+  const { t } = useTranslation("services");
+
+  const installationTypes = useMemo(
+    () => [
+      {
+        title: t("installation_types.items.ground.title"),
+        description: t("installation_types.items.ground.description"),
+        image: "/images/type-of-service-1.jpg",
+      },
+      {
+        title: t("installation_types.items.industrial.title"),
+        description: t("installation_types.items.industrial.description"),
+        image: "/images/type-of-service-2.jpg",
+      },
+      {
+        title: t("installation_types.items.hybrid.title"),
+        description: t("installation_types.items.hybrid.description"),
+        image: "/images/type-of-service-3.jpg",
+      },
+    ],
+    [t],
+  );
+
   return (
     <Section paddingY="xl" bgColor="white">
       <Container>
         {/* Header */}
         <div className="max-w-3xl mb-16">
           <Heading as="h2" className="mb-6 text-slate-900">
-            Видове инсталации и технологии
+            {t("installation_types.title")}
           </Heading>
           <Text className="text-slate-600">
-            Ultrices gravida dictum fusce ut placerat orci nulla pellentesque.
-            Aliquet porttitor lacus luctus accumsan tortor.
+            {t("installation_types.description")}
           </Text>
         </div>
 

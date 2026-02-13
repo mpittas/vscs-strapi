@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "title": "Projects",
+    "description": "Explore our completed and ongoing solar installation projects."
+  },
+  "page_title": "Projects",
+  "breadcrumbs": {
+    "projects": "PROJECTS"
+  },
+  "filter": {
+    "all": "All",
+    "bulgaria": "Bulgaria",
+    "abroad": "Abroad",
+    "loading": "Loading...",
+    "load_more": "Load more",
+    "showing_count": "Shown {{count}} of {{total}} projects",
+    "no_projects": "No projects in the selected category."
+  }
+}

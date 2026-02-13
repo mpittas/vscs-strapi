@@ -1,7 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import { Heading, Text } from "@/components/ui/Typography";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
+import { useTranslation } from "react-i18next";
+import { useMemo } from "react";
 
 interface ProcessStep {
   title: string;
@@ -9,35 +13,8 @@ interface ProcessStep {
   href?: string;
 }
 
-const processSteps: ProcessStep[] = [
-  {
-    title: "Проектиране и Инженеринг",
-    icon: "/icons/page-ruler-black-icon.svg",
-    href: "#",
-  },
-  {
-    title: "Доставка и Логистика",
-    icon: "/icons/page-ruler-black-icon.svg",
-    href: "#",
-  },
-  {
-    title: "Строителство и Монтаж",
-    icon: "/icons/page-ruler-black-icon.svg",
-    href: "#",
-  },
-  {
-    title: "Тестване и Пуск",
-    icon: "/icons/page-ruler-black-icon.svg",
-    href: "#",
-  },
-  {
-    title: "Поддръжка",
-    icon: "/icons/page-ruler-black-icon.svg",
-    href: "#",
-  },
-];
-
 function ProcessCard({ step }: { step: ProcessStep }) {
+  const { t } = useTranslation("services");
   return (
     <div className="flex flex-col justify-between bg-brand-green rounded-2xl p-6 min-h-[220px] transition-all duration-300 hover:bg-brand-green-dark">
       {/* Icon */}
@@ -64,7 +41,7 @@ function ProcessCard({ step }: { step: ProcessStep }) {
         >
           <span className="w-5 h-5 rounded-full bg-black/70 group-hover:bg-dark-green/70 transition-colors bg-[url('/icons/small-chevron.svg')] bg-[length:5px] bg-[position:50%_50%] bg-no-repeat" />
           <span className="group-hover:underline font-medium text-black/70 relative top-[1px]">
-            Прочети още
+            {t("work_process.read_more")}
           </span>
         </a>
       </div>
@@ -73,18 +50,50 @@ function ProcessCard({ step }: { step: ProcessStep }) {
 }
 
 export default function WorkProcess() {
+  const { t } = useTranslation("services");
+
+  const processSteps: ProcessStep[] = useMemo(
+    () => [
+      {
+        title: t("work_process.steps.design"),
+        icon: "/icons/page-ruler-black-icon.svg",
+        href: "#",
+      },
+      {
+        title: t("work_process.steps.delivery"),
+        icon: "/icons/page-ruler-black-icon.svg",
+        href: "#",
+      },
+      {
+        title: t("work_process.steps.construction"),
+        icon: "/icons/page-ruler-black-icon.svg",
+        href: "#",
+      },
+      {
+        title: t("work_process.steps.testing"),
+        icon: "/icons/page-ruler-black-icon.svg",
+        href: "#",
+      },
+      {
+        title: t("work_process.steps.maintenance"),
+        icon: "/icons/page-ruler-black-icon.svg",
+        href: "#",
+      },
+    ],
+    [t],
+  );
+
   return (
     <Section paddingY="xl" className="bg-white">
       <Container>
         {/* Header */}
         <div className="mb-12">
           <Heading as="h2" className="mb-4">
-            Процес на работа
+            {t("work_process.title")}
           </Heading>
 
           <Text variant="body-16" className="text-slate-600 max-w-xl">
-            Пълен инженеринг, строителство и управление на проекти в България и
-            чужбина.
+            {t("work_process.description")}
           </Text>
         </div>
 

@@ -1,0 +1,75 @@
+{
+  "metadata": {
+    "title": "Services",
+    "description": "Premium solar energy solutions and turnkey construction services."
+  },
+  "page_title": "Services",
+  "breadcrumbs": {
+    "home": "HOME",
+    "services": "SERVICES"
+  },
+  "work_process": {
+    "title": "Work Process",
+    "description": "Complete engineering, construction and project management in Bulgaria and abroad.",
+    "read_more": "Read more",
+    "steps": {
+      "design": "Design and Engineering",
+      "delivery": "Delivery and Logistics",
+      "construction": "Construction and Installation",
+      "testing": "Testing and Launch",
+      "maintenance": "Maintenance"
+    }
+  },
+  "key_services": {
+    "title": "Key Services",
+    "description": "Complete engineering, construction and project management in Bulgaria and abroad.",
+    "contact_us": "Contact us",
+    "items": {
+      "preparation": {
+        "title": "Preparation and Construction",
+        "description": "Complete terrain preparation and mechanical installation of equipment.",
+        "list": [
+          "Terrain preparation, excavation work and foundations.",
+          "Construction of internal roads and fencing.",
+          "Driving piles and installing trackers/structures."
+        ]
+      },
+      "electrical": {
+        "title": "Electrical Installations",
+        "description": "Professional wiring and connection of the system to the grid.",
+        "list": [
+          "Laying and terminating cable routes (DC/AC)",
+          "Installation of inverters, transformer stations and BESS systems",
+          "Testing and commissioning"
+        ]
+      },
+      "logistics": {
+        "title": "Procurement and Logistics",
+        "description": "Supply of all necessary components and materials.",
+        "list": [
+          "Delivery of cables, grounding elements and lighting",
+          "Photovoltaic modules, inverters and panels",
+          "Specialized structures and mounting elements"
+        ]
+      }
+    }
+  },
+  "installation_types": {
+    "title": "Types of Installations and Technologies",
+    "description": "We offer a wide range of solar solutions tailored to your specific needs and terrain conditions.",
+    "items": {
+      "ground": {
+        "title": "Ground-mount Plants",
+        "description": "Fixed tilt and single-axis trackers."
+      },
+      "industrial": {
+        "title": "Industrial and Rooftop Solutions",
+        "description": "BIPV (integrated photovoltaics) and rooftop structures."
+      },
+      "hybrid": {
+        "title": "Hybrid Systems",
+        "description": "Off-grid systems and energy storage solutions."
+      }
+    }
+  }
+}

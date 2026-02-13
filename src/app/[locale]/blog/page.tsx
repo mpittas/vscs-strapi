@@ -6,11 +6,21 @@ import Pagination from "@/components/ui/Pagination";
 import { getPaginatedData } from "@/lib/strapi";
 import { getStrapiMedia } from "@/lib/media";
 import { formatDate } from "@/lib/utils";
+import initTranslations from "@/app/i18n";
+import TranslationsProvider from "@/components/TranslationsProvider";
 
-export const metadata: Metadata = {
-  title: "Блог",
-  description:
-    "Научете повече за слънчевата енергия, съвети за инвестиции и новини от SolarTech Solutions.",
+export const generateMetadata = async ({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) => {
+  const { locale } = await params;
+  const { t } = await initTranslations(locale, ["blog"]);
+
+  return {
+    title: t("blog:metadata.title"),
+    description: t("blog:metadata.description"),
+  };
 };
 
 interface BlogPageProps {
@@ -38,6 +48,7 @@ export default async function BlogPage({
   searchParams,
 }: BlogPageProps) {
   const { locale } = await params;
+  const { t, resources } = await initTranslations(locale, ["blog", "common"]);
   const resolvedSearchParams = await searchParams;
   const pageParam = resolvedSearchParams?.page;
 
@@ -71,10 +82,17 @@ export default async function BlogPage({
   }
 
   return (
-    <>
+    <TranslationsProvider
+      locale={locale}
+      resources={resources}
+      namespaces={["blog", "common"]}
+    >
       <PageTitle
-        title="Блог"
-        breadcrumbs={[{ label: "НАЧАЛО", href: "/" }, { label: "БЛОГ" }]}
+        title={t("blog:page_title")}
+        breadcrumbs={[
+          { label: t("common:nav.home"), href: "/" },
+          { label: t("blog:breadcrumbs.blog") },
+        ]}
       />
 
       <Section paddingY="sm" bgColor="white">
@@ -90,7 +108,7 @@ export default async function BlogPage({
                     excerpt: post.excerpt,
                     image: post.featuredImage || "/images/blog-img-1.jpg",
                     date: formatDate(post.publishedAt),
-                    readTime: "5 минути", // Placeholder as it's not in the source data
+                    readTime: t("blog:posts.read_time", { count: 5 }), // Placeholder
                     slug: post.slug,
                   }}
                 />
@@ -106,12 +124,10 @@ export default async function BlogPage({
           </>
         ) : (
           <div className="text-center py-12">
-            <p className="text-slate-500 text-lg">
-              Все още няма публикувани статии.
-            </p>
+            <p className="text-slate-500 text-lg">{t("blog:posts.no_posts")}</p>
           </div>
         )}
       </Section>
-    </>
+    </TranslationsProvider>
   );
 }

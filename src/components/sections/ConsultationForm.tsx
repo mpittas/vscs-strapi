@@ -82,7 +82,7 @@ export default function ConsultationForm() {
                 <textarea
                   id="message"
                   rows={4}
-                  placeholder={t("consultation.form.email_placeholder")} // Fallback or separate placeholder if needed
+                  placeholder={t("consultation.form.message_placeholder")}
                   className="w-full px-4 py-3 rounded-lg border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-green focus:border-transparent resize-none"
                 />
               </div>

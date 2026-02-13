@@ -39,23 +39,6 @@
       },
       "maxLength": 200
     },
-    "short_description": {
-      "type": "text",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "maxLength": 500
-    },
-    "sidebar_info": {
-      "type": "richtext",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "main_content": {
       "type": "richtext",
       "pluginOptions": {
@@ -64,6 +47,14 @@
         }
       },
       "required": true
+    },
+    "sidebar_info": {
+      "type": "richtext",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

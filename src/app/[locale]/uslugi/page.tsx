@@ -4,20 +4,44 @@ import WorkProcess from "@/components/sections/WorkProcess";
 import KeyServices from "@/components/sections/KeyServices";
 import InstallationTypes from "@/components/sections/InstallationTypes";
 import ConsultationForm from "@/components/sections/ConsultationForm";
+import initTranslations from "@/app/i18n";
+import TranslationsProvider from "@/components/TranslationsProvider";
 
-export const metadata: Metadata = {
-  title: "Услуги",
-  description:
-    "Learn about SolarTech Solutions - our mission to power a sustainable future with premium solar energy solutions. 15+ years of experience, 10,000+ installations.",
-};
+interface PageProps {
+  params: Promise<{ locale: string }>;
+}
 
-export default function ServicesPage() {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const { t } = await initTranslations(locale, ["services"]);
+
+  return {
+    title: t("services:metadata.title"),
+    description: t("services:metadata.description"),
+  };
+}
+
+const i18nNamespaces = ["services", "common", "about"];
+
+export default async function ServicesPage({ params }: PageProps) {
+  const { locale } = await params;
+  const { t, resources } = await initTranslations(locale, i18nNamespaces);
+
   return (
-    <>
+    <TranslationsProvider
+      locale={locale}
+      resources={resources}
+      namespaces={i18nNamespaces}
+    >
       {/* Page Title Section */}
       <PageTitle
-        title="Услуги"
-        breadcrumbs={[{ label: "НАЧАЛО", href: "/" }, { label: "УСЛУГИ" }]}
+        title={t("services:page_title")}
+        breadcrumbs={[
+          { label: t("services:breadcrumbs.home"), href: "/" },
+          { label: t("services:breadcrumbs.services") },
+        ]}
       />
 
       <WorkProcess />
@@ -27,6 +51,6 @@ export default function ServicesPage() {
       <InstallationTypes />
 
       <ConsultationForm />
-    </>
+    </TranslationsProvider>
   );
 }

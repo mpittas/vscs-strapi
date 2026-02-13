@@ -5,47 +5,45 @@ import { Heading, Text } from "@/components/ui/Typography";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
-
-const services = [
-  {
-    title: "Подготовка и Конструкция",
-    description:
-      "Пълна подготовка на терена и механичен монтаж на съоръженията.",
-    image: "/images/man-in-solar-panel-field.jpg",
-    icon: "/icons/project-icon-dark.svg",
-    items: [
-      "Подготовка на терен, изкопни работи и фундаменти.",
-      "Изграждане на вътрешни пътища и ограждане.",
-      "Набиване на пилони и монтаж на тракери/конструкции.",
-    ],
-  },
-  {
-    title: "Електрически инсталации",
-    description:
-      "Професионално окабеляване и свързване на системата към мрежата.",
-    image: "/images/team-crew-inspecting-panels.jpg",
-    icon: "/icons/project-icon-dark.svg",
-    items: [
-      "Полагане и терминиране на кабелни трасета (DC/AC)",
-      "Монтаж на инвертори, трафопостове и BESS системи",
-      "Тестване и въвеждане в експлоатация (Commissioning)",
-    ],
-  },
-  {
-    title: "Електрически инсталации",
-    description:
-      "Професионално окабеляване и свързване на системата към мрежата.",
-    image: "/images/panel-rows-outdoors.jpg",
-    icon: "/icons/project-icon-dark.svg",
-    items: [
-      "Доставка на кабели, заземителни елементи и осветление",
-      "Фотоволтаични модули, инвертори и табла",
-      "Специализирани конструкции и монтажни елементи",
-    ],
-  },
-];
+import { useTranslation } from "react-i18next";
+import { useMemo } from "react";
 
 export default function KeyServices() {
+  const { t } = useTranslation("services");
+
+  const services = useMemo(
+    () => [
+      {
+        title: t("key_services.items.preparation.title"),
+        description: t("key_services.items.preparation.description"),
+        image: "/images/man-in-solar-panel-field.jpg",
+        icon: "/icons/project-icon-dark.svg",
+        items: t("key_services.items.preparation.list", {
+          returnObjects: true,
+        }) as string[],
+      },
+      {
+        title: t("key_services.items.electrical.title"),
+        description: t("key_services.items.electrical.description"),
+        image: "/images/team-crew-inspecting-panels.jpg",
+        icon: "/icons/project-icon-dark.svg",
+        items: t("key_services.items.electrical.list", {
+          returnObjects: true,
+        }) as string[],
+      },
+      {
+        title: t("key_services.items.logistics.title"),
+        description: t("key_services.items.logistics.description"),
+        image: "/images/panel-rows-outdoors.jpg",
+        icon: "/icons/project-icon-dark.svg",
+        items: t("key_services.items.logistics.list", {
+          returnObjects: true,
+        }) as string[],
+      },
+    ],
+    [t],
+  );
+
   return (
     <Section paddingY="xl" className="bg-[#EDEDED]">
       <Container>
@@ -53,15 +51,14 @@ export default function KeyServices() {
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-16 gap-8">
           <div className="max-w-2xl">
             <Heading as="h2" className="mb-6">
-              Ключови услуги
+              {t("key_services.title")}
             </Heading>
             <Text className="text-slate-600 max-w-xl">
-              Пъл ен инженеринг, строителство и управление на проекти в България
-              и чужбина.
+              {t("key_services.description")}
             </Text>
           </div>
           <Button href="/kontakti" variant="primary" showIcon>
-            Свържете се с нас
+            {t("key_services.contact_us")}
           </Button>
         </div>
 
@@ -104,17 +101,18 @@ export default function KeyServices() {
                 </Text>
 
                 <div className="mt-auto space-y-5 pt-5 border-t border-slate-100">
-                  {service.items.map((item, itemIndex) => (
-                    <div
-                      key={itemIndex}
-                      className="inline-flex items-start gap-3 text-dark-green text-sm"
-                    >
-                      <span className="shrink-0 w-5 h-5 rounded-full bg-black mt-0.5 bg-[url('/icons/small-chevron.svg')] bg-[length:5px] bg-[position:50%_50%] bg-no-repeat" />
-                      <span className="font-medium text-black leading-snug">
-                        {item}
-                      </span>
-                    </div>
-                  ))}
+                  {Array.isArray(service.items) &&
+                    service.items.map((item, itemIndex) => (
+                      <div
+                        key={itemIndex}
+                        className="inline-flex items-start gap-3 text-dark-green text-sm"
+                      >
+                        <span className="shrink-0 w-5 h-5 rounded-full bg-black mt-0.5 bg-[url('/icons/small-chevron.svg')] bg-[length:5px] bg-[position:50%_50%] bg-no-repeat" />
+                        <span className="font-medium text-black leading-snug">
+                          {item}
+                        </span>
+                      </div>
+                    ))}
                 </div>
               </div>
             </div>

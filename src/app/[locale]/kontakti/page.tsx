@@ -8,34 +8,22 @@ import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import ContactForm from "@/components/forms/ContactForm";
 import ContactInfoItem from "@/components/ui/ContactInfoItem";
 import Sidebar from "@/components/ui/Sidebar";
+import initTranslations from "@/app/i18n";
+import TranslationsProvider from "@/components/TranslationsProvider";
 
-export const metadata: Metadata = {
-  title: "Контакти | VSCS",
-  description: "Свържете се с нас за консултация или запитване.",
+export const generateMetadata = async ({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) => {
+  const { locale } = await params;
+  const { t } = await initTranslations(locale, ["contacts"]);
+
+  return {
+    title: t("contacts:metadata.title"),
+    description: t("contacts:metadata.description"),
+  };
 };
-
-const contactInfoItems = [
-  {
-    icon: MapPin,
-    label: "АДРЕС",
-    value: 'ж.к. Подбалканска, ул. "Петропавловска" 6, Враца, България',
-  },
-  {
-    icon: Clock,
-    label: "РАБОТНО ВРЕМЕ",
-    value: "Понеделник - Петък: 09:00 - 18:00 часа",
-  },
-  {
-    icon: Phone,
-    label: "ТЕЛЕФОН",
-    value: "+359 877 15 98 58",
-  },
-  {
-    icon: Mail,
-    label: "ИМЕЙЛ",
-    value: "office@vscs-bg.com",
-  },
-];
 
 const socialLinks = [
   {
@@ -50,12 +38,52 @@ const socialLinks = [
   },
 ];
 
-export default function ContactsPage() {
+export default async function ContactsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const { t, resources } = await initTranslations(locale, [
+    "contacts",
+    "common",
+  ]);
+
+  const contactInfoItems = [
+    {
+      icon: MapPin,
+      label: t("contacts:info_labels.address"),
+      value: t("contacts:info_values.address"),
+    },
+    {
+      icon: Clock,
+      label: t("contacts:info_labels.working_hours"),
+      value: t("contacts:info_values.working_hours"),
+    },
+    {
+      icon: Phone,
+      label: t("contacts:info_labels.phone"),
+      value: t("contacts:info_values.phone"), // Assuming phone doesn't need translation, but structure supports it
+    },
+    {
+      icon: Mail,
+      label: t("contacts:info_labels.email"),
+      value: t("contacts:info_values.email"), // Assuming email doesn't need translation
+    },
+  ];
+
   return (
-    <>
+    <TranslationsProvider
+      locale={locale}
+      resources={resources}
+      namespaces={["contacts", "common"]}
+    >
       <PageTitle
-        title="Контакти"
-        breadcrumbs={[{ label: "Начало", href: "/" }, { label: "Контакти" }]}
+        title={t("contacts:page_title")}
+        breadcrumbs={[
+          { label: t("common:nav.home"), href: "/" },
+          { label: t("contacts:breadcrumbs.contacts") },
+        ]}
       />
 
       <Section className="py-24 bg-white" paddingY="none">
@@ -72,7 +100,7 @@ export default function ContactsPage() {
                 <div className="space-y-10">
                   <div>
                     <Heading as="h3" className="text-xl font-medium mb-8">
-                      Друга информация
+                      {t("contacts:sidebar.other_info")}
                     </Heading>
 
                     <div className="space-y-8">
@@ -90,7 +118,7 @@ export default function ContactsPage() {
                   {/* Socials */}
                   <div className="pt-6 border-t border-slate-200">
                     <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">
-                      ПОСЛЕДВАЙТЕ НИ:
+                      {t("contacts:sidebar.follow_us")}
                     </div>
                     <div className="flex gap-4">
                       {socialLinks.map((social) => (
@@ -111,6 +139,6 @@ export default function ContactsPage() {
           </div>
         </Container>
       </Section>
-    </>
+    </TranslationsProvider>
   );
 }

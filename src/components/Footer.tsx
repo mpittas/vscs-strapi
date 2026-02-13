@@ -1,31 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { MapPin, Phone, Mail } from "lucide-react";
 import Container from "@/components/ui/Container";
 import FooterBottom from "./FooterBottom";
-
-// Footer link data
-const quickLinks = [
-  { label: "За Нас", href: "/about" },
-  { label: "Услуги", href: "/services" },
-  { label: "Проекти", href: "/projects" },
-  { label: "Кариери", href: "/careers" },
-  { label: "Връзка с Нас", href: "/contact" },
-];
-
-const servicesLinks = [
-  { label: "Проектиране", href: "/services/design" },
-  { label: "Монтаж на конструкции", href: "/services/installation" },
-  { label: "Електроизграждане", href: "/services/electrical" },
-  { label: "Поддръжка и мониторинг", href: "/services/maintenance" },
-  { label: "Консултантски услуги", href: "/services/consulting" },
-];
-
-const contactInfo = {
-  address: "Враца, България",
-  phone: "+359 877 15 98 58",
-  email: "office@vscs-bg.com",
-};
+import { useTranslation } from "react-i18next";
+import { useMemo } from "react";
 
 // Social icon components
 const FacebookIcon = () => (
@@ -55,6 +36,49 @@ const LinkedInIcon = () => (
 );
 
 export default function Footer() {
+  const { t } = useTranslation("common");
+
+  // Footer link data
+  const quickLinks = useMemo(
+    () => [
+      { label: t("nav.about"), href: "/about" },
+      { label: t("nav.services"), href: "/services" },
+      { label: t("nav.projects"), href: "/projects" },
+      { label: t("nav.careers"), href: "/careers" },
+      { label: t("nav.contacts"), href: "/contact" },
+    ],
+    [t],
+  );
+
+  const servicesLinks = useMemo(
+    () => [
+      { label: t("footer.services_links.design"), href: "/services/design" },
+      {
+        label: t("footer.services_links.installation"),
+        href: "/services/installation",
+      },
+      {
+        label: t("footer.services_links.electrical"),
+        href: "/services/electrical",
+      },
+      {
+        label: t("footer.services_links.maintenance"),
+        href: "/services/maintenance",
+      },
+      {
+        label: t("footer.services_links.consulting"),
+        href: "/services/consulting",
+      },
+    ],
+    [t],
+  );
+
+  const contactInfo = {
+    address: "Враца, България",
+    phone: "+359 877 15 98 58",
+    email: "office@vscs-bg.com",
+  };
+
   return (
     <footer className="bg-[#040A03] text-white">
       {/* Logo Section - Top */}
@@ -80,8 +104,7 @@ export default function Footer() {
               {/* Brand Column - Tagline & Social */}
               <div className="col-span-2 lg:col-span-4">
                 <p className="text-white/70 mb-6 lg:max-w-xs leading-relaxed text-left">
-                  Строителни услуги до ключ и иновативни решения за възобновяема
-                  енергия.
+                  {t("footer.tagline")}
                 </p>
                 {/* Social Links */}
                 <div className="flex gap-3">
@@ -109,7 +132,7 @@ export default function Footer() {
               {/* Quick Links */}
               <div className="col-span-1 lg:col-span-2">
                 <div className="text-brand-green font-normal mb-3">
-                  Бързи Линкове
+                  {t("footer.quick_links")}
                 </div>
                 <ul className="space-y-2">
                   {quickLinks.map((link) => (
@@ -128,7 +151,7 @@ export default function Footer() {
               {/* Services Links */}
               <div className="col-span-1 lg:col-span-3">
                 <div className="text-brand-green font-normal mb-3">
-                  Проектиране
+                  {t("footer.design")}
                 </div>
                 <ul className="space-y-2">
                   {servicesLinks.map((link) => (
@@ -147,7 +170,7 @@ export default function Footer() {
               {/* Contact Info */}
               <div className="col-span-1 lg:col-span-3">
                 <div className="text-brand-green font-normal mb-3">
-                  Контактна Информация
+                  {t("footer.contact_info")}
                 </div>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-start gap-3">

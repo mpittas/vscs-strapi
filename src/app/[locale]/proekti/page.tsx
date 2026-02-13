@@ -4,11 +4,21 @@ import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
 import ProjectsFilter from "@/components/ProjectsFilter";
 import { getPaginatedProjects } from "@/lib/strapi";
+import initTranslations from "@/app/i18n";
+import TranslationsProvider from "@/components/TranslationsProvider";
 
-export const metadata: Metadata = {
-  title: "Проекти",
-  description:
-    "Разгледайте нашите завършени и текущи проекти за соларни инсталации.",
+export const generateMetadata = async ({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) => {
+  const { locale } = await params;
+  const { t } = await initTranslations(locale, ["projects"]);
+
+  return {
+    title: t("projects:metadata.title"),
+    description: t("projects:metadata.description"),
+  };
 };
 
 export default async function ProjectsPage({
@@ -17,6 +27,10 @@ export default async function ProjectsPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const { t, resources } = await initTranslations(locale, [
+    "projects",
+    "common",
+  ]);
   const { data: projects, meta } = await getPaginatedProjects(
     1,
     6,
@@ -25,10 +39,17 @@ export default async function ProjectsPage({
   );
 
   return (
-    <>
+    <TranslationsProvider
+      locale={locale}
+      resources={resources}
+      namespaces={["projects", "common"]}
+    >
       <PageTitle
-        title="Проекти"
-        breadcrumbs={[{ label: "НАЧАЛО", href: "/" }, { label: "ПРОЕКТИ" }]}
+        title={t("projects:page_title")}
+        breadcrumbs={[
+          { label: t("common:nav.home"), href: "/" },
+          { label: t("projects:breadcrumbs.projects") },
+        ]}
       />
 
       <Section paddingY="sm" bgColor="white">
@@ -40,6 +61,6 @@ export default async function ProjectsPage({
           />
         </Container>
       </Section>
-    </>
+    </TranslationsProvider>
   );
 }

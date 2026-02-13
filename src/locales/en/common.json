@@ -8,5 +8,24 @@
     "careers": "Careers",
     "contacts": "Contacts",
     "contact_us": "Contact Us"
+  },
+  "footer": {
+    "tagline": "Turnkey construction services and innovative renewable energy solutions.",
+    "quick_links": "Quick Links",
+    "design": "Design",
+    "contact_info": "Contact Information",
+    "privacy_policy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "cookies": "Cookies",
+    "legal_info": "Legal Information",
+    "all_rights_reserved": "All rights reserved",
+    "copyright": "VSCS BG, {{year}} ©",
+    "services_links": {
+      "design": "Design",
+      "installation": "Structure Installation",
+      "electrical": "Electrical Installation",
+      "maintenance": "Maintenance & Monitoring",
+      "consulting": "Consulting Services"
+    }
   }
 }

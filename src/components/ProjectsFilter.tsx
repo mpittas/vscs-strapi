@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import ProjectPostCard from "@/components/ui/ProjectPostCard";
 import Button from "@/components/ui/Button";
+import { useTranslation } from "react-i18next";
 
 interface Project {
   id: number;
@@ -39,22 +40,26 @@ interface ProjectsFilterProps {
 
 type FilterOption = "all" | "България" | "Чужбина";
 
-const filterOptions: { value: FilterOption; label: string }[] = [
-  { value: "all", label: "Всички" },
-  { value: "България", label: "България" },
-  { value: "Чужбина", label: "Чужбина" },
-];
-
 export default function ProjectsFilter({
   initialProjects,
   initialMeta,
   locale,
 }: ProjectsFilterProps) {
+  const { t } = useTranslation("projects");
   const [activeFilter, setActiveFilter] = useState<FilterOption>("all");
   const [projects, setProjects] = useState<Project[]>(initialProjects);
   const [meta, setMeta] = useState<PaginationMeta>(initialMeta);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+  const filterOptions: { value: FilterOption; label: string }[] = useMemo(
+    () => [
+      { value: "all", label: t("filter.all") },
+      { value: "България", label: t("filter.bulgaria") },
+      { value: "Чужбина", label: t("filter.abroad") },
+    ],
+    [t],
+  );
 
   const hasMore = meta.pagination.page < meta.pagination.pageCount;
 
@@ -88,7 +93,7 @@ export default function ProjectsFilter({
         setIsLoadingMore(false);
       }
     },
-    [],
+    [locale],
   );
 
   // Handle filter change
@@ -148,7 +153,7 @@ export default function ProjectsFilter({
               <ProjectPostCard
                 key={project.id}
                 title={project.title}
-                location={project.location || "България"}
+                location={project.location || t("filter.bulgaria")}
                 image={project.featuredImage || "/images/type-of-service-1.jpg"}
                 href={`/proekti/${project.slug}`}
               />
@@ -167,10 +172,10 @@ export default function ProjectsFilter({
                 {isLoadingMore ? (
                   <>
                     <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-[#0a0f0a]"></div>
-                    Зареждане...
+                    {t("filter.loading")}
                   </>
                 ) : (
-                  "Зареди още"
+                  t("filter.load_more")
                 )}
               </Button>
             </div>
@@ -178,14 +183,15 @@ export default function ProjectsFilter({
 
           {/* Projects count */}
           <div className="text-center mt-6 text-slate-500 text-sm">
-            Показани {projects.length} от {meta.pagination.total} проекта
+            {t("filter.showing_count", {
+              count: projects.length,
+              total: meta.pagination.total,
+            })}
           </div>
         </>
       ) : (
         <div className="text-center py-12">
-          <p className="text-slate-500 text-lg">
-            Няма проекти в избраната категория.
-          </p>
+          <p className="text-slate-500 text-lg">{t("filter.no_projects")}</p>
         </div>
       )}
     </>

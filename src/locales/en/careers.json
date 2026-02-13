@@ -1,0 +1,24 @@
+{
+  "metadata": {
+    "title": "Careers",
+    "description": "Explore open positions and apply for a job at VSCS."
+  },
+  "page_title": "Careers",
+  "breadcrumbs": {
+    "careers": "Careers"
+  },
+  "open_positions_badge": "OPEN POSITIONS",
+  "apply_today": "Apply Today",
+  "no_positions": "No open positions at the moment",
+  "view_details": "View Details",
+  "job_type_full": "Full-time",
+  "details": {
+    "back_to_all": "all positions",
+    "job_type": "Full-time",
+    "sidebar_title": "What we offer",
+    "no_sidebar_info": "Please contact us for more information.",
+    "apply_cta_text": "Ready for the next step in your career?",
+    "apply_button": "Apply Now",
+    "error_not_found": "Position not found"
+  }
+}

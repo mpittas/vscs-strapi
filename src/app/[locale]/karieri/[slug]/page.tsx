@@ -9,19 +9,22 @@ import Button from "@/components/ui/Button";
 import BadgeDefault from "@/components/ui/BadgeDefault";
 import Sidebar from "@/components/ui/Sidebar";
 import { ArrowLeft, MapPin, Briefcase, CheckCircle2 } from "lucide-react";
+import initTranslations from "@/app/i18n";
+import TranslationsProvider from "@/components/TranslationsProvider";
 
 interface PageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const career = await getCareer(slug);
+  const { slug, locale } = await params;
+  const career = await getCareer(slug, locale);
 
   if (!career) {
-    return { title: "Позицията не е намерена" };
+    const { t } = await initTranslations(locale, ["careers"]);
+    return { title: t("careers:details.error_not_found") };
   }
 
   return {
@@ -42,15 +45,23 @@ export async function generateStaticParams() {
 }
 
 export default async function CareerPage({ params }: PageProps) {
-  const { slug } = await params;
-  const career = await getCareer(slug);
+  const { slug, locale } = await params;
+  const { t, resources } = await initTranslations(locale, [
+    "careers",
+    "common",
+  ]);
+  const career = await getCareer(slug, locale);
 
   if (!career) {
     notFound();
   }
 
   return (
-    <>
+    <TranslationsProvider
+      locale={locale}
+      resources={resources}
+      namespaces={["careers", "common"]}
+    >
       {/* Dark Hero Section - Matching Projects Page */}
       <section className="bg-[#0a0f0a] relative pt-32 pb-24 border-b border-white/10">
         <Container>
@@ -64,7 +75,7 @@ export default async function CareerPage({ params }: PageProps) {
                   className="gap-2"
                 >
                   <ArrowLeft className="w-4 h-4" />
-                  всички позиции
+                  {t("careers:details.back_to_all")}
                 </BadgeDefault>
               </Link>
             </div>
@@ -87,7 +98,7 @@ export default async function CareerPage({ params }: PageProps) {
               )}
               <div className="inline-flex items-center gap-2 text-white/80 px-2 py-1.5 text-sm">
                 <Briefcase className="w-4 h-4 text-[#b4d429]" />
-                Пълен работен ден
+                {t("careers:details.job_type")}
               </div>
               <div className="inline-flex items-center gap-2 text-white/80 px-2 py-1.5 text-sm">
                 <span className="text-[#b4d429]">🌐</span>
@@ -109,14 +120,14 @@ export default async function CareerPage({ params }: PageProps) {
             <div className="lg:col-span-8">
               {/* Short Description Intro */}
               {career.shortDescription && (
-                <div className="text-xl font-medium leading-relaxed mb-10 text-slate-800">
+                <div className="text-base font-medium leading-relaxed mb-10 text-slate-800">
                   {career.shortDescription}
                 </div>
               )}
 
               {/* Main Content Render */}
               {career.mainContent && (
-                <div className="prose prose-lg max-w-none text-slate-600 space-y-6">
+                <div className="prose text-base max-w-none text-slate-600 space-y-6">
                   {career.mainContent.split("\n").map((paragraph, index) => {
                     const trimmed = paragraph.trim();
                     if (!trimmed) return null;
@@ -172,7 +183,7 @@ export default async function CareerPage({ params }: PageProps) {
             <div className="lg:col-span-4 space-y-8">
               <Sidebar className="bg-lime-600/10 p-8">
                 <h3 className="text-xl font-bold text-slate-900 mb-6">
-                  Какво предлагаме
+                  {t("careers:details.sidebar_title")}
                 </h3>
 
                 {/* Sidebar Info (Perks) */}
@@ -191,7 +202,7 @@ export default async function CareerPage({ params }: PageProps) {
                           <div className="mt-1 shrink-0 w-5 h-5 rounded-full bg-[#b4d429] flex items-center justify-center">
                             <CheckCircle2 className="w-3 h-3 text-black" />
                           </div>
-                          <span className="text-slate-700 text-sm font-medium leading-snug">
+                          <span className="text-slate-700 text-base font-medium leading-snug">
                             {content}
                           </span>
                         </div>
@@ -199,14 +210,14 @@ export default async function CareerPage({ params }: PageProps) {
                     })
                   ) : (
                     <p className="text-slate-500">
-                      Моля свържете се с нас за повече информация.
+                      {t("careers:details.no_sidebar_info")}
                     </p>
                   )}
                 </div>
 
                 <div className="pt-6 border-t border-slate-200/50">
-                  <p className="text-xs text-slate-500 mb-4 text-center">
-                    Готови ли сте за следващата стъпка в кариерата си?
+                  <p className="text-xs text-slate-500 mb-4 text-center leading-relaxed">
+                    {t("careers:details.apply_cta_text")}
                   </p>
                   <Button
                     href="/kontakti"
@@ -214,7 +225,7 @@ export default async function CareerPage({ params }: PageProps) {
                     fullWidth
                     className="!py-3 font-semibold"
                   >
-                    Кандидатствай сега
+                    {t("careers:details.apply_button")}
                   </Button>
                 </div>
               </Sidebar>
@@ -222,6 +233,6 @@ export default async function CareerPage({ params }: PageProps) {
           </div>
         </Container>
       </Section>
-    </>
+    </TranslationsProvider>
   );
 }
