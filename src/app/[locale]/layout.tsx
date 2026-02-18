@@ -48,42 +48,50 @@ export function generateStaticParams() {
   return [{ locale: "bg" }, { locale: "en" }];
 }
 
-export const metadata: Metadata = {
-  title: {
-    default: "VSCS - Соларни панели",
-    template: "%s | SolarTech Solutions",
-  },
-  description:
-    "Transform your home with clean, renewable solar energy. SolarTech Solutions offers premium solar panel installation, maintenance, and consultation services. Save up to 70% on energy bills.",
-  keywords: [
-    "solar panels",
-    "solar installation",
-    "renewable energy",
-    "solar power",
-    "green energy",
-    "solar savings",
-  ],
-  authors: [{ name: "SolarTech Solutions" }],
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://solartech.com",
-    siteName: "SolarTech Solutions",
-    title: "VSCS - Соларни панели",
-    description:
-      "Transform your home with clean, renewable solar energy. Save up to 70% on energy bills.",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "VSCS - Соларни панели",
-    description:
-      "Transform your home with clean, renewable solar energy. Save up to 70% on energy bills.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const { t } = await initTranslations(locale, ["common"]);
+
+  return {
+    title: {
+      default: t("metadata.title"),
+      template: "%s | VS Construction Services",
+    },
+    description: t("metadata.description"),
+    keywords: [
+      "solar panels",
+      "solar installation",
+      "renewable energy",
+      "solar power",
+      "green energy",
+      "solar savings",
+      "соларни панели",
+      "фотоволтаици",
+    ],
+    authors: [{ name: "VS Construction Services" }],
+    openGraph: {
+      type: "website",
+      locale: locale === "bg" ? "bg_BG" : "en_US",
+      url: "https://vscs-bg.com", // Updated to a placeholder that looks more real or keep existing if known
+      siteName: "VS Construction Services",
+      title: t("metadata.title"),
+      description: t("metadata.description"),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("metadata.title"),
+      description: t("metadata.description"),
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
+}
 
 export default async function RootLayout({
   children,
