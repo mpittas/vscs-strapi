@@ -26,35 +26,44 @@
     }
   },
   "key_services": {
-    "title": "Key Services",
-    "description": "Complete engineering, construction and project management in Bulgaria and abroad.",
+    "title": "Technologies",
+    "description": "We apply established and high-efficiency installation technologies in the construction of photovoltaic power plants, guided by the project's technical requirements, terrain specifics, and applicable European standards. Our approach ensures reliability, long-term operation, and optimal performance of the installations.",
     "contact_us": "Contact us",
     "items": {
-      "preparation": {
-        "title": "Preparation and Construction",
-        "description": "Complete terrain preparation and mechanical installation of equipment.",
+      "fixed_tilt": {
+        "title": "Fixed Tilt Systems",
+        "description": "Construction of photovoltaic structures with fixed tilt and proven stability.",
         "list": [
-          "Terrain preparation, excavation work and foundations.",
-          "Construction of internal roads and fencing.",
-          "Driving piles and installing trackers/structures."
+          "Characterized by technological reliability and high economic efficiency.",
+          "The technology is widely applicable for large utility-scale energy projects.",
+          "Ensures predictable results with minimal maintenance costs."
         ]
       },
-      "electrical": {
-        "title": "Electrical Installations",
-        "description": "Professional wiring and connection of the system to the grid.",
+      "tracker": {
+        "title": "Tracker Systems",
+        "description": "Installation of single-axis tracking systems designed to follow solar movement.",
         "list": [
-          "Laying and terminating cable routes (DC/AC)",
-          "Installation of inverters, transformer stations and BESS systems",
-          "Testing and commissioning"
+          "Installation is performed with a high degree of precision.",
+          "Guaranteeing correct alignment and mechanical stability.",
+          "Compliance with the manufacturer's technical documentation."
         ]
       },
-      "logistics": {
-        "title": "Procurement and Logistics",
-        "description": "Supply of all necessary components and materials.",
+      "agrivoltaic": {
+        "title": "Agri-PV Installations",
+        "description": "Implementation of projects combining efficient photovoltaic production and active agricultural activity.",
         "list": [
-          "Delivery of cables, grounding elements and lighting",
-          "Photovoltaic modules, inverters and panels",
-          "Specialized structures and mounting elements"
+          "The technology allows full utilization of areas and sustainable development.",
+          "We apply experienced teams, structured processes, and technological expertise.",
+          "We execute complex projects according to the requirements of international clients."
+        ]
+      },
+      "bess": {
+        "title": "BESS – Battery Energy Storage Systems",
+        "description": "Installation of energy storage systems as integrated or standalone solutions.",
+        "list": [
+          "We perform specialized installation of containerized battery modules and systems.",
+          "We provide the necessary auxiliary infrastructure and full electrical integration.",
+          "Safety, reliability, and energy flow management are priorities."
         ]
       }
     }

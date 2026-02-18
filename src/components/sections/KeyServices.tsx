@@ -10,33 +10,43 @@ import { useMemo } from "react";
 
 export default function KeyServices() {
   const { t } = useTranslation("services");
+  // Component renders 'Technologies' section title and cards
 
   const services = useMemo(
     () => [
       {
-        title: t("key_services.items.preparation.title"),
-        description: t("key_services.items.preparation.description"),
-        image: "/images/man-in-solar-panel-field.jpg",
-        icon: "/icons/project-icon-dark.svg",
-        items: t("key_services.items.preparation.list", {
+        title: t("key_services.items.fixed_tilt.title"),
+        description: t("key_services.items.fixed_tilt.description"),
+        image: "/images/service-box-img-1.jpg",
+        icon: "/icons/service-white-box-icon-1.svg",
+        items: t("key_services.items.fixed_tilt.list", {
           returnObjects: true,
         }) as string[],
       },
       {
-        title: t("key_services.items.electrical.title"),
-        description: t("key_services.items.electrical.description"),
-        image: "/images/team-crew-inspecting-panels.jpg",
-        icon: "/icons/project-icon-dark.svg",
-        items: t("key_services.items.electrical.list", {
+        title: t("key_services.items.tracker.title"),
+        description: t("key_services.items.tracker.description"),
+        image: "/images/service-box-img-2.jpg",
+        icon: "/icons/service-white-box-icon-2.svg",
+        items: t("key_services.items.tracker.list", {
           returnObjects: true,
         }) as string[],
       },
       {
-        title: t("key_services.items.logistics.title"),
-        description: t("key_services.items.logistics.description"),
-        image: "/images/panel-rows-outdoors.jpg",
-        icon: "/icons/project-icon-dark.svg",
-        items: t("key_services.items.logistics.list", {
+        title: t("key_services.items.agrivoltaic.title"),
+        description: t("key_services.items.agrivoltaic.description"),
+        image: "/images/service-box-img-3.jpg",
+        icon: "/icons/service-white-box-icon-3.svg",
+        items: t("key_services.items.agrivoltaic.list", {
+          returnObjects: true,
+        }) as string[],
+      },
+      {
+        title: t("key_services.items.bess.title"),
+        description: t("key_services.items.bess.description"),
+        image: "/images/service-box-img-4.jpg",
+        icon: "/icons/service-white-box-icon-4.svg",
+        items: t("key_services.items.bess.list", {
           returnObjects: true,
         }) as string[],
       },
@@ -62,12 +72,12 @@ export default function KeyServices() {
           </Button>
         </div>
 
-        {/* Cards Grid */}
-        <div className="flex flex-col lg:flex-row gap-6">
+        {/* Cards Grid - Updated to 2 columns for 4 items */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-white p-[10px] rounded-[22px] flex flex-col h-full flex-1"
+              className="bg-white p-[10px] rounded-[22px] flex flex-col h-full"
             >
               {/* Image Section */}
               <div className="relative h-[240px] rounded-[20px] mb-6">
@@ -85,7 +95,7 @@ export default function KeyServices() {
                     alt=""
                     width={30}
                     height={30}
-                    className="text-black" // The SVG is black by default as per request
+                    className="text-black" // SVG color control
                   />
                 </div>
               </div>
