@@ -3,11 +3,7 @@ import i18nConfig from "./i18nConfig";
 import { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-  return i18nRouter(request, {
-    ...i18nConfig,
-    defaultLocale: "bg",
-    localeDetection: false,
-  });
+  return i18nRouter(request, i18nConfig);
 }
 
 export const config = {
