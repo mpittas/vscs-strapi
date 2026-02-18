@@ -96,14 +96,21 @@ export default function WorkProcess() {
     <Section paddingY="xl" className="bg-white">
       <Container>
         {/* Header */}
-        <div className="mb-12">
-          <Heading as="h2" className="mb-4">
+        {/* Two-column Intro Text - Added intro keys */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-16">
+          <Text className="text-slate-600 leading-relaxed">
+            {t("work_process.intro_left")}
+          </Text>
+          <Text className="text-slate-600 leading-relaxed">
+            {t("work_process.intro_right")}
+          </Text>
+        </div>
+
+        {/* Section Heading */}
+        <div className="mb-8">
+          <Heading as="h2" className="mb-4 text-3xl md:text-4xl font-bold">
             {t("work_process.title")}
           </Heading>
-
-          <Text variant="body-16" className="text-slate-600 max-w-xl">
-            {t("work_process.description")}
-          </Text>
         </div>
 
         {/* Process Cards Grid */}

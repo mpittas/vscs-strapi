@@ -38,6 +38,7 @@ export default async function ServicesPage({ params }: PageProps) {
       {/* Page Title Section */}
       <PageTitle
         title={t("services:page_title")}
+        backgroundImage="/images/solar-panel-bg-compressed.jpg"
         breadcrumbs={[
           { label: t("services:breadcrumbs.home"), href: "/" },
           { label: t("services:breadcrumbs.services") },

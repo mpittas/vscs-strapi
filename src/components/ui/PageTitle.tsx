@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import { ChevronRight } from "lucide-react";
 
 interface BreadcrumbItem {
   label: string;
@@ -9,24 +11,41 @@ interface PageTitleProps {
   title: string;
   breadcrumbs: BreadcrumbItem[];
   subtitle?: string;
+  backgroundImage?: string;
 }
 
 export default function PageTitle({
   title,
   breadcrumbs,
   subtitle,
+  backgroundImage,
 }: PageTitleProps) {
   return (
-    <section className="bg-[#0a0f0a] py-16 md:py-24 relative overflow-hidden">
-      {/* Subtle background overlay for depth */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent pointer-events-none" />
+    <section className="relative py-8 overflow-hidden flex flex-col items-center justify-center min-h-[260px]">
+      {/* Background Image */}
+      {backgroundImage ? (
+        <>
+          <Image
+            src={backgroundImage}
+            alt="Background"
+            fill
+            className="object-cover z-0"
+            priority
+          />
+          {/* Dark Green Overlay */}
+          <div className="absolute inset-0 bg-[#001D13] opacity-80 z-10" />
+        </>
+      ) : (
+        <div className="absolute inset-0 bg-[#0a0f0a] z-0" />
+      )}
 
-      <div className="container relative z-10">
+      {/* Content */}
+      <div className="container relative z-20">
         <div className="flex flex-col items-center text-center">
           {/* Breadcrumbs */}
           <nav className="flex items-center gap-2 mb-6">
             {breadcrumbs.map((item, index) => (
-              <span key={index} className="flex items-center gap-2">
+              <div key={index} className="flex items-center gap-2">
                 {item.href ? (
                   <Link
                     href={item.href}
@@ -35,24 +54,24 @@ export default function PageTitle({
                     {item.label}
                   </Link>
                 ) : (
-                  <span className="text-[#b4d429] text-sm font-normal tracking-wider uppercase  opacity-70">
+                  <span className="text-[#b4d429] text-sm font-normal tracking-wider uppercase opacity-70">
                     {item.label}
                   </span>
                 )}
                 {index < breadcrumbs.length - 1 && (
-                  <span className="text-[#b4d429]/60 text-sm">&gt;</span>
+                  <ChevronRight className="w-4 h-4 text-[#b4d429]/60" />
                 )}
-              </span>
+              </div>
             ))}
           </nav>
 
           {/* Title */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal text-white">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal text-white drop-shadow-sm">
             {title}
           </h1>
 
           {subtitle && (
-            <p className="mt-6 text-lg text-white/70 max-w-2xl font-light leading-relaxed">
+            <p className="mt-6 text-lg text-white/90 max-w-2xl font-light leading-relaxed drop-shadow-sm">
               {subtitle}
             </p>
           )}

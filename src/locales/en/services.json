@@ -9,18 +9,20 @@
     "services": "SERVICES"
   },
   "work_process": {
-    "title": "Work Process",
+    "title": "Key Services",
     "description": "Complete engineering, construction and project management in Bulgaria and abroad.",
+    "intro_left": "We offer services designed to transform energy projects into secure, efficient, and long-term solutions. Combining real-world experience, technical expertise, and strong organization, we execute every stage with a clear goal – maximum value for the client.",
+    "intro_right": "We work quickly, precisely, and responsibly because we know that quality is not just a standard, but a promise. Our team builds photovoltaic installations with sustainability, reliability, and optimal performance in mind, creating partnerships based on trust and results.",
     "read_more": "Read more",
     "steps": {
       "ground": "Ground-mount Plants",
-      "ground_desc": "We build high-efficiency ground-mounted photovoltaic plants with fixed structures or trackers, optimized for maximum sun exposure and energy yield.",
+      "ground_desc": "We build ground-mounted photovoltaic installations focusing on stability, efficiency, and quality execution, in accordance with applicable international standards and project specifics. Our team ensures precise installation of static and tracker structures and photovoltaic modules, adapted to site conditions, to guarantee maximum performance and long-term system reliability.",
       "rooftop": "Rooftop Solar",
-      "rooftop_desc": "We design and install rooftop solar systems for industrial buildings and homes, using reliable structures without compromising insulation.",
+      "rooftop_desc": "We implement rooftop solar solutions that turn unused areas into effective energy assets. We work with attention to safety and building specifics to ensure secure operation and high energy return.",
       "carport": "Solar Carports",
-      "carport_desc": "We create innovative solar parking sheds that combine car protection with clean electricity production for charging stations or self-consumption.",
+      "carport_desc": "We build solar carports that combine functionality with sustainable energy production. These systems provide protection for vehicles while simultaneously generating electricity, adding value to infrastructure and improving site energy efficiency.",
       "floating": "Floating Solar Plants",
-      "floating_desc": "We implement floating photovoltaic systems using water surfaces for efficient clean energy production. Our approach ensures platform stability, resistance to external conditions, and optimal performance."
+      "floating_desc": "We implement floating photovoltaic systems that utilize water surfaces for efficient clean energy production. Our approach ensures platform stability, resistance to external conditions, and optimal performance, expanding opportunities for solar project development."
     }
   },
   "key_services": {
