@@ -13,11 +13,14 @@
     "description": "Complete engineering, construction and project management in Bulgaria and abroad.",
     "read_more": "Read more",
     "steps": {
-      "design": "Design and Engineering",
-      "delivery": "Delivery and Logistics",
-      "construction": "Construction and Installation",
-      "testing": "Testing and Launch",
-      "maintenance": "Maintenance"
+      "ground": "Ground-mount Plants",
+      "ground_desc": "We build high-efficiency ground-mounted photovoltaic plants with fixed structures or trackers, optimized for maximum sun exposure and energy yield.",
+      "rooftop": "Rooftop Solar",
+      "rooftop_desc": "We design and install rooftop solar systems for industrial buildings and homes, using reliable structures without compromising insulation.",
+      "carport": "Solar Carports",
+      "carport_desc": "We create innovative solar parking sheds that combine car protection with clean electricity production for charging stations or self-consumption.",
+      "floating": "Floating Solar Plants",
+      "floating_desc": "We implement floating photovoltaic systems using water surfaces for efficient clean energy production. Our approach ensures platform stability, resistance to external conditions, and optimal performance."
     }
   },
   "key_services": {

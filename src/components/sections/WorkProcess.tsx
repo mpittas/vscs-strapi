@@ -5,18 +5,30 @@ import { Heading, Text } from "@/components/ui/Typography";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import { useTranslation } from "react-i18next";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import ServiceModal from "@/components/ServiceModal";
 
 interface ProcessStep {
   title: string;
+  description?: string; // Add description for modal
   icon: string;
   href?: string;
+  key?: string; // Used for translation key if needed for dynamic lookup
 }
 
-function ProcessCard({ step }: { step: ProcessStep }) {
+function ProcessCard({
+  step,
+  onClick,
+}: {
+  step: ProcessStep;
+  onClick: () => void;
+}) {
   const { t } = useTranslation("services");
   return (
-    <div className="flex flex-col justify-between bg-brand-green rounded-2xl p-6 min-h-[220px] transition-all duration-300 hover:bg-brand-green-dark">
+    <div
+      onClick={onClick}
+      className="flex flex-col justify-between bg-brand-green rounded-2xl p-6 min-h-[220px] transition-all duration-300 hover:bg-brand-green-dark cursor-pointer"
+    >
       {/* Icon */}
       <div className="mb-6">
         <Image
@@ -34,16 +46,13 @@ function ProcessCard({ step }: { step: ProcessStep }) {
           {step.title}
         </Heading>
 
-        {/* Read More Link */}
-        <a
-          href={step.href || "#"}
-          className="inline-flex items-center gap-2 text-dark-green text-sm group"
-        >
+        {/* Read More Link (now just visual since card is clickable) */}
+        <div className="inline-flex items-center gap-2 text-dark-green text-sm group">
           <span className="w-5 h-5 rounded-full bg-black/70 group-hover:bg-dark-green/70 transition-colors bg-[url('/icons/small-chevron.svg')] bg-[length:5px] bg-[position:50%_50%] bg-no-repeat" />
           <span className="group-hover:underline font-medium text-black/70 relative top-[1px]">
             {t("work_process.read_more")}
           </span>
-        </a>
+        </div>
       </div>
     </div>
   );
@@ -51,32 +60,32 @@ function ProcessCard({ step }: { step: ProcessStep }) {
 
 export default function WorkProcess() {
   const { t } = useTranslation("services");
+  const [selectedStep, setSelectedStep] = useState<ProcessStep | null>(null);
 
   const processSteps: ProcessStep[] = useMemo(
     () => [
       {
-        title: t("work_process.steps.design"),
-        icon: "/icons/page-ruler-black-icon.svg",
+        title: t("work_process.steps.ground"),
+        description: t("work_process.steps.ground_desc"),
+        icon: "/icons/service-icon-solar.svg",
         href: "#",
       },
       {
-        title: t("work_process.steps.delivery"),
-        icon: "/icons/page-ruler-black-icon.svg",
+        title: t("work_process.steps.rooftop"),
+        description: t("work_process.steps.rooftop_desc"),
+        icon: "/icons/service-icon-house-roof.svg",
         href: "#",
       },
       {
-        title: t("work_process.steps.construction"),
-        icon: "/icons/page-ruler-black-icon.svg",
+        title: t("work_process.steps.carport"),
+        description: t("work_process.steps.carport_desc"),
+        icon: "/icons/service-icon-battery-charge.svg",
         href: "#",
       },
       {
-        title: t("work_process.steps.testing"),
-        icon: "/icons/page-ruler-black-icon.svg",
-        href: "#",
-      },
-      {
-        title: t("work_process.steps.maintenance"),
-        icon: "/icons/page-ruler-black-icon.svg",
+        title: t("work_process.steps.floating"),
+        description: t("work_process.steps.floating_desc"),
+        icon: "/icons/service-icon-globe-solar.svg",
         href: "#",
       },
     ],
@@ -98,12 +107,25 @@ export default function WorkProcess() {
         </div>
 
         {/* Process Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {processSteps.map((step, index) => (
-            <ProcessCard key={index} step={step} />
+            <ProcessCard
+              key={index}
+              step={step}
+              onClick={() => setSelectedStep(step)}
+            />
           ))}
         </div>
       </Container>
+
+      {/* Service Details Modal */}
+      <ServiceModal
+        isOpen={!!selectedStep}
+        onClose={() => setSelectedStep(null)}
+        title={selectedStep?.title || ""}
+        description={selectedStep?.description || ""}
+        icon={selectedStep?.icon}
+      />
     </Section>
   );
 }
