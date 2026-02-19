@@ -6,7 +6,8 @@ import { MoveRight, X } from "lucide-react";
 import { Heading, Text } from "@/components/ui/Typography";
 import Button from "@/components/ui/Button";
 import { createPortal } from "react-dom";
-import Link from "next/link"; // If passing href
+import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 interface ServiceModalProps {
   isOpen: boolean;
@@ -24,9 +25,11 @@ export default function ServiceModal({
   title,
   description,
   icon,
-  href = "/contact",
-  ctaText = "Свържете се с нас",
+  href = "/kontakti",
+  ctaText,
 }: ServiceModalProps) {
+  const { t } = useTranslation("services");
+  const displayCtaText = ctaText || t("key_services.contact_us");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -123,7 +126,7 @@ export default function ServiceModal({
             icon={MoveRight} // Or strict Arrow default
             className="w-auto px-8"
           >
-            {ctaText}
+            {displayCtaText}
           </Button>
         </div>
       </div>

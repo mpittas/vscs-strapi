@@ -136,6 +136,8 @@ export default function WorkProcess() {
         title={selectedStep?.title || ""}
         description={selectedStep?.description || ""}
         icon={selectedStep?.icon}
+        ctaText={t("key_services.contact_us")}
+        href="/kontakti"
       />
     </Section>
   );
