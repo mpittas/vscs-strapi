@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { cn } from "@/lib/utils";
+import React from "react";
 
 // Predefined style variants
 const variants = {
@@ -22,7 +22,7 @@ const variants = {
 };
 
 interface IconTextBoxProps {
-  icon: string;
+  icon: string | React.ReactNode;
   iconAlt?: string;
   title: string;
   description: string;
@@ -61,35 +61,51 @@ export default function IconTextBox({
     descriptionColor: descriptionColor || variants[variant].descriptionColor,
   };
 
+  const isStringIcon = typeof icon === "string";
+
   return (
     <div
       className={cn(
-        "flex flex-col p-6 rounded-2xl border transition-colors duration-300",
+        "group flex flex-col p-6 rounded-2xl border transition-all duration-300",
         styles.borderColor,
         styles.bgColor,
-        styles.hoverBgColor,
-        styles.hoverBorderColor,
-        className
+        styles.hoverBgColor || "hover:bg-brand-green",
+        styles.hoverBorderColor || "hover:border-brand-green",
+        className,
       )}
     >
       {/* Icon */}
       <div className="mb-4">
-        <Image
-          src={icon}
-          alt={iconAlt || title}
-          width={48}
-          height={48}
-          className="w-12 h-12"
-        />
+        {isStringIcon ? (
+          <img
+            src={icon}
+            alt={iconAlt || title}
+            className="w-12 h-12 object-contain group-hover:brightness-0 group-hover:invert transition-all"
+          />
+        ) : (
+          <div className="w-12 h-12 flex items-center justify-start text-brand-green text-4xl group-hover:text-white transition-colors">
+            {icon}
+          </div>
+        )}
       </div>
 
       {/* Title */}
-      <h3 className={cn("text-lg font-normal mb-2", styles.titleColor)}>
+      <h3
+        className={cn(
+          "text-lg font-normal mb-2 transition-colors group-hover:text-white",
+          styles.titleColor,
+        )}
+      >
         {title}
       </h3>
 
       {/* Description */}
-      <p className={cn("text-sm leading-relaxed", styles.descriptionColor)}>
+      <p
+        className={cn(
+          "text-sm leading-relaxed transition-colors group-hover:text-white/90",
+          styles.descriptionColor,
+        )}
+      >
         {description}
       </p>
     </div>

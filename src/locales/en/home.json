@@ -1,6 +1,6 @@
 {
   "hero": {
-    "badge": "VS Construction Services",
+    "badge": "Let’s do the impossible",
     "title_part1": "Your Partner",
     "title_part2": "in Solar Business",
     "description": "Turnkey construction services and innovative renewable energy solutions.",
@@ -13,7 +13,16 @@
   "about_us": {
     "title_highlight": "Clean & Renewable",
     "title_rest": "Energy Accessible to All Users",
-    "description": "We are more than just a solar power plant installation company. We are a story of passion and interest in renewable energy, inspired by our common desire to change the world towards greener and sustainable solutions.",
+    "description_1": "We are more than a photovoltaic power plant installation company. We are driven by a clear vision, deep expertise, and a genuine commitment to accelerating the transition toward a greener and more sustainable future.",
+    "description_2": "Our journey began with two people united not only by a shared personal path, but also by a strong belief that renewable energy has the power to change the world. Over the years, this belief has evolved into a solid business built on extensive hands-on experience in the photovoltaic sector. Through working on diverse projects, we have gained a comprehensive understanding of the full installation process, as well as the technical and organizational challenges that may arise on site.",
+    "more_paragraphs": [
+      "VS CONSTRUCTION SERVICES Ltd. is a family-owned construction company founded on the principles of transparency, integrity, and long-term partnership. We believe that trust, professionalism, and clear communication are essential to delivering successful projects.",
+      "Our team consists of highly qualified professionals with expertise in construction, project management, policy compliance, and structured project execution. With a proven installation track record across three continents, we bring international experience, strong operational capacity, and a results-oriented approach to every project we undertake.",
+      "By combining in-depth industry knowledge with disciplined execution and a hands-on mindset, we deliver high-quality, reliable solar energy solutions tailored to our clients’ needs. Our dynamic project portfolio and flexible resource management have consistently demonstrated our ability to meet deadlines, adapt to complex environments, and deliver outstanding results.",
+      "VS CONSTRUCTION SERVICES Ltd. provides full EPC services in Bulgaria and turnkey photovoltaic installation services across Europe, supporting our partners throughout every phase of the project lifecycle — from planning to successful commissioning."
+    ],
+    "read_more": "Read more",
+    "read_less": "Read less",
     "features": {
       "innovative": "Innovative Solutions",
       "sustainable": "Sustainable Development",

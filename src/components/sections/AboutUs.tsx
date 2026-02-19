@@ -1,16 +1,17 @@
 "use client";
-
 import Image from "next/image";
 import { Heading, Text } from "@/components/ui/Typography";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import { Check } from "lucide-react";
-
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
+import ReadMoreButton from "@/components/ui/ReadMoreButton";
 
 export default function AboutUs() {
   const { t } = useTranslation("home");
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const features = [
     t("about_us.features.innovative"),
@@ -18,6 +19,10 @@ export default function AboutUs() {
     t("about_us.features.expert"),
     t("about_us.features.quality"),
   ];
+
+  const moreParagraphs = t("about_us.more_paragraphs", {
+    returnObjects: true,
+  }) as string[];
 
   return (
     <Section paddingY="lg" bgColor="white">
@@ -78,12 +83,58 @@ export default function AboutUs() {
             </div>
 
             {/* Description */}
-            <Text
-              variant="body-16"
-              className="text-slate-600 mb-8 leading-relaxed"
-            >
-              {t("about_us.description")}
-            </Text>
+            <div className="mb-8">
+              <Text
+                variant="body-16"
+                className="text-slate-600 leading-relaxed mb-4"
+              >
+                {t("about_us.description_1")}
+              </Text>
+              <Text
+                variant="body-16"
+                className="text-slate-600 leading-relaxed mb-4"
+              >
+                {t("about_us.description_2")}
+              </Text>
+
+              {/* Revealable content */}
+              <div
+                className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                  isExpanded
+                    ? "max-h-[1500px] opacity-100"
+                    : "max-h-0 opacity-0"
+                }`}
+              >
+                <div className="space-y-4 pt-0 pb-4">
+                  {Array.isArray(moreParagraphs) &&
+                    moreParagraphs.map((paragraph, index) => (
+                      <Text
+                        key={index}
+                        variant="body-16"
+                        className="text-slate-600 leading-relaxed"
+                      >
+                        {paragraph}
+                      </Text>
+                    ))}
+                </div>
+              </div>
+
+              <div className="mt-1">
+                <ReadMoreButton
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  isExpanded={isExpanded}
+                  text={
+                    isExpanded
+                      ? t("about_us.read_less")
+                      : t("about_us.read_more")
+                  }
+                  circleColor="bg-brand-green"
+                  circleHoverColor="bg-dark-green"
+                  textColor="text-slate-900"
+                  iconColor="text-white"
+                />
+              </div>
+            </div>
 
             {/* Features list - 2x2 grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-10">

@@ -26,14 +26,14 @@ const useCounterData = () => {
     },
     {
       icon: "/icons/globe-icon-green.svg",
-      value: 12,
-      suffix: "",
+      value: 10,
+      suffix: "+",
       label: t("stats.countries"),
     },
     {
       icon: "/icons/bolt-icon-green.svg",
-      value: 300,
-      suffix: "MW",
+      value: 120,
+      suffix: "+ MW",
       label: t("stats.installed_capacity"),
     },
     {

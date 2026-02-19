@@ -2,16 +2,24 @@
   "intro": {
     "badge": "WHO WE ARE",
     "title": "Partnership built on trust and innovation",
-    "description_1": "We are more than just a photovoltaic power plant installation company. We are a story of passion and interest in renewable energy, inspired by our common desire to change the world towards greener and sustainable solutions.",
-    "description_2": "For us, it all started with two people who fell in love not only with each other, but also with the idea of change. Through years of experience in the field of photovoltaic systems, we have come to know all possible ways of working and problems that may arise.",
+    "description_1": "We are more than a photovoltaic power plant installation company. We are driven by a clear vision, deep expertise, and a genuine commitment to accelerating the transition toward a greener and more sustainable future.",
+    "description_2": "Our journey began with two people united not only by a shared personal path, but also by a strong belief that renewable energy has the power to change the world. Over the years, this belief has evolved into a solid business built on extensive hands-on experience in the photovoltaic sector. Through working on diverse projects, we have gained a comprehensive understanding of the full installation process, as well as the technical and organizational challenges that may arise on site.",
+    "more_paragraphs": [
+      "VS CONSTRUCTION SERVICES Ltd. is a family-owned construction company founded on the principles of transparency, integrity, and long-term partnership. We believe that trust, professionalism, and clear communication are essential to delivering successful projects.",
+      "Our team consists of highly qualified professionals with expertise in construction, project management, policy compliance, and structured project execution. With a proven installation track record across three continents, we bring international experience, strong operational capacity, and a results-oriented approach to every project we undertake.",
+      "By combining in-depth industry knowledge with disciplined execution and a hands-on mindset, we deliver high-quality, reliable solar energy solutions tailored to our clients’ needs. Our dynamic project portfolio and flexible resource management have consistently demonstrated our ability to meet deadlines, adapt to complex environments, and deliver outstanding results.",
+      "VS CONSTRUCTION SERVICES Ltd. provides full EPC services in Bulgaria and turnkey photovoltaic installation services across Europe, supporting our partners throughout every phase of the project lifecycle — from planning to successful commissioning."
+    ],
+    "read_more": "Read more",
+    "read_less": "Read less",
     "cards": {
       "trust": {
-        "title": "Trust",
-        "description": "Full transparency with our clients and establishing a trusted and reliable business partnership"
+        "title": "Trust & Transparency",
+        "description": "We build long-term partnerships through full transparency, clear communication, and accountable project execution. Our clients rely on us for honest processes, predictable results, and a shared commitment to success at every stage of the project."
       },
       "innovation": {
-        "title": "Innovations in Technology",
-        "description": "We use proprietary software to facilitate processes for both workers and management."
+        "title": "Innovation in Technology & Professionalism",
+        "description": "We utilize proprietary software for photovoltaic project management, enabling accurate work tracking, real-time reporting, and comprehensive site documentation. Combined with professional execution and structured processes, this ensures full control, transparency, and high-quality delivery throughout the entire project lifecycle."
       }
     },
     "cta": "Contact us"
@@ -19,30 +27,31 @@
   "values": {
     "badge": "OUR VALUES",
     "title": "Innovations in Technology and Ecological Solutions",
+    "description": "Our values define how we work, how we build partnerships, and how we deliver results. They are the foundation of our decision-making, our on-site execution, and our long-term relationships with clients and partners. Guided by integrity, responsibility, and continuous improvement, we are committed to delivering reliable, high-quality photovoltaic solutions with consistency and professionalism.",
     "items": {
       "team_work": {
         "title": "Teamwork",
-        "description": "High level of dedication and professionalism, experience and diversity at both management and executive levels"
+        "description": "We foster a strong team culture built on dedication, professionalism, and shared responsibility. By combining experience, diversity, and collaboration at both management and operational levels, we achieve consistent and efficient project execution."
       },
       "safety": {
-        "title": "Safety and Reliability",
-        "description": "Work in strict compliance with applicable health, safety and environmental regulations"
+        "title": "Safety & Reliability",
+        "description": "Safety is a core priority in all our operations. We work in strict compliance with applicable health, safety, and environmental regulations, ensuring reliable execution and secure working conditions on every project site."
       },
       "trust": {
         "title": "Trust",
-        "description": "Building long-term relationships based on fairness and transparency"
+        "description": "We build long-term partnerships based on fairness, transparency, and accountability. Clear communication and ethical conduct are fundamental to earning and maintaining the trust of our clients and partners."
       },
       "respect": {
         "title": "Respect",
-        "description": "Respect, experience and professionalism in relations with employees and clients of the company"
+        "description": "We value respect as the foundation of every professional relationship. By recognizing expertise, experience, and individual contribution, we create a constructive and respectful environment for our employees and clients."
       },
       "support": {
         "title": "Support",
-        "description": "Customer support by optimizing work and providing cost-effective solutions for PV installation."
+        "description": "We support our clients through efficient project coordination and optimized workflows. By delivering cost-effective and well-structured photovoltaic solutions, we add value at every stage of the installation process."
       },
       "flexibility": {
         "title": "Flexibility",
-        "description": "We are here when and where the client needs us"
+        "description": "We adapt quickly to project requirements and on-site conditions. Our flexibility allows us to provide reliable support whenever and wherever our clients need us."
       }
     }
   },

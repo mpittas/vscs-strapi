@@ -8,37 +8,41 @@ import Section from "@/components/ui/Section";
 import BadgeDefault from "@/components/ui/BadgeDefault";
 import { useTranslation } from "react-i18next";
 
+import { HiUsers, HiShieldCheck, HiHeart } from "react-icons/hi2";
+import { LuHandshake, LuShuffle } from "react-icons/lu";
+import { BiSupport } from "react-icons/bi";
+
 export default function OurValues() {
   const { t } = useTranslation("about");
 
   const values = [
     {
-      icon: "/icons/plug-solar-icon-green.svg",
+      icon: <HiUsers />,
       title: t("values.items.team_work.title"),
       description: t("values.items.team_work.description"),
     },
     {
-      icon: "/icons/plug-solar-icon-green.svg",
+      icon: <HiShieldCheck />,
       title: t("values.items.safety.title"),
       description: t("values.items.safety.description"),
     },
     {
-      icon: "/icons/plug-solar-icon-green.svg",
+      icon: <LuHandshake />,
       title: t("values.items.trust.title"),
       description: t("values.items.trust.description"),
     },
     {
-      icon: "/icons/plug-solar-icon-green.svg",
+      icon: <HiHeart />,
       title: t("values.items.respect.title"),
       description: t("values.items.respect.description"),
     },
     {
-      icon: "/icons/plug-solar-icon-green.svg",
+      icon: <BiSupport />,
       title: t("values.items.support.title"),
       description: t("values.items.support.description"),
     },
     {
-      icon: "/icons/plug-solar-icon-green.svg",
+      icon: <LuShuffle />,
       title: t("values.items.flexibility.title"),
       description: t("values.items.flexibility.description"),
     },
@@ -50,9 +54,14 @@ export default function OurValues() {
         {/* Header Section */}
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 lg:gap-16 mb-14">
           {/* Left - Badge and Title */}
-          <div className="lg:max-w-2xl">
+          <div className="lg:max-w-4xl">
             <BadgeDefault className="mb-4">{t("values.badge")}</BadgeDefault>
-            <Heading as="h2">{t("values.title")}</Heading>
+            <Heading as="h2" className="mb-6">
+              {t("values.title")}
+            </Heading>
+            <p className="text-slate-600 text-lg leading-relaxed max-w-3xl">
+              {t("values.description")}
+            </p>
           </div>
 
           {/* Right - CTA Button */}
@@ -74,6 +83,8 @@ export default function OurValues() {
               iconAlt={value.title}
               borderColor="border-slate-200"
               bgColor="bg-white"
+              hoverBgColor="hover:bg-brand-green"
+              hoverBorderColor="hover:border-brand-green"
               titleColor="text-slate-900"
               descriptionColor="text-slate-600"
             />
