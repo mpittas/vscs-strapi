@@ -56,7 +56,7 @@ export default function ReadMoreButton({
           // Default hover behavior if not specified?
           // For ServiceSteps: group-hover:bg-brand-green
           // For WorkProcess: group-hover:bg-dark-green/70
-          isExpanded ? "rotate-90 bg-brand-green" : "", // When expanded, usually highlights
+          isExpanded ? "rotate-90" : "", // When expanded, usually highlights
         )}
       >
         <ChevronRight className={cn("w-3 h-3 stroke-[3px]", iconColor)} />

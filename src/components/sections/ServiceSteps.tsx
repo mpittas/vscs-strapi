@@ -65,7 +65,6 @@ function ServiceCard({
             textColor="text-slate-900"
             circleColor="bg-black"
             iconColor="text-white"
-            circleHoverColor="bg-brand-green"
           />
         </div>
       </div>
@@ -118,7 +117,11 @@ export default function ServiceSteps() {
         <ServiceCard
           key={index}
           step={step}
-          readMoreText={t("work_process.read_more")}
+          readMoreText={
+            activeStepIndex === index
+              ? t("work_process.read_less")
+              : t("work_process.read_more")
+          }
           isActive={activeStepIndex === index}
           onToggle={() => handleToggle(index)}
         />
