@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Heading, Text } from "@/components/ui/Typography";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
+import ReadMoreButton from "@/components/ui/ReadMoreButton";
 import { useTranslation } from "react-i18next";
 import { useMemo, useState } from "react";
 import ServiceModal from "@/components/ServiceModal";
@@ -47,12 +48,15 @@ function ProcessCard({
         </Heading>
 
         {/* Read More Link (now just visual since card is clickable) */}
-        <div className="inline-flex items-center gap-2 text-dark-green text-sm group">
-          <span className="w-5 h-5 rounded-full bg-black/70 group-hover:bg-dark-green/70 transition-colors bg-[url('/icons/small-chevron.svg')] bg-[length:5px] bg-[position:50%_50%] bg-no-repeat" />
-          <span className="group-hover:underline font-medium text-black/70 relative top-[1px]">
-            {t("work_process.read_more")}
-          </span>
-        </div>
+        <ReadMoreButton
+          text={t("work_process.read_more")}
+          className="text-dark-green hover:underline"
+          textColor="text-dark-green"
+          textHoverColor="group-hover:text-black"
+          circleColor="bg-black/70"
+          circleHoverColor="bg-dark-green/70"
+          iconColor="text-white"
+        />
       </div>
     </div>
   );

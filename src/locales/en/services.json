@@ -69,8 +69,7 @@
     }
   },
   "installation_types": {
-    "title": "Types of Installations and Technologies",
-    "description": "We offer a wide range of solar solutions tailored to your specific needs and terrain conditions.",
+    "title": "Work process",
     "items": {
       "ground": {
         "title": "Ground-mount Plants",
@@ -83,6 +82,35 @@
       "hybrid": {
         "title": "Hybrid Systems",
         "description": "Off-grid systems and energy storage solutions."
+      }
+    }
+  },
+  "project_lifecycle": {
+    "items": {
+      "projecting": {
+        "title": "Design and Engineering",
+        "description": "Our design and engineering process covers both photovoltaic systems and energy storage systems (BESS), ensuring technically optimized and fully compliant solutions. We analyze site conditions, grid requirements, and system configuration to develop integrated PV and BESS solutions that support efficient construction and reliable long-term operation. Our scope includes preparation of technical concepts, equipment coordination, feasibility assessment, and preparation of engineering documentation in accordance with applicable standards and project specifications."
+      },
+      "delivery": {
+        "title": "Delivery and Logistics",
+        "description": "We manage the delivery and logistics of photovoltaic equipment and BESS components, including containerized battery systems, power electronics, and auxiliary infrastructure. Logistics planning is closely linked to the construction schedule to ensure safe transport, timely delivery, and proper storage of equipment on site. Our coordinated approach minimizes delays and supports efficient project execution, including large-scale and hybrid PV + BESS installations."
+      },
+      "construction": {
+        "title": "Construction and Installation",
+        "description": "We execute construction and installation works for photovoltaic plants and energy storage systems (BESS), placing strong emphasis on quality, safety, and technical precision. Our scope includes mechanical installation, electrical wiring, equipment integration, and on-site coordination in accordance with approved designs, manufacturer requirements, and international standards. Our teams have experience with fixed tilt systems, tracker systems, agri-PV installations, and BESS, allowing us to adapt effectively to different configurations and complex terrain conditions."
+      },
+      "testing": {
+        "title": "Testing and Commissioning",
+        "description": "We perform comprehensive testing, inspection, and commissioning activities for PV and BESS systems to ensure full operational readiness. All installations are checked against technical specifications, performance criteria, and regulatory requirements before handover to the client. The commissioning process ensures reliable system operation and a controlled transition from the construction to the operational phase."
+      },
+      "maintenance": {
+        "title": "Maintenance",
+        "description": "We support the long-term reliability of photovoltaic and BESS systems through structured maintenance and technical support activities. Our approach is focused on ensuring operational stability, safety, and optimal performance, as well as extending the asset lifecycle."
+      },
+      "cta": {
+        "title": "Ready to Start Your Project?",
+        "description": "Trust our long-term experience and expertise for quality and effective execution of your investment. Contact us for professional consultation and an individual offer.",
+        "btn": "Contact Us"
       }
     }
   }

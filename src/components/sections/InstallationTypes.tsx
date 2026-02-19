@@ -6,6 +6,7 @@ import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import { useTranslation } from "react-i18next";
 import { useMemo } from "react";
+import ServiceSteps from "./ServiceSteps";
 
 export default function InstallationTypes() {
   const { t } = useTranslation("services");
@@ -35,44 +36,13 @@ export default function InstallationTypes() {
     <Section paddingY="xl" bgColor="white">
       <Container>
         {/* Header */}
-        <div className="max-w-3xl mb-16">
+        <div className="max-w-3xl mb-12">
           <Heading as="h2" className="mb-6 text-slate-900">
             {t("installation_types.title")}
           </Heading>
-          <Text className="text-slate-600">
-            {t("installation_types.description")}
-          </Text>
         </div>
 
-        {/* Cards Row */}
-        <div className="flex flex-col lg:flex-row gap-6">
-          {installationTypes.map((type, index) => (
-            <div key={index} className="flex-1 flex flex-col">
-              {/* Image */}
-              <div className="relative h-[240px] rounded-[20px] overflow-hidden mb-6">
-                <Image
-                  src={type.image}
-                  alt={type.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              {/* Content */}
-              <div>
-                <Heading
-                  as="h4"
-                  className="mb-2 text-[22px] font-bold text-slate-900"
-                >
-                  {type.title}
-                </Heading>
-                <Text className="text-slate-600 text-base">
-                  {type.description}
-                </Text>
-              </div>
-            </div>
-          ))}
-        </div>
+        <ServiceSteps />
       </Container>
     </Section>
   );

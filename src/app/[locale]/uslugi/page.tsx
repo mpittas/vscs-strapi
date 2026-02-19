@@ -3,7 +3,7 @@ import PageTitle from "@/components/ui/PageTitle";
 import WorkProcess from "@/components/sections/WorkProcess";
 import KeyServices from "@/components/sections/KeyServices";
 import InstallationTypes from "@/components/sections/InstallationTypes";
-import ConsultationForm from "@/components/sections/ConsultationForm";
+import ServiceSteps from "@/components/sections/ServiceSteps";
 import initTranslations from "@/app/i18n";
 import TranslationsProvider from "@/components/TranslationsProvider";
 
@@ -50,8 +50,6 @@ export default async function ServicesPage({ params }: PageProps) {
       <KeyServices />
 
       <InstallationTypes />
-
-      <ConsultationForm />
     </TranslationsProvider>
   );
 }
