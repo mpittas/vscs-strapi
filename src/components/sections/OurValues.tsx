@@ -81,10 +81,10 @@ export default function OurValues() {
               title={value.title}
               description={value.description}
               iconAlt={value.title}
-              borderColor="border-slate-200"
-              bgColor="bg-white"
-              hoverBgColor="hover:bg-brand-green"
-              hoverBorderColor="hover:border-brand-green"
+              borderColor="border-slate-50"
+              bgColor="bg-slate-50"
+              hoverBgColor="hover:bg-slate-200"
+              hoverBorderColor="hover:bg-slate-200"
               titleColor="text-slate-900"
               descriptionColor="text-slate-600"
             />

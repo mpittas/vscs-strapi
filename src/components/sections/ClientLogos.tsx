@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import Image from "next/image";
+import { Text } from "@/components/ui/Typography";
 
 const clientLogos = [
   { src: "/clients-logos/client-logo-1.svg", alt: "Client 1" },
@@ -22,9 +23,12 @@ export default function ClientLogos() {
         {/* Mobile: stacked layout, Desktop: horizontal layout */}
         <div className="flex flex-col items-center lg:flex-row gap-8">
           {/* Left side - Title */}
-          <div className="text-dark-green max-w-[300px] text-center lg:text-left">
+          <Text
+            variant="body-16"
+            className="text-slate-900 max-w-[300px] text-center lg:text-left"
+          >
             {t("client_logos.title")}
-          </div>
+          </Text>
 
           {/* Middle - Horizontal line (hidden on mobile) */}
           <div className="hidden lg:block flex-1 h-px bg-slate-400/30" />

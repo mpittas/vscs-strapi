@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { Text } from "./ui/Typography";
 import Button from "./ui/Button";
 import Container from "./ui/Container";
 import { useLenis } from "./SmoothScrollProvider";
@@ -80,10 +82,10 @@ const Navbar = () => {
       `sticky top-0 left-0 right-0 z-50 py-4 transition-all duration-300 bg-white border-b border-slate-200`;
 
   // Determine text color based on page and scroll state
-  const getTextColor = (baseColor: string, hoverColor: string) => {
+  const getTextColor = () => {
     if (!isHomePage || isScrolled)
-      return "text-slate-900 hover:text-solar-orange";
-    return "text-white/90 hover:text-white";
+      return "text-slate-900 hover:text-brand-green";
+    return "text-white hover:text-brand-green";
   };
 
   // Determine logo to show
@@ -129,13 +131,12 @@ const Navbar = () => {
             <Link
               key={link.name}
               href={link.href}
-              className={`font-book transition-colors text-sm relative group ${getTextColor(
-                "text-slate-600",
-                "text-solar-orange",
-              )}`}
+              className={cn("transition-colors relative group", getTextColor())}
             >
-              {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-solar-orange transition-all group-hover:w-full" />
+              <Text variant="body-14" as="span">
+                {link.name}
+              </Text>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-green transition-all group-hover:w-full" />
             </Link>
           ))}
           <LanguageSwitcher />
@@ -187,10 +188,12 @@ const Navbar = () => {
             <Link
               key={link.name}
               href={link.href}
-              className="text-md font-normal text-slate-600 hover:text-solar-orange transition-colors"
+              className="text-slate-900 hover:text-brand-green transition-colors"
               onClick={() => setIsOpen(false)}
             >
-              {link.name}
+              <Text variant="body-16" as="span">
+                {link.name}
+              </Text>
             </Link>
           ))}
           <div className="py-2">

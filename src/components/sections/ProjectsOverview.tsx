@@ -99,10 +99,10 @@ export default function ProjectsOverview() {
           <div>
             {/* Title */}
             <div className="mb-10 lg:mb-12">
-              <Heading as="h2" className="text-brand-green font-normal">
+              <Heading as="h2" className="text-brand-green">
                 {t("projects.subheader_highlight")}
               </Heading>
-              <Heading as="h2" className="text-slate-900 font-normal">
+              <Heading as="h2" className="text-slate-900">
                 {t("projects.subheader_rest")}
               </Heading>
             </div>
@@ -136,11 +136,11 @@ export default function ProjectsOverview() {
                     <AnimatedCounter
                       end={stat.value}
                       suffix={stat.suffix}
-                      className="text-4xl lg:text-5xl font-normal text-slate-900"
-                      suffixClassName="text-2xl lg:text-3xl text-slate-400 ml-1"
+                      className="text-4xl lg:text-5xl text-slate-900"
+                      suffixClassName="text-2xl lg:text-3xl text-slate-500 ml-1"
                     />
                   </div>
-                  <Text variant="body-14" className="text-slate-500 mt-1">
+                  <Text variant="body-14" className="mt-1 text-slate-900">
                     {stat.label}
                   </Text>
                 </div>

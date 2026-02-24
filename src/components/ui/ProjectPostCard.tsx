@@ -35,15 +35,15 @@ export default function ProjectPostCard({
       <div className="flex items-start justify-between gap-3 flex-grow">
         <div className="flex-1">
           {/* Location */}
-          <div className="flex items-center gap-1.5 text-slate-500 mb-2">
+          <div className="flex items-center gap-1.5 text-slate-900 mb-2">
             <MapPin className="w-4 h-4" />
-            <Text variant="body-14" className="text-slate-500">
+            <Text variant="body-14" className="text-slate-900">
               {location}
             </Text>
           </div>
 
           {/* Title */}
-          <Text variant="body-18" className="font-normal leading-[1.425]">
+          <Text variant="body-18-sb" className="text-slate-900 leading-snug">
             {title}
           </Text>
         </div>

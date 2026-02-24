@@ -44,7 +44,7 @@ export default function OurServices() {
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 lg:gap-16 mb-14">
           {/* Left - Title */}
           <div className="lg:max-w-2xl">
-            <Text variant="small-title" className="mb-4 block text-brand-green">
+            <Text variant="small-title" className="mb-4">
               {t("services.subheader")}
             </Text>
             <Heading as="h2" className="text-white">

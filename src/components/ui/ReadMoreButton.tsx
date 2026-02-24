@@ -27,11 +27,11 @@ export default function ReadMoreButton({
   onClick,
   isExpanded = false,
   className,
-  circleColor = "bg-black",
+  circleColor = "bg-neutral-200",
   circleHoverColor, // Defaults to brand-green usually, but let's handle logic inside
-  textColor = "text-slate-900",
+  textColor = "text-neutral-600",
   textHoverColor = "group-hover:text-brand-green",
-  iconColor = "text-white",
+  iconColor = "text-neutral-600",
 }: ReadMoreButtonProps) {
   return (
     <div
@@ -42,7 +42,7 @@ export default function ReadMoreButton({
         }
       }}
       className={cn(
-        "inline-flex items-center gap-2 font-bold text-sm cursor-pointer select-none group transition-colors",
+        "inline-flex items-center gap-2 font-medium text-sm cursor-pointer select-none group transition-colors",
         textColor,
         textHoverColor && textHoverColor,
         className,
@@ -53,10 +53,7 @@ export default function ReadMoreButton({
           "w-5 h-5 rounded-full flex items-center justify-center transition-all duration-300",
           circleColor,
           circleHoverColor && `group-hover:${circleHoverColor}`,
-          // Default hover behavior if not specified?
-          // For ServiceSteps: group-hover:bg-brand-green
-          // For WorkProcess: group-hover:bg-dark-green/70
-          isExpanded ? "rotate-90" : "", // When expanded, usually highlights
+          isExpanded ? "rotate-90" : "",
         )}
       >
         <ChevronRight className={cn("w-3 h-3 stroke-[3px]", iconColor)} />

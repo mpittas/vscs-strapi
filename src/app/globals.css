@@ -8,7 +8,7 @@
   --brand-green: #9de044;
   --brand-green-dark: #7ab235;
   --brand-green-light: #a3d465;
-  --brand-green-darker: #2d450e;
+  --brand-green-darker: #0f0f0e;
 
   /* Dark Green - Primary text color */
   --dark-green: #0a1c07;
@@ -60,6 +60,9 @@
   --color-muted: var(--muted);
   --color-green: var(--primary);
   --color-brand-green: var(--brand-green);
+  --color-brand-green-dark: var(--brand-green-dark);
+  --color-brand-green-light: var(--brand-green-light);
+  --color-brand-green-darker: var(--brand-green-darker);
   --font-sans: var(--font-stolzl);
 
   /* Type Scale */

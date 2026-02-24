@@ -44,7 +44,7 @@ export default function BlogItem({ post }: BlogItemProps) {
             <Heading as="h4" className="mb-3">
               {post.title}
             </Heading>
-            <Text variant="body-16" className="text-slate-600 leading-relaxed">
+            <Text variant="body-16" className="text-slate-900">
               {truncateText(post.excerpt, 140)}
             </Text>
           </div>

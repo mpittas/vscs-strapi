@@ -200,11 +200,7 @@ export default function Hero() {
                 height={14}
                 className="w-3 h-3 sm:w-3.5 sm:h-3.5"
               />
-              <Text
-                as="span"
-                variant="small-title"
-                className="text-xs sm:text-sm"
-              >
+              <Text as="span" variant="small-title">
                 {t("hero.badge")}
               </Text>
             </div>
@@ -212,7 +208,7 @@ export default function Hero() {
             {/* Title with line-by-line slide up animation */}
             <Heading
               as="h1"
-              className="text-[38px] sm:text-[40px] md:text-[52px] lg:text-[62px] xl:text-[72px] sm:max-w-md md:max-w-xl lg:max-w-3xl xl:max-w-4xl leading-[1.15] text-white font-normal"
+              className="sm:max-w-md md:max-w-xl lg:max-w-3xl xl:max-w-4xl text-white"
             >
               <span className="block overflow-hidden">
                 <span className="hero-title-line block">
@@ -238,11 +234,10 @@ export default function Hero() {
             </Heading>
 
             {/* Description with reveal animation */}
-
-            <div className="hero-description">
+            <div className="hero-description mb-5">
               <Text
                 variant="body-18"
-                className="max-w-[380px] text-neutral-300 sm:pt-3 lg:pt-4 text-base lg:text-lg"
+                className="max-w-[480px] text-white sm:pt-3 lg:pt-4"
               >
                 {t("hero.description")}
               </Text>

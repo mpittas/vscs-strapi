@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Heading } from "@/components/ui/Typography";
+import { Heading, Text } from "@/components/ui/Typography";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import { ArrowRight } from "lucide-react";
@@ -36,9 +36,11 @@ export default function BlogOverview({ posts = [] }: BlogOverviewProps) {
           {/* View All Link */}
           <Link
             href="/blog"
-            className="flex items-center gap-2 text-dark-green hover:text-brand-green transition-colors group border-b border-dark-green pb-1"
+            className="flex items-center gap-2 text-slate-900 hover:text-brand-green transition-colors group border-b border-slate-900 pb-1"
           >
-            <span className="font-normal">{t("blog.view_all")}</span>
+            <Text variant="body-16" as="span">
+              {t("blog.view_all")}
+            </Text>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
@@ -50,7 +52,9 @@ export default function BlogOverview({ posts = [] }: BlogOverviewProps) {
           posts.map((post) => <BlogItem key={post.id} post={post} />)
         ) : (
           <div className="text-center py-12">
-            <p className="text-slate-500 text-lg">{t("blog.no_posts")}</p>
+            <Text variant="body-18" className="text-slate-900">
+              {t("blog.no_posts")}
+            </Text>
           </div>
         )}
       </div>

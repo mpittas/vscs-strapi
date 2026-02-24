@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { Text } from "@/components/ui/Typography";
 
 interface MarqueeProps {
   className?: string;
@@ -35,9 +36,9 @@ export default function Marquee({ className, speed = "normal" }: MarqueeProps) {
     <>
       {marqueeItems.map((item, index) => (
         <span key={index} className="flex items-center whitespace-nowrap">
-          <span className="text-white text-xl md:text-2xl tracking-wide">
+          <Text variant="body-22" className="text-white tracking-wide">
             {item}
-          </span>
+          </Text>
           <AsteriskSeparator />
         </span>
       ))}

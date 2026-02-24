@@ -58,13 +58,21 @@
   "team": {
     "badge": "OUR TEAM",
     "title": "Our Team of Experts",
-    "description": "Our team of certified specialists is dedicated to providing the best solar solutions for your home and business.",
-    "roles": {
-      "ceo": "Chief Executive Officer",
-      "solar_engineer": "Solar Systems Engineer",
-      "tech_specialist": "Technical Specialist",
-      "sales_consultant": "Sales Consultant"
-    }
+    "description": "Our team consists of highly qualified and certified professionals with extensive experience in photovoltaic construction and project execution. From project management and site supervision to installation and quality control, each team member plays a key role in delivering safe, efficient, and high-performing solar power plants. With international on-site experience across multiple European markets, our teams are accustomed to working in complex environments, strict regulatory frameworks, and demanding project timelines. We operate with a strong focus on safety, coordination, and technical precision. By combining hands-on expertise, structured processes, and modern project management tools, we ensure reliable execution, transparent reporting, and consistent quality on every project we deliver.",
+    "read_more": "Read more",
+    "read_less": "Read less",
+    "members": [
+      {
+        "name": "Stefan Ormanliev",
+        "role": "Co-Founder & Managing Director",
+        "description": "Stefan is a co-founder of VS Construction Services with over eight years of hands-on experience in the photovoltaic industry. Throughout his career, he has specialized in on-site execution, actively participating in the installation of photovoltaic projects across three continents. With a strong belief that diversity and continuous improvement are key drivers of success, Stefan promotes a culture of collaboration, responsibility, and high performance within the company. His approach is based on a detailed understanding of every phase of the construction process and a constant focus on identifying the most efficient and practical solutions. For Stefan, the success of each project depends on precision in execution, strong coordination, and true synergy among all members of the team."
+      },
+      {
+        "name": "Vesela Ormanlieva",
+        "role": "Co-Founder & Managing Director",
+        "description": "Vesela is a legal professional by education and an entrepreneur by vocation, with over twelve years of experience in the photovoltaic industry. Throughout her career, she has faced and navigated complex regulatory, operational, and market challenges, successfully transforming obstacles into opportunities for growth and innovation. Driven by a strong belief in the transition toward a cleaner and more sustainable world powered by renewable energy, Vesela plays a key role in shaping the strategic direction of the company. What motivates her most is seeing ideas turn into reality and challenges evolve into measurable achievements. Her leadership approach is centered on recognizing individual strengths, building strong teams, and creating an environment where people can perform at their best and deliver outstanding results."
+      }
+    ]
   },
   "stats": {
     "completed_projects": "Completed Projects",

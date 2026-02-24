@@ -84,16 +84,10 @@ export default function AboutUs() {
 
             {/* Description */}
             <div className="mb-8">
-              <Text
-                variant="body-16"
-                className="text-slate-600 leading-relaxed mb-4"
-              >
+              <Text variant="body-16" className="mb-4">
                 {t("about_us.description_1")}
               </Text>
-              <Text
-                variant="body-16"
-                className="text-slate-600 leading-relaxed mb-4"
-              >
+              <Text variant="body-16" className="mb-4">
                 {t("about_us.description_2")}
               </Text>
 
@@ -111,7 +105,7 @@ export default function AboutUs() {
                       <Text
                         key={index}
                         variant="body-16"
-                        className="text-slate-600 leading-relaxed"
+                        className="text-slate-900"
                       >
                         {paragraph}
                       </Text>
@@ -128,25 +122,18 @@ export default function AboutUs() {
                       ? t("about_us.read_less")
                       : t("about_us.read_more")
                   }
-                  circleColor="bg-brand-green"
-                  circleHoverColor="bg-dark-green"
-                  textColor="text-slate-900"
-                  iconColor="text-white"
                 />
               </div>
             </div>
 
             {/* Features list - 2x2 grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-10 mt-5 pt-5 border-t-1 border-slate-200">
               {features.map((feature, index) => (
                 <div key={index} className="flex items-center gap-3">
-                  <span className="flex items-center justify-center w-5 h-5 rounded-full bg-dark-green text-white shrink-0">
-                    <Check className="w-4 h-4" strokeWidth={2.5} />
+                  <span className="flex items-center justify-center w-4 h-4 rounded-full bg-brand-green text-white shrink-0">
+                    <Check className="w-2 h-2" strokeWidth={6} />
                   </span>
-                  <Text
-                    variant="body-16"
-                    className="text-slate-800 font-medium"
-                  >
+                  <Text variant="body-16" className="text-slate-900">
                     {feature}
                   </Text>
                 </div>

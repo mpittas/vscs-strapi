@@ -72,30 +72,29 @@ type TextProps = {
 export const textStyles: Record<string, string> = {
   // Semantic variants
   "small-title": "text-sm font-normal uppercase text-brand-green",
-  subtitle: "text-lg text-slate-600 font-book",
+  subtitle: "text-lg font-book",
   "page-title":
     "text-5xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-slate-900 leading-[1.15]",
 
   // Granular variants (Mobile First)
   "body-12": "text-xs",
-  "body-12-sb": "text-xs font-semibold",
+  "body-12-sb": "text-xs font-normal",
 
   "body-14": "text-sm",
-  "body-14-sb": "text-sm font-semibold",
+  "body-14-sb": "text-sm font-normal",
 
   "body-16": "text-base",
-  "body-16-sb": "text-base font-semibold",
+  "body-16-sb": "text-base font-normal",
 
   "body-18": "text-lg",
-  "body-18-sb": "text-lg font-semibold",
+  "body-18-sb": "text-lg font-normal",
 
   "body-20": "text-xl",
-  "body-20-sb": "text-xl font-semibold",
+  "body-20-sb": "text-xl font-normal",
 
-  "body-22": "text-[22px] leading-snug",
-  "body-22-sb": "text-[22px] leading-snug font-semibold",
+  "body-22": "text-[22px]",
+  "body-22-sb": "text-[22px] font-normal",
 };
-
 export function Text({
   as: Component = "div",
   variant = "body-16",
@@ -103,9 +102,17 @@ export function Text({
   className,
   style,
 }: TextProps) {
+  // Variants that should NOT receive the default slate-800/relaxed leading (e.g. titles)
+  const isSpecialVariant =
+    variant === "small-title" || variant === "page-title";
+
   return (
     <Component
-      className={cn(textStyles[variant] || textStyles["body-16"], className)}
+      className={cn(
+        textStyles[variant] || textStyles["body-16"],
+        !isSpecialVariant && "text-slate-800 leading-relaxed",
+        className,
+      )}
       style={style}
     >
       {children}

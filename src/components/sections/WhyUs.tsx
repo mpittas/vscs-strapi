@@ -5,6 +5,7 @@ import { Heading, Text } from "@/components/ui/Typography";
 import Container from "@/components/ui/Container";
 import InfoItem from "@/components/ui/InfoItem";
 import Section from "@/components/ui/Section";
+import BadgeDefault from "@/components/ui/BadgeDefault";
 
 import { useTranslation } from "react-i18next";
 
@@ -41,7 +42,7 @@ export default function WhyUs() {
   return (
     <Section paddingY="xl" bgColor="dark">
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-20 items-center">
           {/* Left Column - Images */}
           <div className="relative pr-12 pb-12">
             {/* Main Image */}
@@ -56,10 +57,10 @@ export default function WhyUs() {
 
               {/* Stats Badge */}
               <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-md rounded-3xl px-5 py-5 text-center">
-                <Text className="text-white text-3xl lg:text-4xl font-normal mb-1">
+                <Text className="text-white text-3xl lg:text-4xl mb-1">
                   325%
                 </Text>
-                <Text className="text-white/80 text-xs leading-tight">
+                <Text variant="body-12" className="text-white">
                   {t("why_us.stats_badge.text_1")}
                   <br />
                   {t("why_us.stats_badge.text_2")}
@@ -82,9 +83,9 @@ export default function WhyUs() {
           {/* Right Column - Content */}
           <div>
             {/* Subheading */}
-            <Text variant="small-title" className="mb-4 block text-white/70">
+            <BadgeDefault variant="glass" uppercase className="mb-6">
               {t("why_us.subheader")}
-            </Text>
+            </BadgeDefault>
 
             {/* Title */}
             <Heading as="h2" className="text-white mb-12">

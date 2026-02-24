@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
-import { Heading } from "@/components/ui/Typography";
+import { Heading, Text } from "@/components/ui/Typography";
 import Section from "@/components/ui/Section";
 import { Phone } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -66,14 +66,13 @@ export default function CTABanner() {
                   <Phone className="w-6 h-6 text-white/80" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-white text-sm text-white/80">
+                  <Text variant="body-14" className="text-white">
                     {t("cta_banner.phone_label")}
-                  </span>
-                  <a
-                    href="tel:+1235485256"
-                    className="text-white font-normal text-[24px]"
-                  >
-                    +123 (548) 5256
+                  </Text>
+                  <a href="tel:+1235485256" className="text-white">
+                    <Text variant="body-22" className="text-white" as="span">
+                      +123 (548) 5256
+                    </Text>
                   </a>
                 </div>
               </div>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { MapPin, Phone, Mail } from "lucide-react";
 import Container from "@/components/ui/Container";
+import { Text } from "@/components/ui/Typography";
 import FooterBottom from "./FooterBottom";
 import { useTranslation } from "react-i18next";
 import { useMemo } from "react";
@@ -103,9 +104,12 @@ export default function Footer() {
             <div className="grid grid-cols-2 lg:grid-cols-12 gap-y-10 gap-x-6 lg:gap-8">
               {/* Brand Column - Tagline & Social */}
               <div className="col-span-2 lg:col-span-4">
-                <p className="text-white/70 mb-6 lg:max-w-xs leading-relaxed text-left">
+                <Text
+                  variant="body-16"
+                  className="text-white mb-6 lg:max-w-xs text-left"
+                >
                   {t("footer.tagline")}
-                </p>
+                </Text>
                 {/* Social Links */}
                 <div className="flex gap-3">
                   <a
@@ -131,17 +135,19 @@ export default function Footer() {
 
               {/* Quick Links */}
               <div className="col-span-1 lg:col-span-2">
-                <div className="text-brand-green font-normal mb-3">
+                <Text variant="small-title" className="text-brand-green mb-3">
                   {t("footer.quick_links")}
-                </div>
+                </Text>
                 <ul className="space-y-2">
                   {quickLinks.map((link) => (
                     <li key={link.href} className="mb-1 md:mb-2">
                       <Link
                         href={link.href}
-                        className="text-white/70 hover:text-brand-green transition-colors text-sm"
+                        className="text-white hover:text-brand-green transition-colors"
                       >
-                        {link.label}
+                        <Text variant="body-14" as="span">
+                          {link.label}
+                        </Text>
                       </Link>
                     </li>
                   ))}
@@ -150,17 +156,19 @@ export default function Footer() {
 
               {/* Services Links */}
               <div className="col-span-1 lg:col-span-3">
-                <div className="text-brand-green font-normal mb-3">
+                <Text variant="small-title" className="text-brand-green mb-3">
                   {t("footer.design")}
-                </div>
+                </Text>
                 <ul className="space-y-2">
                   {servicesLinks.map((link) => (
                     <li key={link.href} className="mb-1 md:mb-2">
                       <Link
                         href={link.href}
-                        className="text-white/70 hover:text-brand-green transition-colors text-sm"
+                        className="text-white hover:text-brand-green transition-colors"
                       >
-                        {link.label}
+                        <Text variant="body-14" as="span">
+                          {link.label}
+                        </Text>
                       </Link>
                     </li>
                   ))}
@@ -169,32 +177,36 @@ export default function Footer() {
 
               {/* Contact Info */}
               <div className="col-span-1 lg:col-span-3">
-                <div className="text-brand-green font-normal mb-3">
+                <Text variant="small-title" className="text-brand-green mb-3">
                   {t("footer.contact_info")}
-                </div>
-                <ul className="space-y-2 text-sm">
+                </Text>
+                <ul className="space-y-4">
                   <li className="flex items-start gap-3">
                     <MapPin className="w-4 h-4 text-brand-green flex-shrink-0 mt-0.5" />
-                    <span className="text-white/90 font-medium">
+                    <Text variant="body-14" className="text-white">
                       {contactInfo.address}
-                    </span>
+                    </Text>
                   </li>
                   <li className="flex items-start gap-3">
                     <Phone className="w-4 h-4 text-brand-green flex-shrink-0 mt-0.5" />
                     <a
                       href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
-                      className="text-white/90 font-medium hover:text-brand-green transition-colors"
+                      className="text-white hover:text-brand-green transition-colors"
                     >
-                      {contactInfo.phone}
+                      <Text variant="body-14" as="span">
+                        {contactInfo.phone}
+                      </Text>
                     </a>
                   </li>
                   <li className="flex items-start gap-3">
                     <Mail className="w-4 h-4 text-brand-green flex-shrink-0 mt-0.5" />
                     <a
                       href={`mailto:${contactInfo.email}`}
-                      className="text-white/90 font-medium hover:text-brand-green transition-colors"
+                      className="text-white hover:text-brand-green transition-colors"
                     >
-                      {contactInfo.email}
+                      <Text variant="body-14" as="span">
+                        {contactInfo.email}
+                      </Text>
                     </a>
                   </li>
                 </ul>
