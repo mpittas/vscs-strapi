@@ -133,13 +133,13 @@ const Navbar = () => {
               href={link.href}
               className={cn("transition-colors relative group", getTextColor())}
             >
-              <Text variant="body-14" as="span">
+              <Text variant="body-14" as="span" className={getTextColor()}>
                 {link.name}
               </Text>
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-green transition-all group-hover:w-full" />
             </Link>
           ))}
-          <LanguageSwitcher />
+          <LanguageSwitcher isDarkBg={isHomePage && !isScrolled} />
           <Button
             href="/contact"
             size="sm"
@@ -191,7 +191,11 @@ const Navbar = () => {
               className="text-slate-900 hover:text-brand-green transition-colors"
               onClick={() => setIsOpen(false)}
             >
-              <Text variant="body-16" as="span">
+              <Text
+                variant="body-16"
+                as="span"
+                className="text-slate-900 hover:text-brand-green"
+              >
                 {link.name}
               </Text>
             </Link>

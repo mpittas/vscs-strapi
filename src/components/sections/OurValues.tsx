@@ -54,7 +54,7 @@ export default function OurValues() {
         {/* Header Section */}
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 lg:gap-16 mb-14">
           {/* Left - Badge and Title */}
-          <div className="lg:max-w-4xl">
+          <div className="lg:max-w-3xl">
             <BadgeDefault className="mb-4">{t("values.badge")}</BadgeDefault>
             <Heading as="h2" className="mb-6">
               {t("values.title")}

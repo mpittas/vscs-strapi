@@ -4,7 +4,11 @@ import { usePathname, useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import i18nConfig from "@/i18nConfig";
 
-export default function LanguageSwitcher() {
+export default function LanguageSwitcher({
+  isDarkBg = false,
+}: {
+  isDarkBg?: boolean;
+}) {
   const { i18n } = useTranslation();
   const currentLocale = i18n.language;
   const router = useRouter();
@@ -39,19 +43,23 @@ export default function LanguageSwitcher() {
         onClick={() => handleChange("bg")}
         className={`transition-colors ${
           currentLocale === "bg"
-            ? "text-solar-orange"
-            : "text-slate-500 hover:text-slate-700"
+            ? "text-brand-green"
+            : isDarkBg
+              ? "text-white/80 hover:text-white"
+              : "text-slate-500 hover:text-slate-700"
         }`}
       >
         BG
       </button>
-      <span className="text-slate-300">|</span>
+      <span className={isDarkBg ? "text-white/30" : "text-slate-300"}>|</span>
       <button
         onClick={() => handleChange("en")}
         className={`transition-colors ${
           currentLocale === "en"
-            ? "text-solar-orange"
-            : "text-slate-500 hover:text-slate-700"
+            ? "text-brand-green"
+            : isDarkBg
+              ? "text-white/80 hover:text-white"
+              : "text-slate-500 hover:text-slate-700"
         }`}
       >
         EN
