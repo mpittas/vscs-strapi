@@ -54,18 +54,6 @@ export default function WhyUs() {
                 unoptimized
                 className="object-cover"
               />
-
-              {/* Stats Badge */}
-              <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-md rounded-3xl px-5 py-5 text-center">
-                <Text className="text-white text-3xl lg:text-4xl mb-1">
-                  325%
-                </Text>
-                <Text variant="body-12" className="text-white">
-                  {t("why_us.stats_badge.text_1")}
-                  <br />
-                  {t("why_us.stats_badge.text_2")}
-                </Text>
-              </div>
             </div>
 
             {/* Overlapping Image with Badge */}

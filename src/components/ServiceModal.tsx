@@ -56,7 +56,7 @@ export default function ServiceModal({
       />
 
       {/* Modal Content */}
-      <div className="relative w-full max-w-[700px] bg-white rounded-[24px] p-8 transform transition-all duration-300 animate-in fade-in">
+      <div className="relative w-full max-w-[700px] bg-white rounded-[24px] p-6 md:p-8 max-h-[85vh] md:max-h-none overflow-y-auto transform transition-all duration-300 animate-in fade-in">
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -66,9 +66,9 @@ export default function ServiceModal({
         </button>
 
         {/* Header with Icon */}
-        <div className="flex flex-col gap-6 mb-8">
+        <div className="flex flex-col gap-4 md:gap-6 mb-4">
           {/* Icon Box */}
-          <div className="w-14 h-14 bg-black rounded-[14px] flex items-center justify-center text-white shrink-0">
+          <div className="w-13 h-13 bg-black rounded-[14px] flex items-center justify-center text-white shrink-0">
             {/* If custom icon provided use it, else default solar panel icon */}
             {icon ? (
               <Image
@@ -107,10 +107,10 @@ export default function ServiceModal({
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-slate-100 w-full mb-8" />
+        <div className="h-px bg-slate-100 w-full mb-6 md:mb-8" />
 
         {/* Description */}
-        <div className="mb-10">
+        <div className="mb-6 md:mb-10">
           <Text variant="body-18" className="text-slate-600 leading-relaxed">
             {description}
           </Text>

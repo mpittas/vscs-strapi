@@ -9,6 +9,7 @@ import {
   useContext,
   useCallback,
 } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -33,11 +34,21 @@ export default function SmoothScrollProvider({
   const [lenis, setLenis] = useState<Lenis | null>(null);
   const rafIdRef = useRef<number | null>(null);
   const lenisRef = useRef<Lenis | null>(null);
+  const pathname = usePathname();
 
   // Stable raf callback using useCallback
   const raf = useCallback((time: number) => {
     lenisRef.current?.raf(time * 1000);
   }, []);
+
+  // Scroll to top when pathname changes
+  useEffect(() => {
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname]);
 
   useEffect(() => {
     // Initialize Lenis with optimized settings

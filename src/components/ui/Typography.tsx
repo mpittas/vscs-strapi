@@ -86,8 +86,8 @@ export const textStyles: Record<string, string> = {
   "body-16": "text-base",
   "body-16-sb": "text-base font-normal",
 
-  "body-18": "text-lg",
-  "body-18-sb": "text-lg font-normal",
+  "body-18": "text-md md:text-lg",
+  "body-18-sb": "text-md md:text-lg font-normal",
 
   "body-20": "text-xl",
   "body-20-sb": "text-xl font-normal",
@@ -110,7 +110,7 @@ export function Text({
     <Component
       className={cn(
         textStyles[variant] || textStyles["body-16"],
-        !isSpecialVariant && "text-slate-800 leading-relaxed",
+        !isSpecialVariant && "leading-relaxed",
         className,
       )}
       style={style}

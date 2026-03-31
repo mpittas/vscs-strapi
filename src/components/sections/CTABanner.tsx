@@ -50,7 +50,7 @@ export default function CTABanner() {
             <div className="flex flex-wrap items-center gap-4">
               {/* CTA Button */}
               <Button
-                href="/contact"
+                href="/kontakti"
                 variant="primary"
                 size="lg"
                 showIcon
@@ -69,9 +69,9 @@ export default function CTABanner() {
                   <Text variant="body-14" className="text-white">
                     {t("cta_banner.phone_label")}
                   </Text>
-                  <a href="tel:+1235485256" className="text-white">
+                  <a href="tel:+359877159858" className="text-white">
                     <Text variant="body-22" className="text-white" as="span">
-                      +123 (548) 5256
+                      +359 877 15 98 58
                     </Text>
                   </a>
                 </div>

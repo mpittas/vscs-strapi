@@ -32,7 +32,7 @@ const useCounterData = () => {
     },
     {
       icon: "/icons/bolt-icon-green.svg",
-      value: 120,
+      value: 150,
       suffix: "+ MW",
       label: t("stats.installed_capacity"),
     },

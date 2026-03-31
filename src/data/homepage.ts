@@ -47,7 +47,7 @@ export const whyChooseUs = [
 export const stats = [
   { value: "50+", label: "Завършени проекта" },
   { value: "12", label: "Години опит" },
-  { value: "300MW", label: "Инсталирана мощност" },
+  { value: "150MW", label: "Инсталирана мощност" },
   { value: "100%", label: "Доволни клиенти" },
 ];
 
@@ -82,5 +82,6 @@ export const contactInfo = {
   address: "ул. Примерна 123, София 1000, България",
   phone: "+359 888 123 456",
   email: "info@bikocontrol.bg",
-  mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2932.665036014!2d23.3219!3d42.6977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDLCsDQxJzUxLjciTiAyM8KwMTknMTguOCJF!5e0!3m2!1sen!2sbg!4v1234567890",
+  mapUrl:
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2932.665036014!2d23.3219!3d42.6977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDLCsDQxJzUxLjciTiAyM8KwMTknMTguOCJF!5e0!3m2!1sen!2sbg!4v1234567890",
 };

@@ -20,7 +20,9 @@ export default function ContactInfoItem({
         <div className="text-xs font-normal text-slate-400 uppercase tracking-wider mb-1">
           {label}
         </div>
-        <div className="text-slate-900 font-normal leading-snug">{value}</div>
+        <div className="text-md text-slate-900 font-normal leading-snug">
+          {value}
+        </div>
       </div>
     </div>
   );

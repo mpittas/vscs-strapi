@@ -145,7 +145,11 @@ export default function Footer() {
                         href={link.href}
                         className="text-white hover:text-brand-green transition-colors"
                       >
-                        <Text variant="body-14" as="span">
+                        <Text
+                          variant="body-14"
+                          as="span"
+                          className="text-white"
+                        >
                           {link.label}
                         </Text>
                       </Link>
@@ -166,7 +170,11 @@ export default function Footer() {
                         href={link.href}
                         className="text-white hover:text-brand-green transition-colors"
                       >
-                        <Text variant="body-14" as="span">
+                        <Text
+                          variant="body-14"
+                          as="span"
+                          className="text-white"
+                        >
                           {link.label}
                         </Text>
                       </Link>
@@ -193,7 +201,7 @@ export default function Footer() {
                       href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
                       className="text-white hover:text-brand-green transition-colors"
                     >
-                      <Text variant="body-14" as="span">
+                      <Text variant="body-14" as="span" className="text-white">
                         {contactInfo.phone}
                       </Text>
                     </a>
@@ -204,7 +212,7 @@ export default function Footer() {
                       href={`mailto:${contactInfo.email}`}
                       className="text-white hover:text-brand-green transition-colors"
                     >
-                      <Text variant="body-14" as="span">
+                      <Text variant="body-14" as="span" className="text-white">
                         {contactInfo.email}
                       </Text>
                     </a>
