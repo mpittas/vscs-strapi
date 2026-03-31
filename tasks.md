@@ -29,7 +29,7 @@ Services:
   - [ ] Add Google map
   - [ ] Facebook and LinkedIn icons
 
-- [ ] Add blog posts from current website
+- [ ] Add blog posts from current websitee
 
 ---
 
