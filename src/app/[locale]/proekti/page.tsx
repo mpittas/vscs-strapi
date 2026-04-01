@@ -7,6 +7,9 @@ import { getPaginatedProjects } from "@/lib/strapi";
 import initTranslations from "@/app/i18n";
 import TranslationsProvider from "@/components/TranslationsProvider";
 
+// Revalidate every 60 seconds so Strapi data stays fresh
+export const revalidate = 60;
+
 export const generateMetadata = async ({
   params,
 }: {
