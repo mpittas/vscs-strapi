@@ -2,13 +2,12 @@ import type { Metadata } from "next";
 import PageTitle from "@/components/ui/PageTitle";
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
-import ProjectsFilter from "@/components/ProjectsFilter";
-import { getPaginatedProjects } from "@/lib/strapi";
+import ProjectPostCard from "@/components/ui/ProjectPostCard";
+import { getProjects } from "@/lib/strapi";
 import initTranslations from "@/app/i18n";
 import TranslationsProvider from "@/components/TranslationsProvider";
 
-// Revalidate every 60 seconds so Strapi data stays fresh
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 export const generateMetadata = async ({
   params,
@@ -34,12 +33,7 @@ export default async function ProjectsPage({
     "projects",
     "common",
   ]);
-  const { data: projects, meta } = await getPaginatedProjects(
-    1,
-    6,
-    undefined,
-    locale,
-  );
+  const projects = await getProjects(locale);
 
   return (
     <TranslationsProvider
@@ -57,11 +51,27 @@ export default async function ProjectsPage({
 
       <Section paddingY="sm" bgColor="white">
         <Container>
-          <ProjectsFilter
-            initialProjects={projects}
-            initialMeta={meta}
-            locale={locale}
-          />
+          {projects.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {projects.map((project) => (
+                <ProjectPostCard
+                  key={project.id}
+                  title={project.title}
+                  location={project.location || t("projects:filter.bulgaria")}
+                  image={
+                    project.featuredImage || "/images/type-of-service-1.jpg"
+                  }
+                  href={`/proekti/${project.slug}`}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-slate-500 text-lg">
+                {t("projects:filter.no_projects")}
+              </p>
+            </div>
+          )}
         </Container>
       </Section>
     </TranslationsProvider>

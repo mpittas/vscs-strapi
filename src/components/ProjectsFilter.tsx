@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useMemo, useEffect } from "react";
+import { useState, useCallback, useMemo } from "react";
 import ProjectPostCard from "@/components/ui/ProjectPostCard";
 import Button from "@/components/ui/Button";
 import { useTranslation } from "react-i18next";
@@ -95,14 +95,6 @@ export default function ProjectsFilter({
     },
     [locale],
   );
-
-  // Fallback: fetch client-side if SSR/SSG returned no projects
-  useEffect(() => {
-    if (initialProjects.length === 0 && projects.length === 0 && !isLoading) {
-      fetchProjects(1, "all", false);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   // Handle filter change
   const handleFilterChange = useCallback(
