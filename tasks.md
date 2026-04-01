@@ -19,7 +19,7 @@ About page:
 
 Services:
 
-- [ ] Modal popup is not responsive and not scrollable
+- [x] Modal popup is not responsive and not scrollable
 
 - Careers:
   - [ ] Multi-step form

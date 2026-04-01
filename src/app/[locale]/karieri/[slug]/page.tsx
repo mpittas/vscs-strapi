@@ -220,7 +220,7 @@ export default async function CareerPage({ params }: PageProps) {
                     {t("careers:details.apply_cta_text")}
                   </p>
                   <Button
-                    href="/kontakti"
+                    href="/apply"
                     variant="primary"
                     fullWidth
                     className="!py-3 font-semibold"

@@ -7,6 +7,7 @@ interface ButtonProps {
     | "primary"
     | "secondary"
     | "outline"
+    | "outline-dark"
     | "white"
     | "black"
     | "white-solid";
@@ -59,6 +60,8 @@ export const variantClasses = {
     "bg-white/10 text-white border-white/20 backdrop-blur-sm hover:bg-white/20",
   outline:
     "bg-transparent text-green border-green hover:bg-green hover:text-white",
+  "outline-dark":
+    "bg-transparent text-slate-700 border-slate-300 hover:bg-dark-green hover:text-white hover:border-dark-green",
   white:
     "bg-white text-dark-green border-white hover:bg-slate-100 hover:border-slate-100",
   black:
