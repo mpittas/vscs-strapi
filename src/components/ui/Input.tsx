@@ -8,7 +8,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, label, id, ...props }, ref) => {
     return (
-      <div className="space-y-3">
+      <div className="flex flex-col gap-y-2">
         <label htmlFor={id} className="text-sm font-medium text-slate-900">
           {label}
         </label>

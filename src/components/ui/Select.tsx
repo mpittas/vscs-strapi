@@ -8,7 +8,7 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
   ({ className, label, id, children, ...props }, ref) => {
     return (
-      <div className="space-y-3">
+      <div className="flex flex-col gap-y-2">
         <label htmlFor={id} className="text-sm font-medium text-slate-900">
           {label}
         </label>

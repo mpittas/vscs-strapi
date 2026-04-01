@@ -25,7 +25,7 @@ Services:
   - [ ] Multi-step form
 
 - Contacts page:
-  - [ ] Change contact info (address and work time)
+  - [x] Change contact info (address and work time)
   - [ ] Add Google map
   - [ ] Facebook and LinkedIn icons
 

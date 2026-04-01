@@ -28,12 +28,12 @@ export const generateMetadata = async ({
 const socialLinks = [
   {
     icon: FaFacebookF,
-    href: "#",
+    href: "https://www.facebook.com/share/1EM4GF82VD/",
     label: "Facebook",
   },
   {
     icon: FaLinkedinIn,
-    href: "#",
+    href: "https://www.linkedin.com/company/vs-construction-services-ltd/",
     label: "LinkedIn",
   },
 ];
@@ -124,6 +124,7 @@ export default async function ContactsPage({
                       {socialLinks.map((social) => (
                         <a
                           key={social.label}
+                          target="_blank"
                           href={social.href}
                           aria-label={social.label}
                           className="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center hover:bg-[#b4d429] hover:text-black transition-all"
