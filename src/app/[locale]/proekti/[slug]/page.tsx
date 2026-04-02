@@ -65,7 +65,7 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
   const projects = await getProjects();
-  return projects.map((project) => ({ slug: project.slug }));
+  return projects.map((project: any) => ({ slug: project.slug }));
 }
 
 export default async function ProjectPage({ params }: PageProps) {
@@ -152,71 +152,76 @@ export default async function ProjectPage({ params }: PageProps) {
               {/* Project Content */}
               {project.content && (
                 <div className="prose prose-lg max-w-none text-slate-600 space-y-6">
-                  {project.content.split("\n").map((paragraph, index) => {
-                    const trimmed = paragraph.trim();
-                    if (!trimmed) return null;
+                  {project.content
+                    .split("\n")
+                    .map((paragraph: any, index: any) => {
+                      const trimmed = paragraph.trim();
+                      if (!trimmed) return null;
 
-                    // Headers
-                    if (trimmed.startsWith("## ")) {
-                      return (
-                        <h3
-                          key={index}
-                          className="text-2xl font-medium text-slate-900 mt-10 mb-4"
-                        >
-                          {trimmed.replace(/^##\s+/, "")}
-                        </h3>
-                      );
-                    }
-                    if (
-                      trimmed.startsWith("# ") ||
-                      trimmed.startsWith("### ")
-                    ) {
-                      return (
-                        <h4
-                          key={index}
-                          className="text-xl font-medium text-slate-900 mt-8 mb-3"
-                        >
-                          {trimmed.replace(/^[#]+\s+/, "")}
-                        </h4>
-                      );
-                    }
+                      // Headers
+                      if (trimmed.startsWith("## ")) {
+                        return (
+                          <h3
+                            key={index}
+                            className="text-2xl font-medium text-slate-900 mt-10 mb-4"
+                          >
+                            {trimmed.replace(/^##\s+/, "")}
+                          </h3>
+                        );
+                      }
+                      if (
+                        trimmed.startsWith("# ") ||
+                        trimmed.startsWith("### ")
+                      ) {
+                        return (
+                          <h4
+                            key={index}
+                            className="text-xl font-medium text-slate-900 mt-8 mb-3"
+                          >
+                            {trimmed.replace(/^[#]+\s+/, "")}
+                          </h4>
+                        );
+                      }
 
-                    // Bullet lists
-                    if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
-                      return (
-                        <ul
-                          key={index}
-                          className="list-disc pl-5 mb-4 space-y-1"
-                        >
-                          <li>{trimmed.replace(/^[-*]\s+/, "")}</li>
-                        </ul>
-                      );
-                    }
+                      // Bullet lists
+                      if (
+                        trimmed.startsWith("- ") ||
+                        trimmed.startsWith("* ")
+                      ) {
+                        return (
+                          <ul
+                            key={index}
+                            className="list-disc pl-5 mb-4 space-y-1"
+                          >
+                            <li>{trimmed.replace(/^[-*]\s+/, "")}</li>
+                          </ul>
+                        );
+                      }
 
-                    // Key-value pairs (bolding the key)
-                    // Matches "Key: Value" or "1. Key: Value"
-                    const keyValMatch = trimmed.match(
-                      /^(\d+\.\s)?([^:]+):(.+)$/,
-                    );
-                    if (keyValMatch && trimmed.length < 150) {
-                      const prefix = keyValMatch[1] || "";
-                      const key = keyValMatch[2];
-                      const val = keyValMatch[3];
+                      // Key-value pairs (bolding the key)
+                      // Matches "Key: Value" or "1. Key: Value"
+                      const keyValMatch = trimmed.match(
+                        /^(\d+\.\s)?([^:]+):(.+)$/,
+                      );
+                      if (keyValMatch && trimmed.length < 150) {
+                        const prefix = keyValMatch[1] || "";
+                        const key = keyValMatch[2];
+                        const val = keyValMatch[3];
+                        return (
+                          <p key={index} className="mb-4">
+                            {prefix}
+                            <strong className="text-slate-900">{key}:</strong>
+                            {val}
+                          </p>
+                        );
+                      }
+
                       return (
-                        <p key={index} className="mb-4">
-                          {prefix}
-                          <strong className="text-slate-900">{key}:</strong>
-                          {val}
+                        <p key={index} className="leading-relaxed">
+                          {trimmed}
                         </p>
                       );
-                    }
-
-                    return (
-                      <p key={index} className="leading-relaxed">
-                        {trimmed}
-                      </p>
-                    );
-                  })}
+                    })}
                 </div>
               )}
 
@@ -238,7 +243,7 @@ export default async function ProjectPage({ params }: PageProps) {
                         />
                       </div>
                     )}
-                    {project.gallery.map((image, index) => (
+                    {project.gallery.map((image: any, index: any) => (
                       <div
                         key={index}
                         className="aspect-[4/3] relative rounded-xl overflow-hidden group"

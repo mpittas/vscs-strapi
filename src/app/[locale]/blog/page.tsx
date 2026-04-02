@@ -28,21 +28,6 @@ interface BlogPageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
-interface BlogPost {
-  id: number;
-  documentId: string;
-  title: string;
-  slug: string;
-  excerpt: string;
-  content: string;
-  author: string;
-  publishedAt: string;
-  featuredImage?: {
-    url: string;
-    alternativeText?: string;
-  };
-}
-
 export default async function BlogPage({
   params,
   searchParams,
@@ -60,7 +45,7 @@ export default async function BlogPage({
   let totalPages = 1;
 
   try {
-    const { data, meta } = await getPaginatedData<BlogPost>(
+    const { data, meta } = await getPaginatedData(
       "blog-posts",
       currentPage,
       pageSize,
@@ -70,7 +55,7 @@ export default async function BlogPage({
     console.log("Strapi Posts Fetched:", data?.length);
 
     posts =
-      data.map((post) => ({
+      data.map((post: any) => ({
         ...post,
         featuredImage: getStrapiMedia(post.featuredImage?.url),
       })) || [];

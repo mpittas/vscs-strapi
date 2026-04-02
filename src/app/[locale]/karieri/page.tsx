@@ -64,7 +64,7 @@ export default async function CareersPage({
           {/* Career Listings */}
           <div className="space-y-4">
             {careers.length > 0 ? (
-              careers.map((career) => (
+              careers.map((career: any) => (
                 <CareerItem
                   key={career.id}
                   title={career.title}

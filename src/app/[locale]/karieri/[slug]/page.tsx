@@ -41,7 +41,7 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
   const careers = await getCareers();
-  return careers.map((career) => ({ slug: career.slug }));
+  return careers.map((career: any) => ({ slug: career.slug }));
 }
 
 export default async function CareerPage({ params }: PageProps) {
@@ -128,53 +128,58 @@ export default async function CareerPage({ params }: PageProps) {
               {/* Main Content Render */}
               {career.mainContent && (
                 <div className="prose text-base max-w-none text-slate-600 space-y-6">
-                  {career.mainContent.split("\n").map((paragraph, index) => {
-                    const trimmed = paragraph.trim();
-                    if (!trimmed) return null;
+                  {career.mainContent
+                    .split("\n")
+                    .map((paragraph: any, index: any) => {
+                      const trimmed = paragraph.trim();
+                      if (!trimmed) return null;
 
-                    // Headers
-                    if (trimmed.startsWith("## ")) {
-                      return (
-                        <h3
-                          key={index}
-                          className="text-2xl font-bold text-slate-900 mt-10 mb-6"
-                        >
-                          {trimmed.replace(/^##\s+/, "")}
-                        </h3>
-                      );
-                    }
-                    if (
-                      trimmed.startsWith("# ") ||
-                      trimmed.startsWith("### ")
-                    ) {
-                      return (
-                        <h4
-                          key={index}
-                          className="text-xl font-bold text-slate-900 mt-8 mb-4"
-                        >
-                          {trimmed.replace(/^[#]+\s+/, "")}
-                        </h4>
-                      );
-                    }
+                      // Headers
+                      if (trimmed.startsWith("## ")) {
+                        return (
+                          <h3
+                            key={index}
+                            className="text-2xl font-bold text-slate-900 mt-10 mb-6"
+                          >
+                            {trimmed.replace(/^##\s+/, "")}
+                          </h3>
+                        );
+                      }
+                      if (
+                        trimmed.startsWith("# ") ||
+                        trimmed.startsWith("### ")
+                      ) {
+                        return (
+                          <h4
+                            key={index}
+                            className="text-xl font-bold text-slate-900 mt-8 mb-4"
+                          >
+                            {trimmed.replace(/^[#]+\s+/, "")}
+                          </h4>
+                        );
+                      }
 
-                    // Bullet lists
-                    if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
-                      return (
-                        <ul
-                          key={index}
-                          className="list-disc pl-5 mb-4 space-y-2"
-                        >
-                          <li>{trimmed.replace(/^[-*]\s+/, "")}</li>
-                        </ul>
-                      );
-                    }
+                      // Bullet lists
+                      if (
+                        trimmed.startsWith("- ") ||
+                        trimmed.startsWith("* ")
+                      ) {
+                        return (
+                          <ul
+                            key={index}
+                            className="list-disc pl-5 mb-4 space-y-2"
+                          >
+                            <li>{trimmed.replace(/^[-*]\s+/, "")}</li>
+                          </ul>
+                        );
+                      }
 
-                    return (
-                      <p key={index} className="leading-relaxed">
-                        {trimmed}
-                      </p>
-                    );
-                  })}
+                      return (
+                        <p key={index} className="leading-relaxed">
+                          {trimmed}
+                        </p>
+                      );
+                    })}
                 </div>
               )}
             </div>
@@ -189,25 +194,27 @@ export default async function CareerPage({ params }: PageProps) {
                 {/* Sidebar Info (Perks) */}
                 <div className="space-y-4 mb-8">
                   {career.sidebarInfo ? (
-                    career.sidebarInfo.split("\n").map((line, index) => {
-                      const trimmed = line.trim();
-                      if (
-                        !trimmed ||
-                        (!trimmed.startsWith("-") && !trimmed.startsWith("*"))
-                      )
-                        return null;
-                      const content = trimmed.replace(/^[-*]\s+/, "");
-                      return (
-                        <div key={index} className="flex items-start gap-3">
-                          <div className="mt-1 shrink-0 w-5 h-5 rounded-full bg-[#b4d429] flex items-center justify-center">
-                            <CheckCircle2 className="w-3 h-3 text-black" />
+                    career.sidebarInfo
+                      .split("\n")
+                      .map((line: any, index: any) => {
+                        const trimmed = line.trim();
+                        if (
+                          !trimmed ||
+                          (!trimmed.startsWith("-") && !trimmed.startsWith("*"))
+                        )
+                          return null;
+                        const content = trimmed.replace(/^[-*]\s+/, "");
+                        return (
+                          <div key={index} className="flex items-start gap-3">
+                            <div className="mt-1 shrink-0 w-5 h-5 rounded-full bg-[#b4d429] flex items-center justify-center">
+                              <CheckCircle2 className="w-3 h-3 text-black" />
+                            </div>
+                            <span className="text-slate-700 text-base font-medium leading-snug">
+                              {content}
+                            </span>
                           </div>
-                          <span className="text-slate-700 text-base font-medium leading-snug">
-                            {content}
-                          </span>
-                        </div>
-                      );
-                    })
+                        );
+                      })
                   ) : (
                     <p className="text-slate-500">
                       {t("careers:details.no_sidebar_info")}

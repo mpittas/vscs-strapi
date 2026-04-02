@@ -9,26 +9,11 @@ import {
   Marquee,
   CTABanner,
 } from "@/components/sections";
-import { getBlogPosts, getPaginatedData } from "@/lib/strapi";
+import { getPaginatedData } from "@/lib/strapi";
 import initTranslations from "@/app/i18n";
 import TranslationsProvider from "@/components/TranslationsProvider";
 import { getStrapiMedia } from "@/lib/media";
 import { formatDate } from "@/lib/utils";
-
-interface BlogPost {
-  id: number;
-  documentId: string;
-  title: string;
-  slug: string;
-  excerpt: string;
-  content: string;
-  author: string;
-  publishedAt: string;
-  featuredImage?: {
-    url: string;
-    alternativeText?: string;
-  };
-}
 
 export default async function HomePage({
   params,
@@ -40,7 +25,7 @@ export default async function HomePage({
   let posts: any[] = [];
 
   try {
-    const { data } = await getPaginatedData<BlogPost>(
+    const { data } = await getPaginatedData(
       "blog-posts",
       1,
       3, // Limit to 3 items
@@ -49,7 +34,7 @@ export default async function HomePage({
     );
 
     posts =
-      data.map((post) => ({
+      data.map((post: any) => ({
         id: post.id,
         title: post.title,
         excerpt: post.excerpt,

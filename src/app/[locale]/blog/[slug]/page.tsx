@@ -60,7 +60,7 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
-  return posts.map((post) => ({ slug: post.slug }));
+  return posts.map((post: any) => ({ slug: post.slug }));
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
@@ -146,7 +146,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
               {/* Prose content */}
               <div>
-                {post.content.split("\n").map((paragraph, index) => {
+                {post.content.split("\n").map((paragraph: any, index: any) => {
                   if (!paragraph.trim()) return null;
 
                   if (paragraph.startsWith("## ")) {
