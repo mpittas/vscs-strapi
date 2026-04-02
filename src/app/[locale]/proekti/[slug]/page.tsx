@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getProject, getProjects } from "@/lib/strapi";
+import { getProject } from "@/lib/strapi";
 import { Heading } from "@/components/ui/Typography";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
@@ -63,10 +63,7 @@ export async function generateMetadata({
   };
 }
 
-export async function generateStaticParams() {
-  const projects = await getProjects();
-  return projects.map((project: any) => ({ slug: project.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export default async function ProjectPage({ params }: PageProps) {
   const { slug, locale } = await params;

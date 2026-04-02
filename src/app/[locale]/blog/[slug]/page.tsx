@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getBlogPost, getBlogPosts } from "@/lib/strapi";
+import { getBlogPost } from "@/lib/strapi";
 import { formatDate, calculateReadingTime } from "@/lib/utils";
 import { Heading } from "@/components/ui/Typography";
 import Container from "@/components/ui/Container";
@@ -58,10 +58,7 @@ export async function generateMetadata({
   };
 }
 
-export async function generateStaticParams() {
-  const posts = await getBlogPosts();
-  return posts.map((post: any) => ({ slug: post.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug, locale } = await params;

@@ -15,6 +15,8 @@ import TranslationsProvider from "@/components/TranslationsProvider";
 import { getStrapiMedia } from "@/lib/media";
 import { formatDate } from "@/lib/utils";
 
+export const dynamic = "force-dynamic";
+
 export default async function HomePage({
   params,
 }: {

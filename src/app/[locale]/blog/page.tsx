@@ -23,6 +23,8 @@ export const generateMetadata = async ({
   };
 };
 
+export const dynamic = "force-dynamic";
+
 interface BlogPageProps {
   params: Promise<{ locale: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;

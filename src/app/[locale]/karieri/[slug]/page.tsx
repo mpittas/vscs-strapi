@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getCareer, getCareers } from "@/lib/strapi";
+import { getCareer } from "@/lib/strapi";
 import { Heading } from "@/components/ui/Typography";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
@@ -39,10 +39,7 @@ export async function generateMetadata({
   };
 }
 
-export async function generateStaticParams() {
-  const careers = await getCareers();
-  return careers.map((career: any) => ({ slug: career.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export default async function CareerPage({ params }: PageProps) {
   const { slug, locale } = await params;

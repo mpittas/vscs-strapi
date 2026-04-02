@@ -57,29 +57,28 @@ export async function POST(request: NextRequest) {
 
     console.log("Resolved model name:", modelName);
 
-    // Determine which paths to revalidate based on the content type
-    const pathsToRevalidate: string[] = [];
+    // Revalidate both locale versions: bg (default, no prefix) and en (/en/...)
+    const basePaths = ["/", "/proekti", "/karieri", "/blog", "/kontakti"];
 
-    // Always revalidate all main pages to ensure content is fresh
-    // This is simpler and more reliable than trying to match specific models
-    pathsToRevalidate.push("/");
-    pathsToRevalidate.push("/proekti");
-    pathsToRevalidate.push("/karieri");
-    pathsToRevalidate.push("/blog");
-    pathsToRevalidate.push("/kontakti");
-
-    // If we have a slug, also revalidate the specific page
     if (payload.entry?.slug) {
       switch (modelName) {
         case "blog-post":
-          pathsToRevalidate.push(`/blog/${payload.entry.slug}`);
+          basePaths.push(`/blog/${payload.entry.slug}`);
           break;
         case "project":
-          pathsToRevalidate.push(`/proekti/${payload.entry.slug}`);
+          basePaths.push(`/proekti/${payload.entry.slug}`);
           break;
         case "career":
-          pathsToRevalidate.push(`/karieri/${payload.entry.slug}`);
+          basePaths.push(`/karieri/${payload.entry.slug}`);
           break;
+      }
+    }
+
+    const locales = ["bg", "en"];
+    const pathsToRevalidate: string[] = [];
+    for (const p of basePaths) {
+      for (const locale of locales) {
+        pathsToRevalidate.push(locale === "bg" ? p : `/en${p}`);
       }
     }
 
