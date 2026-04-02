@@ -1,13 +1,24 @@
 Homepage:
 
-- [x] Fix all contact us links for CTA (Check all pages)
-- [x] 150+ MW инсталирана мощност нека стане
+## MAP
+
+- [ ] Add Mapbox or other open source map
+  - [ ] Add markers for some locations (Will provide info later)
+  - [ ] Locations are added manually or dynamically from Projects
+  - [ ] This map shows only once on homepage
+
+## CONTENT
+
+- [ ] Partner logos in email
+- [ ] Change texts in Marquee animated bar
+- [ ] Add blog post section
+  - [ ] Make sure the blog page opens correctly
+  - [] Update broken links
+  - [ ] Add CTA blog section
+
+## WAITING FOR:
+
 - [ ] See more button needs to expand when we click it (see image)
-- [ ] Replace world vector with dots with Google maps
-  - Maybe use open source
-  - Maybe create business profile with Google and get Google Maps API
-- [x] Remove 325% text (see image)
-- [x] Fix footer colors (see image)
 
 CTA Section:
 
@@ -27,9 +38,9 @@ Services:
 - Contacts page:
   - [x] Change contact info (address and work time)
   - [ ] Add Google map
-  - [ ] Facebook and LinkedIn icons
+  - [x] Facebook and LinkedIn icons
 
-- [ ] Add blog posts from current websitee
+- [ ] Add blog posts from current website
 
 ---
 
