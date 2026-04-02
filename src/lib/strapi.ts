@@ -1,8 +1,45 @@
 // Strapi 5 API client configuration
 import { getStrapiMedia } from "./media";
 
+type NextFetchOptions = RequestInit & {
+  next?: {
+    revalidate?: number | false;
+    tags?: string[];
+  };
+};
+
 const STRAPI_URL =
-  process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337";
+  process.env.STRAPI_API_URL ||
+  process.env.STRAPI_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_STRAPI_API_URL ||
+  process.env.NEXT_PUBLIC_STRAPI_URL ||
+  "http://localhost:1337";
+
+const RETRYABLE_STATUS_CODES = new Set([502, 503, 504]);
+
+function mergeFetchOptions(
+  options: NextFetchOptions,
+  tags: string[],
+): NextFetchOptions {
+  return {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...(options.headers || {}),
+    },
+    cache: options.cache ?? "force-cache",
+    next: {
+      ...options.next,
+      tags: options.next?.tags
+        ? [...new Set([...options.next.tags, ...tags])]
+        : tags,
+    },
+  };
+}
+
+function wait(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 /**
  * Generic fetch function for Strapi API
@@ -10,29 +47,54 @@ const STRAPI_URL =
  */
 export async function fetchAPI<T>(
   endpoint: string,
-  options: RequestInit = {},
+  options: NextFetchOptions = {},
   tags: string[] = ["strapi"],
 ): Promise<T> {
   const url = `${STRAPI_URL}/api${endpoint}`;
+  const requestOptions = mergeFetchOptions(options, tags);
+  const method = (requestOptions.method || "GET").toUpperCase();
+  const canRetry = method === "GET" || method === "HEAD";
 
-  const defaultOptions: RequestInit = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    cache: "force-cache", // Enable aggressive caching
-    next: {
-      tags, // Enable tag-based revalidation
-    },
-  };
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      const res = await fetch(url, requestOptions);
 
-  const res = await fetch(url, { ...defaultOptions, ...options });
+      if (!res.ok) {
+        const shouldRetry =
+          canRetry && RETRYABLE_STATUS_CODES.has(res.status) && attempt < 3;
 
-  if (!res.ok) {
-    console.error(`Strapi API error: ${res.status} ${res.statusText}`);
-    throw new Error(`Failed to fetch from Strapi: ${res.statusText}`);
+        if (shouldRetry) {
+          await wait(attempt * 500);
+          continue;
+        }
+
+        console.error(
+          `Strapi API error: ${res.status} ${res.statusText} (${url})`,
+        );
+        throw new Error(
+          `Failed to fetch from Strapi: ${res.status} ${res.statusText}`,
+        );
+      }
+
+      return res.json();
+    } catch (error) {
+      const isRetriableNetworkError =
+        canRetry &&
+        attempt < 3 &&
+        !(
+          error instanceof Error &&
+          error.message.startsWith("Failed to fetch from Strapi:")
+        );
+
+      if (!isRetriableNetworkError) {
+        throw error;
+      }
+
+      await wait(attempt * 500);
+    }
   }
 
-  return res.json();
+  throw new Error(`Failed to fetch from Strapi: ${endpoint}`);
 }
 
 /**

@@ -7,7 +7,13 @@
  * Get the base Strapi URL
  */
 export function getStrapiURL(): string {
-  return process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337";
+  return (
+    process.env.STRAPI_API_URL ||
+    process.env.STRAPI_INTERNAL_URL ||
+    process.env.NEXT_PUBLIC_STRAPI_API_URL ||
+    process.env.NEXT_PUBLIC_STRAPI_URL ||
+    "http://localhost:1337"
+  );
 }
 
 /**
@@ -37,7 +43,7 @@ export function getStrapiMedia(url: string | null | undefined): string | null {
  */
 export function getStrapiImageProps(
   media: { url?: string; alternativeText?: string } | null | undefined,
-  fallbackAlt: string = "Image"
+  fallbackAlt: string = "Image",
 ): { src: string; alt: string } | null {
   if (!media?.url) {
     return null;
