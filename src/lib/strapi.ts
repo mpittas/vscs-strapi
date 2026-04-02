@@ -414,7 +414,7 @@ export async function getCareers(locale = "bg") {
         main_content: string;
         publishedAt: string;
       }>;
-    }>(`/careers?sort=publishedAt:desc&locale=${locale}&status=published`, {}, [
+    }>(`/careers?sort=publishedAt:desc&locale=${locale}`, {}, [
       "strapi",
       "careers",
     ]);
@@ -453,11 +453,11 @@ export async function getCareer(slug: string, locale = "bg") {
         main_content: string;
         publishedAt: string;
       }>;
-    }>(
-      `/careers?filters[slug][$eq]=${slug}&locale=${locale}&status=published`,
-      {},
-      ["strapi", "careers", `career-${slug}`],
-    );
+    }>(`/careers?filters[slug][$eq]=${slug}&locale=${locale}`, {}, [
+      "strapi",
+      "careers",
+      `career-${slug}`,
+    ]);
 
     if (!response.data || response.data.length === 0) {
       return null;

@@ -43,32 +43,32 @@ export default function Footer() {
   const quickLinks = useMemo(
     () => [
       { label: t("nav.about"), href: "/about" },
-      { label: t("nav.services"), href: "/services" },
-      { label: t("nav.projects"), href: "/projects" },
-      { label: t("nav.careers"), href: "/careers" },
-      { label: t("nav.contacts"), href: "/contact" },
+      { label: t("nav.services"), href: "/uslugi" },
+      { label: t("nav.projects"), href: "/proekti" },
+      { label: t("nav.careers"), href: "/karieri" },
+      { label: t("nav.contacts"), href: "/kontakti" },
     ],
     [t],
   );
 
   const servicesLinks = useMemo(
     () => [
-      { label: t("footer.services_links.design"), href: "/services/design" },
+      { label: t("footer.services_links.design"), href: "/uslugi/design" },
       {
         label: t("footer.services_links.installation"),
-        href: "/services/installation",
+        href: "/uslugi/installation",
       },
       {
         label: t("footer.services_links.electrical"),
-        href: "/services/electrical",
+        href: "/uslugi/electrical",
       },
       {
         label: t("footer.services_links.maintenance"),
-        href: "/services/maintenance",
+        href: "/uslugi/maintenance",
       },
       {
         label: t("footer.services_links.consulting"),
-        href: "/services/consulting",
+        href: "/uslugi/consulting",
       },
     ],
     [t],
