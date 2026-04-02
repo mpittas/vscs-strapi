@@ -4,6 +4,30 @@ import { usePathname, useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import i18nConfig from "@/i18nConfig";
 
+// Detail page patterns that have locale-specific slugs
+// When on these pages, we redirect to the parent list instead of keeping the wrong slug
+const DETAIL_PATTERNS = [
+  /^\/blog\/[^\/]+$/, // /blog/slug
+  /^\/proekti\/[^\/]+$/, // /proekti/slug
+  /^\/karieri\/[^\/]+$/, // /karieri/slug
+  /^\/en\/blog\/[^\/]+$/, // /en/blog/slug
+  /^\/en\/proekti\/[^\/]+$/, // /en/proekti/slug
+  /^\/en\/karieri\/[^\/]+$/, // /en/karieri/slug
+];
+
+function isDetailPage(path: string): boolean {
+  return DETAIL_PATTERNS.some((pattern) => pattern.test(path));
+}
+
+function getParentListPath(path: string): string {
+  // Remove slug to get parent list path
+  const parts = path.split("/").filter(Boolean);
+  if (parts[0] === "en") {
+    return "/en/" + parts[1]; // /en/blog, /en/proekti, /en/karieri
+  }
+  return "/" + parts[0]; // /blog, /proekti, /karieri
+}
+
 export default function LanguageSwitcher({
   isDarkBg = false,
 }: {
@@ -22,16 +46,19 @@ export default function LanguageSwitcher({
     const expires = date.toUTCString();
     document.cookie = `NEXT_LOCALE=${newLocale};expires=${expires};path=/`;
 
+    // If on a detail page, redirect to parent list since slugs are locale-specific
+    const targetPath = isDetailPage(currentPathname)
+      ? getParentListPath(currentPathname)
+      : currentPathname;
+
     // redirect to the new locale path
     if (
       currentLocale === i18nConfig.defaultLocale &&
       !i18nConfig.prefixDefault
     ) {
-      router.push("/" + newLocale + currentPathname);
+      router.push("/" + newLocale + targetPath);
     } else {
-      router.push(
-        currentPathname.replace(`/${currentLocale}`, `/${newLocale}`),
-      );
+      router.push(targetPath.replace(`/${currentLocale}`, `/${newLocale}`));
     }
 
     router.refresh();
