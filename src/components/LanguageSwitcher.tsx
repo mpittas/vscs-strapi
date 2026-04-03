@@ -3,30 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import i18nConfig from "@/i18nConfig";
-
-// Detail page patterns that have locale-specific slugs
-// When on these pages, we redirect to the parent list instead of keeping the wrong slug
-const DETAIL_PATTERNS = [
-  /^\/blog\/[^\/]+$/, // /blog/slug
-  /^\/proekti\/[^\/]+$/, // /proekti/slug
-  /^\/karieri\/[^\/]+$/, // /karieri/slug
-  /^\/en\/blog\/[^\/]+$/, // /en/blog/slug
-  /^\/en\/proekti\/[^\/]+$/, // /en/proekti/slug
-  /^\/en\/karieri\/[^\/]+$/, // /en/karieri/slug
-];
-
-function isDetailPage(path: string): boolean {
-  return DETAIL_PATTERNS.some((pattern) => pattern.test(path));
-}
-
-function getParentListPath(path: string): string {
-  // Remove slug to get parent list path
-  const parts = path.split("/").filter(Boolean);
-  if (parts[0] === "en") {
-    return "/en/" + parts[1]; // /en/blog, /en/proekti, /en/karieri
-  }
-  return "/" + parts[0]; // /blog, /proekti, /karieri
-}
+import { useTranslatedSlug } from "@/components/TranslatedSlugProvider";
 
 export default function LanguageSwitcher({
   isDarkBg = false,
@@ -38,6 +15,9 @@ export default function LanguageSwitcher({
   const router = useRouter();
   const currentPathname = usePathname();
 
+  // Context set by detail pages with their translated slug paths
+  const translatedPaths = useTranslatedSlug();
+
   const handleChange = (newLocale: string) => {
     // set cookie for next-i18n-router
     const days = 30;
@@ -46,21 +26,34 @@ export default function LanguageSwitcher({
     const expires = date.toUTCString();
     document.cookie = `NEXT_LOCALE=${newLocale};expires=${expires};path=/`;
 
-    // If on a detail page, redirect to parent list since slugs are locale-specific
-    const targetPath = isDetailPage(currentPathname)
-      ? getParentListPath(currentPathname)
-      : currentPathname;
+    // If a detail page has provided translated paths, use them directly
+    if (translatedPaths && translatedPaths[newLocale]) {
+      router.push(translatedPaths[newLocale]);
+      router.refresh();
+      return;
+    }
 
-    // redirect to the new locale path
+    // Default behaviour: swap the locale prefix in the URL
+    let targetPath: string;
+
     if (
       currentLocale === i18nConfig.defaultLocale &&
       !i18nConfig.prefixDefault
     ) {
-      router.push("/" + newLocale + targetPath);
+      // Current URL has no prefix (defaultLocale = "bg")
+      // Going to a non-default locale → prepend /newLocale
+      targetPath = "/" + newLocale + currentPathname;
     } else {
-      router.push(targetPath.replace(`/${currentLocale}`, `/${newLocale}`));
+      // Current URL already has a locale prefix → replace it
+      targetPath = currentPathname.replace(
+        `/${currentLocale}`,
+        newLocale === i18nConfig.defaultLocale && !i18nConfig.prefixDefault
+          ? ""
+          : `/${newLocale}`,
+      );
     }
 
+    router.push(targetPath);
     router.refresh();
   };
 

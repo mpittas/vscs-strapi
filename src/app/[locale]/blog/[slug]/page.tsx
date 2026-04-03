@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getBlogPost } from "@/lib/strapi";
+import { getBlogPost, buildLocalePaths } from "@/lib/strapi";
 import { formatDate, calculateReadingTime } from "@/lib/utils";
 import { Heading } from "@/components/ui/Typography";
 import Container from "@/components/ui/Container";
@@ -11,6 +11,7 @@ import { ArrowLeft, Calendar } from "lucide-react";
 import { FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa";
 import BadgeDefault from "@/components/ui/BadgeDefault";
 import type { IconType } from "react-icons";
+import { TranslatedSlugProvider } from "@/components/TranslatedSlugProvider";
 
 interface ShareButtonProps {
   icon: IconType;
@@ -70,9 +71,10 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   const readingTime = calculateReadingTime(post.content);
+  const localePaths = buildLocalePaths(post, "blog");
 
   return (
-    <>
+    <TranslatedSlugProvider paths={localePaths}>
       {/* Hero Section */}
       <section className="bg-[#0a0f0a] relative pt-24 pb-32">
         <Container size="sm">
@@ -213,6 +215,6 @@ export default async function BlogPostPage({ params }: PageProps) {
           </div>
         </Container>
       </section>
-    </>
+    </TranslatedSlugProvider>
   );
 }

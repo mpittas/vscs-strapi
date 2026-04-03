@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getProject } from "@/lib/strapi";
+import { getProject, buildLocalePaths } from "@/lib/strapi";
 import { Heading } from "@/components/ui/Typography";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
@@ -18,6 +18,7 @@ import {
   Zap,
 } from "lucide-react";
 import type { IconType } from "react-icons";
+import { TranslatedSlugProvider } from "@/components/TranslatedSlugProvider";
 
 interface ShareButtonProps {
   icon: IconType;
@@ -80,8 +81,10 @@ export default async function ProjectPage({ params }: PageProps) {
   const statusColor =
     project.projectStatus === "Завършен" ? "text-green-600" : "text-amber-600";
 
+  const localePaths = buildLocalePaths(project, "proekti");
+
   return (
-    <>
+    <TranslatedSlugProvider paths={localePaths}>
       {/* Dark Hero Section */}
       <section className="bg-[#0a0f0a] relative pt-32 pb-24 border-b border-white/10">
         <Container>
@@ -107,11 +110,6 @@ export default async function ProjectPage({ params }: PageProps) {
             >
               {project.title}
             </Heading>
-
-            {/* Subtitle/Excerpt */}
-            {/* <div className="text-white/70 text-lg md:text-xl font-light mb-8 max-w-2xl leading-relaxed">
-              {project.excerpt}
-            </div> */}
 
             {/* Badges/Meta */}
             <div className="flex flex-wrap items-center gap-4">
@@ -322,6 +320,6 @@ export default async function ProjectPage({ params }: PageProps) {
           </div>
         </Container>
       </Section>
-    </>
+    </TranslatedSlugProvider>
   );
 }

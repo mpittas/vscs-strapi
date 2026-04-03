@@ -25,6 +25,44 @@ function resolveImage(item: any) {
   return getStrapiMedia(item.featuredImage.url);
 }
 
+/**
+ * Builds a locale → absolute URL path map from an item's localizations array.
+ * The item itself provides the current locale + slug.
+ *
+ * @param item       - the Strapi item (must have `locale` and `slug`)
+ * @param basePath   - e.g. "blog", "proekti", "karieri"
+ * @param defaultLocale - the locale that has no prefix (e.g. "bg")
+ */
+export function buildLocalePaths(
+  item: any,
+  basePath: string,
+  defaultLocale = "bg",
+): Record<string, string> {
+  const paths: Record<string, string> = {};
+
+  // Add the current item's own path
+  const currentLocale: string = item.locale ?? defaultLocale;
+  const currentSlug: string = item.slug ?? "";
+  paths[currentLocale] =
+    currentLocale === defaultLocale
+      ? `/${basePath}/${currentSlug}`
+      : `/${currentLocale}/${basePath}/${currentSlug}`;
+
+  // Add each localization
+  const localizations: any[] = item.localizations ?? [];
+  for (const loc of localizations) {
+    const locLocale: string = loc.locale ?? "";
+    const locSlug: string = loc.slug ?? "";
+    if (!locLocale || !locSlug) continue;
+    paths[locLocale] =
+      locLocale === defaultLocale
+        ? `/${basePath}/${locSlug}`
+        : `/${locLocale}/${basePath}/${locSlug}`;
+  }
+
+  return paths;
+}
+
 // ── Blog ─────────────────────────────────────────────
 
 export async function getBlogPosts(locale = "bg") {
@@ -43,7 +81,7 @@ export async function getBlogPosts(locale = "bg") {
 export async function getBlogPost(slug: string, locale = "bg") {
   try {
     const { data } = await fetchStrapi(
-      `/blog-posts?filters[slug][$eq]=${slug}&populate=featuredImage&locale=${locale}`,
+      `/blog-posts?filters[slug][$eq]=${slug}&populate[0]=featuredImage&populate[1]=localizations&locale=${locale}`,
       ["strapi", "blog-posts", `blog-post-${slug}`],
     );
     if (!data?.length) return null;
@@ -124,7 +162,7 @@ export async function getPaginatedProjects(
 export async function getProject(slug: string, locale = "bg") {
   try {
     const { data } = await fetchStrapi(
-      `/projects?filters[slug][$eq]=${slug}&populate[0]=featuredImage&populate[1]=gallery&locale=${locale}`,
+      `/projects?filters[slug][$eq]=${slug}&populate[0]=featuredImage&populate[1]=gallery&populate[2]=localizations&locale=${locale}`,
       ["strapi", "projects", `project-${slug}`],
     );
     if (!data?.length) return null;
@@ -167,7 +205,7 @@ export async function getCareers(locale = "bg") {
 export async function getCareer(slug: string, locale = "bg") {
   try {
     const { data } = await fetchStrapi(
-      `/careers?filters[slug][$eq]=${slug}&locale=${locale}`,
+      `/careers?filters[slug][$eq]=${slug}&populate=localizations&locale=${locale}`,
       ["strapi", "careers", `career-${slug}`],
     );
     if (!data?.length) return null;
