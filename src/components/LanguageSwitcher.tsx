@@ -59,12 +59,14 @@ export default function LanguageSwitcher({
     // If the current detail page has provided a translated path, use it.
     if (translatedPaths?.[newLocale]) {
       router.push(translatedPaths[newLocale]);
+      router.refresh();
       return;
     }
 
     // For all other pages, swap the locale prefix in the URL.
     const rawPath = stripLocale(pathname, currentLocale);
     router.push(buildPath(rawPath, newLocale));
+    router.refresh();
   };
 
   const btnClass = (locale: string) => {
