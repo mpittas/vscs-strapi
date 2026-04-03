@@ -12,7 +12,6 @@ Homepage:
 - [ ] Partner logos in email
 - [ ] Change texts in Marquee animated bar
 - [ ] Add blog post section
-  - [ ] Make sure the blog page opens correctly
   - [] Update broken links
   - [ ] Add CTA blog section
 

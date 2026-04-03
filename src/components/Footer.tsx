@@ -42,7 +42,7 @@ export default function Footer() {
   // Footer link data
   const quickLinks = useMemo(
     () => [
-      { label: t("nav.about"), href: "/about" },
+      { label: t("nav.about"), href: "/za-nas" },
       { label: t("nav.services"), href: "/uslugi" },
       { label: t("nav.projects"), href: "/proekti" },
       { label: t("nav.careers"), href: "/karieri" },

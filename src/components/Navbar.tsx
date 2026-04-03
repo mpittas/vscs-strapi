@@ -23,7 +23,7 @@ const Navbar = () => {
 
   const navLinks = [
     { name: t("nav.home"), href: "/" },
-    { name: t("nav.about"), href: "/about" },
+    { name: t("nav.about"), href: "/za-nas" },
     { name: t("nav.services"), href: "/uslugi" },
     { name: t("nav.projects"), href: "/proekti" },
     { name: t("nav.blog"), href: "/blog" },

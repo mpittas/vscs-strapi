@@ -253,7 +253,7 @@ export default function Hero() {
                 {t("hero.cta")}
               </Button>
               <Button
-                href="/about"
+                href="/za-nas"
                 variant="secondary"
                 size="md"
                 className="w-full sm:w-auto"
