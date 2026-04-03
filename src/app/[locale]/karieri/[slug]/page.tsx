@@ -57,7 +57,8 @@ export default async function CareerPage({ params }: PageProps) {
   const localePaths = buildLocalePaths(career, "karieri");
 
   return (
-    <TranslatedSlugProvider paths={localePaths}>
+    <>
+      <TranslatedSlugProvider paths={localePaths} />
       <TranslationsProvider
         locale={locale}
         resources={resources}
@@ -243,6 +244,6 @@ export default async function CareerPage({ params }: PageProps) {
           </Container>
         </Section>
       </TranslationsProvider>
-    </TranslatedSlugProvider>
+    </>
   );
 }

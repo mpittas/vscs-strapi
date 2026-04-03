@@ -1,87 +1,87 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { useTranslation } from "react-i18next";
+import { useSyncExternalStore } from "react";
 import i18nConfig from "@/i18nConfig";
-import { useTranslatedSlug } from "@/components/TranslatedSlugProvider";
+import {
+  getTranslatedPaths,
+  subscribeToTranslatedPaths,
+} from "@/components/TranslatedSlugProvider";
+
+const { locales, defaultLocale, prefixDefault } = i18nConfig;
+
+/** Extracts the active locale from the pathname. */
+function localeFromPath(pathname: string): string {
+  const segment = pathname.split("/")[1];
+  return locales.includes(segment) ? segment : defaultLocale;
+}
+
+/** Strips any locale prefix from the pathname. */
+function stripLocale(pathname: string, locale: string): string {
+  if (locale === defaultLocale && !prefixDefault) return pathname;
+  return pathname.replace(new RegExp(`^/${locale}`), "") || "/";
+}
+
+/** Builds the full target path for a new locale. */
+function buildPath(rawPath: string, newLocale: string): string {
+  if (newLocale === defaultLocale && !prefixDefault) return rawPath;
+  return `/${newLocale}${rawPath === "/" ? "" : rawPath}`;
+}
 
 export default function LanguageSwitcher({
   isDarkBg = false,
 }: {
   isDarkBg?: boolean;
 }) {
-  const { i18n } = useTranslation();
-  const currentLocale = i18n.language;
   const router = useRouter();
-  const currentPathname = usePathname();
+  const pathname = usePathname();
 
-  // Context set by detail pages with their translated slug paths
-  const translatedPaths = useTranslatedSlug();
+  // Derive locale purely from the URL — no i18next dependency.
+  const currentLocale = localeFromPath(pathname);
+
+  // Subscribe to the module-level translated-paths store reactively.
+  // This works across the layout/page boundary (unlike React Context).
+  const translatedPaths = useSyncExternalStore(
+    subscribeToTranslatedPaths,
+    getTranslatedPaths,
+    () => null, // server snapshot
+  );
 
   const handleChange = (newLocale: string) => {
-    // set cookie for next-i18n-router
-    const days = 30;
-    const date = new Date();
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    const expires = date.toUTCString();
+    if (newLocale === currentLocale) return;
+
+    // Persist locale preference in cookie (used by next-i18n-router middleware)
+    const expires = new Date(
+      Date.now() + 30 * 24 * 60 * 60 * 1000,
+    ).toUTCString();
     document.cookie = `NEXT_LOCALE=${newLocale};expires=${expires};path=/`;
 
-    // If a detail page has provided translated paths, use them directly
-    if (translatedPaths && translatedPaths[newLocale]) {
+    // If the current detail page has provided a translated path, use it.
+    if (translatedPaths?.[newLocale]) {
       router.push(translatedPaths[newLocale]);
-      router.refresh();
       return;
     }
 
-    // Default behaviour: swap the locale prefix in the URL
-    let targetPath: string;
+    // For all other pages, swap the locale prefix in the URL.
+    const rawPath = stripLocale(pathname, currentLocale);
+    router.push(buildPath(rawPath, newLocale));
+  };
 
-    if (
-      currentLocale === i18nConfig.defaultLocale &&
-      !i18nConfig.prefixDefault
-    ) {
-      // Current URL has no prefix (defaultLocale = "bg")
-      // Going to a non-default locale → prepend /newLocale
-      targetPath = "/" + newLocale + currentPathname;
-    } else {
-      // Current URL already has a locale prefix → replace it
-      targetPath = currentPathname.replace(
-        `/${currentLocale}`,
-        newLocale === i18nConfig.defaultLocale && !i18nConfig.prefixDefault
-          ? ""
-          : `/${newLocale}`,
-      );
-    }
-
-    router.push(targetPath);
-    router.refresh();
+  const btnClass = (locale: string) => {
+    const isActive = currentLocale === locale;
+    if (isActive) return "text-brand-green";
+    return isDarkBg
+      ? "text-white/80 hover:text-white transition-colors"
+      : "text-slate-500 hover:text-slate-700 transition-colors";
   };
 
   return (
     <div className="flex items-center gap-2 text-sm font-medium">
-      <button
-        onClick={() => handleChange("bg")}
-        className={`transition-colors ${
-          currentLocale === "bg"
-            ? "text-brand-green"
-            : isDarkBg
-              ? "text-white/80 hover:text-white"
-              : "text-slate-500 hover:text-slate-700"
-        }`}
-      >
+      <button onClick={() => handleChange("bg")} className={btnClass("bg")}>
         BG
       </button>
       <span className={isDarkBg ? "text-white/30" : "text-slate-300"}>|</span>
-      <button
-        onClick={() => handleChange("en")}
-        className={`transition-colors ${
-          currentLocale === "en"
-            ? "text-brand-green"
-            : isDarkBg
-              ? "text-white/80 hover:text-white"
-              : "text-slate-500 hover:text-slate-700"
-        }`}
-      >
+      <button onClick={() => handleChange("en")} className={btnClass("en")}>
         EN
       </button>
     </div>

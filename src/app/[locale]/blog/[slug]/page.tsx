@@ -74,7 +74,8 @@ export default async function BlogPostPage({ params }: PageProps) {
   const localePaths = buildLocalePaths(post, "blog");
 
   return (
-    <TranslatedSlugProvider paths={localePaths}>
+    <>
+      <TranslatedSlugProvider paths={localePaths} />
       {/* Hero Section */}
       <section className="bg-[#0a0f0a] relative pt-24 pb-32">
         <Container size="sm">
@@ -215,6 +216,6 @@ export default async function BlogPostPage({ params }: PageProps) {
           </div>
         </Container>
       </section>
-    </TranslatedSlugProvider>
+    </>
   );
 }

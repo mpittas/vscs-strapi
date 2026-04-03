@@ -84,7 +84,8 @@ export default async function ProjectPage({ params }: PageProps) {
   const localePaths = buildLocalePaths(project, "proekti");
 
   return (
-    <TranslatedSlugProvider paths={localePaths}>
+    <>
+      <TranslatedSlugProvider paths={localePaths} />
       {/* Dark Hero Section */}
       <section className="bg-[#0a0f0a] relative pt-32 pb-24 border-b border-white/10">
         <Container>
@@ -320,6 +321,6 @@ export default async function ProjectPage({ params }: PageProps) {
           </div>
         </Container>
       </Section>
-    </TranslatedSlugProvider>
+    </>
   );
 }
