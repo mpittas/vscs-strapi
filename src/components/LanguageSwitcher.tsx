@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useSyncExternalStore } from "react";
 import i18nConfig from "@/i18nConfig";
 import {
@@ -33,7 +33,6 @@ export default function LanguageSwitcher({
 }: {
   isDarkBg?: boolean;
 }) {
-  const router = useRouter();
   const pathname = usePathname();
 
   // Derive locale purely from the URL — no i18next dependency.
@@ -56,15 +55,18 @@ export default function LanguageSwitcher({
     ).toUTCString();
     document.cookie = `NEXT_LOCALE=${newLocale};expires=${expires};path=/`;
 
-    // If the current detail page has provided a translated path, use it.
+    // Use full page reload instead of router.push() to ensure the
+    // next-i18n-router middleware runs and serves the correct locale.
+    // Client-side navigation (router.push) skips middleware on production
+    // builds, causing the locale switch to silently fail.
     if (translatedPaths?.[newLocale]) {
-      router.push(translatedPaths[newLocale]);
+      window.location.href = translatedPaths[newLocale];
       return;
     }
 
     // For all other pages, swap the locale prefix in the URL.
     const rawPath = stripLocale(pathname, currentLocale);
-    router.push(buildPath(rawPath, newLocale));
+    window.location.href = buildPath(rawPath, newLocale);
   };
 
   const btnClass = (locale: string) => {
