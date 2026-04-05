@@ -1,48 +1,30 @@
 Homepage:
 
-## MAP
+## MAP:
 
 - [ ] Add Mapbox or other open source map
   - [ ] Add markers for some locations (Will provide info later)
   - [ ] Locations are added manually or dynamically from Projects
   - [ ] This map shows only once on homepage
 
-## CONTENT
+## CONTENT:
 
 - [ ] Partner logos in email
-- [ ] Change texts in Marquee animated bar
-- [ ] Add blog post section
-  - [] Update broken links
-  - [ ] Add CTA blog section
+- [ ] Change images from Figma design
+- [ ] Change texts in Marquee animated bar (Look at services page)
+- [ ] Add blog post from current website
+  - [ ] Add CTA blog section in Blog page
 
-## WAITING FOR:
+## ABOUT:
 
-- [ ] See more button needs to expand when we click it (see image)
+- [ ] Change with team image photo (wait for main image, unmtil then use from images i have)
 
-CTA Section:
+## CAREERS:
 
-- [x] Change phone number, do it for sections like footer and so on (I think?)
-
-About page:
-
-- [ ] Change with team image photo
-
-Services:
-
-- [x] Modal popup is not responsive and not scrollable
-
-- Careers:
-  - [ ] Multi-step form
+- [ ] Translate multi-step form
 
 - Contacts page:
   - [x] Change contact info (address and work time)
-  - [ ] Add Google map
   - [x] Facebook and LinkedIn icons
 
-- [ ] Add blog posts from current website
-
----
-
-OTHER:
-
-- [ ] Утре ще съм готова със снимки от обектите и таблицата с информация за тях и ще ти пратя, за да ги ъпдейтнем и да може да се въртят наши обекти. Колежката довършва и статия за блога и ще я пусне скоро.
+## PROJECTS:

@@ -1,6 +1,8 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
+import mapboxgl from "mapbox-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
@@ -12,14 +14,15 @@ import Section from "@/components/ui/Section";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-// Location dots on the map (positions as percentages)
+mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || "";
+
+// European locations with coordinates [lng, lat]
 const locations = [
-  { id: 1, name: "София, България", x: 54, y: 28 },
-  { id: 2, name: "Букурещ, Румъния", x: 56, y: 26 },
-  { id: 3, name: "Атина, Гърция", x: 53, y: 34 },
-  { id: 4, name: "Берлин, Германия", x: 48, y: 24 },
-  { id: 5, name: "Виена, Австрия", x: 50, y: 26 },
-  { id: 6, name: "Варшава, Полша", x: 52, y: 22 },
+  { id: 1, name: "София, България", coordinates: [23.3219, 42.6977] },
+  { id: 2, name: "Букурещ, Румъния", coordinates: [26.1025, 44.4268] },
+  { id: 3, name: "Атина, Гърция", coordinates: [23.7275, 37.9838] },
+  { id: 4, name: "Берлин, Германия", coordinates: [13.405, 52.52] },
+  { id: 5, name: "Виена, Австрия", coordinates: [16.3738, 48.2082] },
 ];
 
 // Blog posts data
@@ -90,6 +93,69 @@ export default function ProjectsOverview() {
     emblaApi.on("reInit", onSelect);
   }, [emblaApi, onSelect]);
 
+  const flyToLocation = useCallback((locationId: number) => {
+    const location = locations.find((l) => l.id === locationId);
+    if (!location || !map.current) return;
+
+    setActiveLocation(locationId);
+    map.current.flyTo({
+      center: location.coordinates as [number, number],
+      zoom: 10,
+      speed: 1.2,
+    });
+  }, []);
+
+  const mapContainer = useRef<HTMLDivElement>(null);
+  const map = useRef<mapboxgl.Map | null>(
+    null,
+  ) as React.MutableRefObject<mapboxgl.Map | null>;
+
+  useEffect(() => {
+    if (map.current || !mapContainer.current) return;
+    map.current = new mapboxgl.Map({
+      container: mapContainer.current,
+      style: "mapbox://styles/mapbox/streets-v12",
+      center: [20, 45], // Centered on Europe [lng, lat]
+      zoom: 3,
+      cooperativeGestures: true, // Require Ctrl/Cmd key for scroll zoom
+    });
+
+    // Add custom markers for each location
+    map.current.on("load", () => {
+      locations.forEach((location) => {
+        // Create custom marker element
+        const markerEl = document.createElement("div");
+        markerEl.className = "custom-marker";
+        markerEl.style.width = "24px";
+        markerEl.style.height = "24px";
+        markerEl.style.backgroundColor = "#22c55e"; // Green color matching brand
+        markerEl.style.borderRadius = "50%";
+        markerEl.style.border = "3px solid white";
+        markerEl.style.boxShadow = "0 2px 6px rgba(0,0,0,0.3)";
+        markerEl.style.cursor = "pointer";
+
+        // Create popup
+        const popup = new mapboxgl.Popup({ offset: 25 }).setText(location.name);
+
+        // Add marker to map
+        const marker = new mapboxgl.Marker(markerEl)
+          .setLngLat(location.coordinates as [number, number])
+          .setPopup(popup)
+          .addTo(map.current!);
+
+        markerEl.addEventListener("click", () => {
+          flyToLocation(location.id);
+        });
+      });
+
+      // Add navigation controls (zoom buttons + compass)
+      map.current!.addControl(new mapboxgl.NavigationControl(), "top-right");
+
+      // Add fullscreen control
+      map.current!.addControl(new mapboxgl.FullscreenControl(), "top-right");
+    });
+  }, []);
+
   return (
     <Section paddingY="xl" bgColor="white" className="overflow-hidden">
       <Container className="pr-0 sm:pr-8">
@@ -150,51 +216,12 @@ export default function ProjectsOverview() {
 
           {/* Right Side - World Map */}
           <div className="relative min-h-[300px] lg:min-h-[350px]">
-            {/* Map Background */}
-            <div className="absolute inset-0">
-              <Image
-                src="/images/map-dots.png"
-                alt="World Map"
-                fill
-                className="object-contain object-right opacity-80"
-              />
-            </div>
-
-            {/* Location Dots */}
-            {locations.map((location) => (
-              <div
-                key={location.id}
-                className="absolute z-10"
-                style={{
-                  left: `${location.x}%`,
-                  top: `${location.y}%`,
-                }}
-              >
-                {/* Dot Button */}
-                <button
-                  onClick={() =>
-                    setActiveLocation(
-                      activeLocation === location.id ? null : location.id,
-                    )
-                  }
-                  className="relative w-4 h-4 cursor-pointer group"
-                >
-                  {/* Pulse Animation */}
-                  <span className="absolute inset-0 rounded-full bg-brand-green/30 animate-ping" />
-                  {/* Solid Dot */}
-                  <span className="absolute inset-1 rounded-full bg-brand-green shadow-lg transition-transform group-hover:scale-125" />
-                </button>
-
-                {/* Tooltip */}
-                {activeLocation === location.id && (
-                  <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-3 py-1.5 bg-dark-green text-white text-sm rounded-lg whitespace-nowrap shadow-lg z-20">
-                    {location.name}
-                    {/* Arrow */}
-                    <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-dark-green" />
-                  </div>
-                )}
-              </div>
-            ))}
+            {/* Add mapbox with 3 location markers */}
+            <div
+              ref={mapContainer}
+              style={{ height: "300px" }}
+              className="rounded-2xl"
+            />
           </div>
         </div>
 
