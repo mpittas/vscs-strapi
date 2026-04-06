@@ -20,8 +20,8 @@ const AsteriskSeparator = () => (
 );
 
 export default function Marquee({ className, speed = "normal" }: MarqueeProps) {
-  const { t } = useTranslation("home");
-  const items = t("marquee.items", { returnObjects: true });
+  const { t } = useTranslation("marquee");
+  const items = t("items", { returnObjects: true });
   const marqueeItems = Array.isArray(items) ? (items as string[]) : [];
 
   // Speed classes for the animation

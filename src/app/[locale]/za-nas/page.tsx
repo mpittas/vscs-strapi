@@ -33,14 +33,14 @@ export default async function AboutPage({
   const { t, resources } = await initTranslations(locale, [
     "about",
     "common",
-    "home",
+    "marquee",
   ]);
 
   return (
     <TranslationsProvider
       locale={locale}
       resources={resources}
-      namespaces={["about", "common", "home"]}
+      namespaces={["about", "common", "marquee"]}
     >
       {/* Page Title Section */}
       <PageTitle

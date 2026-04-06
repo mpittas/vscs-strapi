@@ -23,7 +23,11 @@ export default async function HomePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const { resources } = await initTranslations(locale, ["common", "home"]);
+  const { resources } = await initTranslations(locale, [
+    "common",
+    "home",
+    "marquee",
+  ]);
   let posts: any[] = [];
 
   try {
@@ -55,7 +59,7 @@ export default async function HomePage({
     <TranslationsProvider
       locale={locale}
       resources={resources}
-      namespaces={["common", "home"]}
+      namespaces={["common", "home", "marquee"]}
     >
       <Hero />
       <ClientLogos />

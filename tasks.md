@@ -14,7 +14,7 @@ Homepage:
 - [x] Partner logos in email
   - [ ] Update in website
 - [x] Change images from Figma design
-- [ ] Change texts in Marquee animated bar (Look at services page)
+- [x] Change texts in Marquee animated bar (Look at services page)
 - [ ] Add blog post from current website
   - [ ] Add CTA blog section in Blog page
 
@@ -35,4 +35,4 @@ Homepage:
 ## CONSULT:
 
 - [ ] Partners logo
-- [ ] About us text shortened in homepage
+- [x] About us text shortened in homepage
