@@ -8,6 +8,10 @@ import Button from "@/components/ui/Button";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
+import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
+import { markdownComponents } from "@/lib/markdownStyles";
+import type { ComponentProps } from "react";
 
 interface ServiceModalProps {
   isOpen: boolean;
@@ -111,9 +115,24 @@ export default function ServiceModal({
 
         {/* Description */}
         <div className="mb-6 md:mb-10">
-          <Text variant="body-18" className="text-slate-600 leading-relaxed">
-            {description}
-          </Text>
+          <div className="prose prose-slate max-w-none">
+            <ReactMarkdown
+              rehypePlugins={[rehypeRaw]}
+              components={{
+                ...markdownComponents,
+                p: ({ children, ...props }: ComponentProps<"p">) => (
+                  <p
+                    className="text-slate-600 leading-relaxed mb-4 last:mb-0"
+                    {...props}
+                  >
+                    {children}
+                  </p>
+                ),
+              }}
+            >
+              {description}
+            </ReactMarkdown>
+          </div>
         </div>
 
         {/* CTA Button */}

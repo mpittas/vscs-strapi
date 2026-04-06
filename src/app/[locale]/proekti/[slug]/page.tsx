@@ -9,6 +9,9 @@ import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
 import BadgeDefault from "@/components/ui/BadgeDefault";
 import Sidebar from "@/components/ui/Sidebar";
+import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
+import { markdownComponents } from "@/lib/markdownStyles";
 import {
   ArrowLeft,
   MapPin,
@@ -147,77 +150,13 @@ export default async function ProjectPage({ params }: PageProps) {
 
               {/* Project Content */}
               {project.content && (
-                <div className="prose prose-lg max-w-none text-slate-600 space-y-6">
-                  {project.content
-                    .split("\n")
-                    .map((paragraph: any, index: any) => {
-                      const trimmed = paragraph.trim();
-                      if (!trimmed) return null;
-
-                      // Headers
-                      if (trimmed.startsWith("## ")) {
-                        return (
-                          <h3
-                            key={index}
-                            className="text-2xl font-medium text-slate-900 mt-10 mb-4"
-                          >
-                            {trimmed.replace(/^##\s+/, "")}
-                          </h3>
-                        );
-                      }
-                      if (
-                        trimmed.startsWith("# ") ||
-                        trimmed.startsWith("### ")
-                      ) {
-                        return (
-                          <h4
-                            key={index}
-                            className="text-xl font-medium text-slate-900 mt-8 mb-3"
-                          >
-                            {trimmed.replace(/^[#]+\s+/, "")}
-                          </h4>
-                        );
-                      }
-
-                      // Bullet lists
-                      if (
-                        trimmed.startsWith("- ") ||
-                        trimmed.startsWith("* ")
-                      ) {
-                        return (
-                          <ul
-                            key={index}
-                            className="list-disc pl-5 mb-4 space-y-1"
-                          >
-                            <li>{trimmed.replace(/^[-*]\s+/, "")}</li>
-                          </ul>
-                        );
-                      }
-
-                      // Key-value pairs (bolding the key)
-                      // Matches "Key: Value" or "1. Key: Value"
-                      const keyValMatch = trimmed.match(
-                        /^(\d+\.\s)?([^:]+):(.+)$/,
-                      );
-                      if (keyValMatch && trimmed.length < 150) {
-                        const prefix = keyValMatch[1] || "";
-                        const key = keyValMatch[2];
-                        const val = keyValMatch[3];
-                        return (
-                          <p key={index} className="mb-4">
-                            {prefix}
-                            <strong className="text-slate-900">{key}:</strong>
-                            {val}
-                          </p>
-                        );
-                      }
-
-                      return (
-                        <p key={index} className="leading-relaxed">
-                          {trimmed}
-                        </p>
-                      );
-                    })}
+                <div className="prose prose-lg max-w-none text-slate-600">
+                  <ReactMarkdown
+                    rehypePlugins={[rehypeRaw]}
+                    components={markdownComponents}
+                  >
+                    {project.content}
+                  </ReactMarkdown>
                 </div>
               )}
 

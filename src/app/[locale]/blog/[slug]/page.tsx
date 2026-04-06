@@ -6,6 +6,9 @@ import { getBlogPost, buildLocalePaths } from "@/lib/strapi";
 import { formatDate, calculateReadingTime } from "@/lib/utils";
 import { Heading } from "@/components/ui/Typography";
 import Container from "@/components/ui/Container";
+import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
+import { markdownComponents } from "@/lib/markdownStyles";
 
 import { ArrowLeft, Calendar } from "lucide-react";
 import { FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa";
@@ -145,55 +148,13 @@ export default async function BlogPostPage({ params }: PageProps) {
               </div>
 
               {/* Prose content */}
-              <div>
-                {post.content.split("\n").map((paragraph: any, index: any) => {
-                  if (!paragraph.trim()) return null;
-
-                  if (paragraph.startsWith("## ")) {
-                    return (
-                      <h2
-                        key={index}
-                        className="text-2xl md:text-3xl mt-12 mb-6"
-                      >
-                        {paragraph.replace("## ", "")}
-                      </h2>
-                    );
-                  }
-
-                  if (paragraph.startsWith("- ")) {
-                    return (
-                      <ul key={index} className="list-disc pl-5 mb-4">
-                        <li className="text-slate-600">
-                          {paragraph.replace("- ", "")}
-                        </li>
-                      </ul>
-                    );
-                  }
-
-                  if (paragraph.match(/^\d+\.\s/)) {
-                    // Handle numbered lists or just bold prefix
-                    const parts = paragraph.split(":");
-                    if (parts.length > 1) {
-                      return (
-                        <p key={index} className="mb-4">
-                          <strong className="text-slate-800">
-                            {parts[0]}:
-                          </strong>
-                          {parts.slice(1).join(":")}
-                        </p>
-                      );
-                    }
-                  }
-
-                  return (
-                    <p
-                      key={index}
-                      className="mb-6 text-slate-600 leading-relaxed"
-                    >
-                      {paragraph}
-                    </p>
-                  );
-                })}
+              <div className="prose prose-lg max-w-none">
+                <ReactMarkdown
+                  rehypePlugins={[rehypeRaw]}
+                  components={markdownComponents}
+                >
+                  {post.content}
+                </ReactMarkdown>
               </div>
 
               {/* Share & Footer */}

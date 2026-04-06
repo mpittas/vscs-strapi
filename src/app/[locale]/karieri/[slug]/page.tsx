@@ -8,6 +8,9 @@ import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
 import BadgeDefault from "@/components/ui/BadgeDefault";
 import Sidebar from "@/components/ui/Sidebar";
+import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
+import { markdownComponents } from "@/lib/markdownStyles";
 import { ArrowLeft, MapPin, Briefcase, CheckCircle2 } from "lucide-react";
 import initTranslations from "@/app/i18n";
 import TranslationsProvider from "@/components/TranslationsProvider";
@@ -129,59 +132,13 @@ export default async function CareerPage({ params }: PageProps) {
 
                 {/* Main Content Render */}
                 {career.mainContent && (
-                  <div className="prose text-base max-w-none text-slate-600 space-y-6">
-                    {career.mainContent
-                      .split("\n")
-                      .map((paragraph: any, index: any) => {
-                        const trimmed = paragraph.trim();
-                        if (!trimmed) return null;
-
-                        // Headers
-                        if (trimmed.startsWith("## ")) {
-                          return (
-                            <h3
-                              key={index}
-                              className="text-2xl font-bold text-slate-900 mt-10 mb-6"
-                            >
-                              {trimmed.replace(/^##\s+/, "")}
-                            </h3>
-                          );
-                        }
-                        if (
-                          trimmed.startsWith("# ") ||
-                          trimmed.startsWith("### ")
-                        ) {
-                          return (
-                            <h4
-                              key={index}
-                              className="text-xl font-bold text-slate-900 mt-8 mb-4"
-                            >
-                              {trimmed.replace(/^[#]+\s+/, "")}
-                            </h4>
-                          );
-                        }
-
-                        // Bullet lists
-                        if (
-                          trimmed.startsWith("- ") ||
-                          trimmed.startsWith("* ")
-                        ) {
-                          return (
-                            <ul
-                              key={index}
-                              className="list-disc pl-5 mb-4 space-y-2"
-                            >
-                              <li>{trimmed.replace(/^[-*]\s+/, "")}</li>
-                            </ul>
-                          );
-                        }
-
-                        return (
-                          <p key={index} className="leading-relaxed">
-                            {trimmed}
-                          </p>
-                        );
-                      })}
+                  <div className="prose text-base max-w-none text-slate-600">
+                    <ReactMarkdown
+                      rehypePlugins={[rehypeRaw]}
+                      components={markdownComponents}
+                    >
+                      {career.mainContent}
+                    </ReactMarkdown>
                   </div>
                 )}
               </div>
