@@ -41,7 +41,7 @@ export default function BlogItem({ post }: BlogItemProps) {
 
           {/* Middle Column - Content */}
           <div className="order-3 lg:order-2 lg:col-span-6 lg:pr-8">
-            <Heading as="h4" className="mb-3">
+            <Heading as="h3" className="mb-3">
               {post.title}
             </Heading>
             <Text variant="body-16" className="text-slate-900">

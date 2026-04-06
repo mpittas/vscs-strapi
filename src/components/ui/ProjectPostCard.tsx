@@ -50,7 +50,7 @@ export default function ProjectPostCard({
 
         {/* Arrow Icon */}
         <div className="flex-shrink-0 w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center transition-all duration-300 group-hover:border-brand-green group-hover:bg-brand-green">
-          <ArrowUpRight className="w-5 h-5 text-slate-600 transition-colors group-hover:text-dark-green" />
+          <ArrowUpRight className="w-5 h-5 text-slate-700 transition-colors group-hover:text-dark-green" />
         </div>
       </div>
     </Link>

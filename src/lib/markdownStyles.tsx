@@ -13,7 +13,7 @@ export const markdownComponents = {
   a: ({ href, children, target, rel, ...props }: AnchorProps) => (
     <a
       href={href}
-      className="text-slate-600 hover:text-slate-800 underline font-normal transition-colors"
+      className="text-slate-700 hover:text-slate-800 underline font-normal transition-colors"
       target={target}
       rel={rel || (target === "_blank" ? "noopener noreferrer" : undefined)}
       {...props}
@@ -42,7 +42,7 @@ export const markdownComponents = {
     </h4>
   ),
   p: ({ children, ...props }: ParagraphProps) => (
-    <p className="mb-4 leading-relaxed text-slate-600" {...props}>
+    <p className="mb-4 leading-relaxed text-slate-700" {...props}>
       {children}
     </p>
   ),

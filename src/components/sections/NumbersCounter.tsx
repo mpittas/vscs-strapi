@@ -108,7 +108,7 @@ function CounterCard({
         {count}
         <span className="text-2xl md:text-4xl">{item.suffix}</span>
       </div>
-      <div className="text-sm md:text-base text-slate-600">{item.label}</div>
+      <div className="text-sm md:text-base text-slate-700">{item.label}</div>
     </div>
   );
 }

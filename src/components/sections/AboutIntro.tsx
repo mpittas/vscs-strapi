@@ -28,10 +28,10 @@ export default function AboutIntro() {
 
             {/* Description paragraphs */}
             <div className="max-w-4xl mb-12">
-              <p className="text-slate-600 text-lg leading-relaxed mb-6">
+              <p className="text-slate-700 text-lg leading-relaxed mb-6">
                 {t("intro.description_1")}
               </p>
-              <p className="text-slate-600 text-lg leading-relaxed mb-6">
+              <p className="text-slate-700 text-lg leading-relaxed mb-6">
                 {t("intro.description_2")}
               </p>
 
@@ -48,7 +48,7 @@ export default function AboutIntro() {
                     moreParagraphs.map((paragraph, index) => (
                       <p
                         key={index}
-                        className="text-slate-600 text-lg leading-relaxed"
+                        className="text-slate-700 text-lg leading-relaxed"
                       >
                         {paragraph}
                       </p>

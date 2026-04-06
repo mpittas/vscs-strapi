@@ -636,7 +636,7 @@ export default function MultiStepForm() {
         <Heading as="h2" className="text-2xl md:text-3xl font-normal mb-4">
           Кандидатурата е изпратена!
         </Heading>
-        <Text variant="body-16" className="text-slate-600 max-w-md mx-auto">
+        <Text variant="body-16" className="text-slate-700 max-w-md mx-auto">
           Благодарим ви за кандидатурата. Ще разгледаме информацията ви и ще се
           свържем с вас скоро.
         </Text>

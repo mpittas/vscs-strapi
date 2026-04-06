@@ -77,7 +77,7 @@ export default async function CareersPage({
               ))
             ) : (
               <div className="text-center py-12 bg-white rounded-2xl">
-                <Heading as="h3" className="text-xl text-slate-600">
+                <Heading as="h3" className="text-xl text-slate-700">
                   {t("careers:no_positions")}
                 </Heading>
               </div>

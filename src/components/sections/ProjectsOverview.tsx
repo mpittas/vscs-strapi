@@ -206,7 +206,7 @@ export default function ProjectsOverview() {
                       suffixClassName="text-2xl lg:text-3xl text-slate-500 ml-1"
                     />
                   </div>
-                  <Text variant="body-14" className="mt-1 text-slate-900">
+                  <Text variant="body-16" className="mt-1 text-slate-900">
                     {stat.label}
                   </Text>
                 </div>
@@ -253,7 +253,7 @@ export default function ProjectsOverview() {
               className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:border-brand-green hover:bg-brand-green transition-all group cursor-pointer active:scale-95"
               aria-label="Previous slide"
             >
-              <ChevronLeft className="w-5 h-5 text-slate-600 group-hover:text-dark-green" />
+              <ChevronLeft className="w-5 h-5 text-slate-700 group-hover:text-dark-green" />
             </button>
             <button
               onClick={scrollNext}
@@ -261,7 +261,7 @@ export default function ProjectsOverview() {
               className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:border-brand-green hover:bg-brand-green transition-all group cursor-pointer active:scale-95"
               aria-label="Next slide"
             >
-              <ChevronRight className="w-5 h-5 text-slate-600 group-hover:text-dark-green" />
+              <ChevronRight className="w-5 h-5 text-slate-700 group-hover:text-dark-green" />
             </button>
           </div>
         </div>

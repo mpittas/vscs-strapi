@@ -48,7 +48,7 @@ function ServiceCard({
         <div className="relative mb-4">
           <Text
             className={cn(
-              "text-slate-600 text-base transition-all duration-300",
+              "text-slate-700 text-base transition-all duration-300",
               isActive ? "" : "line-clamp-3",
             )}
           >

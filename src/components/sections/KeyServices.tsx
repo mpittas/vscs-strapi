@@ -63,7 +63,7 @@ export default function KeyServices() {
             <Heading as="h2" className="mb-6">
               {t("key_services.title")}
             </Heading>
-            <Text className="text-slate-600 max-w-xl">
+            <Text className="text-slate-700 max-w-xl">
               {t("key_services.description")}
             </Text>
           </div>
@@ -106,7 +106,7 @@ export default function KeyServices() {
                   {service.title}
                 </Heading>
 
-                <Text className="text-slate-600 text-base pb-5">
+                <Text className="text-slate-700 text-base pb-5">
                   {service.description}
                 </Text>
 

@@ -102,10 +102,10 @@ export default function WorkProcess() {
         {/* Header */}
         {/* Two-column Intro Text - Added intro keys */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-16">
-          <Text className="text-slate-600 leading-relaxed">
+          <Text className="text-slate-700 leading-relaxed">
             {t("work_process.intro_left")}
           </Text>
-          <Text className="text-slate-600 leading-relaxed">
+          <Text className="text-slate-700 leading-relaxed">
             {t("work_process.intro_right")}
           </Text>
         </div>

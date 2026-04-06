@@ -73,7 +73,7 @@ export default function BlogCard({ post }: BlogCardProps) {
             {post.title}
           </Heading>
 
-          <Text className="text-slate-600 text-sm mb-4 line-clamp-3 flex-1">
+          <Text className="text-slate-700 text-sm mb-4 line-clamp-3 flex-1">
             {post.excerpt}
           </Text>
 

@@ -55,7 +55,7 @@ function TeamMemberCard({ member }: { member: TeamMember }) {
             <Text
               variant="body-14"
               className={cn(
-                "text-slate-600 leading-relaxed block",
+                "text-slate-700 leading-relaxed block",
                 !isExpanded && "line-clamp-4",
               )}
             >
@@ -116,7 +116,7 @@ export default function OurTeam() {
             </Heading>
 
             {/* Description - Full Text */}
-            <Text variant="body-16" className="text-slate-600">
+            <Text variant="body-16" className="text-slate-700">
               {t("team.description")}
             </Text>
           </div>

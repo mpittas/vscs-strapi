@@ -34,7 +34,7 @@ function ShareButton({ icon: Icon, label, onClick }: ShareButtonProps) {
     <button
       onClick={onClick}
       aria-label={label}
-      className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-[#b4d429] hover:text-[#0a0f0a] transition-all duration-300"
+      className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-700 hover:bg-[#b4d429] hover:text-[#0a0f0a] transition-all duration-300"
     >
       <Icon className="w-5 h-5" />
     </button>
@@ -150,7 +150,7 @@ export default async function ProjectPage({ params }: PageProps) {
 
               {/* Project Content */}
               {project.content && (
-                <div className="prose prose-lg max-w-none text-slate-600">
+                <div className="prose prose-lg max-w-none text-slate-700">
                   <ReactMarkdown
                     rehypePlugins={[rehypeRaw]}
                     components={markdownComponents}

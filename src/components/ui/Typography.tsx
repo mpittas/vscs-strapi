@@ -17,7 +17,7 @@ type HeadingProps = {
 export const headingStyles = {
   h1: "font-normal tracking-tight text-slate-900",
   h2: "text-[34px] lg:text-[44px] leading-[1.15] font-normal tracking-tight text-slate-900",
-  h3: "text-[26px] font-medium tracking-tight text-slate-900",
+  h3: "text-[26px] font-normal tracking-tight text-slate-900",
   h4: "text-[22px] font-normal tracking-tight text-slate-900",
   h5: "text-[20px] font-medium tracking-tight text-slate-900",
   h6: "text-[18px] leading-6 font-medium tracking-tight text-slate-900",
@@ -110,7 +110,7 @@ export function Text({
     <Component
       className={cn(
         textStyles[variant] || textStyles["body-16"],
-        !isSpecialVariant && "leading-relaxed",
+        !isSpecialVariant && "leading-[1.65em]",
         className,
       )}
       style={style}

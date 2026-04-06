@@ -61,7 +61,7 @@ const SpecRow = ({
     </td>
     <td className="p-4">{example}</td>
     <td className="p-4">
-      <code className="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 font-mono">
+      <code className="text-xs bg-slate-100 px-2 py-1 rounded text-slate-700 font-mono">
         {specs}
       </code>
     </td>
@@ -171,7 +171,9 @@ export default function DesignSystemPage() {
                 example={
                   <div
                     className={
-                      variant === "secondary" || variant === "white" || variant === "white-solid"
+                      variant === "secondary" ||
+                      variant === "white" ||
+                      variant === "white-solid"
                         ? "bg-slate-800 p-4 rounded-lg inline-block"
                         : ""
                     }
@@ -226,7 +228,12 @@ export default function DesignSystemPage() {
                 key={size}
                 name={`Size: ${size.toUpperCase()}`}
                 example={
-                  <Button size={size} variant="primary" showIcon iconPosition="left">
+                  <Button
+                    size={size}
+                    variant="primary"
+                    showIcon
+                    iconPosition="left"
+                  >
                     Contact Us
                   </Button>
                 }

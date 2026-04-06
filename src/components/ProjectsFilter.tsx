@@ -132,7 +132,7 @@ export default function ProjectsFilter({
               className={`px-6 py-2.5 rounded-full cursor-pointer font-normal transition-all duration-300 ${
                 activeFilter === option.value
                   ? "bg-[#b4d429] text-[#0a0f0a]"
-                  : "text-slate-600 hover:text-slate-900"
+                  : "text-slate-700 hover:text-slate-900"
               } ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
             >
               {option.label}

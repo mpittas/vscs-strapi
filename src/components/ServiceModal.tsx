@@ -122,7 +122,7 @@ export default function ServiceModal({
                 ...markdownComponents,
                 p: ({ children, ...props }: ComponentProps<"p">) => (
                   <p
-                    className="text-slate-600 leading-relaxed mb-4 last:mb-0"
+                    className="text-slate-700 leading-relaxed mb-4 last:mb-0"
                     {...props}
                   >
                     {children}

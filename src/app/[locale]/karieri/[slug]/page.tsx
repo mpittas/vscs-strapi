@@ -132,7 +132,7 @@ export default async function CareerPage({ params }: PageProps) {
 
                 {/* Main Content Render */}
                 {career.mainContent && (
-                  <div className="prose text-base max-w-none text-slate-600">
+                  <div className="prose text-base max-w-none text-slate-700">
                     <ReactMarkdown
                       rehypePlugins={[rehypeRaw]}
                       components={markdownComponents}

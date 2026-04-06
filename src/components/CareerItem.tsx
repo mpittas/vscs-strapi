@@ -27,15 +27,15 @@ export default function CareerItem({
       <div className="flex-1">
         {/* Meta info */}
         <div className="flex items-center gap-4 mb-3">
-          <div className="flex items-center gap-1.5 text-slate-600">
+          <div className="flex items-center gap-1.5 text-slate-700">
             <MapPin className="w-4 h-4" />
-            <Text variant="body-14" className="text-slate-600">
+            <Text variant="body-14" className="text-slate-700">
               {location}
             </Text>
           </div>
-          <div className="flex items-center gap-1.5 text-slate-600">
+          <div className="flex items-center gap-1.5 text-slate-700">
             <Briefcase className="w-4 h-4" />
-            <Text variant="body-14" className="text-slate-600">
+            <Text variant="body-14" className="text-slate-700">
               {t("job_type_full")}
             </Text>
           </div>
@@ -47,7 +47,7 @@ export default function CareerItem({
         </Heading>
 
         {/* Description */}
-        <Text variant="body-14" className="text-slate-600 leading-relaxed">
+        <Text variant="body-14" className="text-slate-700 leading-relaxed">
           {shortDescription}
         </Text>
       </div>

@@ -95,7 +95,7 @@ const Navbar = () => {
   };
 
   const menuButtonColor =
-    !isHomePage || isScrolled ? "text-slate-600" : "text-white";
+    !isHomePage || isScrolled ? "text-slate-700" : "text-white";
 
   return (
     <nav className={navClasses}>

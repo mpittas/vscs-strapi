@@ -59,7 +59,7 @@ export default function OurValues() {
             <Heading as="h2" className="mb-6">
               {t("values.title")}
             </Heading>
-            <p className="text-slate-600 text-lg leading-relaxed max-w-3xl">
+            <p className="text-slate-700 text-lg leading-relaxed max-w-3xl">
               {t("values.description")}
             </p>
           </div>
@@ -86,7 +86,7 @@ export default function OurValues() {
               hoverBgColor="hover:bg-slate-200"
               hoverBorderColor="hover:bg-slate-200"
               titleColor="text-slate-900"
-              descriptionColor="text-slate-600"
+              descriptionColor="text-slate-700"
             />
           ))}
         </div>
