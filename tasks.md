@@ -2,15 +2,18 @@ Homepage:
 
 ## MAP:
 
-- [ ] Add Mapbox or other open source map
-  - [ ] Add markers for some locations (Will provide info later)
-  - [ ] Locations are added manually or dynamically from Projects
-  - [ ] This map shows only once on homepage
+- [x] Add Mapbox or other open source map
+  - [x] Add markers for some locations (Will provide info later)
+  - [x] Locations are added manually or dynamically from Projects
+  - [x] This map shows only once on homepage
+  - [ ] Message Vesi and ask about project info like locations, names and so on
+  - [ ] When we link actual Projects to the map, show a more detailed tooltip with project info and button to view project
 
 ## CONTENT:
 
-- [ ] Partner logos in email
-- [ ] Change images from Figma design
+- [x] Partner logos in email
+  - [ ] Update in website
+- [x] Change images from Figma design
 - [ ] Change texts in Marquee animated bar (Look at services page)
 - [ ] Add blog post from current website
   - [ ] Add CTA blog section in Blog page
@@ -28,3 +31,8 @@ Homepage:
   - [x] Facebook and LinkedIn icons
 
 ## PROJECTS:
+
+## CONSULT:
+
+- [ ] Partners logo
+- [ ] About us text shortened in homepage

@@ -219,7 +219,7 @@ export default function ProjectsOverview() {
             {/* Add mapbox with 3 location markers */}
             <div
               ref={mapContainer}
-              style={{ height: "300px" }}
+              style={{ height: "330px" }}
               className="rounded-2xl"
             />
           </div>

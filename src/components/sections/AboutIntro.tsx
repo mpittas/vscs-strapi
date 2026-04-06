@@ -76,9 +76,9 @@ export default function AboutIntro() {
         {/* Content Grid */}
         <div className="grid lg:grid-cols-12 gap-8 items-stretch">
           {/* Image */}
-          <div className="lg:col-span-7 relative min-h-[400px] rounded-2xl overflow-hidden">
+          <div className="lg:col-span-6 relative min-h-[400px] rounded-2xl overflow-hidden">
             <Image
-              src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80"
+              src="/images/vscs-solar-panels-field_converted.avif"
               alt="Solar panel installation team"
               fill
               className="object-cover"
@@ -86,7 +86,7 @@ export default function AboutIntro() {
           </div>
 
           {/* Feature Cards */}
-          <div className="lg:col-span-5 flex flex-col gap-4">
+          <div className="lg:col-span-6 flex flex-col gap-4">
             {/* Trust Card */}
             <div className="bg-[#022519] text-white p-8 rounded-2xl flex-1 flex flex-col justify-center">
               <h4 className="text-xl md:text-2xl text-white font-normal mb-4">

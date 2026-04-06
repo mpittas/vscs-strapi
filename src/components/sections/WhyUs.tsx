@@ -48,7 +48,7 @@ export default function WhyUs() {
             {/* Main Image */}
             <div className="relative h-[300px] lg:h-[580px] rounded-4xl overflow-hidden ">
               <Image
-                src="/images/why-us-big.jpg"
+                src="/images/vscs-installing-solar-panels-wip.avif"
                 alt="Solar panels installation"
                 fill
                 unoptimized
@@ -59,7 +59,7 @@ export default function WhyUs() {
             {/* Overlapping Image with Badge */}
             <div className="absolute bottom-0 right-0 w-[200px] lg:w-[280px] h-[160px] lg:h-[360px] rounded-4xl overflow-hidden">
               <Image
-                src="/images/why-us-sm.jpg"
+                src="/images/vscs-winter-time-project-setup.avif"
                 alt="Solar installation close-up"
                 fill
                 unoptimized

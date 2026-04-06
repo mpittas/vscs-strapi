@@ -6,12 +6,9 @@ import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import { Check } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
-import ReadMoreButton from "@/components/ui/ReadMoreButton";
 
 export default function AboutUs() {
   const { t } = useTranslation("home");
-  const [isExpanded, setIsExpanded] = useState(false);
 
   const features = [
     t("about_us.features.innovative"),
@@ -19,10 +16,6 @@ export default function AboutUs() {
     t("about_us.features.expert"),
     t("about_us.features.quality"),
   ];
-
-  const moreParagraphs = t("about_us.more_paragraphs", {
-    returnObjects: true,
-  }) as string[];
 
   return (
     <Section paddingY="lg" bgColor="white">
@@ -35,16 +28,16 @@ export default function AboutUs() {
               {/* First image */}
               <div className="flex-1 rounded-[50px] overflow-hidden z-1">
                 <Image
-                  src="/images/Enpal-KIT-Ruler-Solar-scaled.webp"
+                  src="/images/installing-solar-panels.avif"
                   alt="Solar panel installation"
                   width={600}
                   height={800}
                   unoptimized
-                  className="w-full h-[400] lg:h-[560px] object-cover rounded-4xl"
+                  className="w-full h-[400px] lg:h-[620px] object-cover rounded-4xl"
                 />
               </div>
 
-              <div className="absolute bottom-5 right-0 w-[60%] pr-4">
+              <div className="absolute bottom-8 right-4 w-[60%] pr-4">
                 <Image
                   src="/images/solar-bg-green-blur.jpg"
                   alt="Blurred solar background"
@@ -52,7 +45,7 @@ export default function AboutUs() {
                   height={600}
                   quality={100}
                   unoptimized
-                  className="w-full h-[460px] object-cover rounded-[50px] blur-[15px]"
+                  className="w-full h-[660px] object-cover rounded-[50px] blur-[35px]"
                 />
               </div>
             </div>
@@ -87,46 +80,11 @@ export default function AboutUs() {
               <Text variant="body-16" className="mb-4">
                 {t("about_us.description_1")}
               </Text>
-              <Text variant="body-16" className="mb-4">
-                {t("about_us.description_2")}
-              </Text>
-
-              {/* Revealable content */}
-              <div
-                className={`overflow-hidden transition-all duration-500 ease-in-out ${isExpanded
-                  ? "max-h-[1500px] opacity-100"
-                  : "max-h-0 opacity-0"
-                  }`}
-              >
-                <div className="space-y-4 pt-0 pb-4">
-                  {Array.isArray(moreParagraphs) &&
-                    moreParagraphs.map((paragraph, index) => (
-                      <Text
-                        key={index}
-                        variant="body-16"
-                        className="text-slate-900"
-                      >
-                        {paragraph}
-                      </Text>
-                    ))}
-                </div>
-              </div>
-
-              <div className="mt-1">
-                <ReadMoreButton
-                  onClick={() => setIsExpanded(!isExpanded)}
-                  isExpanded={isExpanded}
-                  text={
-                    isExpanded
-                      ? t("about_us.read_less")
-                      : t("about_us.read_more")
-                  }
-                />
-              </div>
+              <Text variant="body-16">{t("about_us.description_2")}</Text>
             </div>
 
             {/* Features list - 2x2 grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-10 mt-5 pt-5 border-t-1 border-slate-200">
+            {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-10 mt-5 pt-5 border-t-1 border-slate-200">
               {features.map((feature, index) => (
                 <div key={index} className="flex items-center gap-3">
                   <span className="flex items-center justify-center w-4 h-4 rounded-full bg-brand-green text-white shrink-0">
@@ -137,7 +95,7 @@ export default function AboutUs() {
                   </Text>
                 </div>
               ))}
-            </div>
+            </div> */}
 
             {/* CTA Button */}
             <Button variant="black" size="md" href="/za-nas" showIcon>

@@ -44,7 +44,7 @@ export default function KeyServices() {
       {
         title: t("key_services.items.bess.title"),
         description: t("key_services.items.bess.description"),
-        image: "/images/service-box-img-4.jpg",
+        image: "/images/vscs-energy-storage_converted.avif",
         icon: "/icons/service-white-box-icon-4.svg",
         items: t("key_services.items.bess.list", {
           returnObjects: true,

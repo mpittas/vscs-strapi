@@ -81,27 +81,27 @@ export default function ServiceSteps() {
       {
         title: t("project_lifecycle.items.projecting.title"),
         description: t("project_lifecycle.items.projecting.description"),
-        image: "/images/service-box-3-img-1.jpg",
+        image: "/images/vscs-project-development_converted.avif",
       },
       {
         title: t("project_lifecycle.items.delivery.title"),
         description: t("project_lifecycle.items.delivery.description"),
-        image: "/images/service-box-3-img-2.jpg",
+        image: "/images/vscs-logistics-transportation_converted.avif",
       },
       {
         title: t("project_lifecycle.items.construction.title"),
         description: t("project_lifecycle.items.construction.description"),
-        image: "/images/service-box-3-img-3.jpg",
+        image: "/images/vscs-building-and-installation_converted.avif",
       },
       {
         title: t("project_lifecycle.items.testing.title"),
         description: t("project_lifecycle.items.testing.description"),
-        image: "/images/service-box-3-img-4.jpg",
+        image: "/images/vscs-testing_converted.avif",
       },
       {
         title: t("project_lifecycle.items.maintenance.title"),
         description: t("project_lifecycle.items.maintenance.description"),
-        image: "/images/service-box-3-img-5.jpg",
+        image: "/images/vscs-maintenance_converted.avif",
       },
     ],
     [t],
