@@ -15,6 +15,7 @@ import { FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa";
 import BadgeDefault from "@/components/ui/BadgeDefault";
 import type { IconType } from "react-icons";
 import { TranslatedSlugProvider } from "@/components/TranslatedSlugProvider";
+import { CTABanner } from "@/components/sections";
 
 interface ShareButtonProps {
   icon: IconType;
@@ -177,6 +178,8 @@ export default async function BlogPostPage({ params }: PageProps) {
           </div>
         </Container>
       </section>
+
+      <CTABanner />
     </>
   );
 }

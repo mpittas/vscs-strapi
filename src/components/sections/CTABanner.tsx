@@ -8,8 +8,36 @@ import Section from "@/components/ui/Section";
 import { Phone } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
+// Default content for CTA Banner
+const defaultContent = {
+  bg: {
+    title: "Свържете се с нас и запазете консултация!",
+    btn_text: "Свържете се с нас",
+    phone_label: "Запазете консултация",
+  },
+  en: {
+    title: "Contact us and book a consultation!",
+    btn_text: "Contact Us",
+    phone_label: "Book a consultation",
+  },
+};
+
 export default function CTABanner() {
-  const { t } = useTranslation("home");
+  const { t, i18n } = useTranslation("home");
+
+  // Get current locale content, fallback to default
+  const locale = i18n.language as "bg" | "en";
+  const content = {
+    title: t("cta_banner.title", {
+      defaultValue: defaultContent[locale].title,
+    }),
+    btn_text: t("cta_banner.btn_text", {
+      defaultValue: defaultContent[locale].btn_text,
+    }),
+    phone_label: t("cta_banner.phone_label", {
+      defaultValue: defaultContent[locale].phone_label,
+    }),
+  };
   return (
     <Section
       paddingY="lg"
@@ -31,7 +59,7 @@ export default function CTABanner() {
       <div className="absolute right-0 lg:right-[15%] bottom-0 w-[350px] h-full z-10 hidden lg:block">
         <Image
           src="/images/woman-reading-papers-min.png"
-          alt={t("cta_banner.phone_label")}
+          alt={content.phone_label}
           fill
           className="object-contain object-bottom"
           priority
@@ -43,7 +71,7 @@ export default function CTABanner() {
           {/* Left Content */}
           <div className="text-left max-w-[700px]">
             <Heading as="h2" className="text-white mb-6 md:mb-14 max-w-2xl">
-              {t("cta_banner.title")}
+              {content.title}
             </Heading>
 
             {/* Button and Phone Row */}
@@ -57,7 +85,7 @@ export default function CTABanner() {
                 iconPosition="right"
                 className="w-full md:w-auto"
               >
-                {t("cta_banner.btn_text")}
+                {content.btn_text}
               </Button>
 
               {/* Phone Box */}
@@ -67,7 +95,7 @@ export default function CTABanner() {
                 </div>
                 <div className="flex flex-col">
                   <Text variant="body-14" className="text-white">
-                    {t("cta_banner.phone_label")}
+                    {content.phone_label}
                   </Text>
                   <a href="tel:+359877159858" className="text-white">
                     <Text variant="body-22" className="text-white" as="span">
@@ -85,7 +113,7 @@ export default function CTABanner() {
       <div className="hidden lg:block relative w-full h-[250px] lg:hidden">
         <Image
           src="/images/woman-reading-papers-min.png"
-          alt={t("cta_banner.phone_label")}
+          alt={content.phone_label}
           fill
           className="object-contain object-bottom"
           priority
