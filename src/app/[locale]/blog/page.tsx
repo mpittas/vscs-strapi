@@ -93,6 +93,7 @@ export default async function BlogPage({
                     id: post.id,
                     title: post.title,
                     excerpt: post.excerpt,
+                    content: post.content,
                     image: post.featuredImage || "/images/blog-img-1.jpg",
                     date: formatDate(post.publishedAt),
                     readTime: t("blog:posts.read_time", { count: 5 }), // Placeholder

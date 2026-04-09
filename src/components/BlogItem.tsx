@@ -9,7 +9,8 @@ interface BlogItemProps {
   post: {
     id: number;
     title: string;
-    excerpt: string;
+    excerpt?: string;
+    content?: string;
     image: string;
     date: string;
     readTime: string;
@@ -45,7 +46,7 @@ export default function BlogItem({ post }: BlogItemProps) {
               {post.title}
             </Heading>
             <Text variant="body-16" className="text-slate-900">
-              {truncateText(post.excerpt, 140)}
+              {truncateText(post.excerpt || post.content, 140)}
             </Text>
           </div>
 

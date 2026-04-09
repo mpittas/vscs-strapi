@@ -44,6 +44,7 @@ export default async function HomePage({
         id: post.id,
         title: post.title,
         excerpt: post.excerpt,
+        content: post.content,
         image:
           getStrapiMedia(post.featuredImage?.url) || "/images/blog-img-1.jpg",
         date: formatDate(post.publishedAt),
