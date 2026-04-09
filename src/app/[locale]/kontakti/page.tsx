@@ -88,7 +88,7 @@ export default async function ContactsPage({
 
       <Section className="py-24 bg-white" paddingY="none">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-18">
             {/* Left Column - Contact Form */}
             <div className="lg:col-span-8">
               <ContactForm />

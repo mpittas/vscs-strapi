@@ -7,11 +7,9 @@ import Image from "next/image";
 import { Text } from "@/components/ui/Typography";
 
 const clientLogos = [
-  { src: "/clients-logos/client-logo-1.svg", alt: "Client 1" },
-  { src: "/clients-logos/client-logo-2.svg", alt: "Client 2" },
-  { src: "/clients-logos/client-logo-3.svg", alt: "Client 3" },
-  { src: "/clients-logos/client-logo-4.svg", alt: "Client 4" },
-  { src: "/clients-logos/client-logo-5.svg", alt: "Client 5" },
+  { src: "/clients-logos/green-energy-supplier-logo.png", alt: "Client 1" },
+  { src: "/clients-logos/horys-logo.png", alt: "Client 2" },
+  { src: "/clients-logos/kp-solar-group-logo.png", alt: "Client 3" },
 ];
 
 export default function ClientLogos() {
@@ -41,8 +39,13 @@ export default function ClientLogos() {
                   src={logo.src}
                   alt={logo.alt}
                   width={120}
-                  height={36}
-                  className="h-8 lg:h-9 w-auto object-contain opacity-100 hover:opacity-80 transition-opacity"
+                  height={76}
+                  unoptimized
+                  className={`w-auto object-contain opacity-100 hover:opacity-80 transition-opacity ${
+                    index === clientLogos.length - 1
+                      ? "h-6 lg:h-12"
+                      : "h-8 lg:h-18"
+                  }`}
                 />
               </div>
             ))}

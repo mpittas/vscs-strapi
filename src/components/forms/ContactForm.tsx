@@ -11,7 +11,7 @@ export default function ContactForm() {
   const { t } = useTranslation("contacts");
 
   return (
-    <div className="bg-[#F4F4F4] rounded-3xl p-8 md:p-12">
+    <div className="">
       <Heading as="h2" className="text-2xl md:text-3xl font-normal mb-2">
         {t("form.title")}
       </Heading>

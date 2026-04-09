@@ -11,29 +11,10 @@ import rehypeRaw from "rehype-raw";
 import { markdownComponents } from "@/lib/markdownStyles";
 
 import { ArrowLeft, Calendar } from "lucide-react";
-import { FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa";
 import BadgeDefault from "@/components/ui/BadgeDefault";
-import type { IconType } from "react-icons";
 import { TranslatedSlugProvider } from "@/components/TranslatedSlugProvider";
 import { CTABanner } from "@/components/sections";
-
-interface ShareButtonProps {
-  icon: IconType;
-  label: string;
-  onClick?: () => void;
-}
-
-function ShareButton({ icon: Icon, label, onClick }: ShareButtonProps) {
-  return (
-    <button
-      onClick={onClick}
-      aria-label={label}
-      className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-700 hover:bg-[#b4d429] hover:text-[#0a0f0a] transition-all duration-300"
-    >
-      <Icon className="w-5 h-5" />
-    </button>
-  );
-}
+import ShareButtons from "@/components/ShareButtons";
 
 interface PageProps {
   params: Promise<{ slug: string; locale: string }>;
@@ -141,13 +122,6 @@ export default async function BlogPostPage({ params }: PageProps) {
             </div>
 
             <div className="px-6">
-              {/* Excerpt / Intro */}
-              <div className="mb-12 border-l-4 border-[#b4d429] pl-6 py-2">
-                <p className="text-xl md:text-xl font-serif italic text-slate-800 mb-0">
-                  {post.excerpt}
-                </p>
-              </div>
-
               {/* Prose content */}
               <div className="prose prose-lg max-w-none">
                 <ReactMarkdown
@@ -164,14 +138,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                   <span className="text-slate-900 font-normal">
                     Сподели статията:
                   </span>
-                  <div className="flex gap-2">
-                    <ShareButton icon={FaFacebook} label="Share on Facebook" />
-                    <ShareButton icon={FaLinkedin} label="Share on LinkedIn" />
-                    <ShareButton
-                      icon={FaInstagram}
-                      label="Share on Instagram"
-                    />
-                  </div>
+                  <ShareButtons title={post.title} />
                 </div>
               </div>
             </div>

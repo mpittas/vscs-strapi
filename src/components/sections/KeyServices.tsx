@@ -115,12 +115,10 @@ export default function KeyServices() {
                     service.items.map((item, itemIndex) => (
                       <div
                         key={itemIndex}
-                        className="inline-flex items-start gap-3 text-dark-green text-sm"
+                        className="inline-flex items-start gap-3 text-dark-green"
                       >
-                        <span className="shrink-0 w-5 h-5 rounded-full bg-black mt-0.5 bg-[url('/icons/small-chevron.svg')] bg-[length:5px] bg-[position:50%_50%] bg-no-repeat" />
-                        <span className="font-medium text-black leading-snug">
-                          {item}
-                        </span>
+                        <span className="shrink-0 w-5 h-5 rounded-full bg-black mt-0.5 mt-1.5 bg-[url('/icons/small-chevron.svg')] bg-[length:5px] bg-[position:56%_50%] bg-no-repeat" />
+                        <span className="">{item}</span>
                       </div>
                     ))}
                 </div>

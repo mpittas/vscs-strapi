@@ -12,11 +12,11 @@ Homepage:
 ## CONTENT:
 
 - [x] Partner logos in email
-  - [ ] Update in website
+  - [x] Update in website
 - [x] Change images from Figma design
 - [x] Change texts in Marquee animated bar (Look at services page)
 - [ ] Add blog post from current website
-  - [ ] Add CTA blog section in Blog page
+  - [x] Add CTA blog section in Blog page
 
 ## ABOUT:
 
