@@ -1,4 +1,4 @@
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 /**
@@ -99,12 +99,53 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Also invalidate the underlying cached Strapi fetches by tag.
+    // These tags match the ones set in src/lib/strapi.ts.
+    const tagsToRevalidate = new Set<string>(["strapi"]);
+    switch (modelName) {
+      case "blog-post":
+        tagsToRevalidate.add("blog-posts");
+        if (payload.entry?.slug) {
+          tagsToRevalidate.add(`blog-post-${payload.entry.slug}`);
+        }
+        break;
+      case "project":
+        tagsToRevalidate.add("projects");
+        if (payload.entry?.slug) {
+          tagsToRevalidate.add(`project-${payload.entry.slug}`);
+        }
+        break;
+      case "career":
+        tagsToRevalidate.add("careers");
+        if (payload.entry?.slug) {
+          tagsToRevalidate.add(`career-${payload.entry.slug}`);
+        }
+        break;
+    }
+
+    const tagResults: { tag: string; revalidated: boolean; error?: string }[] =
+      [];
+    for (const tag of tagsToRevalidate) {
+      try {
+        // Next.js 16 requires a profile/expire arg; expire: 0 = invalidate now.
+        revalidateTag(tag, { expire: 0 });
+        tagResults.push({ tag, revalidated: true });
+        console.log(`Revalidated tag: ${tag}`);
+      } catch (error) {
+        const errorMessage =
+          error instanceof Error ? error.message : "Unknown error";
+        tagResults.push({ tag, revalidated: false, error: errorMessage });
+        console.error(`Failed to revalidate tag ${tag}:`, errorMessage);
+      }
+    }
+
     return NextResponse.json({
       success: true,
       message: "Revalidation triggered",
       event: payload.event,
       model: payload.model,
       results,
+      tagResults,
     });
   } catch (error) {
     console.error("Revalidation webhook error:", error);

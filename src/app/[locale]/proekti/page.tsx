@@ -7,8 +7,6 @@ import { getProjects } from "@/lib/strapi";
 import initTranslations from "@/app/i18n";
 import TranslationsProvider from "@/components/TranslationsProvider";
 
-export const dynamic = "force-dynamic";
-
 export const generateMetadata = async ({
   params,
 }: {

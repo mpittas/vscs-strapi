@@ -67,8 +67,6 @@ export async function generateMetadata({
   };
 }
 
-export const dynamic = "force-dynamic";
-
 export default async function ProjectPage({ params }: PageProps) {
   const { slug, locale } = await params;
   const project = await getProject(slug, locale);

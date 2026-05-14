@@ -3,6 +3,9 @@ import { getStrapiMedia } from "./media";
 const STRAPI_URL =
   process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337";
 
+// Default ISR window (seconds). Strapi webhook will invalidate on demand via tags.
+const DEFAULT_REVALIDATE = 3600;
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function fetchStrapi(
   path: string,
@@ -10,7 +13,7 @@ async function fetchStrapi(
 ): Promise<any> {
   const res = await fetch(`${STRAPI_URL}/api${path}`, {
     headers: { "Content-Type": "application/json" },
-    next: { tags },
+    next: { revalidate: DEFAULT_REVALIDATE, tags },
   });
 
   if (!res.ok) {

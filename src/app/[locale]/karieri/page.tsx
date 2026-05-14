@@ -23,8 +23,6 @@ export const generateMetadata = async ({
   };
 };
 
-export const dynamic = "force-dynamic";
-
 export default async function CareersPage({
   params,
 }: {

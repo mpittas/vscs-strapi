@@ -44,8 +44,6 @@ export async function generateMetadata({
   };
 }
 
-export const dynamic = "force-dynamic";
-
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug, locale } = await params;
 
