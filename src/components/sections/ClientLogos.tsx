@@ -16,7 +16,7 @@ export default function ClientLogos() {
   const { t } = useTranslation("home");
 
   return (
-    <Section paddingY="sm" className="bg-[#e8f0dc]">
+    <Section paddingY="sm" className="bg-[#e8f0dc] relative z-1">
       <Container>
         {/* Mobile: stacked layout, Desktop: horizontal layout */}
         <div className="flex flex-col items-center lg:flex-row gap-8">

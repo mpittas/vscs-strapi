@@ -24,7 +24,7 @@ export default function AboutUs() {
           {/* Left Column - Images */}
           <div className="relative">
             {/* Main images container */}
-            <div className="flex gap-4 pb-10 lg:pb-20 pr-12 lg:pr-24">
+            <div className="flex gap-4 pb-10 lg:pb-20 pr-12 lg:pr-24 relative">
               {/* First image */}
               <div className="flex-1 rounded-[50px] overflow-hidden z-1">
                 <Image
@@ -45,7 +45,7 @@ export default function AboutUs() {
                   height={600}
                   quality={100}
                   unoptimized
-                  className="w-full h-[660px] object-cover rounded-[50px] blur-[35px]"
+                  className="w-full h-[400px] lg:h-[660px] object-cover rounded-[50px] blur-[35px]"
                 />
               </div>
             </div>
