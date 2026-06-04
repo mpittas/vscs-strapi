@@ -604,6 +604,15 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
         };
       }> &
       Schema.Attribute.DefaultTo<'\u0416\u0438\u043B\u0438\u0449\u043D\u0438'>;
+    client: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 200;
+      }>;
     content: Schema.Attribute.RichText &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -695,7 +704,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     year: Schema.Attribute.String &
       Schema.Attribute.SetMinMaxLength<{
-        maxLength: 4;
+        maxLength: 100;
       }>;
   };
 }

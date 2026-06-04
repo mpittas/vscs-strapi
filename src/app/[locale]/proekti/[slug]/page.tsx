@@ -19,6 +19,7 @@ import {
   CheckCircle2,
   Clock,
   Zap,
+  CircleUser,
 } from "lucide-react";
 import type { IconType } from "react-icons";
 import { TranslatedSlugProvider } from "@/components/TranslatedSlugProvider";
@@ -209,6 +210,12 @@ export default async function ProjectPage({ params }: PageProps) {
                         value: project.year,
                         icon: Calendar,
                         show: !!project.year,
+                      },
+                      {
+                        label: "КЛИЕНТ",
+                        value: project.client,
+                        icon: CircleUser,
+                        show: !!project.client,
                       },
                       {
                         label: "ТИП",

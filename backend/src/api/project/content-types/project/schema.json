@@ -67,9 +67,18 @@
       "maxLength": 200,
       "required": true
     },
+    "client": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "maxLength": 200
+    },
     "year": {
       "type": "string",
-      "maxLength": 4
+      "maxLength": 100
     },
     "projectStatus": {
       "type": "enumeration",
