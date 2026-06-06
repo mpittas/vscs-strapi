@@ -51,11 +51,6 @@
     },
     "featuredImage": {
       "type": "media",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
       "multiple": false,
       "required": false,
       "allowedTypes": [
