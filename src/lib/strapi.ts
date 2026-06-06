@@ -143,49 +143,61 @@ export async function getPaginatedData(
 
 // ── Projects ─────────────────────────────────────────
 
-export async function getProjects(locale = "bg") {
+export interface ProjectGalleryImage {
+  url: string | null;
+  alt: string;
+}
+
+export interface Project {
+  id: number;
+  documentId?: string;
+  title: string;
+  slug: string;
+  location: string;
+  client?: string;
+  year?: string;
+  content: string;
+  energy: string;
+  services?: string;
+  featuredImage?: string | null;
+  gallery?: ProjectGalleryImage[];
+  locale?: string;
+  localizations?: Array<{ locale?: string; slug?: string }>;
+  publishedAt?: string;
+}
+
+function mapProjectListItem(p: any): Project {
+  return { ...p, featuredImage: resolveImage(p) };
+}
+
+function mapProjectDetail(p: any): Project {
+  return {
+    ...p,
+    featuredImage: resolveImage(p),
+    gallery: p.gallery?.map((img: any) => ({
+      url: pickMediaUrl(img),
+      alt: img.alternativeText || p.title,
+    })),
+  };
+}
+
+export async function getProjects(locale = "bg"): Promise<Project[]> {
   try {
     const { data } = await fetchStrapi(
       `/projects?populate=featuredImage&sort=publishedAt:desc&locale=${locale}`,
       ["strapi", "projects"],
     );
-    return data.map((p: any) => ({ ...p, featuredImage: resolveImage(p) }));
+    return data.map((p: any) => mapProjectListItem(p));
   } catch (e) {
     console.error("Error fetching projects:", e);
     return [];
   }
 }
 
-export async function getPaginatedProjects(
-  page = 1,
-  pageSize = 6,
-  country?: string,
+export async function getProject(
+  slug: string,
   locale = "bg",
-) {
-  try {
-    let path = `/projects?populate=featuredImage&sort=publishedAt:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}&locale=${locale}`;
-    if (country && country !== "all") {
-      path += `&filters[country][$eq]=${encodeURIComponent(country)}`;
-    }
-
-    const res = await fetchStrapi(path, ["strapi", "projects"]);
-    return {
-      data: res.data.map((p: any) => ({
-        ...p,
-        featuredImage: resolveImage(p),
-      })),
-      meta: res.meta,
-    };
-  } catch (e) {
-    console.error("Error fetching paginated projects:", e);
-    return {
-      data: [],
-      meta: { pagination: { page: 1, pageSize, pageCount: 0, total: 0 } },
-    };
-  }
-}
-
-export async function getProject(slug: string, locale = "bg") {
+): Promise<Project | null> {
   try {
     const { data } = await fetchStrapi(
       `/projects?filters[slug][$eq]=${slug}&populate[0]=featuredImage&populate[1]=gallery&populate[2]=localizations&locale=${locale}`,
@@ -193,15 +205,7 @@ export async function getProject(slug: string, locale = "bg") {
     );
     if (!data?.length) return null;
 
-    const p = data[0];
-    return {
-      ...p,
-      featuredImage: resolveImage(p),
-      gallery: p.gallery?.map((img: any) => ({
-        url: pickMediaUrl(img),
-        alt: img.alternativeText || p.title,
-      })),
-    };
+    return mapProjectDetail(data[0]);
   } catch (e) {
     console.error("Error fetching project:", e);
     return null;

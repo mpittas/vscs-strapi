@@ -3,7 +3,7 @@ import PageTitle from "@/components/ui/PageTitle";
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
 import ProjectPostCard from "@/components/ui/ProjectPostCard";
-import { getProjects } from "@/lib/strapi";
+import { getProjects, type Project } from "@/lib/strapi";
 import initTranslations from "@/app/i18n";
 import TranslationsProvider from "@/components/TranslationsProvider";
 
@@ -51,11 +51,11 @@ export default async function ProjectsPage({
         <Container>
           {projects.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {projects.map((project: any) => (
+              {projects.map((project: Project) => (
                 <ProjectPostCard
                   key={project.id}
                   title={project.title}
-                  location={project.location || t("projects:filter.bulgaria")}
+                  location={project.location}
                   image={
                     project.featuredImage || "/images/type-of-service-1.jpg"
                   }
@@ -66,7 +66,7 @@ export default async function ProjectsPage({
           ) : (
             <div className="text-center py-12">
               <p className="text-slate-500 text-lg">
-                {t("projects:filter.no_projects")}
+                {t("projects:no_projects")}
               </p>
             </div>
           )}

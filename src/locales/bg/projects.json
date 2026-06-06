@@ -7,13 +7,5 @@
   "breadcrumbs": {
     "projects": "ПРОЕКТИ"
   },
-  "filter": {
-    "all": "Всички",
-    "bulgaria": "България",
-    "abroad": "Чужбина",
-    "loading": "Зареждане...",
-    "load_more": "Зареди още",
-    "showing_count": "Показани {{count}} от {{total}} проекта",
-    "no_projects": "Няма проекти в избраната категория."
-  }
+  "no_projects": "Няма налични проекти."
 }

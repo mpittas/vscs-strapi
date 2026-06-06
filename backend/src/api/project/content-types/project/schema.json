@@ -31,32 +31,6 @@
       "targetField": "title",
       "required": true
     },
-    "excerpt": {
-      "type": "text",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "maxLength": 500,
-      "required": true
-    },
-    "category": {
-      "type": "enumeration",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "required": false,
-      "default": "Жилищни",
-      "enum": [
-        "Жилищни",
-        "Търговски",
-        "Индустриални",
-        "Соларни паркове"
-      ]
-    },
     "location": {
       "type": "string",
       "pluginOptions": {
@@ -79,19 +53,6 @@
     "year": {
       "type": "string",
       "maxLength": 100
-    },
-    "projectStatus": {
-      "type": "enumeration",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "default": "Завършен",
-      "enum": [
-        "Завършен",
-        "В процес"
-      ]
     },
     "content": {
       "type": "richtext",
@@ -116,19 +77,6 @@
       "required": false,
       "allowedTypes": [
         "images"
-      ]
-    },
-    "country": {
-      "type": "enumeration",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "required": true,
-      "enum": [
-        "България",
-        "Чужбина"
       ]
     },
     "energy": {

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getProject, buildLocalePaths } from "@/lib/strapi";
+import { truncateText } from "@/lib/utils";
 import { Heading } from "@/components/ui/Typography";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
@@ -16,31 +17,10 @@ import {
   ArrowLeft,
   MapPin,
   Calendar,
-  CheckCircle2,
-  Clock,
   Zap,
   CircleUser,
 } from "lucide-react";
-import type { IconType } from "react-icons";
 import { TranslatedSlugProvider } from "@/components/TranslatedSlugProvider";
-
-interface ShareButtonProps {
-  icon: IconType;
-  label: string;
-  onClick?: () => void;
-}
-
-function ShareButton({ icon: Icon, label, onClick }: ShareButtonProps) {
-  return (
-    <button
-      onClick={onClick}
-      aria-label={label}
-      className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-700 hover:bg-[#b4d429] hover:text-[#0a0f0a] transition-all duration-300"
-    >
-      <Icon className="w-5 h-5" />
-    </button>
-  );
-}
 
 interface PageProps {
   params: Promise<{ slug: string; locale: string }>;
@@ -56,12 +36,14 @@ export async function generateMetadata({
     return { title: "Проектът не е намерен" };
   }
 
+  const description = truncateText(project.content, 160);
+
   return {
     title: project.title,
-    description: project.excerpt,
+    description,
     openGraph: {
       title: project.title,
-      description: project.excerpt,
+      description,
       type: "article",
       publishedTime: project.publishedAt,
     },
@@ -75,13 +57,6 @@ export default async function ProjectPage({ params }: PageProps) {
   if (!project) {
     notFound();
   }
-
-  const statusIcon =
-    project.projectStatus === "Завършен" ? CheckCircle2 : Clock;
-  const statusText =
-    project.projectStatus === "Завършен" ? "Завършен" : "В процес";
-  const statusColor =
-    project.projectStatus === "Завършен" ? "text-green-600" : "text-amber-600";
 
   const localePaths = buildLocalePaths(project, "proekti");
 
@@ -180,19 +155,7 @@ export default async function ProjectPage({ params }: PageProps) {
                     Галерия
                   </Heading>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* Featured Image First in Grid if needed, but usually strictly gallery */}
-                    {project.featuredImage && (
-                      <div className="aspect-[4/3] relative rounded-xl overflow-hidden group">
-                        <Image
-                          src={project.featuredImage}
-                          alt={project.title}
-                          fill
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                      </div>
-                    )}
-                    {project.gallery.map((image: any, index: any) => (
+                    {project.gallery.map((image, index) => (
                       <div
                         key={index}
                         className="aspect-[4/3] relative rounded-xl overflow-hidden group"
@@ -235,16 +198,10 @@ export default async function ProjectPage({ params }: PageProps) {
                         show: !!project.client,
                       },
                       {
-                        label: "ТИП",
+                        label: "УСЛУГИ",
                         value: project.services,
                         icon: Zap,
                         show: !!project.services,
-                      },
-                      {
-                        label: "СТАТУС",
-                        value: statusText,
-                        icon: statusIcon,
-                        show: true,
                       },
                     ] as const
                   ).map(

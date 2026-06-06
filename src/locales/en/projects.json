@@ -7,13 +7,5 @@
   "breadcrumbs": {
     "projects": "PROJECTS"
   },
-  "filter": {
-    "all": "All",
-    "bulgaria": "Bulgaria",
-    "abroad": "Abroad",
-    "loading": "Loading...",
-    "load_more": "Load more",
-    "showing_count": "Shown {{count}} of {{total}} projects",
-    "no_projects": "No projects in the selected category."
-  }
+  "no_projects": "No projects available."
 }
