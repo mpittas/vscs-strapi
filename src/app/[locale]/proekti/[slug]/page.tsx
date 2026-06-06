@@ -187,6 +187,7 @@ export default async function ProjectPage({ params }: PageProps) {
                           src={project.featuredImage}
                           alt={project.title}
                           fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                       </div>
@@ -200,6 +201,8 @@ export default async function ProjectPage({ params }: PageProps) {
                           src={image.url || ""}
                           alt={image.alt || `Gallery image ${index + 1}`}
                           fill
+                          loading="lazy"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                       </div>

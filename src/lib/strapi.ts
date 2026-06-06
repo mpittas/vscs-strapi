@@ -23,9 +23,32 @@ async function fetchStrapi(
   return res.json();
 }
 
+/**
+ * Picks an appropriately-sized URL from a Strapi media object.
+ *
+ * Strapi auto-generates responsive `formats` (thumbnail/small/medium/large).
+ * We feed Next.js' image optimizer one of those instead of the multi-MB
+ * original upload, so on-demand optimization stays fast. Falls back to the
+ * original only when no formats exist (e.g. small source images).
+ */
+function pickMediaUrl(
+  media: any,
+  preferred: Array<"large" | "medium" | "small" | "thumbnail"> = [
+    "large",
+    "medium",
+    "small",
+  ],
+): string | null {
+  if (!media?.url) return null;
+  const formats = media.formats ?? {};
+  for (const key of preferred) {
+    if (formats[key]?.url) return getStrapiMedia(formats[key].url);
+  }
+  return getStrapiMedia(media.url);
+}
+
 function resolveImage(item: any) {
-  if (!item?.featuredImage?.url) return null;
-  return getStrapiMedia(item.featuredImage.url);
+  return pickMediaUrl(item?.featuredImage);
 }
 
 /**
@@ -175,7 +198,7 @@ export async function getProject(slug: string, locale = "bg") {
       ...p,
       featuredImage: resolveImage(p),
       gallery: p.gallery?.map((img: any) => ({
-        url: getStrapiMedia(img.url),
+        url: pickMediaUrl(img),
         alt: img.alternativeText || p.title,
       })),
     };
