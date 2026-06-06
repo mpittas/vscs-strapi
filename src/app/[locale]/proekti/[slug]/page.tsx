@@ -88,9 +88,26 @@ export default async function ProjectPage({ params }: PageProps) {
   return (
     <>
       <TranslatedSlugProvider paths={localePaths} />
-      {/* Dark Hero Section */}
-      <section className="bg-[#0a0f0a] relative pt-32 pb-24 border-b border-white/10">
-        <Container>
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-24 border-b border-white/10 overflow-hidden">
+        {project.featuredImage ? (
+          <>
+            <Image
+              src={project.featuredImage}
+              alt=""
+              fill
+              className="object-cover z-0"
+              priority
+              sizes="100vw"
+              aria-hidden
+            />
+            <div className="absolute inset-0 bg-[#001D13] opacity-80 z-10" />
+          </>
+        ) : (
+          <div className="absolute inset-0 bg-[#0a0f0a] z-0" />
+        )}
+
+        <Container className="relative z-20">
           <div className="max-w-4xl">
             {/* Back Button */}
             <div className="mb-10">
@@ -132,9 +149,6 @@ export default async function ProjectPage({ params }: PageProps) {
             </div>
           </div>
         </Container>
-
-        {/* Background Pattern/Overlay opacity */}
-        <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] opacity-5 pointer-events-none" />
       </section>
 
       {/* Main Content Section */}
