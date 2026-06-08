@@ -45,7 +45,7 @@ const stolzl = localFont({
 });
 
 export function generateStaticParams() {
-  return [{ locale: "bg" }, { locale: "en" }];
+  return [{ locale: "bg" }, { locale: "en" }, { locale: "fr" }];
 }
 
 export async function generateMetadata({
@@ -75,7 +75,7 @@ export async function generateMetadata({
     authors: [{ name: "VS Construction Services" }],
     openGraph: {
       type: "website",
-      locale: locale === "bg" ? "bg_BG" : "en_US",
+      locale: locale === "bg" ? "bg_BG" : locale === "fr" ? "fr_FR" : "en_US",
       url: "https://vscs-bg.com", // Updated to a placeholder that looks more real or keep existing if known
       siteName: "VS Construction Services",
       title: t("metadata.title"),

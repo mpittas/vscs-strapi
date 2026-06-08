@@ -1,0 +1,14 @@
+{
+  "metadata": {
+    "title": "Blog",
+    "description": "En savoir plus sur l'énergie solaire, conseils d'investissement et actualités de SolarTech Solutions."
+  },
+  "page_title": "Blog",
+  "breadcrumbs": {
+    "blog": "BLOG"
+  },
+  "posts": {
+    "read_time": "{{count}} minutes",
+    "no_posts": "Aucun article publié pour le moment."
+  }
+}

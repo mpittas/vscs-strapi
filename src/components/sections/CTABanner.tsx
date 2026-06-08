@@ -20,13 +20,18 @@ const defaultContent = {
     btn_text: "Contact Us",
     phone_label: "Book a consultation",
   },
+  fr: {
+    title: "Contactez-nous et réservez une consultation !",
+    btn_text: "Contactez-nous",
+    phone_label: "Réservez une consultation",
+  },
 };
 
 export default function CTABanner() {
   const { t, i18n } = useTranslation("home");
 
   // Get current locale content, fallback to default
-  const locale = i18n.language as "bg" | "en";
+  const locale = (i18n.language as "bg" | "en" | "fr") || "bg";
   const content = {
     title: t("cta_banner.title", {
       defaultValue: defaultContent[locale].title,

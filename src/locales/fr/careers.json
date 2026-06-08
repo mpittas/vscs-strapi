@@ -1,0 +1,24 @@
+{
+  "metadata": {
+    "title": "Carrières",
+    "description": "Explorez les postes vacants et postulez pour un emploi chez VSCS."
+  },
+  "page_title": "Carrières",
+  "breadcrumbs": {
+    "careers": "Carrières"
+  },
+  "open_positions_badge": "POSTES OUVERTS",
+  "apply_today": "Postulez Aujourd'hui",
+  "no_positions": "Aucun poste ouvert pour le moment",
+  "view_details": "Voir les Détails",
+  "job_type_full": "À plein temps",
+  "details": {
+    "back_to_all": "tous les postes",
+    "job_type": "À plein temps",
+    "sidebar_title": "Ce que nous offrons",
+    "no_sidebar_info": "Veuillez nous contacter pour plus d'informations.",
+    "apply_cta_text": "Prêt pour la prochaine étape de votre carrière ?",
+    "apply_button": "Postuler Maintenant",
+    "error_not_found": "Poste non trouvé"
+  }
+}

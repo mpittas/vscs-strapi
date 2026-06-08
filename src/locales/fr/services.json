@@ -1,0 +1,118 @@
+{
+  "metadata": {
+    "title": "Services",
+    "description": "Solutions d'énergie solaire haut de gamme et services de construction clés en main."
+  },
+  "page_title": "Services",
+  "breadcrumbs": {
+    "home": "ACCUEIL",
+    "services": "SERVICES"
+  },
+  "work_process": {
+    "title": "Services Clés",
+    "description": "Ingénierie complète, construction et gestion de projet en Bulgarie et à l'étranger.",
+    "intro_left": "Nous proposons des services conçus pour transformer les projets énergétiques en solutions sûres, efficaces et durables. Combinant expérience de terrain, expertise technique et organisation rigoureuse, nous exécutons chaque étape avec un objectif clair : offrir une valeur maximale au client.",
+    "intro_right": "Nous travaillons rapidement, précisément et de manière responsable, car nous savons que la qualité n'est pas seulement une norme, mais une promesse. Notre équipe construit des installations photovoltaïques dans un souci de durabilité, de fiabilité et de performance optimale, créant ainsi des partenariats fondés sur la confiance et les résultats.",
+    "read_more": "Lire plus",
+    "read_less": "Montrer moins",
+    "steps": {
+      "ground": "Centrales au Sol",
+      "ground_desc": "Nous construisons des installations photovoltaïques au sol en mettant l'accent sur la stabilité, l'efficacité et la qualité d'exécution, conformément aux normes internationales applicables et aux spécificités de chaque projet. Notre équipe assure l'installation précise de structures fixes ou de trackers ainsi que de modules photovoltaïques adaptés aux conditions du site pour garantir une performance maximale et une fiabilité à long terme du système.",
+      "rooftop": "Solaire de Toiture",
+      "rooftop_desc": "Nous mettons en œuvre des solutions solaires de toiture qui transforment les espaces inutilisés en actifs énergétiques performants. Nous travaillons en accordant une attention particulière à la sécurité et aux spécificités du bâtiment afin de garantir un fonctionnement sûr et un rendement énergétique élevé.",
+      "carport": "Abris Solaires (Carports)",
+      "carport_desc": "Nous construisons des abris de voiture solaires qui combinent fonctionnalité et production d'énergie durable. Ces systèmes protègent les véhicules tout en générant de l'électricité, apportant de la valeur à l'infrastructure et améliorant l'efficacité énergétique du site.",
+      "floating": "Centrales Solaires Flottantes",
+      "floating_desc": "Nous réalisons des systèmes photovoltaïques flottants qui utilisent les surfaces d'eau pour une production efficace d'énergie propre. Notre approche assure la stabilité des plateformes, la résistance aux conditions extérieures et des performances optimales, élargissant ainsi les opportunités de développement de projets solaires."
+    }
+  },
+  "key_services": {
+    "title": "Technologies",
+    "description": "Nous appliquons des technologies d'installation éprouvées et à haute efficacité dans la construction de centrales photovoltaïques, guidés par les exigences techniques du projet, les spécificités du terrain et les normes européennes applicables. Notre approche garantit la fiabilité, l'exploitation à long terme et les performances optimales des installations.",
+    "contact_us": "Contactez-nous",
+    "items": {
+      "fixed_tilt": {
+        "title": "Systèmes à Inclinaison Fixe",
+        "description": "Construction de structures photovoltaïques à inclinaison fixe avec une stabilité éprouvée.",
+        "list": [
+          "Caractérisé par une fiabilité technologique et une grande efficacité économique.",
+          "La technologie est largement applicable pour les grands projets énergétiques à l'échelle des services publics.",
+          "Assure des résultats prévisibles avec des coûts de maintenance minimaux."
+        ]
+      },
+      "tracker": {
+        "title": "Systèmes de Tracker (Suivi Solaire)",
+        "description": "Installation de systèmes de suivi à un axe conçus pour suivre le mouvement du soleil.",
+        "list": [
+          "L'installation est réalisée avec un haut niveau de précision.",
+          "Garantit un alignement correct et une stabilité mécanique.",
+          "Conformité totale avec la documentation technique du fabricant."
+        ]
+      },
+      "agrivoltaic": {
+        "title": "Installations Agri-PV",
+        "description": "Mise en œuvre de projets combinant une production photovoltaïque efficace et une activité agricole active.",
+        "list": [
+          "La technologie permet une utilisation complète des terres et un développement durable.",
+          "Nous mobilisons des équipes expérimentées, des processus structurés et une expertise technologique.",
+          "Nous exécutons des projets complexes selon les exigences de clients internationaux."
+        ]
+      },
+      "bess": {
+        "title": "BESS – Systèmes de Stockage d'Énergie par Batterie",
+        "description": "Installation de systèmes de stockage d'énergie en tant que solutions intégrées ou autonomes.",
+        "list": [
+          "Nous réalisons l'installation spécialisée de modules et systèmes de batteries conteneurisés.",
+          "Nous fournissons l'infrastructure auxiliaire nécessaire et l'intégration électrique complète.",
+          "La sécurité, la fiabilité et la gestion des flux d'énergie sont nos priorités."
+        ]
+      }
+    }
+  },
+  "installation_types": {
+    "title": "Processus de travail",
+    "items": {
+      "ground": {
+        "title": "Centrales au Sol",
+        "description": "Inclinaison fixe et trackers mono-axe."
+      },
+      "industrial": {
+        "title": "Solutions Industrielles et de Toiture",
+        "description": "BIPV (photovoltaïque intégré) et structures de toiture."
+      },
+      "hybrid": {
+        "title": "Systèmes Hybrides",
+        "description": "Systèmes hors réseau (off-grid) et solutions de stockage d'énergie."
+      }
+    }
+  },
+  "project_lifecycle": {
+    "items": {
+      "projecting": {
+        "title": "Conception et Ingénierie",
+        "description": "Notre processus de conception et d'ingénierie couvre à la fois les systèmes photovoltaïques et les systèmes de stockage d'énergie (BESS), garantissant des solutions techniquement optimisées et entièrement conformes. Nous analysons les conditions du site, les exigences du réseau et la configuration du système pour développer des solutions intégrées PV + BESS qui facilitent une construction efficace et un fonctionnement fiable à long terme. Notre champ d'action comprend la préparation de concepts techniques, la coordination des équipements, l'évaluation de la faisabilité et l'élaboration de la documentation technique conformément aux normes applicables et aux spécifications du projet."
+      },
+      "delivery": {
+        "title": "Livraison et Logistique",
+        "description": "Nous gérons la livraison et la logistique des équipements photovoltaïques et des composants BESS, y compris les systèmes de batteries conteneurisés, l'électronique de puissance et l'infrastructure auxiliaire. La planification logistique est étroitement liée au calendrier de construction afin d'assurer un transport sûr, une livraison rapide et un stockage adéquat des équipements sur site. Notre approche coordonnée minimise les retards et soutient une exécution efficace des projets, y compris pour les installations hybrides PV + BESS à grande échelle."
+      },
+      "construction": {
+        "title": "Construction et Installation",
+        "description": "Nous exécutons les travaux de construction et d'installation pour les centrales photovoltaïques et les systèmes de stockage d'énergie (BESS), en mettant l'accent sur la qualité, la sécurité et la précision technique. Nos services comprennent l'installation mécanique, le câblage électrique, l'intégration des équipements et la coordination sur site conformément aux plans approuvés, aux exigences du fabricant et aux normes internationales. Nos équipes ont une grande expérience des systèmes fixes, des trackers, des installations agri-PV et du BESS, ce qui nous permet de nous adapter efficacement à différentes configurations et conditions de terrain complexes."
+      },
+      "testing": {
+        "title": "Essais et Mise en Service",
+        "description": "Nous réalisons des activités complètes de test, d'inspection et de mise en service pour les systèmes PV et BESS afin de garantir une préparation opérationnelle totale. Toutes les installations sont vérifiées par rapport aux spécifications techniques, aux critères de performance et aux exigences réglementaires avant d'être remises au client. Le processus de mise en service assure un fonctionnement fiable du système et une transition contrôlée de la phase de construction à la phase opérationnelle."
+      },
+      "maintenance": {
+        "title": "Maintenance",
+        "description": "Nous assurons la fiabilité à long terme des systèmes photovoltaïques et BESS grâce à des activités structurées de maintenance et d'assistance technique. Notre approche vise à garantir la stabilité opérationnelle, la sécurité et les performances optimales, ainsi qu'à prolonger le cycle de vie des actifs."
+      },
+      "cta": {
+        "title": "Prêt à démarrer votre projet ?",
+        "description": "Faites confiance à notre longue expérience et à notre expertise pour une exécution de qualité et efficace de votre investissement. Contactez-nous pour une consultation professionnelle et une offre personnalisée.",
+        "btn": "Contactez-nous"
+      }
+    }
+  }
+}

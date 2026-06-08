@@ -86,6 +86,10 @@ export default function LanguageSwitcher({
       <button onClick={() => handleChange("en")} className={btnClass("en")}>
         EN
       </button>
+      <span className={isDarkBg ? "text-white/30" : "text-slate-300"}>|</span>
+      <button onClick={() => handleChange("fr")} className={btnClass("fr")}>
+        FR
+      </button>
     </div>
   );
 }

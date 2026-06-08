@@ -3,6 +3,9 @@
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import Navbar from "./Navbar";
+import i18nConfig from "@/i18nConfig";
+
+const { locales } = i18nConfig;
 
 export default function ConditionalNavbar() {
   const pathname = usePathname();
@@ -18,7 +21,10 @@ export default function ConditionalNavbar() {
   }
 
   // Don't render Navbar here for homepage - it's handled by Hero component
-  if (pathname === "/" || pathname === "/en" || pathname === "/bg") {
+  const isHomePage =
+    pathname === "/" || locales.map((l) => `/${l}`).includes(pathname);
+
+  if (isHomePage) {
     return null;
   }
 

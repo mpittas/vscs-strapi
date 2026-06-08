@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "title": "Contacts | VSCS",
+    "description": "Contactez-nous pour une consultation ou une demande de renseignements."
+  },
+  "page_title": "Contacts",
+  "breadcrumbs": {
+    "contacts": "Contacts"
+  },
+  "info_labels": {
+    "address": "ADRESSE",
+    "working_hours": "HEURES DE TRAVAIL",
+    "phone": "TÉLÉPHONE",
+    "email": "E-MAIL"
+  },
+  "info_values": {
+    "address": "zh.k. Podbalkanska, ul. \"Petropavlovska\" 4, Vratsa, Bulgarie",
+    "working_hours": "Lundi - Vendredi: 08:30 - 16:30",
+    "phone": "+359 877 15 98 58",
+    "email": "office@vscs-bg.com"
+  },
+  "sidebar": {
+    "other_info": "Autres Informations",
+    "follow_us": "SUIVEZ-NOUS:"
+  },
+  "form": {
+    "title": "Envoyer une Demande",
+    "description": "Remplissez le formulaire et nous vous contacterons dans les 24 heures.",
+    "name": "Nom",
+    "name_placeholder": "Votre nom",
+    "company": "Entreprise",
+    "company_placeholder": "Nom de l'entreprise",
+    "email": "E-mail",
+    "email_placeholder": "exemple@email.com",
+    "phone": "Téléphone",
+    "phone_placeholder": "+359...",
+    "message": "Message",
+    "message_placeholder": "Votre message",
+    "submit": "Envoyer le Message"
+  }
+}

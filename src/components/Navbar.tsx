@@ -11,6 +11,9 @@ import Container from "./ui/Container";
 import { useLenis } from "./SmoothScrollProvider";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "./LanguageSwitcher";
+import i18nConfig from "@/i18nConfig";
+
+const { locales } = i18nConfig;
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -18,7 +21,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const isHomePage =
-    pathname === "/" || pathname === "/en" || pathname === "/bg";
+    pathname === "/" || locales.map((l) => `/${l}`).includes(pathname);
   const lenis = useLenis();
 
   const navLinks = [

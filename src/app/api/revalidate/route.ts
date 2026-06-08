@@ -74,11 +74,11 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    const locales = ["bg", "en"];
+    const locales = ["bg", "en", "fr"];
     const pathsToRevalidate: string[] = [];
     for (const p of basePaths) {
       for (const locale of locales) {
-        pathsToRevalidate.push(locale === "bg" ? p : `/en${p}`);
+        pathsToRevalidate.push(locale === "bg" ? p : `/${locale}${p}`);
       }
     }
 

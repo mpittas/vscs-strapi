@@ -1,0 +1,129 @@
+{
+  "hero": {
+    "badge": "Faisons l'impossible",
+    "title_part1": "Votre Partenaire",
+    "title_part2": "dans le Secteur Solaire",
+    "description": "Services de construction clés en main et solutions innovantes d'énergie renouvelable.",
+    "cta": "Contactez-nous",
+    "learn_more": "En Savoir Plus"
+  },
+  "client_logos": {
+    "title": "Nous nous efforçons toujours de satisfaire pleinement nos clients"
+  },
+  "about_us": {
+    "title_highlight": "Propre & Renouvelable",
+    "title_rest": "Une Énergie Accessible à Tous",
+    "description_1": "Nous sommes bien plus qu'une simple entreprise d'installation de centrales photovoltaïques. Nous sommes guidés par une vision claire, une expertise approfondie et un réel engagement à accélérer la transition vers un avenir plus vert et plus durable.",
+    "description_2": "Notre aventure a commencé avec deux personnes unies non seulement par un parcours personnel partagé, mais aussi par la conviction forte que l'énergie renouvelable a le pouvoir de changer le monde. Au fil des ans, cette croyance s'est transformée en une entreprise solide, bâtie sur une vaste expérience pratique dans le secteur photovoltaïque. En travaillant sur divers projets, nous avons acquis une compréhension globale de l'ensemble du processus d'installation, ainsi que des défis techniques et organisationnels qui peuvent survenir sur le terrain.",
+    "more_paragraphs": [
+      "VS CONSTRUCTION SERVICES Ltd. est une entreprise de construction familiale fondée sur les principes de transparence, d'intégrité et de partenariat à long terme. Nous pensons que la confiance, le professionnalisme et une communication claire sont essentiels pour mener à bien des projets réussis.",
+      "Notre équipe est composée de professionnels hautement qualifiés possédant une expertise dans la construction, la gestion de projet, la conformité réglementaire et l'exécution de projets structurés. Avec une expérience d'installation éprouvée sur trois continents, nous apportons une expérience internationale, une forte capacité opérationnelle et une approche axée sur les résultats à chaque projet que nous entreprenons.",
+      "En combinant une connaissance approfondie du secteur avec une exécution disciplinée et un esprit pratique, nous fournissons des solutions d'énergie solaire fiables et de haute qualité, adaptées aux besoins de nos clients. Notre portefeuille de projets dynamique et notre gestion flexible des ressources ont constamment démontré notre capacité à respecter les délais, à s'adapter à des environnements complexes et à fournir des résultats exceptionnels.",
+      "VS CONSTRUCTION SERVICES Ltd. propose des services complets d'ingénierie, d'approvisionnement et de construction (EPC) en Bulgarie et des services d'installation photovoltaïque clés en main dans toute l'Europe, soutenant nos partenaires à chaque phase du cycle de vie du projet — de la planification à la mise en service réussie."
+    ],
+    "read_more": "Lire plus",
+    "read_less": "Lire moins",
+    "features": {
+      "innovative": "Solutions Innovantes",
+      "sustainable": "Développement Durable",
+      "expert": "Équipe d'Experts",
+      "quality": "Qualité Garantie"
+    },
+    "cta": "En savoir plus sur nous"
+  },
+  "services": {
+    "subheader": "NOS SERVICES",
+    "title": "Innovations technologiques et solutions écologiques",
+    "items": {
+      "development": {
+        "title": "Développement de Projet",
+        "description": "Nous préparons l'ingénierie complète du système photovoltaïque, adaptée à vos besoins énergétiques et aux spécificités de votre site."
+      },
+      "delivery": {
+        "title": "Livraison de Matériel",
+        "description": "Nous assurons la livraison de panneaux solaires, d'onduleurs et de structures de montage de premier choix provenant de grands fabricants mondiaux."
+      },
+      "construction": {
+        "title": "Travaux de Construction",
+        "description": "Nous réalisons la préparation du site et l'installation professionnelle de structures de support."
+      },
+      "electrical": {
+        "title": "Travaux Électromécaniques",
+        "description": "Nous réalisons le câblage complet, l'installation des onduleurs, des tableaux de distribution et des protections."
+      }
+    },
+    "cta": "Contactez-nous"
+  },
+  "projects": {
+    "subheader_highlight": "Professionnalisme",
+    "subheader_rest": "dans chaque projet",
+    "stats": {
+      "completed": "Projets Terminés",
+      "countries": "Pays",
+      "capacity": "Capacité Installée",
+      "emissions": "Émissions de CO2 Évitées"
+    }
+  },
+  "why_us": {
+    "subheader": "FIABLE ET ABORDABLE",
+    "title_part1": "Pourquoi",
+    "title_highlight": "nous choisir",
+    "title_q": " ?",
+    "stats_badge": {
+      "value": "325%",
+      "text_1": "Augmentation moyenne",
+      "text_2": "des panneaux solaires"
+    },
+    "items": {
+      "team": {
+        "title": "Équipe Professionnelle",
+        "desc": "Spécialistes certifiés avec des années d'expérience"
+      },
+      "solutions": {
+        "title": "Solutions Personnalisées",
+        "desc": "Des systèmes adaptés à vos besoins énergétiques"
+      },
+      "plans": {
+        "title": "Plans Abordables",
+        "desc": "Financement flexible et conseils d'optimisation"
+      },
+      "support": {
+        "title": "Assistance Continue",
+        "desc": "Support complet et suivi du système après installation"
+      },
+      "equipment": {
+        "title": "Équipement de Qualité",
+        "desc": "Nous utilisons des panneaux solaires et des onduleurs haut de gamme"
+      },
+      "installation": {
+        "title": "Installation Rapide",
+        "desc": "Exécution efficace du projet sans compromis sur la qualité"
+      }
+    }
+  },
+  "blog": {
+    "title_part1": "Restez à jour avec les",
+    "title_highlight": "actualités",
+    "title_part2": "liées aux panneaux",
+    "title_part3": "solaires sur le site",
+    "view_all": "Voir Tout",
+    "no_posts": "Aucun article publié pour le moment."
+  },
+  "marquee": {
+    "items": [
+      "Installation",
+      "Énergie Renouvelable",
+      "Installations Solaires",
+      "Services Clés en Main",
+      "Installation Professionnelle",
+      "Consultations",
+      "Maintenance",
+      "Garantie"
+    ]
+  },
+  "cta_banner": {
+    "title": "Contactez-nous et réservez une consultation !",
+    "btn_text": "Contactez-nous",
+    "phone_label": "Réservez une consultation"
+  }
+}

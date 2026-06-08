@@ -1,0 +1,35 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À Propos",
+    "services": "Services",
+    "projects": "Projets",
+    "blog": "Blog",
+    "careers": "Carrières",
+    "contacts": "Contacts",
+    "contact_us": "Contactez-nous"
+  },
+  "footer": {
+    "tagline": "Services de construction clés en main et solutions innovantes d'énergie renouvelable.",
+    "quick_links": "Liens Rapides",
+    "design": "Conception",
+    "contact_info": "Informations de Contact",
+    "privacy_policy": "Politique de Confidentialité",
+    "terms": "Conditions Générales",
+    "cookies": "Cookies",
+    "legal_info": "Mentions Légales",
+    "all_rights_reserved": "Tous droits réservés",
+    "copyright": "VSCS BG, {{year}} ©",
+    "services_links": {
+      "design": "Conception",
+      "installation": "Installation de Structures",
+      "electrical": "Installation Électrique",
+      "maintenance": "Maintenance & Supervision",
+      "consulting": "Services de Conseil"
+    }
+  },
+  "metadata": {
+    "title": "VSCS - Panneaux Solaires",
+    "description": "Transformez votre maison avec une énergie solaire propre et renouvelable. VS Construction Services propose des services haut de gamme d'installation, de maintenance et de conseil en panneaux solaires. Économisez jusqu'à 70 % sur vos factures d'énergie."
+  }
+}
