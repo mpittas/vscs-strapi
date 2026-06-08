@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { getStrapiMedia } from "./media";
 
 const STRAPI_URL =
@@ -104,7 +105,7 @@ export async function getBlogPosts(locale = "bg") {
   }
 }
 
-export async function getBlogPost(slug: string, locale = "bg") {
+export const getBlogPost = cache(async (slug: string, locale = "bg") => {
   try {
     const { data } = await fetchStrapi(
       `/blog-posts?filters[slug][$eq]=${slug}&populate[0]=featuredImage&populate[1]=localizations&locale=${locale}`,
@@ -117,7 +118,7 @@ export async function getBlogPost(slug: string, locale = "bg") {
     console.error("Error fetching blog post:", e);
     return null;
   }
-}
+});
 
 export async function getPaginatedData(
   endpoint: string,
@@ -194,23 +195,22 @@ export async function getProjects(locale = "bg"): Promise<Project[]> {
   }
 }
 
-export async function getProject(
-  slug: string,
-  locale = "bg",
-): Promise<Project | null> {
-  try {
-    const { data } = await fetchStrapi(
-      `/projects?filters[slug][$eq]=${slug}&populate[0]=featuredImage&populate[1]=gallery&populate[2]=localizations&locale=${locale}`,
-      ["strapi", "projects", `project-${slug}`],
-    );
-    if (!data?.length) return null;
+export const getProject = cache(
+  async (slug: string, locale = "bg"): Promise<Project | null> => {
+    try {
+      const { data } = await fetchStrapi(
+        `/projects?filters[slug][$eq]=${slug}&populate[0]=featuredImage&populate[1]=gallery&populate[2]=localizations&locale=${locale}`,
+        ["strapi", "projects", `project-${slug}`],
+      );
+      if (!data?.length) return null;
 
-    return mapProjectDetail(data[0]);
-  } catch (e) {
-    console.error("Error fetching project:", e);
-    return null;
-  }
-}
+      return mapProjectDetail(data[0]);
+    } catch (e) {
+      console.error("Error fetching project:", e);
+      return null;
+    }
+  },
+);
 
 // ── Careers ──────────────────────────────────────────
 
@@ -232,7 +232,7 @@ export async function getCareers(locale = "bg") {
   }
 }
 
-export async function getCareer(slug: string, locale = "bg") {
+export const getCareer = cache(async (slug: string, locale = "bg") => {
   try {
     const { data } = await fetchStrapi(
       `/careers?filters[slug][$eq]=${slug}&populate=localizations&locale=${locale}`,
@@ -251,4 +251,4 @@ export async function getCareer(slug: string, locale = "bg") {
     console.error("Error fetching career:", e);
     return null;
   }
-}
+});

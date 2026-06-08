@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getCareer, buildLocalePaths } from "@/lib/strapi";
+import { getCareer, getCareers, buildLocalePaths } from "@/lib/strapi";
+import i18nConfig from "@/i18nConfig";
 import { Heading } from "@/components/ui/Typography";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
@@ -18,6 +19,19 @@ import { TranslatedSlugProvider } from "@/components/TranslatedSlugProvider";
 
 interface PageProps {
   params: Promise<{ locale: string; slug: string }>;
+}
+
+// Pre-render career pages at build time so navigation is instant (fully
+// prefetched static routes) instead of a slow on-demand server render.
+export async function generateStaticParams() {
+  const params: { locale: string; slug: string }[] = [];
+  for (const locale of i18nConfig.locales) {
+    const careers = await getCareers(locale);
+    for (const career of careers) {
+      if (career.slug) params.push({ locale, slug: career.slug });
+    }
+  }
+  return params;
 }
 
 export async function generateMetadata({

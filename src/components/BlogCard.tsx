@@ -19,7 +19,7 @@ interface BlogCardProps {
 
 export default function BlogCard({ post }: BlogCardProps) {
   return (
-    <Link href={`/blog/${post.slug}`} className="group h-full block">
+    <Link href={`/blog/${post.slug}`} prefetch className="group h-full block">
       <article className="h-full flex flex-col bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300">
         {/* Image */}
         <div className="aspect-[16/10] bg-slate-100 relative overflow-hidden">
@@ -28,6 +28,7 @@ export default function BlogCard({ post }: BlogCardProps) {
               src={post.featuredImage}
               alt={post.title}
               fill
+              loading="lazy"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover group-hover:scale-105 transition-transform duration-500"
             />

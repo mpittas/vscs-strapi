@@ -22,6 +22,7 @@ interface ButtonProps {
   icon?: LucideIcon;
   iconPosition?: "left" | "right";
   disabled?: boolean;
+  prefetch?: boolean;
 }
 
 export const baseClasses =
@@ -112,6 +113,7 @@ export default function Button({
   icon,
   iconPosition = "right",
   disabled = false,
+  prefetch,
 }: ButtonProps) {
   const getSizeClasses = () => {
     if (!showIcon) return sizeClasses[size];
@@ -156,7 +158,7 @@ export default function Button({
 
   if (href) {
     return (
-      <Link href={href} className={classes}>
+      <Link href={href} prefetch={prefetch} className={classes}>
         {content}
       </Link>
     );

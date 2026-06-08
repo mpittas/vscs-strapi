@@ -22,6 +22,7 @@ export default function BlogItem({ post }: BlogItemProps) {
   return (
     <Link
       href={`/blog/${post.slug}`}
+      prefetch
       className="group py-12 block hover:bg-neutral-200"
     >
       <Container>
@@ -57,6 +58,8 @@ export default function BlogItem({ post }: BlogItemProps) {
                 src={post.image}
                 alt={post.title}
                 fill
+                loading="lazy"
+                sizes="(max-width: 1024px) 100vw, 33vw"
                 className="object-cover transition-transform duration-500 rounded-full"
               />
               {/* Arrow Button Overlay */}

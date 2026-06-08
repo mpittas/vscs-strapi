@@ -19,6 +19,7 @@ export default function ProjectPostCard({
   return (
     <Link
       href={href}
+      prefetch
       className="group flex flex-col h-full w-full p-4 rounded-2xl border border-neutral-200 hover:bg-neutral-100/70 transition-colors duration-300"
     >
       {/* Image Container */}
@@ -27,6 +28,7 @@ export default function ProjectPostCard({
           src={image}
           alt={title}
           fill
+          loading="lazy"
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />

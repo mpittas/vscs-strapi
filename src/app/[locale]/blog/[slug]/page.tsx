@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getBlogPost, buildLocalePaths } from "@/lib/strapi";
+import { getBlogPost, getBlogPosts, buildLocalePaths } from "@/lib/strapi";
+import i18nConfig from "@/i18nConfig";
 import { formatDate, calculateReadingTime } from "@/lib/utils";
 import { Heading } from "@/components/ui/Typography";
 import Container from "@/components/ui/Container";
@@ -18,6 +19,19 @@ import ShareButtons from "@/components/ShareButtons";
 
 interface PageProps {
   params: Promise<{ slug: string; locale: string }>;
+}
+
+// Pre-render blog post pages at build time so navigation is instant (fully
+// prefetched static routes) instead of a slow on-demand server render.
+export async function generateStaticParams() {
+  const params: { locale: string; slug: string }[] = [];
+  for (const locale of i18nConfig.locales) {
+    const posts = await getBlogPosts(locale);
+    for (const post of posts) {
+      if (post.slug) params.push({ locale, slug: post.slug });
+    }
+  }
+  return params;
 }
 
 export async function generateMetadata({

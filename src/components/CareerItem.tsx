@@ -54,7 +54,13 @@ export default function CareerItem({
 
       {/* Button */}
       <div className="flex-shrink-0">
-        <Button variant="primary" size="md" showIcon href={`/karieri/${slug}`}>
+        <Button
+          variant="primary"
+          size="md"
+          showIcon
+          href={`/karieri/${slug}`}
+          prefetch
+        >
           {t("view_details")}
         </Button>
       </div>

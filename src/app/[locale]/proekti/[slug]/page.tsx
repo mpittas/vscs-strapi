@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getProject, buildLocalePaths } from "@/lib/strapi";
+import { getProject, getProjects, buildLocalePaths } from "@/lib/strapi";
+import i18nConfig from "@/i18nConfig";
 import { truncateText } from "@/lib/utils";
 import { Heading } from "@/components/ui/Typography";
 import Container from "@/components/ui/Container";
@@ -23,10 +24,25 @@ import {
 import initTranslations from "@/app/i18n";
 import TranslationsProvider from "@/components/TranslationsProvider";
 import { TranslatedSlugProvider } from "@/components/TranslatedSlugProvider";
-import ProjectGallery from "@/components/ProjectGallery";
+import dynamic from "next/dynamic";
+
+const ProjectGallery = dynamic(() => import("@/components/ProjectGallery"));
 
 interface PageProps {
   params: Promise<{ slug: string; locale: string }>;
+}
+
+// Pre-render project pages at build time so navigation is instant (fully
+// prefetched static routes) instead of a slow on-demand server render.
+export async function generateStaticParams() {
+  const params: { locale: string; slug: string }[] = [];
+  for (const locale of i18nConfig.locales) {
+    const projects = await getProjects(locale);
+    for (const project of projects) {
+      if (project.slug) params.push({ locale, slug: project.slug });
+    }
+  }
+  return params;
 }
 
 export async function generateMetadata({
