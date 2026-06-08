@@ -21,6 +21,7 @@ import {
   CircleUser,
 } from "lucide-react";
 import { TranslatedSlugProvider } from "@/components/TranslatedSlugProvider";
+import ProjectGallery from "@/components/ProjectGallery";
 
 interface PageProps {
   params: Promise<{ slug: string; locale: string }>;
@@ -154,23 +155,7 @@ export default async function ProjectPage({ params }: PageProps) {
                   <Heading as="h3" className="text-2xl mb-8">
                     Галерия
                   </Heading>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {project.gallery.map((image, index) => (
-                      <div
-                        key={index}
-                        className="aspect-[4/3] relative rounded-xl overflow-hidden group"
-                      >
-                        <Image
-                          src={image.url || ""}
-                          alt={image.alt || `Gallery image ${index + 1}`}
-                          fill
-                          loading="lazy"
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                      </div>
-                    ))}
-                  </div>
+                  <ProjectGallery images={project.gallery} />
                 </div>
               )}
             </div>
