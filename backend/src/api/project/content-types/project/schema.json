@@ -52,6 +52,11 @@
     },
     "year": {
       "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "maxLength": 100
     },
     "content": {
