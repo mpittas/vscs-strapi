@@ -29,6 +29,11 @@
     "slug": {
       "type": "uid",
       "targetField": "title",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "required": true
     },
     "location": {
@@ -72,6 +77,11 @@
       "type": "media",
       "multiple": false,
       "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "allowedTypes": [
         "images"
       ]
@@ -80,6 +90,11 @@
       "type": "media",
       "multiple": true,
       "required": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "allowedTypes": [
         "images"
       ]
