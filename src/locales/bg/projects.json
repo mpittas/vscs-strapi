@@ -7,5 +7,24 @@
   "breadcrumbs": {
     "projects": "ПРОЕКТИ"
   },
-  "no_projects": "Няма налични проекти."
+  "no_projects": "Няма налични проекти.",
+  "details": {
+    "error_not_found": "Проектът не е намерен",
+    "back_to_all": "Всички проекти",
+    "about_title": "За Проекта",
+    "gallery_title": "Галерия",
+    "sidebar_title": "Детайли",
+    "year_label": "ГОДИНА",
+    "client_label": "КЛИЕНТ",
+    "services_label": "УСЛУГИ",
+    "request_quote_btn": "Поискай оферта",
+    "gallery": {
+      "open_image": "Отвори изображение {{number}}",
+      "image_alt": "Изображение {{number}}",
+      "lightbox_label": "Галерия с изображения",
+      "close": "Затвори галерията",
+      "previous": "Предишно изображение",
+      "next": "Следващо изображение"
+    }
+  }
 }

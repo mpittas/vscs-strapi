@@ -7,5 +7,24 @@
   "breadcrumbs": {
     "projects": "PROJECTS"
   },
-  "no_projects": "No projects available."
+  "no_projects": "No projects available.",
+  "details": {
+    "error_not_found": "Project not found",
+    "back_to_all": "All projects",
+    "about_title": "About the Project",
+    "gallery_title": "Gallery",
+    "sidebar_title": "Details",
+    "year_label": "YEAR",
+    "client_label": "CLIENT",
+    "services_label": "SERVICES",
+    "request_quote_btn": "Request a Quote",
+    "gallery": {
+      "open_image": "Open image {{number}}",
+      "image_alt": "Image {{number}}",
+      "lightbox_label": "Image gallery lightbox",
+      "close": "Close gallery",
+      "previous": "Previous image",
+      "next": "Next image"
+    }
+  }
 }

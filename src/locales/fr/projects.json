@@ -7,5 +7,24 @@
   "breadcrumbs": {
     "projects": "PROJETS"
   },
-  "no_projects": "Aucun projet disponible."
+  "no_projects": "Aucun projet disponible.",
+  "details": {
+    "error_not_found": "Projet introuvable",
+    "back_to_all": "Tous les projets",
+    "about_title": "À propos du projet",
+    "gallery_title": "Galerie",
+    "sidebar_title": "Détails",
+    "year_label": "ANNÉE",
+    "client_label": "CLIENT",
+    "services_label": "SERVICES",
+    "request_quote_btn": "Demander un devis",
+    "gallery": {
+      "open_image": "Ouvrir l'image {{number}}",
+      "image_alt": "Image {{number}}",
+      "lightbox_label": "Visionneuse de galerie",
+      "close": "Fermer la galerie",
+      "previous": "Image précédente",
+      "next": "Image suivante"
+    }
+  }
 }

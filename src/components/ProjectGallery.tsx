@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
 import { createPortal } from "react-dom";
+import { useTranslation } from "react-i18next";
 import type { ProjectGalleryImage } from "@/lib/strapi";
 
 interface ProjectGalleryProps {
@@ -11,6 +12,7 @@ interface ProjectGalleryProps {
 }
 
 export default function ProjectGallery({ images }: ProjectGalleryProps) {
+  const { t } = useTranslation("projects");
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [mounted, setMounted] = useState(false);
 
@@ -65,11 +67,14 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
             type="button"
             onClick={() => setActiveIndex(index)}
             className="aspect-[4/3] relative rounded-xl overflow-hidden group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-700 focus-visible:ring-offset-2"
-            aria-label={`Open gallery image ${index + 1}`}
+            aria-label={t("details.gallery.open_image", { number: index + 1 })}
           >
             <Image
               src={image.url || ""}
-              alt={image.alt || `Gallery image ${index + 1}`}
+              alt={
+                image.alt ||
+                t("details.gallery.image_alt", { number: index + 1 })
+              }
               fill
               loading="lazy"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -93,7 +98,7 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
             className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8"
             role="dialog"
             aria-modal="true"
-            aria-label="Image gallery lightbox"
+            aria-label={t("details.gallery.lightbox_label")}
           >
             <div
               className="absolute inset-0 bg-black/85 backdrop-blur-sm"
@@ -104,7 +109,7 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
               type="button"
               onClick={close}
               className="absolute top-4 right-4 z-10 w-11 h-11 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors flex items-center justify-center"
-              aria-label="Close gallery"
+              aria-label={t("details.gallery.close")}
             >
               <X className="w-6 h-6" />
             </button>
@@ -115,7 +120,7 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
                   type="button"
                   onClick={showPrevious}
                   className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors flex items-center justify-center"
-                  aria-label="Previous image"
+                  aria-label={t("details.gallery.previous")}
                 >
                   <ChevronLeft className="w-6 h-6" />
                 </button>
@@ -123,7 +128,7 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
                   type="button"
                   onClick={showNext}
                   className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors flex items-center justify-center"
-                  aria-label="Next image"
+                  aria-label={t("details.gallery.next")}
                 >
                   <ChevronRight className="w-6 h-6" />
                 </button>
@@ -133,7 +138,10 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
             <div className="relative z-10 w-full max-w-6xl h-[min(80vh,900px)]">
               <Image
                 src={activeImage.url}
-                alt={activeImage.alt || `Gallery image ${activeIndex + 1}`}
+                alt={
+                  activeImage.alt ||
+                  t("details.gallery.image_alt", { number: activeIndex + 1 })
+                }
                 fill
                 priority
                 sizes="100vw"
