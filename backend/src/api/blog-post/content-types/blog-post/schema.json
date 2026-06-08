@@ -31,15 +31,6 @@
       "targetField": "title",
       "required": true
     },
-    "excerpt": {
-      "type": "text",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "maxLength": 500
-    },
     "content": {
       "type": "richtext",
       "pluginOptions": {
@@ -56,15 +47,6 @@
       "allowedTypes": [
         "images"
       ]
-    },
-    "author": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "default": "SolarTech Team"
     },
     "category": {
       "type": "enumeration",
