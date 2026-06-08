@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getBlogPost, getBlogPosts, buildLocalePaths } from "@/lib/strapi";
 import i18nConfig from "@/i18nConfig";
-import { formatDate, calculateReadingTime } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 import { Heading } from "@/components/ui/Typography";
 import Container from "@/components/ui/Container";
 import ReactMarkdown from "react-markdown";
@@ -16,6 +16,8 @@ import BadgeDefault from "@/components/ui/BadgeDefault";
 import { TranslatedSlugProvider } from "@/components/TranslatedSlugProvider";
 import { CTABanner } from "@/components/sections";
 import ShareButtons from "@/components/ShareButtons";
+import initTranslations from "@/app/i18n";
+import TranslationsProvider from "@/components/TranslationsProvider";
 
 interface PageProps {
   params: Promise<{ slug: string; locale: string }>;
@@ -42,7 +44,8 @@ export async function generateMetadata({
   const post = await getBlogPost(slug, locale);
 
   if (!post) {
-    return { title: "Post Not Found" };
+    const { t } = await initTranslations(locale, ["blog"]);
+    return { title: t("blog:details.error_not_found") };
   }
 
   return {
@@ -60,19 +63,27 @@ export async function generateMetadata({
 
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug, locale } = await params;
-
+  const { t, resources } = await initTranslations(locale, [
+    "blog",
+    "common",
+    "home",
+  ]);
   const post = await getBlogPost(slug, locale);
 
   if (!post) {
     notFound();
   }
 
-  const readingTime = calculateReadingTime(post.content);
   const localePaths = buildLocalePaths(post, "blog");
 
   return (
     <>
       <TranslatedSlugProvider paths={localePaths} />
+      <TranslationsProvider
+        locale={locale}
+        resources={resources}
+        namespaces={["blog", "common", "home"]}
+      >
       {/* Hero Section */}
       <section className="bg-[#0a0f0a] relative pt-24 pb-32">
         <Container size="sm">
@@ -86,14 +97,14 @@ export default async function BlogPostPage({ params }: PageProps) {
                   className="gap-2"
                 >
                   <ArrowLeft className="w-4 h-4" />
-                  Всички статии
+                  {t("blog:details.back_to_all")}
                 </BadgeDefault>
               </Link>
 
               {/* Meta Info */}
               <div className="flex flex-wrap items-center gap-4">
                 <BadgeDefault variant="primary" size="sm" uppercase>
-                  {post.category || "Uncategorized"}
+                  {post.category || t("blog:details.uncategorized")}
                 </BadgeDefault>
 
                 <div className="flex items-center gap-2 text-white/60 text-sm">
@@ -128,7 +139,9 @@ export default async function BlogPostPage({ params }: PageProps) {
                 />
               ) : (
                 <div className="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">
-                  <span className="text-lg">No Feature Image</span>
+                  <span className="text-lg">
+                    {t("blog:details.no_feature_image")}
+                  </span>
                 </div>
               )}
             </div>
@@ -148,7 +161,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               <div className="mt-16 pt-8 border-t border-slate-200">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-6">
                   <span className="text-slate-900 font-normal">
-                    Сподели статията:
+                    {t("blog:details.share_article")}
                   </span>
                   <ShareButtons title={post.title} />
                 </div>
@@ -159,6 +172,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       </section>
 
       <CTABanner />
+      </TranslationsProvider>
     </>
   );
 }

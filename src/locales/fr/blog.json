@@ -10,5 +10,18 @@
   "posts": {
     "read_time": "{{count}} minutes",
     "no_posts": "Aucun article publié pour le moment."
+  },
+  "details": {
+    "error_not_found": "Article introuvable",
+    "back_to_all": "Tous les articles",
+    "uncategorized": "Non classé",
+    "no_feature_image": "Pas d'image",
+    "share_article": "Partager cet article :",
+    "share": {
+      "facebook": "Partager sur Facebook",
+      "linkedin": "Partager sur LinkedIn",
+      "copy_link": "Copier le lien",
+      "link_copied": "Lien copié !"
+    }
   }
 }

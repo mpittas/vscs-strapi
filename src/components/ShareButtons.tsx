@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FaFacebook, FaLinkedin, FaLink, FaCheck } from "react-icons/fa";
 import type { IconType } from "react-icons";
 
@@ -37,6 +38,7 @@ interface ShareButtonsProps {
 }
 
 export default function ShareButtons({ title }: ShareButtonsProps) {
+  const { t } = useTranslation("blog");
   const [copied, setCopied] = useState(false);
 
   const getCurrentUrl = () => {
@@ -70,17 +72,19 @@ export default function ShareButtons({ title }: ShareButtonsProps) {
     <div className="flex gap-2">
       <ShareButton
         icon={FaFacebook}
-        label="Share on Facebook"
+        label={t("details.share.facebook")}
         onClick={handleFacebookShare}
       />
       <ShareButton
         icon={FaLinkedin}
-        label="Share on LinkedIn"
+        label={t("details.share.linkedin")}
         onClick={handleLinkedInShare}
       />
       <ShareButton
         icon={copied ? FaCheck : FaLink}
-        label={copied ? "Link copied!" : "Copy link"}
+        label={
+          copied ? t("details.share.link_copied") : t("details.share.copy_link")
+        }
         onClick={handleCopyLink}
         isCopied={copied}
       />

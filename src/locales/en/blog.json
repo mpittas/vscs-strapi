@@ -10,5 +10,18 @@
   "posts": {
     "read_time": "{{count}} minutes",
     "no_posts": "No articles published yet."
+  },
+  "details": {
+    "error_not_found": "Post Not Found",
+    "back_to_all": "All Articles",
+    "uncategorized": "Uncategorized",
+    "no_feature_image": "No Feature Image",
+    "share_article": "Share this article:",
+    "share": {
+      "facebook": "Share on Facebook",
+      "linkedin": "Share on LinkedIn",
+      "copy_link": "Copy link",
+      "link_copied": "Link copied!"
+    }
   }
 }

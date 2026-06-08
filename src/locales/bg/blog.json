@@ -10,5 +10,18 @@
   "posts": {
     "read_time": "{{count}} минути",
     "no_posts": "Все още няма публикувани статии."
+  },
+  "details": {
+    "error_not_found": "Статията не е намерена",
+    "back_to_all": "Всички статии",
+    "uncategorized": "Без категория",
+    "no_feature_image": "Няма изображение",
+    "share_article": "Сподели статията:",
+    "share": {
+      "facebook": "Сподели във Facebook",
+      "linkedin": "Сподели в LinkedIn",
+      "copy_link": "Копирай линка",
+      "link_copied": "Линкът е копиран!"
+    }
   }
 }

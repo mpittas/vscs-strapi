@@ -119,7 +119,7 @@ export default async function CareerPage({ params }: PageProps) {
                 </div>
                 <div className="inline-flex items-center gap-2 text-white/80 px-2 py-1.5 text-sm">
                   <span className="text-[#b4d429]">🌐</span>
-                  VS Construction Services
+                  {t("careers:details.company_name")}
                 </div>
               </div>
             </div>
