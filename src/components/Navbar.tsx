@@ -7,13 +7,14 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Text } from "./ui/Typography";
 import Button from "./ui/Button";
-import Container from "./ui/Container";
 import { useLenis } from "./SmoothScrollProvider";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "./LanguageSwitcher";
 import i18nConfig from "@/i18nConfig";
 
 const { locales } = i18nConfig;
+
+const navInnerClasses = "mx-auto w-full max-w-[1900px] px-12";
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -102,7 +103,7 @@ const Navbar = () => {
 
   return (
     <nav className={navClasses}>
-      <Container className="flex items-center justify-between">
+      <div className={cn(navInnerClasses, "flex items-center justify-between")}>
         {/* Logo */}
         <Link href="/" className="flex items-center">
           {/* Mobile Logo - Symbol only */}
@@ -112,7 +113,7 @@ const Navbar = () => {
               alt="VSCS Logo"
               width={40}
               height={40}
-              className="h-10 w-auto"
+              className="h-9 w-auto"
             />
           </div>
           {/* Desktop Logo - Full horizontal */}
@@ -120,34 +121,35 @@ const Navbar = () => {
             <Image
               src={getLogoSrc()}
               alt="VSCS Logo"
-              width={220}
-              height={60}
-              className="h-14 w-auto"
+              width={190}
+              height={52}
+              className="h-12 w-auto"
               priority
             />
           </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className={cn("transition-colors relative group", getTextColor())}
-            >
-              <Text variant="body-14" as="span" className={getTextColor()}>
-                {link.name}
-              </Text>
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-green transition-all group-hover:w-full" />
-            </Link>
-          ))}
-          <LanguageSwitcher isDarkBg={isHomePage && !isScrolled} />
-          <Button
-            href="/contact"
-            size="sm"
-            variant={!isHomePage || isScrolled ? "black" : "secondary"}
-          >
+        <div className="hidden md:flex items-center gap-x-6">
+          <div className="flex items-center gap-x-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={cn(
+                  "transition-colors relative group",
+                  getTextColor(),
+                )}
+              >
+                <Text variant="body-16" as="span" className={getTextColor()}>
+                  {link.name}
+                </Text>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-green transition-all group-hover:w-full" />
+              </Link>
+            ))}
+          </div>
+          <LanguageSwitcher isTransparent={isHomePage && !isScrolled} />
+          <Button href="/kontakti" size="sm" variant="primary">
             {t("nav.contact_us")}
           </Button>
         </div>
@@ -176,7 +178,7 @@ const Navbar = () => {
             />
           </div>
         </button>
-      </Container>
+      </div>
 
       {/* Mobile Menu */}
       <div
@@ -186,7 +188,7 @@ const Navbar = () => {
             : "opacity-0 scale-y-0 invisible"
         }`}
       >
-        <Container className="py-6 flex flex-col gap-4">
+        <div className={cn(navInnerClasses, "flex flex-col gap-4 py-6")}>
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -206,10 +208,10 @@ const Navbar = () => {
           <div className="py-2">
             <LanguageSwitcher />
           </div>
-          <Button href="/contact" fullWidth>
+          <Button href="/kontakti" fullWidth>
             {t("nav.contact_us")}
           </Button>
-        </Container>
+        </div>
       </div>
     </nav>
   );
