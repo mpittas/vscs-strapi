@@ -18,12 +18,17 @@ export default function Pagination({
 
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
+  // Path-based pagination keeps every page statically generated (query
+  // strings would force dynamic rendering). Page 1 lives at the base URL.
+  const pageHref = (page: number) =>
+    page === 1 ? baseUrl : `${baseUrl}/page/${page}`;
+
   return (
     <div className={`flex justify-center items-center gap-2 ${className}`}>
       {/* Previous Button */}
       {currentPage > 1 && (
         <Link
-          href={`${baseUrl}?page=${currentPage - 1}`}
+          href={pageHref(currentPage - 1)}
           className="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors"
           aria-label="Previous page"
         >
@@ -37,7 +42,7 @@ export default function Pagination({
         return (
           <Link
             key={page}
-            href={`${baseUrl}?page=${page}`}
+            href={pageHref(page)}
             className={`w-10 h-10 flex items-center justify-center rounded-lg border transition-colors ${
               isCurrent
                 ? "bg-dark-green text-white border-dark-green"
@@ -52,7 +57,7 @@ export default function Pagination({
       {/* Next Button */}
       {currentPage < totalPages && (
         <Link
-          href={`${baseUrl}?page=${currentPage + 1}`}
+          href={pageHref(currentPage + 1)}
           className="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors"
           aria-label="Next page"
         >
