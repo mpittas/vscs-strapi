@@ -149,8 +149,8 @@ const Navbar = () => {
             ))}
           </div>
           <LanguageSwitcher isTransparent={isHomePage && !isScrolled} />
-          <Button href="/kontakti" size="sm" variant="primary">
-            {t("nav.contact_us")}
+          <Button href="/konsultatsiya" size="sm" variant="primary">
+            {t("nav.book_consultation")}
           </Button>
         </div>
 
@@ -208,8 +208,8 @@ const Navbar = () => {
           <div className="py-2">
             <LanguageSwitcher />
           </div>
-          <Button href="/kontakti" fullWidth>
-            {t("nav.contact_us")}
+          <Button href="/konsultatsiya" fullWidth>
+            {t("nav.book_consultation")}
           </Button>
         </div>
       </div>

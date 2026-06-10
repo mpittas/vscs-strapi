@@ -1,0 +1,71 @@
+{
+  "metadata": {
+    "title": "Free Consultation | VSCS",
+    "description": "Book a free consultation with our photovoltaic experts and receive a tailored solution for your project."
+  },
+  "page_title": "Free Consultation",
+  "page_subtitle": "Tell us about your project and we will get back to you with a personalised offer within 24 hours.",
+  "breadcrumbs": {
+    "consultation": "Consultation"
+  },
+  "benefits": {
+    "badge": "WHY CHOOSE US",
+    "title": "Expert assessment with no commitment",
+    "items": {
+      "assessment": {
+        "title": "Personal analysis",
+        "description": "We assess your energy needs, site conditions, and budget to propose a realistic solution."
+      },
+      "roadmap": {
+        "title": "Clear action plan",
+        "description": "You receive steps, timelines, and expected return on investment."
+      },
+      "expertise": {
+        "title": "Experience across three continents",
+        "description": "Over 15 years of experience building photovoltaic plants in Bulgaria and Europe."
+      }
+    }
+  },
+  "form": {
+    "title": "Book your free consultation",
+    "description": "Fill in the form and our team will contact you to discuss the details.",
+    "name": "Full name",
+    "name_placeholder": "Your name",
+    "company": "Company",
+    "company_placeholder": "Optional",
+    "email": "Email",
+    "email_placeholder": "example@email.com",
+    "phone": "Phone",
+    "phone_placeholder": "+359...",
+    "project_type": "Project type",
+    "project_type_placeholder": "Select project type",
+    "project_types": {
+      "residential": "Residential",
+      "commercial": "Commercial",
+      "industrial": "Industrial",
+      "other": "Other"
+    },
+    "interest": "Interested in",
+    "interest_placeholder": "Select a service",
+    "interests": {
+      "installation": "Photovoltaic system installation",
+      "design": "Design & engineering",
+      "maintenance": "Maintenance & monitoring",
+      "consulting": "Consulting services"
+    },
+    "message": "Additional information",
+    "message_placeholder": "Describe the site, capacity, or other requirements...",
+    "submit": "Book consultation",
+    "privacy_note": "By submitting this form, you agree to be contacted by our team."
+  },
+  "sidebar": {
+    "title": "What to expect",
+    "steps": {
+      "step1": "We receive your request and review it within 24 hours.",
+      "step2": "We contact you by phone or email to clarify the details.",
+      "step3": "You receive a personalised offer and recommendations for next steps."
+    },
+    "phone_label": "Prefer to talk directly?",
+    "contacts_link": "General information & address"
+  }
+}

@@ -12,17 +12,17 @@ import { useTranslation } from "react-i18next";
 const defaultContent = {
   bg: {
     title: "Свържете се с нас и запазете консултация!",
-    btn_text: "Свържете се с нас",
+    btn_text: "Запазете консултация",
     phone_label: "Запазете консултация",
   },
   en: {
     title: "Contact us and book a consultation!",
-    btn_text: "Contact Us",
+    btn_text: "Book a Consultation",
     phone_label: "Book a consultation",
   },
   fr: {
     title: "Contactez-nous et réservez une consultation !",
-    btn_text: "Contactez-nous",
+    btn_text: "Réservez une consultation",
     phone_label: "Réservez une consultation",
   },
 };
@@ -83,7 +83,7 @@ export default function CTABanner() {
             <div className="flex flex-wrap items-center gap-4">
               {/* CTA Button */}
               <Button
-                href="/kontakti"
+                href="/konsultatsiya"
                 variant="primary"
                 size="lg"
                 showIcon

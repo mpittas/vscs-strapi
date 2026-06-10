@@ -1,0 +1,71 @@
+{
+  "metadata": {
+    "title": "Consultation gratuite | VSCS",
+    "description": "Réservez une consultation gratuite avec nos experts photovoltaïques et recevez une solution adaptée à votre projet."
+  },
+  "page_title": "Consultation gratuite",
+  "page_subtitle": "Parlez-nous de votre projet et nous vous répondrons avec une offre personnalisée sous 24 heures.",
+  "breadcrumbs": {
+    "consultation": "Consultation"
+  },
+  "benefits": {
+    "badge": "POURQUOI NOUS CHOISIR",
+    "title": "Une évaluation d'expert sans engagement",
+    "items": {
+      "assessment": {
+        "title": "Analyse personnalisée",
+        "description": "Nous évaluons vos besoins énergétiques, le site et le budget pour proposer une solution réaliste."
+      },
+      "roadmap": {
+        "title": "Plan d'action clair",
+        "description": "Vous recevez les étapes, les délais et le retour sur investissement attendu."
+      },
+      "expertise": {
+        "title": "Expérience sur trois continents",
+        "description": "Plus de 15 ans d'expérience dans la construction de centrales photovoltaïques en Bulgarie et en Europe."
+      }
+    }
+  },
+  "form": {
+    "title": "Réservez votre consultation gratuite",
+    "description": "Remplissez le formulaire et notre équipe vous contactera pour préciser les détails.",
+    "name": "Nom complet",
+    "name_placeholder": "Votre nom",
+    "company": "Entreprise",
+    "company_placeholder": "Facultatif",
+    "email": "E-mail",
+    "email_placeholder": "example@email.com",
+    "phone": "Téléphone",
+    "phone_placeholder": "+359...",
+    "project_type": "Type de projet",
+    "project_type_placeholder": "Sélectionnez le type de projet",
+    "project_types": {
+      "residential": "Résidentiel",
+      "commercial": "Commercial",
+      "industrial": "Industriel",
+      "other": "Autre"
+    },
+    "interest": "Vous êtes intéressé par",
+    "interest_placeholder": "Sélectionnez un service",
+    "interests": {
+      "installation": "Installation de système photovoltaïque",
+      "design": "Conception et ingénierie",
+      "maintenance": "Maintenance et surveillance",
+      "consulting": "Services de conseil"
+    },
+    "message": "Informations supplémentaires",
+    "message_placeholder": "Décrivez le site, la puissance ou d'autres exigences...",
+    "submit": "Réserver une consultation",
+    "privacy_note": "En soumettant ce formulaire, vous acceptez d'être contacté par notre équipe."
+  },
+  "sidebar": {
+    "title": "À quoi s'attendre",
+    "steps": {
+      "step1": "Nous recevons votre demande et l'examinons sous 24 heures.",
+      "step2": "Nous vous contactons par téléphone ou e-mail pour préciser les détails.",
+      "step3": "Vous recevez une offre personnalisée et des recommandations pour la suite."
+    },
+    "phone_label": "Vous préférez parler directement ?",
+    "contacts_link": "Informations générales et adresse"
+  }
+}

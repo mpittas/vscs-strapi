@@ -1,8 +1,5 @@
 import { cache } from "react";
-import { getStrapiMedia } from "./media";
-
-const STRAPI_URL =
-  process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337";
+import { getStrapiMedia, STRAPI_URL } from "./media";
 
 // Default ISR window (seconds). Strapi webhook will invalidate on demand via tags.
 const DEFAULT_REVALIDATE = 3600;
