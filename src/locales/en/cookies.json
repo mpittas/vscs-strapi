@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "title": "Cookie Policy | VSCS",
+    "description": "Information about the cookies and similar technologies used on the VS Construction Services website."
+  },
+  "page_title": "Cookie Policy",
+  "breadcrumbs": {
+    "cookies": "Cookie Policy"
+  },
+  "content": {
+    "sections": [
+      {
+        "title": "1. What Are Cookies",
+        "paragraphs": [
+          "Cookies are small text files stored on your device when you visit a website. They help the site remember your preferences, keep certain features working, and improve your browsing experience.",
+          "This page explains which cookies and similar technologies are currently used on the website of VS CONSTRUCTION SERVICES, Ltd., UIC 206671079, with registered office and management address at 4 Petropavlovska St., Vratsa."
+        ]
+      },
+      {
+        "title": "2. How We Use Cookies",
+        "paragraphs": [
+          "We use cookies only where they are needed for the website to function properly or to provide features you choose to use. We do not currently use advertising or social media tracking cookies on this website."
+        ]
+      },
+      {
+        "title": "3. Cookies Used on This Website",
+        "paragraphs": [
+          "The table below lists the cookies and similar technologies currently in use:"
+        ],
+        "subsections": [
+          {
+            "title": "3.1. NEXT_LOCALE (language preference)",
+            "list": {
+              "items": [
+                "Provider: VS Construction Services (first-party cookie)",
+                "Purpose: Remembers the language you select on the website",
+                "Duration: 30 days",
+                "Type: Strictly necessary / functional",
+                "Set when: You change the site language using the language switcher"
+              ]
+            }
+          },
+          {
+            "title": "3.2. Mapbox (interactive map)",
+            "intro": "On the homepage, we display an interactive map powered by Mapbox. When the map loads, Mapbox may store cookies or use similar technologies on your device.",
+            "list": {
+              "items": [
+                "Provider: Mapbox, Inc. (third-party service)",
+                "Purpose: Displaying and operating the interactive project map",
+                "Duration: Depends on Mapbox settings",
+                "Type: Functional; Mapbox may also use analytics-related technologies",
+                "Set when: You visit the homepage, which loads the Mapbox map",
+                "More information: https://www.mapbox.com/legal/privacy"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "title": "4. Cookies We Do Not Use",
+        "paragraphs": [
+          "At present, this website does not set analytics cookies (such as Google Analytics), marketing cookies, or social media tracking pixels."
+        ]
+      },
+      {
+        "title": "5. Managing Cookies",
+        "paragraphs": [
+          "You can control and delete cookies through your browser settings. Most browsers allow you to block all cookies, block third-party cookies only, or delete cookies when you close the browser.",
+          "Please note that blocking strictly necessary cookies may affect website functionality, such as remembering your selected language."
+        ]
+      },
+      {
+        "title": "6. Changes to This Policy",
+        "paragraphs": [
+          "If we add new cookies or change how existing ones are used, we will update this page. We recommend checking it periodically for the latest information."
+        ]
+      },
+      {
+        "title": "7. Contact",
+        "paragraphs": ["For questions about cookies or personal data, contact:"],
+        "contactBlock": {
+          "lines": [
+            "VS CONSTRUCTION SERVICES, Ltd.",
+            "UIC: 206671079",
+            "Address: 4 Petropavlovska St., Vratsa",
+            "Represented by: Stefan Dimitrov Ormanliev"
+          ],
+          "email": "office@vscs-bg.com",
+          "phone": "+359 878 88 88 26"
+        }
+      }
+    ],
+    "effectiveDate": "Date of entry into force of the latest changes: 10 June 2026"
+  }
+}

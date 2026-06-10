@@ -1,0 +1,97 @@
+{
+  "metadata": {
+    "title": "Politique relative aux cookies | VSCS",
+    "description": "Informations sur les cookies et technologies similaires utilisés sur le site web de VS Construction Services."
+  },
+  "page_title": "Politique relative aux cookies",
+  "breadcrumbs": {
+    "cookies": "Politique relative aux cookies"
+  },
+  "content": {
+    "sections": [
+      {
+        "title": "1. Qu'est-ce qu'un cookie ?",
+        "paragraphs": [
+          "Les cookies sont de petits fichiers texte enregistrés sur votre appareil lorsque vous visitez un site web. Ils permettent au site de mémoriser vos préférences, de maintenir certaines fonctionnalités et d'améliorer votre expérience de navigation.",
+          "Cette page explique quels cookies et technologies similaires sont actuellement utilisés sur le site web de VS CONSTRUCTION SERVICES, Ltd., numéro d'identification 206671079, dont le siège social et l'adresse de gestion sont situés au 4, rue Petropavlovska, Vratsa."
+        ]
+      },
+      {
+        "title": "2. Comment nous utilisons les cookies",
+        "paragraphs": [
+          "Nous utilisons des cookies uniquement lorsqu'ils sont nécessaires au bon fonctionnement du site web ou pour fournir des fonctionnalités que vous choisissez d'utiliser. Nous n'utilisons actuellement pas de cookies publicitaires ou de suivi des réseaux sociaux sur ce site."
+        ]
+      },
+      {
+        "title": "3. Cookies utilisés sur ce site",
+        "paragraphs": [
+          "Le tableau ci-dessous répertorie les cookies et technologies similaires actuellement utilisés :"
+        ],
+        "subsections": [
+          {
+            "title": "3.1. NEXT_LOCALE (préférence linguistique)",
+            "list": {
+              "items": [
+                "Fournisseur : VS Construction Services (cookie interne / first-party)",
+                "Finalité : Mémoriser la langue que vous sélectionnez sur le site",
+                "Durée : 30 jours",
+                "Type : Strictement nécessaire / fonctionnel",
+                "Déposé lorsque : Vous changez la langue du site via le sélecteur de langue"
+              ]
+            }
+          },
+          {
+            "title": "3.2. Mapbox (carte interactive)",
+            "intro": "Sur la page d'accueil, nous affichons une carte interactive fournie par Mapbox. Lors du chargement de la carte, Mapbox peut déposer des cookies ou utiliser des technologies similaires sur votre appareil.",
+            "list": {
+              "items": [
+                "Fournisseur : Mapbox, Inc. (service tiers)",
+                "Finalité : Affichage et fonctionnement de la carte interactive des projets",
+                "Durée : Selon les paramètres de Mapbox",
+                "Type : Fonctionnel ; Mapbox peut également utiliser des technologies liées à l'analyse",
+                "Déposé lorsque : Vous visitez la page d'accueil, qui charge la carte Mapbox",
+                "Plus d'informations : https://www.mapbox.com/legal/privacy"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "title": "4. Cookies que nous n'utilisons pas",
+        "paragraphs": [
+          "À l'heure actuelle, ce site web ne dépose pas de cookies analytiques (tels que Google Analytics), de cookies marketing ou de pixels de suivi des réseaux sociaux."
+        ]
+      },
+      {
+        "title": "5. Gestion des cookies",
+        "paragraphs": [
+          "Vous pouvez contrôler et supprimer les cookies via les paramètres de votre navigateur. La plupart des navigateurs permettent de bloquer tous les cookies, de bloquer uniquement les cookies tiers ou de supprimer les cookies à la fermeture du navigateur.",
+          "Veuillez noter que le blocage des cookies strictement nécessaires peut affecter le fonctionnement du site, par exemple la mémorisation de la langue sélectionnée."
+        ]
+      },
+      {
+        "title": "6. Modifications de la présente politique",
+        "paragraphs": [
+          "Si nous ajoutons de nouveaux cookies ou modifions l'utilisation de ceux existants, nous mettrons à jour cette page. Nous vous recommandons de la consulter périodiquement pour obtenir les informations les plus récentes."
+        ]
+      },
+      {
+        "title": "7. Contact",
+        "paragraphs": [
+          "Pour toute question concernant les cookies ou les données personnelles, contactez :"
+        ],
+        "contactBlock": {
+          "lines": [
+            "VS CONSTRUCTION SERVICES, Ltd.",
+            "Numéro d'identification : 206671079",
+            "Adresse : 4, rue Petropavlovska, Vratsa",
+            "Représentée par : Stefan Dimitrov Ormanliev"
+          ],
+          "email": "office@vscs-bg.com",
+          "phone": "+359 878 88 88 26"
+        }
+      }
+    ],
+    "effectiveDate": "Date d'entrée en vigueur des dernières modifications : 10 juin 2026"
+  }
+}

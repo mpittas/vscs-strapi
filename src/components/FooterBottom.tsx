@@ -20,7 +20,6 @@ export default function FooterBottom({
   const legalLinks = useMemo(
     () => [
       { label: t("footer.privacy_policy"), href: "/privacy" },
-      { label: t("footer.terms"), href: "/terms" },
       { label: t("footer.cookies"), href: "/cookies" },
     ],
     [t],
