@@ -17,8 +17,11 @@ Complete guide to setting up Strapi 5 API access and live updates for your Solar
 ## Step 1: Start Strapi Backend
 
 ```bash
-cd c:\Users\mpitt\Documents\code\freelance\strapi-2\backend
-npm run develop
+npm run setup   # first-time install (repo root)
+npm run dev     # starts frontend + backend
+
+# Or backend only:
+cd backend && npm run develop
 ```
 
 First run will prompt you to create an admin account.
