@@ -63,7 +63,7 @@ This makes your Next.js site update automatically when you edit content in Strap
 
 ### 4.1 Add Environment Variable
 
-Add to your Next.js `.env.local` file:
+Add to `.env.local`:
 
 ```env
 REVALIDATE_SECRET=your-super-secret-token-here
@@ -206,7 +206,7 @@ curl http://localhost:1337/api/blog-posts?populate=featuredImage
 
 ### Webhook not triggering
 - **Cause**: Wrong URL or missing authorization header
-- **Fix**: Verify URL is correct and Bearer token matches `.env.local`
+- **Fix**: Verify URL is correct and Bearer token matches `REVALIDATE_SECRET` in `.env.local`
 
 ### Content not updating
 - **Cause**: Post is in draft status
@@ -227,13 +227,13 @@ curl http://localhost:1337/api/blog-posts?populate=featuredImage
 
 ### Required Environment Variables
 
-**Next.js (.env.local)**
+**Next.js (`.env.local`)**
 ```
 NEXT_PUBLIC_STRAPI_URL=https://your-strapi.cloud.strapi.io
 REVALIDATE_SECRET=your-secret-token
 ```
 
-**Strapi (.env)**
+**Strapi (`backend/.env`)**
 ```
 DATABASE_URL=postgresql://...
 CLOUDINARY_API_KEY=...

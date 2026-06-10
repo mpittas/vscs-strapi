@@ -16,7 +16,7 @@ Full-stack website for VSCS — **Next.js** frontend with a **Strapi 5** CMS bac
 ```bash
 git clone <repository-url>
 cd vscs-strapi
-npm run setup    # one command: install deps + create env files
+npm run setup    # one command: install deps + restore env secrets
 npm run dev      # start frontend + backend together
 ```
 
@@ -57,60 +57,85 @@ xcode-select --install
 
 ---
 
-## What `npm run setup` does
+## Environment variables
 
-Cross-platform script (`scripts/setup.js`):
+Standard layout — each app reads its own env file natively, no sync step:
 
-1. Verifies Node.js 20–24
-2. Runs `npm install` in the repo root (frontend)
-3. Runs `npm install` in `backend/` (Strapi)
-4. Creates `.env.local` from `.env.example` (frontend)
-5. Creates `backend/.env` from `backend/.env.example` with generated secrets
-6. Syncs `REVALIDATE_SECRET` / `WEBHOOK_TOKEN` between frontend and backend
+| File | App | Committed? |
+| ---- | --- | ---------- |
+| `.env.local` | Next.js (dev) | No |
+| `.env.production` | Next.js (local prod builds) | No |
+| `backend/.env` | Strapi | No |
+| `.env.example`, `backend/.env.example` | Templates | Yes |
+| `env.enc.json` | Encrypted copy of all secrets | **Yes** |
+| `.env.key` | Encryption key | **No — copy manually between machines** |
 
-Safe to re-run — existing env files are never overwritten.
+### Frontend vars (`.env.local`)
+
+| Variable | Description |
+| -------- | ----------- |
+| `NEXT_PUBLIC_STRAPI_API_URL` | Strapi API URL |
+| `NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN` | Mapbox token |
+| `REVALIDATE_SECRET` | Webhook cache refresh secret |
+| `SMTP_*` | Career form email (optional) |
+
+### Backend vars (`backend/.env`)
+
+| Variable | Description |
+| -------- | ----------- |
+| `APP_KEYS`, `ADMIN_JWT_SECRET`, … | Strapi secrets |
+| `FRONTEND_URL` | CORS origin |
+| `WEBHOOK_TOKEN` | Must match `REVALIDATE_SECRET` |
+| `DATABASE_*` | Optional PostgreSQL config |
+
+---
+
+## Moving secrets between machines
+
+Secrets travel as an **encrypted file in git** (`env.enc.json`) plus a **key file** (`.env.key`) that you copy once, out-of-band.
+
+**On the machine that has the secrets:**
+
+```bash
+npm run env:push      # encrypts .env files -> env.enc.json, generates .env.key on first run
+git add env.enc.json
+git commit -m "Update env secrets"
+git push
+```
+
+**On the new machine (one-time):**
+
+1. Copy `.env.key` to the project root (AirDrop, USB, password manager — **not** git/email/chat)
+2. Then:
+
+```bash
+git clone <repo-url> && cd vscs-strapi
+# place .env.key here
+npm run setup         # installs deps + decrypts env automatically
+npm run dev
+```
+
+**Daily:** `git pull && npm install` — `postinstall` re-imports env automatically if missing.
+
+**After editing any env file:** re-run `npm run env:push` and commit `env.enc.json`.
+
+> This is the same pattern tools like [dotenvx](https://dotenvx.com) and SOPS use: ciphertext in git, key out-of-band. Larger teams typically move to a secrets manager (Doppler, Infisical, 1Password CLI) so secrets never touch the repo at all — worth considering if more people join the project.
 
 ---
 
 ## npm scripts
 
-| Command                | Description                         |
-| ---------------------- | ----------------------------------- |
-| `npm run setup`        | One-step install + env setup        |
-| `npm run dev`          | Start frontend and backend together |
-| `npm run dev:frontend` | Next.js only                        |
-| `npm run dev:backend`  | Strapi only                         |
-| `npm run build`        | Build frontend for production       |
-| `npm run build:backend`| Build Strapi admin panel            |
-| `npm run lint`         | Run ESLint on frontend              |
-
----
-
-## Environment variables
-
-### Frontend (`.env.local`)
-
-| Variable                          | Required | Default                 | Description                    |
-| --------------------------------- | -------- | ----------------------- | ------------------------------ |
-| `NEXT_PUBLIC_STRAPI_API_URL`      | No       | `http://localhost:1337` | Strapi API base URL            |
-| `NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN` | No       | —                       | Mapbox token for projects map  |
-| `REVALIDATE_SECRET`               | No       | auto-generated on setup | Webhook auth for cache refresh |
-| `SMTP_*`                          | No       | —                       | Career form email (optional)   |
-
-### Backend (`backend/.env`)
-
-| Variable              | Required | Default                 | Description             |
-| --------------------- | -------- | ----------------------- | ----------------------- |
-| `APP_KEYS`            | Yes      | auto-generated on setup | Strapi session keys     |
-| `ADMIN_JWT_SECRET`    | Yes      | auto-generated on setup | Admin JWT signing       |
-| `API_TOKEN_SALT`      | Yes      | auto-generated on setup | API token salt          |
-| `TRANSFER_TOKEN_SALT` | Yes      | auto-generated on setup | Transfer token salt     |
-| `ENCRYPTION_KEY`      | Yes      | auto-generated on setup | Encryption key          |
-| `FRONTEND_URL`        | No       | `http://localhost:3000` | CORS allowed origin   |
-| `WEBHOOK_TOKEN`       | No       | synced with frontend    | Outgoing webhook header |
-| `DATABASE_CLIENT`     | No       | `sqlite`                | Set `postgres` for PG   |
-
-Templates: `.env.example` and `backend/.env.example`.
+| Command | Description |
+| ------- | ----------- |
+| `npm run setup` | Install deps + restore env secrets |
+| `npm run env:push` | Encrypt `.env` files → `env.enc.json` (commit it) |
+| `npm run env:pull` | Restore `.env` files (add `-- --force` to overwrite) |
+| `npm run dev` | Start frontend and backend together |
+| `npm run dev:frontend` | Next.js only |
+| `npm run dev:backend` | Strapi only |
+| `npm run build` | Build frontend |
+| `npm run build:backend` | Build Strapi admin |
+| `npm run lint` | ESLint |
 
 ---
 
@@ -165,15 +190,14 @@ cd backend && npm run upgrade       # apply
 ```
 vscs-strapi/
 ├── src/                 # Next.js app
-├── public/              # Static assets
-├── backend/             # Strapi CMS
-│   ├── config/          # Database, server, CORS
-│   ├── src/api/         # Content types
-│   └── .tmp/data.db     # SQLite DB (created on first run)
-├── scripts/setup.js     # Cross-platform setup
-├── .env.example         # Frontend env template
-├── .nvmrc               # Node 22
-└── STRAPI_SETUP.md      # Strapi & webhook guide
+├── backend/             # Strapi CMS (backend/.env lives here)
+├── scripts/
+│   ├── setup.js         # One-step install
+│   └── env.js           # env:push / env:pull (encrypt/decrypt)
+├── .env.local           # Frontend secrets (gitignored)
+├── .env.key             # Encryption key (gitignored, copy between machines)
+├── env.enc.json         # Encrypted secrets (committed)
+└── STRAPI_SETUP.md
 ```
 
 ---
@@ -187,7 +211,8 @@ vscs-strapi/
 | Wrong Node version | `fnm use` or `nvm use` (reads `.nvmrc`) |
 | API returns 403 | Enable Public `find` / `findOne` in Strapi admin |
 | Images not loading | Check `NEXT_PUBLIC_STRAPI_API_URL` in `.env.local` |
-| Port in use | Free ports 3000 / 1337 or change `PORT` in `backend/.env` |
+| Port in use | Change `PORT` in `backend/.env` |
+| Env files missing after clone | Copy `.env.key` from your other machine, run `npm run env:pull` |
 
 ---
 
@@ -195,5 +220,6 @@ vscs-strapi/
 
 - Deploy frontend (e.g. Vercel) and backend (e.g. Strapi Cloud) separately
 - Use **PostgreSQL** in production (`DATABASE_URL` or `DATABASE_CLIENT=postgres`)
-- Never commit `.env` or `.env.local`
+- Never commit `.env.local`, `backend/.env`, or `.env.key`
+- Production secrets go in Vercel / Strapi Cloud dashboards
 - See [STRAPI_SETUP.md](./STRAPI_SETUP.md) for webhooks and API permissions

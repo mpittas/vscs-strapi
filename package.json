@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "setup": "node scripts/setup.js",
+    "env:push": "node scripts/env.js push",
+    "env:pull": "node scripts/env.js pull",
+    "postinstall": "node scripts/env.js pull --quiet",
     "dev": "concurrently -k -n frontend,backend -c blue,green \"npm run dev:frontend\" \"npm run dev:backend\"",
     "dev:frontend": "next dev",
     "dev:backend": "npm run develop --prefix backend",
