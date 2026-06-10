@@ -32,7 +32,6 @@ const Navbar = () => {
     { name: t("nav.projects"), href: "/proekti" },
     { name: t("nav.blog"), href: "/blog" },
     { name: t("nav.careers"), href: "/karieri" },
-    { name: t("nav.contacts"), href: "/kontakti" },
   ];
 
   useEffect(() => {

@@ -1,0 +1,226 @@
+{
+  "metadata": {
+    "title": "Privacy Policy | VSCS",
+    "description": "Privacy policy of VS Construction Services Ltd. – information on the collection, use and protection of personal data."
+  },
+  "page_title": "Privacy Policy",
+  "breadcrumbs": {
+    "privacy": "Privacy Policy"
+  },
+  "content": {
+    "sections": [
+      {
+        "title": "1. General Provisions",
+        "paragraphs": [
+          "This Personal Data Protection Policy aims to inform visitors to the website of VS CONSTRUCTION SERVICES, Ltd., UIC 206671079, with registered office and management address at: 4 Petropavlovska St., Vratsa, represented by Stefan Dimitrov Ormanliev, hereinafter referred to as the \"Controller\", about how personal data is collected, used, stored and protected.",
+          "This Policy is compliant with Regulation (EU) 2016/679 (GDPR), the Personal Data Protection Act and applicable European and Bulgarian legislation."
+        ]
+      },
+      {
+        "title": "2. Categories of Data Subjects",
+        "paragraphs": [
+          "The Controller processes personal data of the following categories of individuals:"
+        ],
+        "list": {
+          "items": [
+            "Website visitors",
+            "Job applicants",
+            "Individuals who have submitted an inquiry or message through the website"
+          ]
+        }
+      },
+      {
+        "title": "3. Types of Personal Data",
+        "paragraphs": [
+          "Depending on the purpose, the following may be processed:"
+        ],
+        "subsections": [
+          {
+            "title": "3.1. Data provided by data subjects",
+            "list": {
+              "items": [
+                "Names",
+                "Email address",
+                "Phone number",
+                "Photographs",
+                "Address (if provided)",
+                "Education and professional experience data, CV, cover letter and other documents",
+                "Additional information provided voluntarily"
+              ]
+            }
+          },
+          {
+            "title": "3.2. Automatically collected data",
+            "list": {
+              "items": [
+                "IP address",
+                "Browser and device",
+                "Pages visited and time spent",
+                "Cookie data"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "title": "4. Sources of Personal Data",
+        "paragraphs": ["Personal data is collected:"],
+        "list": {
+          "items": [
+            "Directly from individuals through forms and file uploads",
+            "Automatically through use of the website",
+            "Via email and other communication channels"
+          ]
+        }
+      },
+      {
+        "title": "5. Purposes of Processing",
+        "paragraphs": ["Data is processed for:"],
+        "list": {
+          "items": [
+            "Recruitment and staff appointment",
+            "Communication with applicants and visitors",
+            "Responding to inquiries",
+            "Improving the website and security",
+            "Compliance with legal obligations"
+          ]
+        }
+      },
+      {
+        "title": "6. Legal Bases",
+        "paragraphs": ["Processing is carried out on the basis of:"],
+        "list": {
+          "items": [
+            "Explicit consent",
+            "Pre-contractual relations",
+            "Legitimate interest of the Controller",
+            "Legal obligation"
+          ]
+        }
+      },
+      {
+        "title": "7. Mandatory or Voluntary Nature",
+        "paragraphs": [
+          "Providing certain data is necessary for:"
+        ],
+        "list": {
+          "items": [
+            "Processing an application",
+            "Establishing contact"
+          ]
+        },
+        "paragraphsAfter": [
+          "Failure to provide such data may result in inability to participate in recruitment or receive a response to an inquiry."
+        ]
+      },
+      {
+        "title": "8. Retention Period",
+        "paragraphs": ["Personal data is stored:"],
+        "list": {
+          "items": [
+            "Until the recruitment procedure is completed, or",
+            "For up to 6 months thereafter, unless explicit consent is given for a longer period",
+            "For the period prescribed by law"
+          ]
+        }
+      },
+      {
+        "title": "9. Recipients of Personal Data",
+        "paragraphs": ["Data may be disclosed to:"],
+        "list": {
+          "items": [
+            "Hosting and IT service providers",
+            "HR, legal and accounting consultants",
+            "Public authorities where required by law"
+          ]
+        }
+      },
+      {
+        "title": "10. Transfer of Data Outside the EU",
+        "paragraphs": [
+          "Personal data is not transferred outside the EU, except where appropriate safeguards are in place."
+        ]
+      },
+      {
+        "title": "11. Automated Decision-Making",
+        "paragraphs": [
+          "The Controller does not apply automated decision-making or profiling."
+        ]
+      },
+      {
+        "title": "12. Data Security",
+        "paragraphs": ["Measures applied include:"],
+        "list": {
+          "items": [
+            "Encrypted connections",
+            "Controlled access",
+            "Internal privacy policies"
+          ]
+        }
+      },
+      {
+        "title": "13. Security Breaches",
+        "paragraphs": [
+          "In the event of a personal data incident, the Controller will notify the competent authorities and affected individuals within the statutory time limits."
+        ]
+      },
+      {
+        "title": "14. Cookies",
+        "paragraphs": ["The website uses cookies for:"],
+        "list": {
+          "items": [
+            "Functionality",
+            "Statistics",
+            "Improving the user experience"
+          ]
+        },
+        "paragraphsAfter": [
+          "Users can manage cookies through their browser settings."
+        ]
+      },
+      {
+        "title": "15. External Links",
+        "paragraphs": [
+          "The website may contain links to external sites for which the Controller is not responsible."
+        ]
+      },
+      {
+        "title": "16. Rights of Data Subjects",
+        "paragraphs": ["Everyone has the right:"],
+        "list": {
+          "items": [
+            "To be informed",
+            "Of access",
+            "To rectification",
+            "To erasure",
+            "To restriction of processing",
+            "To data portability",
+            "To withdraw consent",
+            "To lodge a complaint with the CPDP (Commission for Personal Data Protection)"
+          ]
+        }
+      },
+      {
+        "title": "17. Contact",
+        "paragraphs": ["Controller:"],
+        "contactBlock": {
+          "lines": [
+            "VS CONSTRUCTION SERVICES, Ltd.",
+            "UIC: 206671079",
+            "Address: 4 Petropavlovska St., Vratsa",
+            "Represented by: Stefan Dimitrov Ormanliev"
+          ],
+          "email": "office@vscs-bg.com",
+          "phone": "+359 878 88 88 26"
+        }
+      },
+      {
+        "title": "18. Changes to the Policy",
+        "paragraphs": [
+          "The Controller reserves the right to amend this policy. All changes will be published on the website."
+        ]
+      }
+    ],
+    "effectiveDate": "Date of entry into force of the latest changes: 15 January 2026"
+  }
+}

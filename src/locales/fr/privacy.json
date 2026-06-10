@@ -1,0 +1,226 @@
+{
+  "metadata": {
+    "title": "Politique de confidentialité | VSCS",
+    "description": "Politique de protection des données personnelles de VS Construction Services Ltd. – informations sur la collecte, l'utilisation et la protection des données personnelles."
+  },
+  "page_title": "Politique de confidentialité",
+  "breadcrumbs": {
+    "privacy": "Politique de confidentialité"
+  },
+  "content": {
+    "sections": [
+      {
+        "title": "1. Dispositions générales",
+        "paragraphs": [
+          "La présente Politique de protection des données personnelles a pour objectif d'informer les visiteurs du site web de VS CONSTRUCTION SERVICES, Ltd., numéro d'identification 206671079, dont le siège social et l'adresse de gestion sont situés au : 4, rue Petropavlovska, Vratsa, représentée par Stefan Dimitrov Ormanliev, ci-après dénommée le « Responsable du traitement », sur la manière dont les données personnelles sont collectées, utilisées, stockées et protégées.",
+          "La présente politique est conforme au Règlement (UE) 2016/679 (RGPD), à la loi sur la protection des données personnelles et à la législation européenne et bulgare applicable."
+        ]
+      },
+      {
+        "title": "2. Catégories de personnes concernées",
+        "paragraphs": [
+          "Le Responsable du traitement traite les données personnelles des catégories de personnes suivantes :"
+        ],
+        "list": {
+          "items": [
+            "Visiteurs du site web",
+            "Candidats à un emploi",
+            "Personnes ayant envoyé une demande ou un message via le site"
+          ]
+        }
+      },
+      {
+        "title": "3. Types de données personnelles",
+        "paragraphs": [
+          "Selon la finalité, les données suivantes peuvent être traitées :"
+        ],
+        "subsections": [
+          {
+            "title": "3.1. Données fournies par les personnes concernées",
+            "list": {
+              "items": [
+                "Noms",
+                "Adresse e-mail",
+                "Numéro de téléphone",
+                "Photographies",
+                "Adresse (si fournie)",
+                "Données relatives à la formation et à l'expérience professionnelle, CV, lettre de motivation et autres documents",
+                "Informations supplémentaires fournies volontairement"
+              ]
+            }
+          },
+          {
+            "title": "3.2. Données collectées automatiquement",
+            "list": {
+              "items": [
+                "Adresse IP",
+                "Navigateur et appareil",
+                "Pages visitées et durée de visite",
+                "Données issues des cookies"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "title": "4. Sources des données personnelles",
+        "paragraphs": ["Les données personnelles sont collectées :"],
+        "list": {
+          "items": [
+            "Directement auprès des personnes via des formulaires et des fichiers",
+            "Automatiquement lors de l'utilisation du site",
+            "Par e-mail et autres moyens de communication"
+          ]
+        }
+      },
+      {
+        "title": "5. Finalités du traitement",
+        "paragraphs": ["Les données sont traitées pour :"],
+        "list": {
+          "items": [
+            "Le recrutement et la nomination du personnel",
+            "La communication avec les candidats et les visiteurs",
+            "La réponse aux demandes",
+            "L'amélioration du site et de la sécurité",
+            "Le respect des obligations légales"
+          ]
+        }
+      },
+      {
+        "title": "6. Bases juridiques",
+        "paragraphs": ["Le traitement est effectué sur la base de :"],
+        "list": {
+          "items": [
+            "Consentement explicite",
+            "Relations précontractuelles",
+            "Intérêt légitime du Responsable du traitement",
+            "Obligation légale"
+          ]
+        }
+      },
+      {
+        "title": "7. Caractère obligatoire ou volontaire",
+        "paragraphs": [
+          "La fourniture de certaines données est nécessaire pour :"
+        ],
+        "list": {
+          "items": [
+            "Le traitement d'une candidature",
+            "L'établissement d'un contact"
+          ]
+        },
+        "paragraphsAfter": [
+          "Le non-fournissement de ces données peut entraîner l'impossibilité de participer à une procédure de recrutement ou de recevoir une réponse à une demande."
+        ]
+      },
+      {
+        "title": "8. Durée de conservation",
+        "paragraphs": ["Les données personnelles sont conservées :"],
+        "list": {
+          "items": [
+            "Jusqu'à la fin de la procédure de recrutement, ou",
+            "Pendant 6 mois par la suite, sauf consentement explicite pour une durée plus longue",
+            "Pendant la durée prévue par la loi"
+          ]
+        }
+      },
+      {
+        "title": "9. Destinataires des données personnelles",
+        "paragraphs": ["Les données peuvent être communiquées à :"],
+        "list": {
+          "items": [
+            "Prestataires d'hébergement et de services informatiques",
+            "Consultants RH, juridiques et comptables",
+            "Autorités publiques sur base légale"
+          ]
+        }
+      },
+      {
+        "title": "10. Transfert de données hors de l'UE",
+        "paragraphs": [
+          "Les données personnelles ne sont pas transférées hors de l'UE, sauf en cas de garanties appropriées."
+        ]
+      },
+      {
+        "title": "11. Prise de décision automatisée",
+        "paragraphs": [
+          "Le Responsable du traitement n'applique pas de prise de décision automatisée ni de profilage."
+        ]
+      },
+      {
+        "title": "12. Sécurité des données",
+        "paragraphs": ["Les mesures appliquées comprennent :"],
+        "list": {
+          "items": [
+            "Connexions chiffrées",
+            "Accès contrôlé",
+            "Règles internes de confidentialité"
+          ]
+        }
+      },
+      {
+        "title": "13. Violations de la sécurité",
+        "paragraphs": [
+          "En cas d'incident impliquant des données personnelles, le Responsable du traitement informe les autorités compétentes et les personnes concernées dans les délais légaux."
+        ]
+      },
+      {
+        "title": "14. Cookies",
+        "paragraphs": ["Le site utilise des cookies pour :"],
+        "list": {
+          "items": [
+            "La fonctionnalité",
+            "Les statistiques",
+            "L'amélioration de l'expérience utilisateur"
+          ]
+        },
+        "paragraphsAfter": [
+          "Les utilisateurs peuvent les gérer via les paramètres de leur navigateur."
+        ]
+      },
+      {
+        "title": "15. Liens externes",
+        "paragraphs": [
+          "Le site peut contenir des liens vers des sites externes pour lesquels le Responsable du traitement n'est pas responsable."
+        ]
+      },
+      {
+        "title": "16. Droits des personnes concernées",
+        "paragraphs": ["Chacun a le droit :"],
+        "list": {
+          "items": [
+            "D'être informé",
+            "D'accès",
+            "De rectification",
+            "D'effacement",
+            "De limitation du traitement",
+            "À la portabilité des données",
+            "De retirer son consentement",
+            "De déposer une plainte auprès de la CPDP (Commission pour la protection des données personnelles)"
+          ]
+        }
+      },
+      {
+        "title": "17. Contact",
+        "paragraphs": ["Responsable du traitement :"],
+        "contactBlock": {
+          "lines": [
+            "VS CONSTRUCTION SERVICES, Ltd.",
+            "Numéro d'identification : 206671079",
+            "Adresse : 4, rue Petropavlovska, Vratsa",
+            "Représentée par : Stefan Dimitrov Ormanliev"
+          ],
+          "email": "office@vscs-bg.com",
+          "phone": "+359 878 88 88 26"
+        }
+      },
+      {
+        "title": "18. Modifications de la politique",
+        "paragraphs": [
+          "Le Responsable du traitement se réserve le droit de modifier la présente politique. Toutes les modifications seront publiées sur le site."
+        ]
+      }
+    ],
+    "effectiveDate": "Date d'entrée en vigueur des dernières modifications : 15 janvier 2026"
+  }
+}
