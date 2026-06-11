@@ -56,6 +56,9 @@
     "message": "Additional information",
     "message_placeholder": "Describe the site, capacity, or other requirements...",
     "submit": "Book consultation",
+    "submitting": "Sending...",
+    "success": "Thank you! Your consultation request has been sent. We will contact you within 24 hours.",
+    "error": "Something went wrong while sending. Please try again.",
     "privacy_note": "By submitting this form, you agree to be contacted by our team."
   },
   "sidebar": {

@@ -36,6 +36,9 @@
     "phone_placeholder": "+359...",
     "message": "Message",
     "message_placeholder": "Your message",
-    "submit": "Send Message"
+    "submit": "Send Message",
+    "submitting": "Sending...",
+    "success": "Thank you! Your message has been sent. We will contact you within 24 hours.",
+    "error": "Something went wrong while sending. Please try again."
   }
 }

@@ -77,7 +77,7 @@ Standard layout — each app reads its own env file natively, no sync step:
 | `NEXT_PUBLIC_STRAPI_API_URL` | Strapi API URL |
 | `NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN` | Mapbox token |
 | `REVALIDATE_SECRET` | Webhook cache refresh secret |
-| `SMTP_*` | Career form email (optional) |
+| `SMTP_*` | Website form email (apply, contact, consultation) |
 
 ### Backend vars (`backend/.env`)
 

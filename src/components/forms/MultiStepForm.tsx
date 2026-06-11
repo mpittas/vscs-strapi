@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Select from "@/components/ui/Select";
@@ -154,6 +154,7 @@ const steps = [
 ];
 
 export default function MultiStepForm() {
+  const honeypotRef = useRef<HTMLInputElement>(null);
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -303,11 +304,7 @@ export default function MultiStepForm() {
 
       // Append all text fields
       Object.entries(formData).forEach(([key, value]) => {
-        if (
-          key !== "photoFile" &&
-          key !== "drivingCategories" &&
-          value !== null
-        ) {
+        if (key !== "photoFile" && value !== null) {
           if (Array.isArray(value)) {
             data.append(key, value.join(", "));
           } else {
@@ -315,6 +312,8 @@ export default function MultiStepForm() {
           }
         }
       });
+
+      data.append("_gotcha", honeypotRef.current?.value || "");
 
       if (formData.photoFile) {
         data.append("photoFile", formData.photoFile);
@@ -651,6 +650,16 @@ export default function MultiStepForm() {
 
   return (
     <div className="bg-white rounded-3xl p-8 md:p-12">
+      <input
+        ref={honeypotRef}
+        type="text"
+        name="_gotcha"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="hidden"
+      />
+
       {/* Progress Steps */}
       <div className="mb-14 relative">
         <div className="absolute top-5 left-0 right-0 h-0.5 bg-slate-200"></div>

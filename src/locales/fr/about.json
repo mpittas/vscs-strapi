@@ -92,7 +92,10 @@
       "phone_placeholder": "+359...",
       "message_label": "Message",
       "message_placeholder": "Comment pouvons-nous vous aider ?",
-      "submit_btn": "Consultation Gratuite"
+      "submit_btn": "Consultation Gratuite",
+      "submitting": "Envoi en cours...",
+      "success": "Merci ! Votre demande de consultation a été envoyée.",
+      "error": "Une erreur s'est produite lors de l'envoi. Veuillez réessayer."
     }
   },
   "metadata": {

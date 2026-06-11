@@ -92,7 +92,10 @@
       "phone_placeholder": "+359...",
       "message_label": "Message",
       "message_placeholder": "How can we help you?",
-      "submit_btn": "Free Consultation"
+      "submit_btn": "Free Consultation",
+      "submitting": "Sending...",
+      "success": "Thank you! Your consultation request has been sent.",
+      "error": "Something went wrong while sending. Please try again."
     }
   },
   "metadata": {

@@ -56,6 +56,9 @@
     "message": "Informations supplémentaires",
     "message_placeholder": "Décrivez le site, la puissance ou d'autres exigences...",
     "submit": "Réserver une consultation",
+    "submitting": "Envoi en cours...",
+    "success": "Merci ! Votre demande de consultation a été envoyée. Nous vous contacterons dans les 24 heures.",
+    "error": "Une erreur s'est produite lors de l'envoi. Veuillez réessayer.",
     "privacy_note": "En soumettant ce formulaire, vous acceptez d'être contacté par notre équipe."
   },
   "sidebar": {
