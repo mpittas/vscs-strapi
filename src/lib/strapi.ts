@@ -1,5 +1,6 @@
 import { cache } from "react";
 import { getStrapiMedia, STRAPI_URL } from "./media";
+import { resolveProjectCoordinates, type MapCoordinates } from "./geocode";
 
 // Default ISR window (seconds). Strapi webhook will invalidate on demand via tags.
 const DEFAULT_REVALIDATE = 3600;
@@ -152,6 +153,8 @@ export interface Project {
   title: string;
   slug: string;
   location: string;
+  latitude?: number | null;
+  longitude?: number | null;
   client?: string;
   year?: string;
   content: string;
@@ -162,6 +165,14 @@ export interface Project {
   locale?: string;
   localizations?: Array<{ locale?: string; slug?: string }>;
   publishedAt?: string;
+}
+
+export interface ProjectMapMarker {
+  id: number;
+  title: string;
+  location: string;
+  href: string;
+  coordinates: MapCoordinates;
 }
 
 function mapProjectListItem(p: any): Project {
@@ -190,6 +201,33 @@ export async function getProjects(locale = "bg"): Promise<Project[]> {
     console.error("Error fetching projects:", e);
     return [];
   }
+}
+
+function projectPath(slug: string, locale: string) {
+  return locale === "bg" ? `/proekti/${slug}` : `/${locale}/proekti/${slug}`;
+}
+
+/** Projects with map coordinates for the homepage Mapbox section */
+export async function getProjectMapMarkers(
+  locale = "bg",
+): Promise<ProjectMapMarker[]> {
+  const projects = await getProjects(locale);
+  const markers: ProjectMapMarker[] = [];
+
+  for (const project of projects) {
+    const coordinates = await resolveProjectCoordinates(project);
+    if (!coordinates) continue;
+
+    markers.push({
+      id: project.id,
+      title: project.title,
+      location: project.location,
+      href: projectPath(project.slug, locale),
+      coordinates,
+    });
+  }
+
+  return markers;
 }
 
 export const getProject = cache(

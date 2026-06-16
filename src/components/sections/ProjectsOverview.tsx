@@ -3,7 +3,6 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { Heading, Text } from "@/components/ui/Typography";
@@ -13,52 +12,44 @@ import ProjectPostCard from "@/components/ui/ProjectPostCard";
 import Section from "@/components/ui/Section";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import type { ProjectMapMarker } from "@/lib/strapi";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || "";
 
-// European locations with coordinates [lng, lat]
-const locations = [
-  { id: 1, name: "София, България", coordinates: [23.3219, 42.6977] },
-  { id: 2, name: "Букурещ, Румъния", coordinates: [26.1025, 44.4268] },
-  { id: 3, name: "Атина, Гърция", coordinates: [23.7275, 37.9838] },
-  { id: 4, name: "Берлин, Германия", coordinates: [13.405, 52.52] },
-  { id: 5, name: "Виена, Австрия", coordinates: [16.3738, 48.2082] },
-];
+export interface HomeProject {
+  id: number;
+  title: string;
+  location: string;
+  image: string;
+  href: string;
+}
 
-// Blog posts data
-const blogPosts = [
-  {
-    image: "/images/blog-img-1.jpg",
-    location: "Враца, България",
-    title: "Инсталация на индустриален покрив",
-  },
-  {
-    image: "/images/blog-img-2.jpg",
-    location: "София, България",
-    title: "Соларен парк за бизнес клиенти",
-  },
-  {
-    image: "/images/blog-img-3.jpg",
-    location: "Пловдив, България",
-    title: "Фотоволтаична система за жилищна сграда",
-  },
-  {
-    image: "/images/blog-img-1.jpg",
-    location: "Варна, България",
-    title: "Монтаж на покривна инсталация",
-  },
-  {
-    image: "/images/blog-img-2.jpg",
-    location: "Бургас, България",
-    title: "Индустриална соларна система",
-  },
-];
+interface ProjectsOverviewProps {
+  projects?: HomeProject[];
+  mapMarkers?: ProjectMapMarker[];
+}
 
-export default function ProjectsOverview() {
+function createMarkerElement(isActive: boolean) {
+  const markerEl = document.createElement("div");
+  markerEl.className = "custom-marker";
+  markerEl.style.width = "24px";
+  markerEl.style.height = "24px";
+  markerEl.style.backgroundColor = isActive ? "#16a34a" : "#22c55e";
+  markerEl.style.borderRadius = "50%";
+  markerEl.style.border = "3px solid white";
+  markerEl.style.boxShadow = "0 2px 6px rgba(0,0,0,0.3)";
+  markerEl.style.cursor = "pointer";
+  markerEl.style.transition = "background-color 0.2s ease";
+  return markerEl;
+}
+
+export default function ProjectsOverview({
+  projects = [],
+  mapMarkers = [],
+}: ProjectsOverviewProps) {
   const { t } = useTranslation("home");
-  const [activeLocation, setActiveLocation] = useState<number | null>(null);
+  const [activeMarkerId, setActiveMarkerId] = useState<number | null>(null);
 
-  // Embla Carousel Setup
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       align: "start",
@@ -77,7 +68,6 @@ export default function ProjectsOverview() {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
 
-  // Keep track of canScroll state (optional but good for UX)
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
 
@@ -93,77 +83,95 @@ export default function ProjectsOverview() {
     emblaApi.on("reInit", onSelect);
   }, [emblaApi, onSelect]);
 
-  const flyToLocation = useCallback((locationId: number) => {
-    const location = locations.find((l) => l.id === locationId);
-    if (!location || !map.current) return;
-
-    setActiveLocation(locationId);
-    map.current.flyTo({
-      center: location.coordinates as [number, number],
-      zoom: 10,
-      speed: 1.2,
-    });
-  }, []);
-
   const mapContainer = useRef<HTMLDivElement>(null);
-  const map = useRef<mapboxgl.Map | null>(
-    null,
-  ) as React.MutableRefObject<mapboxgl.Map | null>;
+  const map = useRef<mapboxgl.Map | null>(null);
+  const markersRef = useRef<mapboxgl.Marker[]>([]);
+
+  const flyToMarker = useCallback(
+    (marker: ProjectMapMarker) => {
+      if (!map.current) return;
+      setActiveMarkerId(marker.id);
+      map.current.flyTo({
+        center: marker.coordinates,
+        zoom: 10,
+        speed: 1.2,
+      });
+    },
+    [],
+  );
 
   useEffect(() => {
-    if (map.current || !mapContainer.current) return;
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: "mapbox://styles/mapbox/streets-v12",
-      center: [20, 45], // Centered on Europe [lng, lat]
-      zoom: 3,
-      cooperativeGestures: true, // Require Ctrl/Cmd key for scroll zoom
-    });
+    if (!mapContainer.current || !mapboxgl.accessToken) return;
 
-    // Add custom markers for each location
-    map.current.on("load", () => {
-      locations.forEach((location) => {
-        // Create custom marker element
-        const markerEl = document.createElement("div");
-        markerEl.className = "custom-marker";
-        markerEl.style.width = "24px";
-        markerEl.style.height = "24px";
-        markerEl.style.backgroundColor = "#22c55e"; // Green color matching brand
-        markerEl.style.borderRadius = "50%";
-        markerEl.style.border = "3px solid white";
-        markerEl.style.boxShadow = "0 2px 6px rgba(0,0,0,0.3)";
-        markerEl.style.cursor = "pointer";
-
-        // Create popup
-        const popup = new mapboxgl.Popup({ offset: 25 }).setText(location.name);
-
-        // Add marker to map
-        const marker = new mapboxgl.Marker(markerEl)
-          .setLngLat(location.coordinates as [number, number])
-          .setPopup(popup)
-          .addTo(map.current!);
-
-        markerEl.addEventListener("click", () => {
-          flyToLocation(location.id);
-        });
+    if (!map.current) {
+      map.current = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: "mapbox://styles/mapbox/streets-v12",
+        center: [20, 45],
+        zoom: 3,
+        cooperativeGestures: true,
       });
 
-      // Add navigation controls (zoom buttons + compass)
-      map.current!.addControl(new mapboxgl.NavigationControl(), "top-right");
+      map.current.addControl(new mapboxgl.NavigationControl(), "top-right");
+      map.current.addControl(new mapboxgl.FullscreenControl(), "top-right");
+    }
 
-      // Add fullscreen control
-      map.current!.addControl(new mapboxgl.FullscreenControl(), "top-right");
-    });
+    const mapInstance = map.current;
+
+    const renderMarkers = () => {
+      markersRef.current.forEach((marker) => marker.remove());
+      markersRef.current = [];
+
+      if (mapMarkers.length === 0) return;
+
+      const bounds = new mapboxgl.LngLatBounds();
+
+      mapMarkers.forEach((markerData) => {
+        const isActive = markerData.id === activeMarkerId;
+        const markerEl = createMarkerElement(isActive);
+
+        const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
+          `<strong>${markerData.title}</strong><br/>${markerData.location}`,
+        );
+
+        const marker = new mapboxgl.Marker(markerEl)
+          .setLngLat(markerData.coordinates)
+          .setPopup(popup)
+          .addTo(mapInstance);
+
+        markerEl.addEventListener("click", () => flyToMarker(markerData));
+        markersRef.current.push(marker);
+        bounds.extend(markerData.coordinates);
+      });
+
+      if (mapMarkers.length === 1) {
+        mapInstance.flyTo({ center: mapMarkers[0].coordinates, zoom: 8, speed: 1.2 });
+      } else {
+        mapInstance.fitBounds(bounds, { padding: 48, maxZoom: 8, duration: 0 });
+      }
+    };
+
+    if (mapInstance.isStyleLoaded()) {
+      renderMarkers();
+    } else {
+      mapInstance.once("load", renderMarkers);
+    }
+  }, [mapMarkers, activeMarkerId, flyToMarker]);
+
+  useEffect(() => {
+    return () => {
+      markersRef.current.forEach((marker) => marker.remove());
+      markersRef.current = [];
+      map.current?.remove();
+      map.current = null;
+    };
   }, []);
 
   return (
     <Section paddingY="xl" bgColor="white" className="overflow-hidden">
       <Container className="pr-0 sm:pr-8">
-        {/* Title + Stats + Map Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-0 lg:mb-16">
-          {/* Left Side - Title + Stats */}
           <div>
-            {/* Title */}
             <div className="mb-10 lg:mb-12">
               <Heading as="h2" className="text-brand-green">
                 {t("projects.subheader_highlight")}
@@ -173,7 +181,6 @@ export default function ProjectsOverview() {
               </Heading>
             </div>
 
-            {/* Stats Grid */}
             <div className="grid grid-cols-2 gap-x-8 gap-y-6">
               {[
                 {
@@ -214,56 +221,70 @@ export default function ProjectsOverview() {
             </div>
           </div>
 
-          {/* Right Side - World Map */}
           <div className="relative min-h-[300px] lg:min-h-[350px]">
-            {/* Add mapbox with 3 location markers */}
-            <div
-              ref={mapContainer}
-              style={{ height: "330px" }}
-              className="rounded-2xl"
-            />
+            {mapboxgl.accessToken ? (
+              <div
+                ref={mapContainer}
+                style={{ height: "330px" }}
+                className="rounded-2xl"
+              />
+            ) : (
+              <div className="flex h-[330px] items-center justify-center rounded-2xl bg-slate-100">
+                <Text variant="body-16" className="text-slate-500 px-6 text-center">
+                  {t("projects.map_unavailable")}
+                </Text>
+              </div>
+            )}
           </div>
         </div>
 
-        {/* Blog Posts Carousel */}
         <div className="relative">
-          {/* Embla Carousel Viewport */}
-          <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex -ml-4 touch-pan-y">
-              {blogPosts.map((post, index) => (
-                <div
-                  key={index}
-                  className="flex-[0_0_85%] md:flex-[0_0_50%] lg:flex-[0_0_33.333333%] min-w-0 pl-4 transition-opacity duration-300 flex"
-                >
-                  <ProjectPostCard
-                    image={post.image}
-                    location={post.location}
-                    title={post.title}
-                  />
+          {projects.length === 0 ? (
+            <Text variant="body-18" className="text-slate-500 text-center py-12">
+              {t("projects.no_projects")}
+            </Text>
+          ) : (
+            <>
+              <div className="overflow-hidden" ref={emblaRef}>
+                <div className="flex -ml-4 touch-pan-y">
+                  {projects.map((project) => (
+                    <div
+                      key={project.id}
+                      className="flex-[0_0_85%] md:flex-[0_0_50%] lg:flex-[0_0_33.333333%] min-w-0 pl-4 transition-opacity duration-300 flex"
+                    >
+                      <ProjectPostCard
+                        image={project.image}
+                        location={project.location}
+                        title={project.title}
+                        href={project.href}
+                      />
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
+              </div>
 
-          {/* Carousel Navigation */}
-          <div className="flex mt-6 lg:mt-8 gap-2">
-            <button
-              onClick={scrollPrev}
-              type="button"
-              className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:border-brand-green hover:bg-brand-green transition-all group cursor-pointer active:scale-95"
-              aria-label="Previous slide"
-            >
-              <ChevronLeft className="w-5 h-5 text-slate-700 group-hover:text-dark-green" />
-            </button>
-            <button
-              onClick={scrollNext}
-              type="button"
-              className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:border-brand-green hover:bg-brand-green transition-all group cursor-pointer active:scale-95"
-              aria-label="Next slide"
-            >
-              <ChevronRight className="w-5 h-5 text-slate-700 group-hover:text-dark-green" />
-            </button>
-          </div>
+              <div className="flex mt-6 lg:mt-8 gap-2">
+                <button
+                  onClick={scrollPrev}
+                  type="button"
+                  disabled={!canScrollPrev}
+                  className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:border-brand-green hover:bg-brand-green transition-all group cursor-pointer active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
+                  aria-label="Previous slide"
+                >
+                  <ChevronLeft className="w-5 h-5 text-slate-700 group-hover:text-dark-green" />
+                </button>
+                <button
+                  onClick={scrollNext}
+                  type="button"
+                  disabled={!canScrollNext}
+                  className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:border-brand-green hover:bg-brand-green transition-all group cursor-pointer active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
+                  aria-label="Next slide"
+                >
+                  <ChevronRight className="w-5 h-5 text-slate-700 group-hover:text-dark-green" />
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </Container>
     </Section>

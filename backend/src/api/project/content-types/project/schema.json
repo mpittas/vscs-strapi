@@ -46,6 +46,22 @@
       "maxLength": 200,
       "required": true
     },
+    "latitude": {
+      "type": "decimal",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "longitude": {
+      "type": "decimal",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
     "client": {
       "type": "string",
       "pluginOptions": {

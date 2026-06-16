@@ -62,7 +62,9 @@
       "countries": "Countries",
       "capacity": "Installed Capacity",
       "emissions": "Saved Carbon Emissions"
-    }
+    },
+    "no_projects": "No projects available.",
+    "map_unavailable": "Map requires NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN in .env.local"
   },
   "why_us": {
     "subheader": "RELIABLE AND AFFORDABLE",

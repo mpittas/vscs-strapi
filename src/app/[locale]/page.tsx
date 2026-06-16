@@ -9,7 +9,7 @@ import {
   Marquee,
   CTABanner,
 } from "@/components/sections";
-import { getPaginatedData } from "@/lib/strapi";
+import { getPaginatedData, getProjectMapMarkers, getProjects } from "@/lib/strapi";
 import initTranslations from "@/app/i18n";
 import TranslationsProvider from "@/components/TranslationsProvider";
 import { getStrapiMedia } from "@/lib/media";
@@ -27,6 +27,37 @@ export default async function HomePage({
     "marquee",
   ]);
   let posts: any[] = [];
+  let projects: Array<{
+    id: number;
+    title: string;
+    location: string;
+    image: string;
+    href: string;
+  }> = [];
+
+  let mapMarkers: Awaited<ReturnType<typeof getProjectMapMarkers>> = [];
+
+  const projectPath = (slug: string) =>
+    locale === "bg" ? `/proekti/${slug}` : `/${locale}/proekti/${slug}`;
+
+  try {
+    const [strapiProjects, markers] = await Promise.all([
+      getProjects(locale),
+      getProjectMapMarkers(locale),
+    ]);
+    mapMarkers = markers;
+    projects = strapiProjects.slice(0, 6).map((project) => ({
+      id: project.id,
+      title: project.title,
+      location: project.location,
+      image: project.featuredImage || "/images/type-of-service-1.jpg",
+      href: projectPath(project.slug),
+    }));
+  } catch (error) {
+    console.error("Failed to fetch projects in HomePage:", error);
+    projects = [];
+    mapMarkers = [];
+  }
 
   try {
     const { data } = await getPaginatedData(
@@ -64,7 +95,7 @@ export default async function HomePage({
       <ClientLogos />
       <AboutUs />
       <OurServices />
-      <ProjectsOverview />
+      <ProjectsOverview projects={projects} mapMarkers={mapMarkers} />
       <WhyUs />
       <BlogOverview posts={posts} />
       <Marquee />

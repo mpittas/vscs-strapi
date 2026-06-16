@@ -62,7 +62,9 @@
       "countries": "Държави",
       "capacity": "Инсталирана мощност",
       "emissions": "Спестени въглеродни емисии"
-    }
+    },
+    "no_projects": "Няма налични проекти.",
+    "map_unavailable": "Картата изисква NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN в .env.local"
   },
   "why_us": {
     "subheader": "НАДЕЖДНИ И ДОСТЪПНИ",

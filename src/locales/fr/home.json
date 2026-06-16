@@ -62,7 +62,9 @@
       "countries": "Pays",
       "capacity": "Capacité Installée",
       "emissions": "Émissions de CO2 Évitées"
-    }
+    },
+    "no_projects": "Aucun projet disponible.",
+    "map_unavailable": "La carte nécessite NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN dans .env.local"
   },
   "why_us": {
     "subheader": "FIABLE ET ABORDABLE",
