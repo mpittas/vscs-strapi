@@ -6,6 +6,8 @@
     "setup": "node scripts/setup.js",
     "env:push": "node scripts/env.js push",
     "env:pull": "node scripts/env.js pull",
+    "smtp:test": "node scripts/test-smtp.mjs",
+    "forms:test": "node scripts/test-forms.mjs",
     "postinstall": "node scripts/env.js pull --quiet",
     "dev": "concurrently -k -n frontend,backend -c blue,green \"npm run dev:frontend\" \"npm run dev:backend\"",
     "dev:frontend": "next dev",

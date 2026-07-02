@@ -99,18 +99,25 @@ function getSmtpConfig(): SMTPTransport.Options {
   const port = Number.parseInt(process.env.SMTP_PORT || "587", 10);
   const user = process.env.SMTP_USER?.trim();
   const pass = process.env.SMTP_PASS?.trim();
+  const tlsServername = process.env.SMTP_TLS_SERVERNAME?.trim();
 
   if (!host || !user || !pass) {
     throw new Error("SMTP is not configured");
   }
 
-  return {
+  const config: SMTPTransport.Options = {
     host,
     port,
     secure: port === 465,
     auth: { user, pass },
     requireTLS: port === 587,
   };
+
+  if (tlsServername) {
+    config.tls = { servername: tlsServername };
+  }
+
+  return config;
 }
 
 export function getMailTransporter(): Transporter<SMTPTransport.SentMessageInfo> {
