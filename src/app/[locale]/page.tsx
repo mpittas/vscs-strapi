@@ -41,11 +41,8 @@ export default async function HomePage({
     locale === "bg" ? `/proekti/${slug}` : `/${locale}/proekti/${slug}`;
 
   try {
-    const [strapiProjects, markers] = await Promise.all([
-      getProjects(locale),
-      getProjectMapMarkers(locale),
-    ]);
-    mapMarkers = markers;
+    const strapiProjects = await getProjects(locale);
+    mapMarkers = await getProjectMapMarkers(locale);
     projects = strapiProjects.slice(0, 6).map((project) => ({
       id: project.id,
       title: project.title,

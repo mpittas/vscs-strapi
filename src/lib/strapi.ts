@@ -2,17 +2,18 @@ import { cache } from "react";
 import { getStrapiMedia, STRAPI_URL } from "./media";
 import { resolveProjectCoordinates, type MapCoordinates } from "./geocode";
 
-// Default ISR window (seconds). Strapi webhook will invalidate on demand via tags.
-const DEFAULT_REVALIDATE = 3600;
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// Strapi Cloud free tier: 2,500 REST API requests/month (resets monthly).
+// - force-cache: zero Strapi calls on normal page views after first fetch
+// - cache tags + /api/revalidate webhook: refresh only when content changes
+// - react/cache on fetch helpers: dedupe list/detail calls within one render
 async function fetchStrapi(
   path: string,
   tags: string[] = ["strapi"],
 ): Promise<any> {
   const res = await fetch(`${STRAPI_URL}/api${path}`, {
     headers: { "Content-Type": "application/json" },
-    next: { revalidate: DEFAULT_REVALIDATE, tags },
+    cache: "force-cache",
+    next: { tags },
   });
 
   if (!res.ok) {
@@ -90,7 +91,7 @@ export function buildLocalePaths(
 
 // ── Blog ─────────────────────────────────────────────
 
-export async function getBlogPosts(locale = "bg") {
+export const getBlogPosts = cache(async (locale = "bg") => {
   try {
     const { data } = await fetchStrapi(
       `/blog-posts?populate=featuredImage&sort=publishedAt:desc&locale=${locale}`,
@@ -101,7 +102,7 @@ export async function getBlogPosts(locale = "bg") {
     console.error("Error fetching blog posts:", e);
     return [];
   }
-}
+});
 
 export const getBlogPost = cache(async (slug: string, locale = "bg") => {
   try {
@@ -118,27 +119,29 @@ export const getBlogPost = cache(async (slug: string, locale = "bg") => {
   }
 });
 
-export async function getPaginatedData(
-  endpoint: string,
-  page = 1,
-  pageSize = 6,
-  tags: string[] = [],
-  locale = "bg",
-) {
-  try {
-    const res = await fetchStrapi(
-      `/${endpoint}?populate=featuredImage&sort=publishedAt:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}&locale=${locale}`,
-      tags,
-    );
-    return { data: res.data ?? [], meta: res.meta };
-  } catch (e) {
-    console.error(`Error fetching paginated ${endpoint}:`, e);
-    return {
-      data: [],
-      meta: { pagination: { page: 1, pageSize, pageCount: 0, total: 0 } },
-    };
-  }
-}
+export const getPaginatedData = cache(
+  async (
+    endpoint: string,
+    page = 1,
+    pageSize = 6,
+    tags: string[] = [],
+    locale = "bg",
+  ) => {
+    try {
+      const res = await fetchStrapi(
+        `/${endpoint}?populate=featuredImage&sort=publishedAt:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}&locale=${locale}`,
+        tags,
+      );
+      return { data: res.data ?? [], meta: res.meta };
+    } catch (e) {
+      console.error(`Error fetching paginated ${endpoint}:`, e);
+      return {
+        data: [],
+        meta: { pagination: { page: 1, pageSize, pageCount: 0, total: 0 } },
+      };
+    }
+  },
+);
 
 // ── Projects ─────────────────────────────────────────
 
@@ -190,7 +193,7 @@ function mapProjectDetail(p: any): Project {
   };
 }
 
-export async function getProjects(locale = "bg"): Promise<Project[]> {
+export const getProjects = cache(async (locale = "bg"): Promise<Project[]> => {
   try {
     const { data } = await fetchStrapi(
       `/projects?populate=featuredImage&sort=publishedAt:desc&locale=${locale}`,
@@ -201,7 +204,7 @@ export async function getProjects(locale = "bg"): Promise<Project[]> {
     console.error("Error fetching projects:", e);
     return [];
   }
-}
+});
 
 function projectPath(slug: string, locale: string) {
   return locale === "bg" ? `/proekti/${slug}` : `/${locale}/proekti/${slug}`;
@@ -249,7 +252,7 @@ export const getProject = cache(
 
 // ── Careers ──────────────────────────────────────────
 
-export async function getCareers(locale = "bg") {
+export const getCareers = cache(async (locale = "bg") => {
   try {
     const { data } = await fetchStrapi(
       `/careers?sort=publishedAt:desc&locale=${locale}`,
@@ -265,7 +268,7 @@ export async function getCareers(locale = "bg") {
     console.error("Error fetching careers:", e);
     return [];
   }
-}
+});
 
 export const getCareer = cache(async (slug: string, locale = "bg") => {
   try {
