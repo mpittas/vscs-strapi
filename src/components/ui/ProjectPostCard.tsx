@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import LocalizedLink from "@/components/LocalizedLink";
 import { MapPin, ArrowUpRight } from "lucide-react";
 import { Text } from "@/components/ui/Typography";
 
@@ -17,7 +17,7 @@ export default function ProjectPostCard({
   href = "#",
 }: ProjectPostCardProps) {
   return (
-    <Link
+    <LocalizedLink
       href={href}
       prefetch
       className="group flex flex-col h-full w-full p-4 rounded-2xl border border-neutral-200 hover:bg-neutral-100/70 transition-colors duration-300"
@@ -56,6 +56,6 @@ export default function ProjectPostCard({
           <ArrowUpRight className="w-5 h-5 text-slate-700 transition-colors group-hover:text-dark-green" />
         </div>
       </div>
-    </Link>
+    </LocalizedLink>
   );
 }

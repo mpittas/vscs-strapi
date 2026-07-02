@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import Link from "next/link";
+import LocalizedLink from "@/components/LocalizedLink";
 import { getProject, getProjects, buildLocalePaths } from "@/lib/strapi";
 import i18nConfig from "@/i18nConfig";
 import { truncateText } from "@/lib/utils";
@@ -136,7 +136,7 @@ export default async function ProjectPage({ params }: PageProps) {
             <div className="max-w-4xl">
               {/* Back Button */}
               <div className="mb-10">
-                <Link href="/proekti" className="inline-block">
+                <LocalizedLink href="/proekti" className="inline-block">
                   <BadgeDefault
                     variant="outline-white"
                     uppercase
@@ -145,7 +145,7 @@ export default async function ProjectPage({ params }: PageProps) {
                     <ArrowLeft className="w-4 h-4" />
                     {t("projects:details.back_to_all")}
                   </BadgeDefault>
-                </Link>
+                </LocalizedLink>
               </div>
 
               {/* Title */}

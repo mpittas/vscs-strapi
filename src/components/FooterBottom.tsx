@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import LocalizedLink from "@/components/LocalizedLink";
 import { useTranslation } from "react-i18next";
 import { useMemo } from "react";
 import { Text } from "./ui/Typography";
@@ -33,7 +33,7 @@ export default function FooterBottom({
         </Text>
         <div className="flex flex-col gap-2">
           {legalLinks.map((link) => (
-            <Link
+            <LocalizedLink
               key={link.href}
               href={link.href}
               className="text-white hover:text-brand-green transition-colors"
@@ -41,7 +41,7 @@ export default function FooterBottom({
               <Text variant="body-12" as="span">
                 {link.label}
               </Text>
-            </Link>
+            </LocalizedLink>
           ))}
           <div className="mt-2">
             <Text variant="body-12" className="text-white">
@@ -65,14 +65,14 @@ export default function FooterBottom({
         <div className="flex flex-col lg:flex-row items-center gap-2 lg:gap-3">
           {legalLinks.map((link, index) => (
             <span key={link.href} className="flex items-center gap-2">
-              <Link
+              <LocalizedLink
                 href={link.href}
                 className="text-white hover:text-brand-green transition-colors"
               >
                 <Text variant="body-12" as="span">
                   {link.label}
                 </Text>
-              </Link>
+              </LocalizedLink>
               {index < legalLinks.length - 1 && (
                 <span className="text-brand-green hidden lg:inline">|</span>
               )}

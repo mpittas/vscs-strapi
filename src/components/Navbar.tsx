@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import LocalizedLink from "@/components/LocalizedLink";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
@@ -104,7 +104,7 @@ const Navbar = () => {
     <nav className={navClasses}>
       <div className={cn(navInnerClasses, "flex items-center justify-between")}>
         {/* Logo */}
-        <Link href="/" className="flex items-center">
+        <LocalizedLink href="/" className="flex items-center">
           {/* Mobile Logo - Symbol only */}
           <div className="block sm:hidden">
             <Image
@@ -126,13 +126,13 @@ const Navbar = () => {
               priority
             />
           </div>
-        </Link>
+        </LocalizedLink>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-x-6">
           <div className="flex items-center gap-x-8">
             {navLinks.map((link) => (
-              <Link
+              <LocalizedLink
                 key={link.name}
                 href={link.href}
                 className={cn(
@@ -144,7 +144,7 @@ const Navbar = () => {
                   {link.name}
                 </Text>
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-green transition-all group-hover:w-full" />
-              </Link>
+              </LocalizedLink>
             ))}
           </div>
           <LanguageSwitcher isTransparent={isHomePage && !isScrolled} />
@@ -189,7 +189,7 @@ const Navbar = () => {
       >
         <div className={cn(navInnerClasses, "flex flex-col gap-4 py-6")}>
           {navLinks.map((link) => (
-            <Link
+            <LocalizedLink
               key={link.name}
               href={link.href}
               className="text-slate-900 hover:text-brand-green transition-colors"
@@ -202,7 +202,7 @@ const Navbar = () => {
               >
                 {link.name}
               </Text>
-            </Link>
+            </LocalizedLink>
           ))}
           <div className="py-2">
             <LanguageSwitcher />

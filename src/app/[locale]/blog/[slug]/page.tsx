@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import Link from "next/link";
+import LocalizedLink from "@/components/LocalizedLink";
 import { getBlogPost, getBlogPosts, buildLocalePaths } from "@/lib/strapi";
 import i18nConfig from "@/i18nConfig";
 import { formatDate } from "@/lib/utils";
@@ -90,7 +90,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           <div className="max-w-4xl">
             {/* Back Button */}
             <div className="mb-12 flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-6">
-              <Link href="/blog" className="inline-block">
+              <LocalizedLink href="/blog" className="inline-block">
                 <BadgeDefault
                   variant="outline-white"
                   uppercase
@@ -99,7 +99,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                   <ArrowLeft className="w-4 h-4" />
                   {t("blog:details.back_to_all")}
                 </BadgeDefault>
-              </Link>
+              </LocalizedLink>
 
               {/* Meta Info */}
               <div className="flex flex-wrap items-center gap-4">

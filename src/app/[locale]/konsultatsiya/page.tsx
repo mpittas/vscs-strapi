@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import LocalizedLink from "@/components/LocalizedLink";
 import PageTitle from "@/components/ui/PageTitle";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
@@ -143,12 +143,12 @@ export default async function ConsultationPage({
                   >
                     +359 877 15 98 58
                   </a>
-                  <Link
+                  <LocalizedLink
                     href="/kontakti"
                     className="inline-flex text-brand-green hover:text-white transition-colors text-sm"
                   >
                     {t("consultation:sidebar.contacts_link")} →
-                  </Link>
+                  </LocalizedLink>
                 </div>
               </div>
             </div>

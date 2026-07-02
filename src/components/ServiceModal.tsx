@@ -6,7 +6,6 @@ import { MoveRight, X } from "lucide-react";
 import { Heading, Text } from "@/components/ui/Typography";
 import Button from "@/components/ui/Button";
 import { createPortal } from "react-dom";
-import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import LocalizedLink from "@/components/LocalizedLink";
 import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 
@@ -47,12 +47,12 @@ export default function PageTitle({
             {breadcrumbs.map((item, index) => (
               <div key={index} className="flex items-center gap-2">
                 {item.href ? (
-                  <Link
+                  <LocalizedLink
                     href={item.href}
                     className="text-[#b4d429] text-sm font-normal tracking-wider uppercase hover:text-[#c5e53a] transition-colors"
                   >
                     {item.label}
-                  </Link>
+                  </LocalizedLink>
                 ) : (
                   <span className="text-[#b4d429] text-sm font-normal tracking-wider uppercase opacity-70">
                     {item.label}

@@ -1,4 +1,6 @@
-import Link from "next/link";
+"use client";
+
+import LocalizedLink from "@/components/LocalizedLink";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight, type LucideIcon } from "lucide-react";
 
@@ -158,9 +160,9 @@ export default function Button({
 
   if (href) {
     return (
-      <Link href={href} prefetch={prefetch} className={classes}>
+      <LocalizedLink href={href} prefetch={prefetch} className={classes}>
         {content}
-      </Link>
+      </LocalizedLink>
     );
   }
 

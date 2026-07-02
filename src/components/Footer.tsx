@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import LocalizedLink from "@/components/LocalizedLink";
 import Image from "next/image";
 import { MapPin, Phone, Mail } from "lucide-react";
 import Container from "@/components/ui/Container";
@@ -85,7 +85,7 @@ export default function Footer() {
       {/* Logo Section - Top */}
       <div className="pt-8 pb-4 lg:pt-12 lg:pb-12">
         <Container>
-          <Link href="/" className="inline-block">
+          <LocalizedLink href="/" className="inline-block">
             <Image
               src="/logo/vscs-bg-logo-light.svg"
               alt="VSCS BG Logo"
@@ -93,7 +93,7 @@ export default function Footer() {
               height={50}
               className="h-12 w-auto"
             />
-          </Link>
+          </LocalizedLink>
         </Container>
       </div>
 
@@ -141,7 +141,7 @@ export default function Footer() {
                 <ul className="space-y-2">
                   {quickLinks.map((link) => (
                     <li key={link.href} className="mb-1 md:mb-2">
-                      <Link
+                      <LocalizedLink
                         href={link.href}
                         className="text-white hover:text-brand-green transition-colors"
                       >
@@ -152,7 +152,7 @@ export default function Footer() {
                         >
                           {link.label}
                         </Text>
-                      </Link>
+                      </LocalizedLink>
                     </li>
                   ))}
                 </ul>
@@ -166,7 +166,7 @@ export default function Footer() {
                 <ul className="space-y-2">
                   {servicesLinks.map((link) => (
                     <li key={link.href} className="mb-1 md:mb-2">
-                      <Link
+                      <LocalizedLink
                         href={link.href}
                         className="text-white hover:text-brand-green transition-colors"
                       >
@@ -177,7 +177,7 @@ export default function Footer() {
                         >
                           {link.label}
                         </Text>
-                      </Link>
+                      </LocalizedLink>
                     </li>
                   ))}
                 </ul>

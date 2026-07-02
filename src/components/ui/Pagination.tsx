@@ -1,4 +1,6 @@
-import Link from "next/link";
+"use client";
+
+import LocalizedLink from "@/components/LocalizedLink";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface PaginationProps {
@@ -27,20 +29,20 @@ export default function Pagination({
     <div className={`flex justify-center items-center gap-2 ${className}`}>
       {/* Previous Button */}
       {currentPage > 1 && (
-        <Link
+        <LocalizedLink
           href={pageHref(currentPage - 1)}
           className="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors"
           aria-label="Previous page"
         >
           <ChevronLeft className="w-5 h-5" />
-        </Link>
+        </LocalizedLink>
       )}
 
       {/* Page Numbers */}
       {pages.map((page) => {
         const isCurrent = page === currentPage;
         return (
-          <Link
+          <LocalizedLink
             key={page}
             href={pageHref(page)}
             className={`w-10 h-10 flex items-center justify-center rounded-lg border transition-colors ${
@@ -50,19 +52,19 @@ export default function Pagination({
             }`}
           >
             {page}
-          </Link>
+          </LocalizedLink>
         );
       })}
 
       {/* Next Button */}
       {currentPage < totalPages && (
-        <Link
+        <LocalizedLink
           href={pageHref(currentPage + 1)}
           className="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors"
           aria-label="Next page"
         >
           <ChevronRight className="w-5 h-5" />
-        </Link>
+        </LocalizedLink>
       )}
     </div>
   );

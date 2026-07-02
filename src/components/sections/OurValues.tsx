@@ -66,7 +66,7 @@ export default function OurValues() {
 
           {/* Right - CTA Button */}
           <div className="lg:pt-6">
-            <Button variant="primary" size="md" href="/kontakt" showIcon>
+            <Button variant="primary" size="md" href="/kontakti" showIcon>
               {t("intro.cta") || "Свържете се с нас"}
             </Button>
           </div>

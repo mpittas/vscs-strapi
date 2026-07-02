@@ -245,7 +245,7 @@ export default function Hero() {
 
             <div className="hero-buttons flex w-full flex-col justify-center gap-3 sm:gap-4 sm:w-auto sm:flex-row">
               <Button
-                href="/contact"
+                href="/kontakti"
                 size="md"
                 showIcon
                 className="w-full sm:w-auto"

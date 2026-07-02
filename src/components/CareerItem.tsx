@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { MapPin, Briefcase } from "lucide-react";
 import { Heading, Text } from "@/components/ui/Typography";
 import Button from "@/components/ui/Button";

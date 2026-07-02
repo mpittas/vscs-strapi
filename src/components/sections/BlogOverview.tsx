@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import LocalizedLink from "@/components/LocalizedLink";
 import { Heading, Text } from "@/components/ui/Typography";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
@@ -34,7 +34,7 @@ export default function BlogOverview({ posts = [] }: BlogOverviewProps) {
           </Heading>
 
           {/* View All Link */}
-          <Link
+          <LocalizedLink
             href="/blog"
             className="flex items-center gap-2 text-slate-900 hover:text-brand-green transition-colors group border-b border-slate-900 pb-1"
           >
@@ -42,7 +42,7 @@ export default function BlogOverview({ posts = [] }: BlogOverviewProps) {
               {t("blog.view_all")}
             </Text>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </Link>
+          </LocalizedLink>
         </div>
       </Container>
 

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import LocalizedLink from "@/components/LocalizedLink";
 import { formatDate } from "@/lib/utils";
 import { Heading, Text } from "@/components/ui/Typography";
 
@@ -19,7 +19,7 @@ interface BlogCardProps {
 
 export default function BlogCard({ post }: BlogCardProps) {
   return (
-    <Link href={`/blog/${post.slug}`} prefetch className="group h-full block">
+    <LocalizedLink href={`/blog/${post.slug}`} prefetch className="group h-full block">
       <article className="h-full flex flex-col bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300">
         {/* Image */}
         <div className="aspect-[16/10] bg-slate-100 relative overflow-hidden">
@@ -98,6 +98,6 @@ export default function BlogCard({ post }: BlogCardProps) {
           </div>
         </div>
       </article>
-    </Link>
+    </LocalizedLink>
   );
 }

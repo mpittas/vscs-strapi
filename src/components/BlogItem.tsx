@@ -1,4 +1,4 @@
-import Link from "next/link";
+import LocalizedLink from "@/components/LocalizedLink";
 import Image from "next/image";
 import Container from "@/components/ui/Container";
 import { Heading, Text } from "@/components/ui/Typography";
@@ -20,7 +20,7 @@ interface BlogItemProps {
 
 export default function BlogItem({ post }: BlogItemProps) {
   return (
-    <Link
+    <LocalizedLink
       href={`/blog/${post.slug}`}
       prefetch
       className="group py-12 block hover:bg-neutral-200"
@@ -70,6 +70,6 @@ export default function BlogItem({ post }: BlogItemProps) {
           </div>
         </div>
       </Container>
-    </Link>
+    </LocalizedLink>
   );
 }

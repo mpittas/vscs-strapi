@@ -10,6 +10,7 @@ import {
 } from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { localeFromPathname, localizedPath } from "@/lib/i18n-path";
 import i18nConfig from "@/i18nConfig";
 import {
   getTranslatedPaths,
@@ -27,22 +28,10 @@ const LOCALE_META: Record<
   fr: { label: "FR", Flag: FrenchFlag },
 };
 
-/** Extracts the active locale from the pathname. */
-function localeFromPath(pathname: string): string {
-  const segment = pathname.split("/")[1];
-  return locales.includes(segment) ? segment : defaultLocale;
-}
-
 /** Strips any locale prefix from the pathname. */
 function stripLocale(pathname: string, locale: string): string {
   if (locale === defaultLocale && !prefixDefault) return pathname;
   return pathname.replace(new RegExp(`^/${locale}`), "") || "/";
-}
-
-/** Builds the full target path for a new locale. */
-function buildPath(rawPath: string, newLocale: string): string {
-  if (newLocale === defaultLocale && !prefixDefault) return rawPath;
-  return `/${newLocale}${rawPath === "/" ? "" : rawPath}`;
 }
 
 function FlagCircle({ children }: { children: ReactNode }) {
@@ -103,7 +92,7 @@ export default function LanguageSwitcher({
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const currentLocale = localeFromPath(pathname);
+  const currentLocale = localeFromPathname(pathname);
   const currentMeta = LOCALE_META[currentLocale] ?? LOCALE_META.bg;
 
   const translatedPaths = useSyncExternalStore(
@@ -148,7 +137,7 @@ export default function LanguageSwitcher({
     }
 
     const rawPath = stripLocale(pathname, currentLocale);
-    window.location.href = buildPath(rawPath, newLocale);
+    window.location.href = localizedPath(rawPath, newLocale);
   };
 
   return (

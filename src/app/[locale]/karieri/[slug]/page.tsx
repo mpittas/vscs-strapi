@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
+import LocalizedLink from "@/components/LocalizedLink";
 import { getCareer, getCareers, buildLocalePaths } from "@/lib/strapi";
 import i18nConfig from "@/i18nConfig";
 import { Heading } from "@/components/ui/Typography";
@@ -85,7 +85,7 @@ export default async function CareerPage({ params }: PageProps) {
             <div className="max-w-4xl">
               {/* Back Button */}
               <div className="mb-10">
-                <Link href="/karieri" className="inline-block">
+                <LocalizedLink href="/karieri" className="inline-block">
                   <BadgeDefault
                     variant="outline-white"
                     uppercase
@@ -94,7 +94,7 @@ export default async function CareerPage({ params }: PageProps) {
                     <ArrowLeft className="w-4 h-4" />
                     {t("careers:details.back_to_all")}
                   </BadgeDefault>
-                </Link>
+                </LocalizedLink>
               </div>
 
               {/* Title */}
