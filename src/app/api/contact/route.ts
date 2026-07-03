@@ -41,6 +41,7 @@ export async function POST(request: NextRequest) {
     }
 
     await sendFormEmail({
+      kind: "office",
       subject: `Контактно запитване: ${name}`,
       title: "Ново контактно запитване",
       replyTo: email,

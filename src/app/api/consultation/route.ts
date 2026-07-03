@@ -69,6 +69,7 @@ export async function POST(request: NextRequest) {
     const subjectName = name || email;
 
     await sendFormEmail({
+      kind: "office",
       subject: `Заявка за консултация: ${subjectName}`,
       title: "Нова заявка за консултация",
       replyTo: email,

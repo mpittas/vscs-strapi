@@ -51,10 +51,7 @@ const differentStyleLabels: Record<string, string> = {
   work_alone: "Работя самостоятелно, за да избегна конфликти",
 };
 
-function labelFor(
-  value: string,
-  labels: Record<string, string>,
-): string {
+function labelFor(value: string, labels: Record<string, string>): string {
   return labels[value] || value;
 }
 
@@ -84,7 +81,10 @@ export async function POST(request: NextRequest) {
       formData.get("timeAbroadRestrictions"),
       MAX_TEXT_LENGTH,
     );
-    const certificates = sanitizeField(formData.get("certificates"), MAX_TEXT_LENGTH);
+    const certificates = sanitizeField(
+      formData.get("certificates"),
+      MAX_TEXT_LENGTH,
+    );
     const motivation = sanitizeField(formData.get("motivation"));
     const effortResponse = sanitizeField(formData.get("effortResponse"));
     const pressureHandling = sanitizeField(
@@ -95,8 +95,12 @@ export async function POST(request: NextRequest) {
       formData.get("procedureAttitude"),
       MAX_TEXT_LENGTH,
     );
-    const multiculturalAttitude = sanitizeField(formData.get("multiculturalAttitude"));
-    const conflictResolution = sanitizeField(formData.get("conflictResolution"));
+    const multiculturalAttitude = sanitizeField(
+      formData.get("multiculturalAttitude"),
+    );
+    const conflictResolution = sanitizeField(
+      formData.get("conflictResolution"),
+    );
     const differentStyleHandling = sanitizeField(
       formData.get("differentStyleHandling"),
     );
@@ -108,8 +112,14 @@ export async function POST(request: NextRequest) {
       formData.get("nostalgiaHandling"),
       MAX_TEXT_LENGTH,
     );
-    const situation1 = sanitizeField(formData.get("situation1"), MAX_TEXT_LENGTH);
-    const situation2 = sanitizeField(formData.get("situation2"), MAX_TEXT_LENGTH);
+    const situation1 = sanitizeField(
+      formData.get("situation1"),
+      MAX_TEXT_LENGTH,
+    );
+    const situation2 = sanitizeField(
+      formData.get("situation2"),
+      MAX_TEXT_LENGTH,
+    );
     const photoFile = formData.get("photoFile") as File | null;
 
     if (!fullName || !phone || !city || !age) {
@@ -137,6 +147,7 @@ export async function POST(request: NextRequest) {
     const attachments = attachment ? [attachment] : [];
 
     await sendFormEmail({
+      kind: "jobs",
       subject: `Нова кандидатура за работа: ${fullName}`,
       title: "Нова кандидатура за работа",
       fields: [
@@ -146,13 +157,21 @@ export async function POST(request: NextRequest) {
         { label: "Възраст", value: age },
         {
           label: "Шофьорска книжка",
-          value: hasDrivingLicense === "yes" ? "Да" : hasDrivingLicense === "no" ? "Не" : hasDrivingLicense,
+          value:
+            hasDrivingLicense === "yes"
+              ? "Да"
+              : hasDrivingLicense === "no"
+                ? "Не"
+                : hasDrivingLicense,
         },
         { label: "Категории", value: drivingCategories },
         { label: "Опит и умения", value: experienceDescription },
         { label: "Опит на открито", value: outdoorExperience },
         { label: "Езици", value: languages },
-        { label: "Ограничения за престой в чужбина", value: timeAbroadRestrictions },
+        {
+          label: "Ограничения за престой в чужбина",
+          value: timeAbroadRestrictions,
+        },
         { label: "Сертификати", value: certificates },
         { label: "Мотивация", value: labelFor(motivation, motivationLabels) },
         {

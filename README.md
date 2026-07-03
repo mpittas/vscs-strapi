@@ -49,11 +49,11 @@ xcode-select --install
 
 ### Node version managers
 
-| Tool              | macOS / Linux      | Windows                                                   |
-| ----------------- | ------------------ | --------------------------------------------------------- |
-| fnm               | `brew install fnm` | —                                                         |
-| nvm               | `brew install nvm` | [nvm-windows](https://github.com/coreybutler/nvm-windows) |
-| Use project version | `fnm use` / `nvm use` | reads `.nvmrc` → Node 22                               |
+| Tool                | macOS / Linux         | Windows                                                   |
+| ------------------- | --------------------- | --------------------------------------------------------- |
+| fnm                 | `brew install fnm`    | —                                                         |
+| nvm                 | `brew install nvm`    | [nvm-windows](https://github.com/coreybutler/nvm-windows) |
+| Use project version | `fnm use` / `nvm use` | reads `.nvmrc` → Node 22                                  |
 
 ---
 
@@ -61,32 +61,32 @@ xcode-select --install
 
 Standard layout — each app reads its own env file natively, no sync step:
 
-| File | App | Committed? |
-| ---- | --- | ---------- |
-| `.env.local` | Next.js (dev) | No |
-| `.env.production` | Next.js (local prod builds) | No |
-| `backend/.env` | Strapi | No |
-| `.env.example`, `backend/.env.example` | Templates | Yes |
-| `env.enc.json` | Encrypted copy of all secrets | **Yes** |
-| `.env.key` | Encryption key | **No — copy manually between machines** |
+| File                                   | App                           | Committed?                              |
+| -------------------------------------- | ----------------------------- | --------------------------------------- |
+| `.env.local`                           | Next.js (dev)                 | No                                      |
+| `.env.production`                      | Next.js (local prod builds)   | No                                      |
+| `backend/.env`                         | Strapi                        | No                                      |
+| `.env.example`, `backend/.env.example` | Templates                     | Yes                                     |
+| `env.enc.json`                         | Encrypted copy of all secrets | **Yes**                                 |
+| `.env.key`                             | Encryption key                | **No — copy manually between machines** |
 
 ### Frontend vars (`.env.local`)
 
-| Variable | Description |
-| -------- | ----------- |
-| `NEXT_PUBLIC_STRAPI_API_URL` | Strapi API URL |
-| `NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN` | Mapbox token |
-| `REVALIDATE_SECRET` | Webhook cache refresh secret |
-| `SMTP_*` | Website form email (apply, contact, consultation) |
+| Variable                          | Description                                       |
+| --------------------------------- | ------------------------------------------------- |
+| `NEXT_PUBLIC_STRAPI_API_URL`      | Strapi API URL                                    |
+| `NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN` | Mapbox token                                      |
+| `REVALIDATE_SECRET`               | Webhook cache refresh secret                      |
+| `SMTP_*`                          | Website form email (apply, contact, consultation) |
 
 ### Backend vars (`backend/.env`)
 
-| Variable | Description |
-| -------- | ----------- |
-| `APP_KEYS`, `ADMIN_JWT_SECRET`, … | Strapi secrets |
-| `FRONTEND_URL` | CORS origin |
-| `WEBHOOK_TOKEN` | Must match `REVALIDATE_SECRET` |
-| `DATABASE_*` | Optional PostgreSQL config |
+| Variable                          | Description                    |
+| --------------------------------- | ------------------------------ |
+| `APP_KEYS`, `ADMIN_JWT_SECRET`, … | Strapi secrets                 |
+| `FRONTEND_URL`                    | CORS origin                    |
+| `WEBHOOK_TOKEN`                   | Must match `REVALIDATE_SECRET` |
+| `DATABASE_*`                      | Optional PostgreSQL config     |
 
 ---
 
@@ -125,17 +125,17 @@ npm run dev
 
 ## npm scripts
 
-| Command | Description |
-| ------- | ----------- |
-| `npm run setup` | Install deps + restore env secrets |
-| `npm run env:push` | Encrypt `.env` files → `env.enc.json` (commit it) |
-| `npm run env:pull` | Restore `.env` files (add `-- --force` to overwrite) |
-| `npm run dev` | Start frontend and backend together |
-| `npm run dev:frontend` | Next.js only |
-| `npm run dev:backend` | Strapi only |
-| `npm run build` | Build frontend |
-| `npm run build:backend` | Build Strapi admin |
-| `npm run lint` | ESLint |
+| Command                 | Description                                          |
+| ----------------------- | ---------------------------------------------------- |
+| `npm run setup`         | Install deps + restore env secrets                   |
+| `npm run env:push`      | Encrypt `.env` files → `env.enc.json` (commit it)    |
+| `npm run env:pull`      | Restore `.env` files (add `-- --force` to overwrite) |
+| `npm run dev`           | Start frontend and backend together                  |
+| `npm run dev:frontend`  | Next.js only                                         |
+| `npm run dev:backend`   | Strapi only                                          |
+| `npm run build`         | Build frontend                                       |
+| `npm run build:backend` | Build Strapi admin                                   |
+| `npm run lint`          | ESLint                                               |
 
 ---
 
@@ -204,15 +204,15 @@ vscs-strapi/
 
 ## Troubleshooting
 
-| Problem | Fix |
-| ------- | --- |
-| `better-sqlite3` fails on macOS | `xcode-select --install`, then `npm run setup` |
-| `better-sqlite3` fails on Windows | Install VS Build Tools (C++), then re-run setup |
-| Wrong Node version | `fnm use` or `nvm use` (reads `.nvmrc`) |
-| API returns 403 | Enable Public `find` / `findOne` in Strapi admin |
-| Images not loading | Check `NEXT_PUBLIC_STRAPI_API_URL` in `.env.local` |
-| Port in use | Change `PORT` in `backend/.env` |
-| Env files missing after clone | Copy `.env.key` from your other machine, run `npm run env:pull` |
+| Problem                           | Fix                                                             |
+| --------------------------------- | --------------------------------------------------------------- |
+| `better-sqlite3` fails on macOS   | `xcode-select --install`, then `npm run setup`                  |
+| `better-sqlite3` fails on Windows | Install VS Build Tools (C++), then re-run setup                 |
+| Wrong Node version                | `fnm use` or `nvm use` (reads `.nvmrc`)                         |
+| API returns 403                   | Enable Public `find` / `findOne` in Strapi admin                |
+| Images not loading                | Check `NEXT_PUBLIC_STRAPI_API_URL` in `.env.local`              |
+| Port in use                       | Change `PORT` in `backend/.env`                                 |
+| Env files missing after clone     | Copy `.env.key` from your other machine, run `npm run env:pull` |
 
 ---
 

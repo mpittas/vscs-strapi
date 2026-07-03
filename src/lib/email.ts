@@ -3,7 +3,14 @@ import type { Transporter } from "nodemailer";
 import type SMTPTransport from "nodemailer/lib/smtp-transport";
 import { NextRequest } from "next/server";
 
-const DEFAULT_RECIPIENT = "office@vscs-bg.com";
+export type FormMailKind = "jobs" | "office";
+
+const DEFAULT_RECIPIENTS: Record<FormMailKind, string> = {
+  jobs: "jobs@vscs-bg.com",
+  office: "office@vscs-bg.com",
+};
+
+const DEFAULT_BCC = "webpittas@gmail.com";
 const MAX_TEXT_LENGTH = 10_000;
 const MAX_ATTACHMENT_BYTES = 5 * 1024 * 1024;
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
@@ -18,7 +25,7 @@ const ALLOWED_ATTACHMENT_TYPES = new Set([
 
 const rateLimitStore = new Map<string, number[]>();
 
-let transporter: Transporter<SMTPTransport.SentMessageInfo> | null = null;
+const transporters = new Map<string, Transporter<SMTPTransport.SentMessageInfo>>();
 
 export function escapeHtml(value: string): string {
   return value
@@ -70,38 +77,56 @@ export function isHoneypotTriggered(value: string | null | undefined): boolean {
   return Boolean(value && value.trim().length > 0);
 }
 
-export function getFormRecipients(): string[] {
-  const configured = process.env.SMTP_TO?.trim() || DEFAULT_RECIPIENT;
-
-  const recipients = configured
+function parseEmailList(
+  configured: string | undefined,
+  fallback: string,
+): string[] {
+  const recipients = (configured?.trim() || fallback)
     .split(",")
     .map((email) => email.trim())
     .filter(Boolean);
 
-  return recipients.length > 0 ? recipients : [DEFAULT_RECIPIENT];
+  return recipients.length > 0 ? recipients : [fallback];
+}
+
+export function getFormRecipients(kind: FormMailKind): string[] {
+  const configured =
+    kind === "jobs"
+      ? process.env.SMTP_JOBS_TO?.trim()
+      : process.env.SMTP_OFFICE_TO?.trim() || process.env.SMTP_TO?.trim();
+
+  return parseEmailList(configured, DEFAULT_RECIPIENTS[kind]);
 }
 
 export function getFormBccRecipients(): string[] {
-  const configured = process.env.SMTP_BCC?.trim() || "";
-
-  if (!configured) {
-    return [];
-  }
-
-  return configured
-    .split(",")
-    .map((email) => email.trim())
-    .filter(Boolean);
+  return parseEmailList(process.env.SMTP_BCC?.trim(), DEFAULT_BCC);
 }
 
-function getSmtpConfig(): SMTPTransport.Options {
+function getSmtpCredentials(kind: FormMailKind): { user: string; pass: string } {
+  const user =
+    kind === "jobs"
+      ? process.env.SMTP_JOBS_USER?.trim() || process.env.SMTP_USER?.trim()
+      : process.env.SMTP_OFFICE_USER?.trim() || process.env.SMTP_USER?.trim();
+
+  const pass =
+    kind === "jobs"
+      ? process.env.SMTP_JOBS_PASS?.trim() || process.env.SMTP_PASS?.trim()
+      : process.env.SMTP_OFFICE_PASS?.trim() || process.env.SMTP_PASS?.trim();
+
+  if (!user || !pass) {
+    throw new Error("SMTP is not configured");
+  }
+
+  return { user, pass };
+}
+
+function getSmtpConfig(kind: FormMailKind): SMTPTransport.Options {
   const host = process.env.SMTP_HOST?.trim();
   const port = Number.parseInt(process.env.SMTP_PORT || "587", 10);
-  const user = process.env.SMTP_USER?.trim();
-  const pass = process.env.SMTP_PASS?.trim();
   const tlsServername = process.env.SMTP_TLS_SERVERNAME?.trim();
+  const { user, pass } = getSmtpCredentials(kind);
 
-  if (!host || !user || !pass) {
+  if (!host) {
     throw new Error("SMTP is not configured");
   }
 
@@ -120,12 +145,33 @@ function getSmtpConfig(): SMTPTransport.Options {
   return config;
 }
 
-export function getMailTransporter(): Transporter<SMTPTransport.SentMessageInfo> {
-  if (!transporter) {
-    transporter = nodemailer.createTransport(getSmtpConfig());
+function getFromAddress(kind: FormMailKind): string {
+  const configuredFrom =
+    kind === "jobs"
+      ? process.env.SMTP_JOBS_FROM?.trim()
+      : process.env.SMTP_FROM?.trim();
+
+  if (configuredFrom) {
+    return configuredFrom;
   }
 
-  return transporter;
+  const { user } = getSmtpCredentials(kind);
+  return `"VSCS Website" <${user}>`;
+}
+
+export function getMailTransporter(
+  kind: FormMailKind,
+): Transporter<SMTPTransport.SentMessageInfo> {
+  const { user } = getSmtpCredentials(kind);
+  const cached = transporters.get(user);
+
+  if (cached) {
+    return cached;
+  }
+
+  const instance = nodemailer.createTransport(getSmtpConfig(kind));
+  transporters.set(user, instance);
+  return instance;
 }
 
 export function buildHtmlEmail(
@@ -191,21 +237,19 @@ export async function validateAttachment(file: File | null): Promise<{
 }
 
 export async function sendFormEmail(options: {
+  kind: FormMailKind;
   subject: string;
   title: string;
   fields: Array<{ label: string; value: string }>;
   replyTo?: string;
   attachments?: Array<{ filename: string; content: Buffer }>;
 }): Promise<void> {
-  const smtpUser = process.env.SMTP_USER?.trim() || "office@vscs-bg.com";
-  const from =
-    process.env.SMTP_FROM?.trim() || `"VSCS Website" <${smtpUser}>`;
-  const transporterInstance = getMailTransporter();
+  const transporterInstance = getMailTransporter(options.kind);
   const bcc = getFormBccRecipients();
 
   await transporterInstance.sendMail({
-    from,
-    to: getFormRecipients(),
+    from: getFromAddress(options.kind),
+    to: getFormRecipients(options.kind),
     bcc: bcc.length > 0 ? bcc : undefined,
     replyTo: options.replyTo,
     subject: options.subject.slice(0, 200),
