@@ -1,26 +1,29 @@
 import path from 'path';
 
 export default ({ env }) => {
-  // Strapi Cloud provides DATABASE_URL automatically
-  // If it exists, use PostgreSQL; otherwise use SQLite for local development
+  // Small pool for Railway hobby: min 0 lets the service sleep when idle
+  // (open DB connections count as outbound traffic and prevent serverless sleep).
+  const productionPool = {
+    min: env.int('DATABASE_POOL_MIN', 0),
+    max: env.int('DATABASE_POOL_MAX', 2),
+  };
+
+  // Production uses DATABASE_URL (Railway Postgres, etc.)
+  // Local dev falls back to SQLite unless DATABASE_CLIENT=postgres
   const isProduction = env('DATABASE_URL', null) !== null;
 
   if (isProduction) {
-    // Strapi Cloud / Production: Use PostgreSQL with DATABASE_URL
     return {
       connection: {
         client: 'postgres',
         connection: {
           connectionString: env('DATABASE_URL'),
-          ssl: {
-            rejectUnauthorized: false,
-          },
+          ssl: env.bool('DATABASE_SSL', true)
+            ? { rejectUnauthorized: false }
+            : false,
         },
-        pool: {
-          min: 2,
-          max: 10,
-        },
-        acquireConnectionTimeout: 60000,
+        pool: productionPool,
+        acquireConnectionTimeout: env.int('DATABASE_ACQUIRE_TIMEOUT', 30000),
       },
     };
   }
@@ -42,10 +45,10 @@ export default ({ env }) => {
           ssl: false,
         },
         pool: {
-          min: 2,
-          max: 10,
+          min: 0,
+          max: 5,
         },
-        acquireConnectionTimeout: 60000,
+        acquireConnectionTimeout: 30000,
       },
     };
   }

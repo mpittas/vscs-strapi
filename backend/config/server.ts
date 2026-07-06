@@ -4,8 +4,9 @@ export default ({ env }) => ({
   app: {
     keys: env.array('APP_KEYS', ['temporary-key-1', 'temporary-key-2']),
   },
+  // MCP is for local AI tooling only — keep off in production to save memory.
   mcp: {
-    enabled: true,
+    enabled: env.bool('MCP_ENABLED', env('NODE_ENV') !== 'production'),
   },
   // Webhook configuration for on-demand revalidation
   webhooks: {

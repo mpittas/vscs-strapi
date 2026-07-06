@@ -143,6 +143,9 @@ export default {
   register(/* { strapi }: { strapi: Core.Strapi } */) {},
 
   async bootstrap({ strapi }: { strapi: Core.Strapi }) {
+    // One-time admin layout tweak — skip in production to avoid DB work on every boot.
+    if (process.env.NODE_ENV === 'production') return;
+
     try {
       await applyProjectAdminLayout(strapi);
     } catch (error) {

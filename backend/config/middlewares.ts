@@ -1,3 +1,5 @@
+const isProduction = process.env.NODE_ENV === 'production';
+
 export default [
   'strapi::logger',
   'strapi::errors',
@@ -10,16 +12,24 @@ export default [
       origin: [
         'http://localhost:3000',
         'http://127.0.0.1:3000',
-        // Add your Vercel domain(s) here
         process.env.FRONTEND_URL || 'https://your-vercel-app.vercel.app',
-        // Allow all Vercel preview deployments
         /\.vercel\.app$/,
       ],
     },
   },
-  'strapi::poweredBy',
+  ...(isProduction ? [] : ['strapi::poweredBy']),
   'strapi::query',
-  'strapi::body',
+  {
+    name: 'strapi::body',
+    config: {
+      jsonLimit: '256kb',
+      textLimit: '256kb',
+      formLimit: '10mb',
+      formidable: {
+        maxFileSize: 10 * 1024 * 1024,
+      },
+    },
+  },
   'strapi::session',
   'strapi::favicon',
   'strapi::public',

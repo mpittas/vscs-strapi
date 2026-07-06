@@ -16,7 +16,6 @@
     "compress-images": "node scripts/compress-images-to-webp.js"
   },
   "dependencies": {
-    "@strapi/plugin-cloud": "5.47.1",
     "@strapi/plugin-users-permissions": "5.47.1",
     "@strapi/strapi": "5.47.1",
     "pg": "^8.11.3",
@@ -41,6 +40,7 @@
   },
   "strapi": {
     "uuid": "8ae00a80-e9a8-49e0-970f-7453ff85ce67",
-    "installId": "b863d95ccc44b0b9ff9cf2239b81738deaccd33529f8a28a7b6c5afd716ce227"
+    "installId": "b863d95ccc44b0b9ff9cf2239b81738deaccd33529f8a28a7b6c5afd716ce227",
+    "telemetryDisabled": true
   }
 }

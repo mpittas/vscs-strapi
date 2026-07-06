@@ -2,10 +2,8 @@ import { cache } from "react";
 import { getStrapiMedia, STRAPI_URL } from "./media";
 import { resolveProjectCoordinates, type MapCoordinates } from "./geocode";
 
-// Strapi Cloud free tier: 2,500 REST API requests/month (resets monthly).
-// - force-cache: zero Strapi calls on normal page views after first fetch
-// - cache tags + /api/revalidate webhook: refresh only when content changes
-// - react/cache on fetch helpers: dedupe list/detail calls within one render
+// Railway hobby: Next.js force-cache + webhooks keep Strapi calls near zero.
+// Only hits Strapi on content publish or first cache warm after deploy.
 async function fetchStrapi(
   path: string,
   tags: string[] = ["strapi"],
