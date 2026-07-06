@@ -111,6 +111,9 @@ export async function POST(request: NextRequest) {
         break;
       case "project":
         tagsToRevalidate.add("projects");
+        for (const locale of locales) {
+          tagsToRevalidate.add(`projects-${locale}`);
+        }
         if (payload.entry?.slug) {
           tagsToRevalidate.add(`project-${payload.entry.slug}`);
         }

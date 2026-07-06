@@ -2,6 +2,13 @@
   "mcpServers": {
     "vercel": {
       "url": "https://mcp.vercel.com"
+    },
+    "strapi": {
+      "command": "node",
+      "args": ["scripts/strapi-mcp-bridge.mjs"]
+    },
+    "strapi-docs": {
+      "url": "https://strapi-docs.mcp.kapa.ai"
     }
   }
 }

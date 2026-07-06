@@ -4,6 +4,9 @@ export default ({ env }) => ({
   app: {
     keys: env.array('APP_KEYS', ['temporary-key-1', 'temporary-key-2']),
   },
+  mcp: {
+    enabled: true,
+  },
   // Webhook configuration for on-demand revalidation
   webhooks: {
     // Default headers sent with every webhook request
