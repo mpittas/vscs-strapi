@@ -36,6 +36,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "*.up.railway.app",
+        pathname: "/uploads/**",
+      },
+      {
+        protocol: "https",
         hostname: "images.unsplash.com",
       },
     ],

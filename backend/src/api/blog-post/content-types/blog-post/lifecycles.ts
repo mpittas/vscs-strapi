@@ -4,7 +4,7 @@ export default {
   async beforeCreate(event) {
     const { data } = event.params;
 
-    if (data.title) {
+    if (data.title && !data.slug) {
       data.slug = slugify(data.title, {
         lower: true,
         locale: "bg",
@@ -16,7 +16,7 @@ export default {
   async beforeUpdate(event) {
     const { data } = event.params;
 
-    if (data.title) {
+    if (data.title && !data.slug) {
       data.slug = slugify(data.title, {
         lower: true,
         locale: "bg",

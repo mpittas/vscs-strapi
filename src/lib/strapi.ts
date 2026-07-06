@@ -197,7 +197,7 @@ export const getProjects = cache(async (locale = "bg"): Promise<Project[]> => {
   try {
     const { data } = await fetchStrapi(
       `/projects?populate=featuredImage&sort=publishedAt:desc&locale=${locale}`,
-      ["strapi", "projects"],
+      ["strapi", "projects", `projects-${locale}`],
     );
     return data.map((p: any) => mapProjectListItem(p));
   } catch (e) {
@@ -238,7 +238,7 @@ export const getProject = cache(
     try {
       const { data } = await fetchStrapi(
         `/projects?filters[slug][$eq]=${slug}&populate[0]=featuredImage&populate[1]=gallery&populate[2]=localizations&locale=${locale}`,
-        ["strapi", "projects", `project-${slug}`],
+        ["strapi", "projects", `projects-${locale}`, `project-${slug}`],
       );
       if (!data?.length) return null;
 

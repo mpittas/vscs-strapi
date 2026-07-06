@@ -32,6 +32,8 @@ export default async function ProjectsPage({
     "common",
   ]);
   const projects = await getProjects(locale);
+  const projectHref = (slug: string) =>
+    locale === "bg" ? `/proekti/${slug}` : `/${locale}/proekti/${slug}`;
 
   return (
     <TranslationsProvider
@@ -59,7 +61,7 @@ export default async function ProjectsPage({
                   image={
                     project.featuredImage || "/images/type-of-service-1.jpg"
                   }
-                  href={`/proekti/${project.slug}`}
+                  href={projectHref(project.slug)}
                 />
               ))}
             </div>
