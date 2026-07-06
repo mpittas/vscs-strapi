@@ -12,7 +12,8 @@ async function fetchStrapi(
 ): Promise<any> {
   const res = await fetch(`${STRAPI_URL}/api${path}`, {
     headers: { "Content-Type": "application/json" },
-    cache: "force-cache",
+    cache:
+      process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
     next: { tags },
   });
 
@@ -252,18 +253,27 @@ export const getProject = cache(
 
 // ── Careers ──────────────────────────────────────────
 
+function mapCareer(c: any) {
+  const plainContent = (c.main_content ?? "")
+    .replace(/[#*_`>-]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  return {
+    ...c,
+    shortDescription: c.short_description || plainContent,
+    sidebarInfo: c.sidebar_info,
+    mainContent: c.main_content,
+  };
+}
+
 export const getCareers = cache(async (locale = "bg") => {
   try {
     const { data } = await fetchStrapi(
       `/careers?sort=publishedAt:desc&locale=${locale}`,
-      ["strapi", "careers"],
+      ["strapi", "careers", `careers-${locale}`],
     );
-    return data.map((c: any) => ({
-      ...c,
-      shortDescription: c.short_description,
-      sidebarInfo: c.sidebar_info,
-      mainContent: c.main_content,
-    }));
+    return data.map(mapCareer);
   } catch (e) {
     console.error("Error fetching careers:", e);
     return [];
@@ -274,17 +284,11 @@ export const getCareer = cache(async (slug: string, locale = "bg") => {
   try {
     const { data } = await fetchStrapi(
       `/careers?filters[slug][$eq]=${slug}&populate=localizations&locale=${locale}`,
-      ["strapi", "careers", `career-${slug}`],
+      ["strapi", "careers", `careers-${locale}`, `career-${slug}`],
     );
     if (!data?.length) return null;
 
-    const c = data[0];
-    return {
-      ...c,
-      shortDescription: c.short_description,
-      sidebarInfo: c.sidebar_info,
-      mainContent: c.main_content,
-    };
+    return mapCareer(data[0]);
   } catch (e) {
     console.error("Error fetching career:", e);
     return null;
