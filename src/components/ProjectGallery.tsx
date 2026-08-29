@@ -60,7 +60,7 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div data-reveal-group="" className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {images.map((image, index) => (
           <button
             key={`${image.url}-${index}`}

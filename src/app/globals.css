@@ -174,3 +174,21 @@
     animation: marquee 20s linear infinite;
   }
 }
+
+/* Entry motion: hide only marked targets until GSAP reveals them.
+   Content stays visible if JS never runs (see noscript in layout). */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal]:not([data-revealed]),
+  [data-reveal-hero] [data-reveal]:not([data-revealed]),
+  [data-reveal-group] > :not([data-revealed]) {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-marquee-slow,
+  .animate-marquee-fast {
+    animation: none;
+  }
+}

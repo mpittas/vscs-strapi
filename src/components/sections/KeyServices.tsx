@@ -73,7 +73,7 @@ export default function KeyServices() {
         </div>
 
         {/* Cards Grid - Updated to 2 columns for 4 items */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div data-reveal-group="" className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {services.map((service, index) => (
             <div
               key={index}

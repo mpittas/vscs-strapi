@@ -14,7 +14,7 @@ export default function AboutIntro() {
   }) as string[];
 
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section data-reveal-section="" className="py-16 md:py-24 bg-white">
       <div className="container">
         <div className="flex flex-col lg:flex-row gap-8 items-start">
           {/* Badge */}
@@ -74,7 +74,7 @@ export default function AboutIntro() {
         </div>
 
         {/* Content Grid */}
-        <div className="grid lg:grid-cols-12 gap-8 items-stretch">
+        <div data-reveal-group="" className="grid lg:grid-cols-12 gap-8 items-stretch">
           {/* Image */}
           <div className="lg:col-span-6 relative min-h-[400px] rounded-2xl overflow-hidden">
             <Image

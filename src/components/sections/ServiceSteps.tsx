@@ -112,7 +112,7 @@ export default function ServiceSteps() {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+    <div data-reveal-group="" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
       {steps.map((step, index) => (
         <ServiceCard
           key={index}

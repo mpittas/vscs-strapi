@@ -85,11 +85,11 @@ export default async function BlogPostPage({ params }: PageProps) {
         namespaces={["blog", "common", "home"]}
       >
       {/* Hero Section */}
-      <section className="bg-[#0a0f0a] relative pt-24 pb-32">
+      <section data-reveal-hero="" className="bg-[#0a0f0a] relative pt-24 pb-32">
         <Container size="sm">
           <div className="max-w-4xl">
             {/* Back Button */}
-            <div className="mb-12 flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-6">
+            <div data-reveal="fade" className="mb-12 flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-6">
               <LocalizedLink href="/blog" className="inline-block">
                 <BadgeDefault
                   variant="outline-white"
@@ -115,7 +115,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             </div>
 
             {/* Title */}
-            <Heading as="h2" className="text-white">
+            <Heading as="h2" data-reveal="title" className="text-white">
               {post.title}
             </Heading>
           </div>
@@ -123,7 +123,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       </section>
 
       {/* Content Section with Image overlapping */}
-      <section className="bg-[#f0f2f0] bg-neutral-100 pb-18">
+      <section data-reveal-section="" className="bg-[#f0f2f0] bg-neutral-100 pb-18">
         <Container size="sm">
           {/* Featured Image - Negative margin to overlap hero */}
           <div className="-mt-18 bg-white relative z-20 p-4 rounded-3xl">

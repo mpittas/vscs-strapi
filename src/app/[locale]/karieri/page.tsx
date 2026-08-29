@@ -62,7 +62,7 @@ export default async function CareersPage({
           </div>
 
           {/* Career Listings */}
-          <div className="space-y-4">
+          <div data-reveal-group="" className="space-y-4">
             {careers.length > 0 ? (
               careers.map((career: any) => (
                 <CareerItem

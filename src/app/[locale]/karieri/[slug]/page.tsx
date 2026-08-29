@@ -80,11 +80,14 @@ export default async function CareerPage({ params }: PageProps) {
         namespaces={["careers", "common"]}
       >
         {/* Dark Hero Section - Matching Projects Page */}
-        <section className="bg-[#0a0f0a] relative pt-32 pb-24 border-b border-white/10">
+        <section
+          data-reveal-hero=""
+          className="bg-[#0a0f0a] relative pt-32 pb-24 border-b border-white/10"
+        >
           <Container>
             <div className="max-w-4xl">
               {/* Back Button */}
-              <div className="mb-10">
+              <div data-reveal="fade" className="mb-10">
                 <LocalizedLink href="/karieri" className="inline-block">
                   <BadgeDefault
                     variant="outline-white"
@@ -100,13 +103,14 @@ export default async function CareerPage({ params }: PageProps) {
               {/* Title */}
               <Heading
                 as="h1"
+                data-reveal="title"
                 className="text-white mb-6 text-4xl md:text-5xl lg:text-6xl font-medium leading-tight"
               >
                 {career.title}
               </Heading>
 
               {/* Meta Info */}
-              <div className="flex flex-wrap items-center gap-4">
+              <div data-reveal="rise" className="flex flex-wrap items-center gap-4">
                 {career.location && (
                   <div className="inline-flex items-center gap-2 text-white/80 px-2 py-1.5 text-sm">
                     <MapPin className="w-4 h-4 text-[#b4d429]" />

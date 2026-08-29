@@ -114,7 +114,10 @@ export default async function ProjectPage({ params }: PageProps) {
         namespaces={["projects", "common"]}
       >
         {/* Hero Section */}
-        <section className="relative pt-32 pb-24 border-b border-white/10 overflow-hidden">
+        <section
+          data-reveal-hero=""
+          className="relative pt-32 pb-24 border-b border-white/10 overflow-hidden"
+        >
           {project.featuredImage ? (
             <>
               <Image
@@ -135,7 +138,7 @@ export default async function ProjectPage({ params }: PageProps) {
           <Container className="relative z-20">
             <div className="max-w-4xl">
               {/* Back Button */}
-              <div className="mb-10">
+              <div data-reveal="fade" className="mb-10">
                 <LocalizedLink href="/proekti" className="inline-block">
                   <BadgeDefault
                     variant="outline-white"
@@ -151,13 +154,14 @@ export default async function ProjectPage({ params }: PageProps) {
               {/* Title */}
               <Heading
                 as="h1"
+                data-reveal="title"
                 className="text-white mb-6 text-4xl md:text-5xl lg:text-6xl font-medium leading-tight"
               >
                 {project.title}
               </Heading>
 
               {/* Badges/Meta */}
-              <div className="flex flex-wrap items-center gap-4">
+              <div data-reveal="rise" className="flex flex-wrap items-center gap-4">
                 {project.energy && (
                   <BadgeDefault variant="white" size="md" className="gap-2">
                     <Zap className="w-4 h-4 fill-current" />

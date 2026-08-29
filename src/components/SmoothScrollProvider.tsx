@@ -13,6 +13,7 @@ import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import PageReveals from "@/components/motion/PageReveals";
 
 // Register GSAP plugins once
 if (typeof window !== "undefined") {
@@ -110,6 +111,9 @@ export default function SmoothScrollProvider({
   }, [raf]);
 
   return (
-    <LenisContext.Provider value={lenis}>{children}</LenisContext.Provider>
+    <LenisContext.Provider value={lenis}>
+      <PageReveals />
+      {children}
+    </LenisContext.Provider>
   );
 }

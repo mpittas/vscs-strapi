@@ -62,7 +62,7 @@ export default async function BlogListContent({
       <Section paddingY="sm" bgColor="white">
         {posts.length > 0 ? (
           <>
-            <div className="flex flex-col divide-y divide-slate-200">
+            <div data-reveal-group="" className="flex flex-col divide-y divide-slate-200">
               {posts.map((post) => (
                 <BlogItem
                   key={post.id}

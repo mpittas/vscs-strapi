@@ -6,6 +6,7 @@ interface SectionProps {
   paddingY?: "none" | "sm" | "md" | "lg" | "xl" | "blog";
   bgColor?: "white" | "light" | "dark" | "dark-green" | string;
   id?: string;
+  reveal?: boolean;
 }
 
 const paddingClasses = {
@@ -30,6 +31,7 @@ export default function Section({
   paddingY = "md",
   bgColor = "white",
   id,
+  reveal = true,
 }: SectionProps) {
   // Check if bgColor is a preset or custom color
   const bgClass = bgColorClasses[bgColor] || bgColor;
@@ -40,6 +42,7 @@ export default function Section({
   return (
     <section
       id={id}
+      data-reveal-section={reveal ? "" : undefined}
       className={cn(
         paddingClasses[paddingY],
         !hasBgInClassName && bgClass,

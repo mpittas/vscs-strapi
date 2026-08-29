@@ -101,7 +101,7 @@ export default function Footer() {
       <div>
         <Container>
           <div className="py-8 lg:py-12 border-y border-white/5">
-            <div className="grid grid-cols-2 lg:grid-cols-12 gap-y-10 gap-x-6 lg:gap-8">
+            <div data-reveal-group="" className="grid grid-cols-2 lg:grid-cols-12 gap-y-10 gap-x-6 lg:gap-8">
               {/* Brand Column - Tagline & Social */}
               <div className="col-span-2 lg:col-span-4">
                 <Text

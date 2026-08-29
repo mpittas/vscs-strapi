@@ -143,7 +143,7 @@ export default function NumbersCounter() {
     <Section paddingY="none" className="bg-[#EBF8DA]">
       <div ref={sectionRef}>
         <Container>
-          <div className="rounded-2xl grid grid-cols-2 md:grid-cols-4 bg-[#EBF8DA] py-6 md:py-0">
+          <div data-reveal-group="" className="rounded-2xl grid grid-cols-2 md:grid-cols-4 bg-[#EBF8DA] py-6 md:py-0">
             {counterData.map((item, index) => (
               <CounterCard
                 key={index}

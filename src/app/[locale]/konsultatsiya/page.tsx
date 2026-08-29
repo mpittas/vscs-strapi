@@ -73,7 +73,7 @@ export default async function ConsultationPage({
             </Heading>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div data-reveal-group="" className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {benefitKeys.map((key) => {
               const Icon = benefitIcons[key];
               return (

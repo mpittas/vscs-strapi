@@ -47,7 +47,7 @@ export default function BlogOverview({ posts = [] }: BlogOverviewProps) {
       </Container>
 
       {/* Blog Posts List */}
-      <div className="flex flex-col divide-y divide-slate-200">
+      <div data-reveal-group="" className="flex flex-col divide-y divide-slate-200">
         {posts.length > 0 ? (
           posts.map((post) => <BlogItem key={post.id} post={post} />)
         ) : (

@@ -47,6 +47,7 @@ export default function Marquee({ className, speed = "normal" }: MarqueeProps) {
 
   return (
     <section
+      data-motion="skip"
       className={cn("bg-dark-green py-5 overflow-hidden relative", className)}
     >
       {/* Marquee container */}

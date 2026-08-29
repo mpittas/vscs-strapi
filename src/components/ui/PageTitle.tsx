@@ -21,7 +21,10 @@ export default function PageTitle({
   backgroundImage,
 }: PageTitleProps) {
   return (
-    <section className="relative py-8 overflow-hidden flex flex-col items-center justify-center min-h-[260px]">
+    <section
+      data-reveal-hero=""
+      className="relative py-8 overflow-hidden flex flex-col items-center justify-center min-h-[260px]"
+    >
       {/* Background Image */}
       {backgroundImage ? (
         <>
@@ -43,7 +46,7 @@ export default function PageTitle({
       <div className="container relative z-20">
         <div className="flex flex-col items-center text-center">
           {/* Breadcrumbs */}
-          <nav className="flex items-center gap-2 mb-6">
+          <nav data-reveal="fade" className="flex items-center gap-2 mb-6">
             {breadcrumbs.map((item, index) => (
               <div key={index} className="flex items-center gap-2">
                 {item.href ? (
@@ -66,12 +69,18 @@ export default function PageTitle({
           </nav>
 
           {/* Title */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal text-white drop-shadow-sm">
+          <h1
+            data-reveal="title"
+            className="text-4xl md:text-5xl lg:text-6xl font-normal text-white drop-shadow-sm"
+          >
             {title}
           </h1>
 
           {subtitle && (
-            <p className="mt-6 text-lg text-white/90 max-w-2xl font-light leading-relaxed drop-shadow-sm">
+            <p
+              data-reveal="rise"
+              className="mt-6 text-lg text-white/90 max-w-2xl font-light leading-relaxed drop-shadow-sm"
+            >
               {subtitle}
             </p>
           )}

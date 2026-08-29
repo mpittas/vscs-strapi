@@ -108,6 +108,9 @@ export default async function RootLayout({
       <body
         className={`${stolzl.variable} font-sans antialiased min-h-screen flex flex-col`}
       >
+        <noscript>
+          <style>{`[data-reveal],[data-reveal-hero] [data-reveal],[data-reveal-group] > *{opacity:1!important;transform:none!important;clip-path:none!important}`}</style>
+        </noscript>
         <TranslationsProvider
           locale={locale}
           resources={resources}

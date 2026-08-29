@@ -1,0 +1,101 @@
+{
+  "metadata": {
+    "title": "VSCS Priority | Accès anticipé pour partenaires",
+    "description": "Rejoignez la liste d'attente VSCS Priority pour une capacité EPC préférentielle, des consultations plus rapides, des tarifs partenaires et un tarif founding."
+  },
+  "breadcrumbs": {
+    "priority": "Priority"
+  },
+  "hero": {
+    "brand": "VSCS Priority",
+    "headline": "Un accès préférentiel avant tout le monde.",
+    "subline": "Réservez votre place founding-partner pour une capacité EPC prioritaire, une réponse plus rapide et des tarifs anticipés au lancement de la facturation.",
+    "cta": "Rejoindre la liste d'attente",
+    "scarcity": "Partenaires founding · 40 places"
+  },
+  "benefits": {
+    "subheader": "CE QUE VOUS OBTENEZ",
+    "title": "Conçu pour les partenaires qui agissent en premier",
+    "items": {
+      "capacity": {
+        "title": "Capacité EPC prioritaire",
+        "description": "Passez devant la file lorsque des créneaux d'installation s'ouvrent — votre planning reste en tête."
+      },
+      "sla": {
+        "title": "Consultation sous 48 h",
+        "description": "Les membres Priority obtiennent un appel expert confirmé sous deux jours ouvrés."
+      },
+      "rates": {
+        "title": "Tarifs équipements partenaires",
+        "description": "Accédez au parcours tarifaire préférentiel pour panneaux, onduleurs et BESS auprès de fabricants déjà éprouvés sur chantier."
+      },
+      "advanced": {
+        "title": "Accès anticipé BESS & Agri-PV",
+        "description": "Découvrez en premier les offres stockage et Agri-PV avant l'ouverture au marché plus large."
+      },
+      "briefings": {
+        "title": "Briefings projets privés",
+        "description": "Notes trimestrielles pipeline et marché pour les partenaires qui ont besoin de signaux, pas de newsletters génériques."
+      },
+      "founding": {
+        "title": "Tarification founding-partner",
+        "description": "Verrouillez le tarif d'adhésion anticipé au lancement de Priority payant — réservé aux inscrits sur la liste."
+      }
+    }
+  },
+  "steps": {
+    "subheader": "COMMENT ÇA MARCHE",
+    "title": "Trois étapes vers l'accès Priority",
+    "items": {
+      "step1": "Rejoignez la liste avec les détails de votre projet",
+      "step2": "Nous confirmons votre place et vous tenons informé",
+      "step3": "Au lancement de Priority, les partenaires founding passent en premier"
+    }
+  },
+  "pricing": {
+    "subheader": "TARIF FOUNDING",
+    "title": "Tarifs à venir",
+    "description": "Les membres de la liste founding ont le premier accès à la facturation Priority. Aucun paiement aujourd'hui — nous recueillons l'intérêt avant le lancement.",
+    "badge": "Mode test Stripe prêt",
+    "note": "Le paiement en ligne n'est pas encore actif. L'inscription à la liste est gratuite."
+  },
+  "form": {
+    "title": "Rejoindre la liste VSCS Priority",
+    "description": "Parlez-nous de votre projet. Nous confirmerons votre place founding-partner par e-mail.",
+    "name": "Nom complet",
+    "name_placeholder": "Votre nom",
+    "company": "Entreprise",
+    "company_placeholder": "Nom de l'entreprise",
+    "email": "E-mail",
+    "email_placeholder": "vous@entreprise.com",
+    "phone": "Téléphone",
+    "phone_placeholder": "+359...",
+    "interest": "Intérêt projet",
+    "interest_placeholder": "Sélectionnez un intérêt",
+    "interests": {
+      "utility": "Utility / sol",
+      "commercial": "Toiture commerciale",
+      "bess": "BESS / stockage",
+      "agripv": "Agri-PV",
+      "other": "Autre / exploration"
+    },
+    "message": "Autre chose à savoir ?",
+    "message_placeholder": "Capacité, délai, localisation…",
+    "submit": "Réserver ma place",
+    "submitting": "Envoi…",
+    "success": "Vous êtes sur la liste. Nous vous écrirons lorsque Priority s'ouvrira aux partenaires founding.",
+    "error": "Une erreur s'est produite. Réessayez ou écrivez à office@vscs-bg.com.",
+    "privacy_note": "En vous inscrivant, vous acceptez d'être contacté au sujet de VSCS Priority. Pas de spam."
+  },
+  "teaser": {
+    "brand": "VSCS Priority",
+    "title": "Passez devant. Les partenaires founding ont la première capacité.",
+    "description": "Créneaux EPC préférentiels, consultations sous 48 h et tarifs partenaires anticipés — rejoignez la liste avant qu'il n'y ait plus de places.",
+    "cta": "Découvrir Priority"
+  },
+  "upsell": {
+    "title": "Besoin de plus qu'une consultation ponctuelle ?",
+    "description": "VSCS Priority est notre prochain niveau partenaire pour une capacité préférentielle et des tarifs founding.",
+    "cta": "Rejoindre la liste Priority"
+  }
+}

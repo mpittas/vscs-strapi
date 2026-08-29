@@ -19,7 +19,7 @@ export default function ClientLogos() {
     <Section paddingY="sm" className="bg-[#e8f0dc] relative z-1">
       <Container>
         {/* Mobile: stacked layout, Desktop: horizontal layout */}
-        <div className="flex flex-col items-center lg:flex-row gap-8">
+        <div data-reveal="rise" className="flex flex-col items-center lg:flex-row gap-8">
           {/* Left side - Title */}
           <Text
             variant="body-16"

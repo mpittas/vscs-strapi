@@ -86,7 +86,7 @@ export default function WhyUs() {
             </Heading>
 
             {/* Info Items Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6 md:gap-y-8">
+            <div data-reveal-group="" className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6 md:gap-y-8">
               {infoItems.map((item, index) => (
                 <InfoItem
                   key={index}

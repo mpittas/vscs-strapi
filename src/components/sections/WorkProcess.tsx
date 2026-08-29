@@ -101,7 +101,7 @@ export default function WorkProcess() {
       <Container>
         {/* Header */}
         {/* Two-column Intro Text - Added intro keys */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-16">
+        <div data-reveal-group="" className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-16">
           <Text className="text-slate-700 leading-relaxed">
             {t("work_process.intro_left")}
           </Text>
@@ -118,7 +118,7 @@ export default function WorkProcess() {
         </div>
 
         {/* Process Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div data-reveal-group="" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {processSteps.map((step, index) => (
             <ProcessCard
               key={index}

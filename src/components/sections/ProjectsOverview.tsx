@@ -181,7 +181,7 @@ export default function ProjectsOverview({
               </Heading>
             </div>
 
-            <div className="grid grid-cols-2 gap-x-8 gap-y-6">
+            <div data-reveal-group="" className="grid grid-cols-2 gap-x-8 gap-y-6">
               {[
                 {
                   value: 50,
@@ -221,7 +221,7 @@ export default function ProjectsOverview({
             </div>
           </div>
 
-          <div className="relative min-h-[300px] lg:min-h-[350px]">
+          <div data-motion="skip" className="relative min-h-[300px] lg:min-h-[350px]">
             {mapboxgl.accessToken ? (
               <div
                 ref={mapContainer}
@@ -238,7 +238,7 @@ export default function ProjectsOverview({
           </div>
         </div>
 
-        <div className="relative">
+        <div data-reveal="rise" className="relative">
           {projects.length === 0 ? (
             <Text variant="body-18" className="text-slate-500 text-center py-12">
               {t("projects.no_projects")}

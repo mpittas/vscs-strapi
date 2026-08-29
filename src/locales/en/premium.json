@@ -1,0 +1,101 @@
+{
+  "metadata": {
+    "title": "VSCS Priority | Early Access for Partners",
+    "description": "Join the VSCS Priority waitlist for preferential EPC capacity, faster consultations, partner equipment rates, and founding-partner pricing."
+  },
+  "breadcrumbs": {
+    "priority": "Priority"
+  },
+  "hero": {
+    "brand": "VSCS Priority",
+    "headline": "Preferential access before everyone else.",
+    "subline": "Reserve your founding-partner spot for priority EPC capacity, faster response, and early rates when billing goes live.",
+    "cta": "Join the waitlist",
+    "scarcity": "Founding partners · 40 spots"
+  },
+  "benefits": {
+    "subheader": "WHAT YOU GET",
+    "title": "Built for partners who move first",
+    "items": {
+      "capacity": {
+        "title": "Priority EPC capacity",
+        "description": "Jump the project queue when installation slots open — your timeline stays ahead of the general waitlist."
+      },
+      "sla": {
+        "title": "48h consultation SLA",
+        "description": "Priority members get a confirmed expert call within two business days — not whenever the calendar frees up."
+      },
+      "rates": {
+        "title": "Partner equipment rates",
+        "description": "Access the preferred pricing path for panels, inverters, and BESS from manufacturers we already trust on site."
+      },
+      "advanced": {
+        "title": "BESS & Agri-PV early access",
+        "description": "First look at advanced storage and Agri-PV offerings before they open to the wider market."
+      },
+      "briefings": {
+        "title": "Private project briefings",
+        "description": "Quarterly pipeline and market notes for partners who need signal, not generic newsletters."
+      },
+      "founding": {
+        "title": "Founding-partner pricing",
+        "description": "Lock early membership pricing when paid Priority launches — reserved for waitlist members only."
+      }
+    }
+  },
+  "steps": {
+    "subheader": "HOW IT WORKS",
+    "title": "Three steps to Priority access",
+    "items": {
+      "step1": "Join the waitlist with your project details",
+      "step2": "We confirm your spot and keep you updated",
+      "step3": "When Priority goes live, founding partners go first"
+    }
+  },
+  "pricing": {
+    "subheader": "FOUNDING RATE",
+    "title": "Pricing coming soon",
+    "description": "Founding waitlist members get first access to Priority billing. No charge today — we are collecting interest before launch.",
+    "badge": "Stripe test mode ready",
+    "note": "Live checkout is not enabled yet. Joining the waitlist is free."
+  },
+  "form": {
+    "title": "Join the VSCS Priority waitlist",
+    "description": "Tell us about your project. We will confirm your founding-partner spot by email.",
+    "name": "Full name",
+    "name_placeholder": "Your name",
+    "company": "Company",
+    "company_placeholder": "Company name",
+    "email": "Email",
+    "email_placeholder": "you@company.com",
+    "phone": "Phone",
+    "phone_placeholder": "+359...",
+    "interest": "Project interest",
+    "interest_placeholder": "Select interest",
+    "interests": {
+      "utility": "Utility / ground-mount",
+      "commercial": "Commercial rooftop",
+      "bess": "BESS / storage",
+      "agripv": "Agri-PV",
+      "other": "Other / exploring"
+    },
+    "message": "Anything else we should know?",
+    "message_placeholder": "Capacity, timeline, location…",
+    "submit": "Reserve my spot",
+    "submitting": "Submitting…",
+    "success": "You are on the list. We will email you when Priority opens for founding partners.",
+    "error": "Something went wrong. Please try again or email office@vscs-bg.com.",
+    "privacy_note": "By joining you agree to be contacted about VSCS Priority. No spam."
+  },
+  "teaser": {
+    "brand": "VSCS Priority",
+    "title": "Skip the queue. Founding partners get first capacity.",
+    "description": "Preferential EPC slots, 48h consultations, and early partner rates — join the waitlist before spots fill.",
+    "cta": "Explore Priority"
+  },
+  "upsell": {
+    "title": "Need more than a one-off consultation?",
+    "description": "VSCS Priority is our upcoming partner tier for preferential capacity and founding rates.",
+    "cta": "Join the Priority waitlist"
+  }
+}

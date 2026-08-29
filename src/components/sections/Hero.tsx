@@ -8,6 +8,7 @@ import Container from "@/components/ui/Container";
 import { Heading, Text } from "@/components/ui/Typography";
 import gsap from "gsap";
 import { useTranslation } from "react-i18next";
+import { prefersReducedMotion } from "@/lib/motion";
 
 // Helper component removed as we use simple line animation now
 
@@ -61,6 +62,8 @@ export default function Hero() {
 
   useEffect(() => {
     if (!heroRef.current) return;
+
+    if (prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
       // Get specific elements
@@ -174,7 +177,7 @@ export default function Hero() {
       {/* Navbar is fixed, so it sits outside the wrapper */}
       <Navbar />
 
-      <div className="relative overflow-hidden" ref={heroRef}>
+      <div className="relative overflow-hidden" ref={heroRef} data-motion="skip">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <Image

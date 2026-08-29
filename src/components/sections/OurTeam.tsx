@@ -122,7 +122,7 @@ export default function OurTeam() {
           </div>
 
           {/* Right - Team Grid */}
-          <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+          <div data-reveal-group="" className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
             {teamMembers.map((member, index) => (
               <TeamMemberCard key={index} member={member} />
             ))}

@@ -10,8 +10,8 @@ type HeadingProps = {
   children: React.ReactNode;
   className?: string;
   id?: string;
-  style?: React.CSSProperties; // Added style prop
-};
+  style?: React.CSSProperties;
+} & Omit<React.HTMLAttributes<HTMLHeadingElement>, "className" | "id" | "style">;
 
 // Export styles for design system usage
 export const headingStyles = {
@@ -29,12 +29,14 @@ export function Heading({
   className,
   id,
   style,
+  ...rest
 }: HeadingProps) {
   return (
     <Component
       id={id}
       className={cn(headingStyles[Component], className)}
       style={style}
+      {...rest}
     >
       {children}
     </Component>
