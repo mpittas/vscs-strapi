@@ -14,7 +14,6 @@ import PremiumWaitlistForm from "@/components/forms/PremiumWaitlistForm";
 import PriorityHero from "@/components/sections/PriorityHero";
 import initTranslations from "@/app/i18n";
 import TranslationsProvider from "@/components/TranslationsProvider";
-import { isStripeTestConfigured } from "@/lib/stripe-products";
 
 export const generateMetadata = async ({
   params,
@@ -60,7 +59,6 @@ export default async function PriorityPage({
     "premium",
     "common",
   ]);
-  const stripeReady = isStripeTestConfigured();
 
   return (
     <TranslationsProvider
@@ -170,11 +168,6 @@ export default async function PriorityPage({
                 <Text variant="body-16" className="text-white/75 mb-6">
                   {t("premium:pricing.description")}
                 </Text>
-                {stripeReady ? (
-                  <span className="inline-flex items-center rounded-full border border-brand-green/40 bg-brand-green/10 px-3 py-1 text-sm text-brand-green">
-                    {t("premium:pricing.badge")}
-                  </span>
-                ) : null}
                 <Text variant="body-14" className="text-white/50 mt-6">
                   {t("premium:pricing.note")}
                 </Text>

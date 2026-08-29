@@ -56,7 +56,6 @@
     "subheader": "TARIF FOUNDING",
     "title": "Tarifs à venir",
     "description": "Les membres de la liste founding ont le premier accès à la facturation Priority. Aucun paiement aujourd'hui — nous recueillons l'intérêt avant le lancement.",
-    "badge": "Mode test Stripe prêt",
     "note": "Le paiement en ligne n'est pas encore actif. L'inscription à la liste est gratuite."
   },
   "form": {
